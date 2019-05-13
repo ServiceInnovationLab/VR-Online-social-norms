@@ -16,7 +16,7 @@ public class PositionResetter : MonoBehaviour
 
     public void ResetObjectPosition()
     {
-        var rigidBody = transform.GetComponent<Rigidbody>();
+        var rigidBody = objectToReset.GetComponent<Rigidbody>();
 
         if (rigidBody)
         {
