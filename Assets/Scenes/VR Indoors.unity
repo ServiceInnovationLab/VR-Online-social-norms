@@ -1384,7 +1384,7 @@ MeshCollider:
   m_GameObject: {fileID: 1057649741947691}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -1683,16 +1683,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5263055379510138495, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: operation
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263055379510138495, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: identifiers.Array.data[0]
-      value: IncludeTeleport
-      objectReference: {fileID: 0}
     - target: {fileID: 5263055380110088586, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: maximumLength.x
@@ -1808,6 +1798,10 @@ PrefabInstance:
     - target: {fileID: 1266093658389126, guid: 92da7b909f4b0d642adff96c26fc496e, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266093658389126, guid: 92da7b909f4b0d642adff96c26fc496e, type: 3}
+      propertyPath: m_TagString
+      value: IncludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 4036463848873388, guid: 92da7b909f4b0d642adff96c26fc496e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3510,6 +3504,10 @@ PrefabInstance:
     - target: {fileID: 1303484912985492, guid: 962b799cb3076c9449425f236220538b, type: 3}
       propertyPath: m_Name
       value: chair_old
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303484912985492, guid: 962b799cb3076c9449425f236220538b, type: 3}
+      propertyPath: m_TagString
+      value: IncludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 4262316034228546, guid: 962b799cb3076c9449425f236220538b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8304,6 +8302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sch_Table
       objectReference: {fileID: 0}
+    - target: {fileID: 1246713692139956, guid: 386e3120a734f7047b962dc928686f28, type: 3}
+      propertyPath: m_TagString
+      value: IncludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 4258032067308952, guid: 386e3120a734f7047b962dc928686f28, type: 3}
       propertyPath: m_LocalPosition.x
       value: 381.23
@@ -12766,6 +12768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bed1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 605c806a9eb55da48bd5426a1633f9fb, type: 3}
+      propertyPath: m_TagString
+      value: IncludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 605c806a9eb55da48bd5426a1633f9fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 370.03
@@ -13208,6 +13214,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1756334037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1246713692139956, guid: 386e3120a734f7047b962dc928686f28,
+    type: 3}
+  m_PrefabInstance: {fileID: 1064967460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1756334041
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756334037}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7500002, y: 0.6994532, z: 0.6043977}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1760717834
 GameObject:
   m_ObjectHideFlags: 0
@@ -16202,13 +16227,27 @@ GameObject:
   - component: {fileID: 33950320385195637}
   - component: {fileID: 23038727618268569}
   - component: {fileID: 169585081}
+  - component: {fileID: 1057649741947692}
   m_Layer: 0
   m_Name: Teacher_Desk
-  m_TagString: Untagged
+  m_TagString: IncludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!65 &1057649741947692
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057649741947691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.88, y: 0.81999993, z: 0.88}
+  m_Center: {x: 0, y: 0.010000005, z: 0}
 --- !u!1 &1278647699718351
 GameObject:
   m_ObjectHideFlags: 0
