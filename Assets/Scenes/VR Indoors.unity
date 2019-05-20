@@ -3847,8 +3847,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.8
-  m_Range: 57.33
+  m_Intensity: 2.57
+  m_Range: 20.8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -3952,8 +3952,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.40610537, g: 0.71524006, b: 0.735849, a: 1}
-  m_Intensity: 3.7
-  m_Range: 17.5
+  m_Intensity: 6.2
+  m_Range: 13
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -12233,6 +12233,14 @@ PrefabInstance:
     - target: {fileID: 10800000, guid: d89f040189c6a1e4b82db51ef81e9465, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: d89f040189c6a1e4b82db51ef81e9465, type: 3}
+      propertyPath: m_Range
+      value: 4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: d89f040189c6a1e4b82db51ef81e9465, type: 3}
+      propertyPath: m_Intensity
+      value: 0.71
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d89f040189c6a1e4b82db51ef81e9465, type: 3}
