@@ -434,7 +434,14 @@
 
             private static string[] OnWillSaveAssets(string[] paths)
             {
-                FixOpenAndUnsavedScenes();
+                var openedScenes = Enumerable.Range(0, EditorSceneManager.loadedSceneCount)
+                                                       .Select(sceneIndex => SceneManager.GetSceneAt(sceneIndex).path)
+                                                       .ToList();
+
+                if (paths.Any(x => openedScenes.Contains(x)))
+                {
+                    FixOpenAndUnsavedScenes();
+                }
                 return paths;
             }
 
