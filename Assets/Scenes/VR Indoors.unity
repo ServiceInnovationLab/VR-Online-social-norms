@@ -6552,11 +6552,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Steel_Window
       objectReference: {fileID: 0}
-    - target: {fileID: -8044700271467719561, guid: 90f487e2ac6c64e45b13698358c52e6c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b9dc15ed28756024e8c9c73e93b2636b, type: 2}
     - target: {fileID: -4216859302048453862, guid: 90f487e2ac6c64e45b13698358c52e6c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6627,6 +6622,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 8.452108
       objectReference: {fileID: 0}
+    - target: {fileID: -8044700271467719561, guid: 90f487e2ac6c64e45b13698358c52e6c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b9dc15ed28756024e8c9c73e93b2636b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90f487e2ac6c64e45b13698358c52e6c, type: 3}
 --- !u!1 &817444653 stripped
@@ -7082,11 +7082,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Steel_Window (1)
       objectReference: {fileID: 0}
-    - target: {fileID: -8044700271467719561, guid: 90f487e2ac6c64e45b13698358c52e6c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b9dc15ed28756024e8c9c73e93b2636b, type: 2}
     - target: {fileID: -4216859302048453862, guid: 90f487e2ac6c64e45b13698358c52e6c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7157,6 +7152,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 8.452104
       objectReference: {fileID: 0}
+    - target: {fileID: -8044700271467719561, guid: 90f487e2ac6c64e45b13698358c52e6c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b9dc15ed28756024e8c9c73e93b2636b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90f487e2ac6c64e45b13698358c52e6c, type: 3}
 --- !u!1001 &871892650
@@ -13696,6 +13696,7 @@ GameObject:
   - component: {fileID: 1753072039}
   - component: {fileID: 1753072038}
   - component: {fileID: 1753072037}
+  - component: {fileID: 1753072040}
   m_Layer: 0
   m_Name: '[VRTK_SDKManager]'
   m_TagString: Untagged
@@ -13758,6 +13759,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1753072040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753072036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d4790950cced847891e846595584de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkToColor: {r: 0, g: 0, b: 0, a: 1}
+  fadeInTime: 3
+  blinkPause: 1
 --- !u!1 &1756334037 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1246713692139956, guid: 386e3120a734f7047b962dc928686f28,
