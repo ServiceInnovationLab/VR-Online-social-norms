@@ -21,7 +21,7 @@
 
         protected virtual void OnEnable()
         {
-            lastSceneIndex = SceneManager.sceneCountInBuildSettings - 1;
+            lastSceneIndex = SceneManager.sceneCountInBuildSettings;
             pressEnabled = false;
             Invoke("EnablePress", 1f);
         }
