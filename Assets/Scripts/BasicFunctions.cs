@@ -9,10 +9,18 @@ public class BasicFunctions : ScriptableObject
     /// <summary>
     /// Toggles the active state of the given game object.
     /// </summary>
-    /// <param name="gameObject">The GameObject to change</param>
+    /// <param name="gameObject">The <see cref="GameObject"/> to change</param>
     public void ToggleObject(GameObject gameObject)
     {
         gameObject.SetActive(!gameObject.activeInHierarchy);
     }
 
+    /// <summary>
+    /// Destroys the given game object
+    /// </summary>
+    /// <param name="gameObject">The <see cref="GameObject"/> to destroy</param>
+    public void DestroyObject(GameObject gameObject)
+    {
+        Destroy(gameObject);
+    }
 }
