@@ -5,7 +5,7 @@ using VRTK;
 /// This component allows teleporting to a target game object and have the player replace them,
 /// with custom blink transition times to improve the feel of the POV change.
 /// </summary>
-public class BlinkAndReplaceTarget : MonoBehaviour
+public class PerspectiveChanger : MonoBehaviour
 {
     [Tooltip("The target location the player will be teleported to on entering the sphere")]
     [SerializeField] Transform target;
@@ -16,12 +16,18 @@ public class BlinkAndReplaceTarget : MonoBehaviour
     [Tooltip("The custom blink transition time to use for the teleport")]
     [SerializeField, Range(0, 10)] float blinkTransition = 2;
 
+    [Tooltip("The scene objects to be scaled on the perspective change")]
+    [SerializeField] Transform sceneObjects;
+
+    [Tooltip("The scale to change the objects to be when the perspective change occurs")]
+    [SerializeField] float newSceneScale;
+
+    [Tooltip("The offset to teleport by")]
+    [SerializeField] Vector3 offset;
+
     public void DoTeleport()
     {
-        var teleportPosition = target.position;
-        var teleportRotation = target.rotation;
-
-        Destroy(target.gameObject);
+        var teleportPosition = target.position + offset;
 
         var teleporter = FindObjectOfType<VRTK_BasicTeleport>();
         var originalBlinkDelay = teleporter.distanceBlinkDelay;
@@ -30,7 +36,17 @@ public class BlinkAndReplaceTarget : MonoBehaviour
         teleporter.distanceBlinkDelay = blinkDistance;
         teleporter.blinkTransitionSpeed = blinkTransition;
 
-        teleporter.ForceTeleport(teleportPosition, teleportRotation);
+        if (sceneObjects)
+        {
+            if (newSceneScale > 0)
+            {
+                sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
+            }
+        }
+
+        teleporter.Teleport(target, teleportPosition);
+
+        Destroy(target.gameObject);
 
         teleporter.distanceBlinkDelay = originalBlinkDelay;
         teleporter.blinkTransitionSpeed = originalBlinkTransition;
