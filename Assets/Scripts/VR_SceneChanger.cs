@@ -17,16 +17,24 @@ public class VR_SceneChanger : MonoBehaviour
     {
         if (!switched && scene != null && !string.IsNullOrEmpty(scene.ScenePath))
         {
+            DisableTeleporters();
             StartCoroutine(DoSwitchScene());
             switched = true;
+        }
+    }
+
+    void DisableTeleporters()
+    {
+        foreach (var teleporter in FindObjectsOfType<VRTK_BasicTeleport>())
+        {
+            teleporter.enabled = false;
         }
     }
 
     IEnumerator DoSwitchScene()
     {
         VRTK_SDK_Bridge.HeadsetFade(blinkToColor, 0, true);
-        
-        yield return SceneManager.LoadSceneAsync(scene.ScenePath, LoadSceneMode.Single); ;
-    }
 
+        yield return SceneManager.LoadSceneAsync(scene.ScenePath, LoadSceneMode.Single);
+    }
 }
