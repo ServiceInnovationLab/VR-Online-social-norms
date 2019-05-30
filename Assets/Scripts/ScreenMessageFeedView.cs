@@ -19,6 +19,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     [SerializeField] RectTransform messageContainer;
 
     ScrollRect scrollRect;
+    Vector2 position = Vector2.zero;
 
     void Start()
     {
@@ -27,41 +28,48 @@ public class ScreenMessageFeedView : MonoBehaviour
         StartCoroutine(DisplayMessages());
     }
 
+    public void SendMessage(string text)
+    {
+    }
+
     IEnumerator DisplayMessages()
     {
         int lastMessageShown = 0;
-        Vector2 position = Vector2.zero;
 
         while (lastMessageShown < messageFeed.messages.Count)
         {
-            var messageDisplay = Instantiate(messagePrefab, messageContainer);
-            messageDisplay.gameObject.SetActive(true);
-            var messageText = messageDisplay.GetComponentInChildren<Text>();
-
-            if (messageText)
-            {
-                messageText.text = messageFeed.messages[lastMessageShown];
-            }
-#if UNITY_EDITOR
-            else
-            {
-                print("Message prefab has no text element!");
-            }
-#endif
-
-            messageDisplay.anchoredPosition = position;
-
-            position.y -= messageDisplay.rect.height;
-            messageContainer.sizeDelta = new Vector2(0, -position.y);
-
+            DisplayMessage(messageFeed.messages[lastMessageShown]);
             lastMessageShown++;
 
-            if (scrollRect && scrollToBottom)
-            {
-                scrollRect.verticalNormalizedPosition = 0;
-            }
-
             yield return new WaitForSeconds(timeBetweenMessages.GetValue());
+        }
+    }
+
+    void DisplayMessage(string text)
+    {
+        var messageDisplay = Instantiate(messagePrefab, messageContainer);
+        messageDisplay.gameObject.SetActive(true);
+        var messageText = messageDisplay.GetComponentInChildren<Text>();
+
+        if (messageText)
+        {
+            messageText.text = text;
+        }
+#if UNITY_EDITOR
+        else
+        {
+            print("Message prefab has no text element!");
+        }
+#endif
+
+        messageDisplay.anchoredPosition = position;
+
+        position.y -= messageDisplay.rect.height;
+        messageContainer.sizeDelta = new Vector2(0, -position.y);
+
+        if (scrollRect && scrollToBottom)
+        {
+            scrollRect.verticalNormalizedPosition = 0;
         }
     }
 }
