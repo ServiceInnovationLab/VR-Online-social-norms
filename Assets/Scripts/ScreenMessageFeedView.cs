@@ -21,15 +21,27 @@ public class ScreenMessageFeedView : MonoBehaviour
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
 
+    public void SendMessageToFeed(string text)
+    {
+        DisplayMessage(text);
+    }
+
+    public void SendMessageToFeed(InputField input)
+    {
+        DisplayMessage(input.text);
+        input.text = "";
+    }
+
+    public void StopFeed()
+    {
+        StopAllCoroutines();
+    }
+
     void Start()
     {
         scrollRect = messageContainer.GetComponentInParent<ScrollRect>();
 
         StartCoroutine(DisplayMessages());
-    }
-
-    public void SendMessage(string text)
-    {
     }
 
     IEnumerator DisplayMessages()
