@@ -2226,6 +2226,7 @@ GameObject:
   - component: {fileID: 518702188}
   - component: {fileID: 518702187}
   - component: {fileID: 518702186}
+  - component: {fileID: 518702189}
   m_Layer: 0
   m_Name: Scroll View
   m_TagString: Untagged
@@ -2324,6 +2325,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &518702189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518702184}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5413d774f3662744900528bed7ddc2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerEvents: {fileID: 1744801203}
 --- !u!1 &530182270
 GameObject:
   m_ObjectHideFlags: 0
@@ -6872,6 +6886,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 518702189}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1699977818
@@ -7344,6 +7369,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1744801201}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1744801203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5263055380867756746, guid: 050d1a8df4d6593499651f7be4e0ad91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1744801201}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622265777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba3cd5456cd79e49948f5ceb58544b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1749180271
 GameObject:
   m_ObjectHideFlags: 0
