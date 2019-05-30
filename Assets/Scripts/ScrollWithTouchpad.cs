@@ -10,6 +10,11 @@ public class ScrollWithTouchpad : MonoBehaviour
 
     ScrollRect scrollView;
 
+    Vector2 scrollAmount;
+    float scrollTime;
+
+    [SerializeField] float scrollVelocityTime = 0.15f;
+
     private void Awake()
     {
         scrollView = GetComponent<ScrollRect>();
@@ -20,10 +25,23 @@ public class ScrollWithTouchpad : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void Update()
     {
-        var eventData = new PointerEventData(EventSystem.current) { scrollDelta = controllerEvents.GetTouchpadAxis() };
+        scrollAmount += controllerEvents.GetTouchpadAxis();
+        scrollTime += Time.deltaTime;
 
-        ExecuteEvents.ExecuteHierarchy(gameObject, eventData, ExecuteEvents.scrollHandler);
+        if (scrollTime >= scrollVelocityTime)
+        {
+            var eventData = new PointerEventData(EventSystem.current) { scrollDelta = scrollAmount / scrollVelocityTime };
+
+            ExecuteEvents.ExecuteHierarchy(gameObject, eventData, ExecuteEvents.scrollHandler);
+        }
     }
+
+    //void FixedUpdate()
+    //{
+    //    var eventData = new PointerEventData(EventSystem.current) { scrollDelta = controllerEvents.GetTouchpadAxis() };
+
+    //    ExecuteEvents.ExecuteHierarchy(gameObject, eventData, ExecuteEvents.scrollHandler);
+    //}
 }
