@@ -44,4 +44,15 @@ public class BasicFunctions : ScriptableObject
         autoGrab.objectToGrab = gameObject;
         autoGrab.enabled = true;
     }
+
+    /// <summary>
+    /// Disables teleporting around
+    /// </summary>
+    public void DisableTeleporting()
+    {
+        foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
+        {
+            teleporter.enabled = false;
+        }
+    }
 }

@@ -2902,7 +2902,7 @@ MonoBehaviour:
   autoManageScriptDefines: 1
   activeScriptingDefineSymbolsWithoutSDKClasses: []
   scriptAliasLeftController: {fileID: 1622265777}
-  scriptAliasRightController: {fileID: 635395080}
+  scriptAliasRightController: {fileID: 1744801202}
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
@@ -6861,6 +6861,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8b8985445a7a8c94cb1bd3bf60c4bf72, type: 2}
+        m_MethodName: DisableTeleporting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1699977818
@@ -7327,6 +7338,12 @@ PrefabInstance:
       objectReference: {fileID: 1893223736}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 050d1a8df4d6593499651f7be4e0ad91, type: 3}
+--- !u!1 &1744801202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5263055380110088583, guid: 050d1a8df4d6593499651f7be4e0ad91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1744801201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1749180271
 GameObject:
   m_ObjectHideFlags: 0
