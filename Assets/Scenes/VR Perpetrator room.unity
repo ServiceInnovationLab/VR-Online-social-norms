@@ -4104,8 +4104,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textToEnter: This is some very bad text that people shouldn't really be posting
     online but they do for a variety of reasons like we've seen in the research
-  timeBetweenCharacters: 0.2
+  timeBetweenCharacters: 0.1
   input: {fileID: 528462190}
+  sendButton: {fileID: 2088963067}
+  typingCompleted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 739732290}
+        m_MethodName: StopFeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &741545225
 GameObject:
   m_ObjectHideFlags: 0
@@ -7728,6 +7745,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 739732291}
         m_MethodName: Complete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 739732291}
+        m_MethodName: StartTypeText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

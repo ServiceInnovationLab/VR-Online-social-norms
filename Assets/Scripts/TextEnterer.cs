@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TextEnterer : MonoBehaviour
@@ -7,6 +8,8 @@ public class TextEnterer : MonoBehaviour
     [SerializeField] string textToEnter;
     [SerializeField] float timeBetweenCharacters = 0.2f;
     [SerializeField] InputField input;
+    [SerializeField] Button sendButton;
+    [SerializeField] UnityEvent typingCompleted;
 
     public void Complete()
     {
@@ -14,9 +17,14 @@ public class TextEnterer : MonoBehaviour
         input.text = textToEnter;
     }
 
-    private void Start()
+    public void StartTypeText()
     {
         StartCoroutine(TypeText());
+    }
+
+    private void Awake()
+    {
+        sendButton.interactable = false;
     }
 
     IEnumerator TypeText()
@@ -26,5 +34,9 @@ public class TextEnterer : MonoBehaviour
             input.text = textToEnter.Substring(0, i + 1);
             yield return new WaitForSeconds(timeBetweenCharacters);
         }
+
+        typingCompleted?.Invoke();
+
+        sendButton.interactable = true;
     }
 }
