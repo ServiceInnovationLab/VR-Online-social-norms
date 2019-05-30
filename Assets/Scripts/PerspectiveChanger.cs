@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using VRTK;
 
 /// <summary>
@@ -25,6 +26,8 @@ public class PerspectiveChanger : MonoBehaviour
     [Tooltip("The offset to teleport by")]
     [SerializeField] Vector3 offset;
 
+    [SerializeField] UnityEvent afterTeleport;
+
     public void DoTeleport()
     {
         var teleportPosition = target.position + offset;
@@ -45,6 +48,8 @@ public class PerspectiveChanger : MonoBehaviour
         }
 
         teleporter.Teleport(target, teleportPosition);
+
+        afterTeleport?.Invoke();
 
         Destroy(target.gameObject);
 
