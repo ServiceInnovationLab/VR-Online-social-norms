@@ -52,7 +52,7 @@ public class BasicFunctions : ScriptableObject
     {
         foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
         {
-            teleporter.enabled = false;
+            teleporter.enableTeleport = false;
         }
     }
 }

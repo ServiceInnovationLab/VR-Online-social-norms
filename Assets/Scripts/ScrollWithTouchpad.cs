@@ -21,8 +21,27 @@ public class ScrollWithTouchpad : MonoBehaviour
 
         if (!controllerEvents)
         {
-            Debug.LogError("No controller events are attached!");
+            var controllerWithGrab = FindObjectOfType<VRTK_ObjectAutoGrab>();
+
+            if (controllerWithGrab)
+            {
+                controllerEvents = controllerWithGrab.GetComponent<VRTK_ControllerEvents>();
+            }
+            else
+            {
+                Debug.LogError("No controller events are attached!");
+            }
         }
+    }
+
+    private void OnEnable()
+    {
+        foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
+        {
+            teleporter.enabled = false;
+        }
+
+        FindObjectOfType<VRTK_UIPointer>().activationMode = VRTK_UIPointer.ActivationMethods.AlwaysOn;
     }
 
     private void Update()
