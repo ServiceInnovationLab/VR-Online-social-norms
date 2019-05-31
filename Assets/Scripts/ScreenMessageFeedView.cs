@@ -35,24 +35,13 @@ public class ScreenMessageFeedView : MonoBehaviour
     public void StopFeed()
     {
         StopAllCoroutines();
-    }
+    }    
 
     void Start()
     {
         scrollRect = messageContainer.GetComponentInParent<ScrollRect>();
 
         StartCoroutine(DisplayMessages());
-
-        scrollRect.verticalScrollbar.onValueChanged.AddListener(onScrolled);
-    }
-
-    void onScrolled(float value)
-    {
-        // If the user scrolls then we need to disable auto scrolling
-        if (value != 0)
-        {
-            scrollToBottom = false;
-        }
     }
 
     IEnumerator DisplayMessages()
