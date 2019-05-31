@@ -64,12 +64,6 @@ public class VR_SceneChanger : MonoBehaviour
 
                         teleporter.Teleport(location.transform, location.transform.position);
 
-                        foreach (var pointer in FindObjectsOfType<VRTK_Pointer>())
-                        {
-                            pointer.holdButtonToActivate = true;
-                            pointer.Toggle(false);
-                        }
-
                         teleporter.distanceBlinkDelay = originalBlinkDelay;
                         teleporter.blinkTransitionSpeed = originalBlinkTransition;
 

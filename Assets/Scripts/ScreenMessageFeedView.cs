@@ -35,7 +35,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     public void StopFeed()
     {
         StopAllCoroutines();
-    }
+    }    
 
     void Start()
     {
