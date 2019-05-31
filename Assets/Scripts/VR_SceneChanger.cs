@@ -16,6 +16,12 @@ public class VR_SceneChanger : MonoBehaviour
 
     [SerializeField] string teleportToName;
 
+    [Tooltip("The custom blink distance to use for the teleport to allow for a longer blink when teleporting to a nearby location")]
+    [SerializeField, Range(0f, 32.9f)] float blinkDistance = 32.1f;
+
+    [Tooltip("The custom blink transition time to use for the teleport")]
+    [SerializeField, Range(0, 10)] float blinkTransition = 1;
+
     bool switched;
 
     public void SwitchScenes()
@@ -48,9 +54,18 @@ public class VR_SceneChanger : MonoBehaviour
                 {
                     if (location.gameObject.name == teleportToName)
                     {
-                        // Teleport here
                         var teleporter = FindObjectOfType<VRTK_BasicTeleport>();
+
+                        var originalBlinkDelay = teleporter.distanceBlinkDelay;
+                        var originalBlinkTransition = teleporter.blinkTransitionSpeed;
+
+                        teleporter.distanceBlinkDelay = blinkDistance;
+                        teleporter.blinkTransitionSpeed = blinkTransition;
+
                         teleporter.Teleport(location.transform, location.transform.position);
+
+                        teleporter.distanceBlinkDelay = originalBlinkDelay;
+                        teleporter.blinkTransitionSpeed = originalBlinkTransition;
 
                         return;
                     }
