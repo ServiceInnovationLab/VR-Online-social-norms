@@ -7704,7 +7704,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1818392687}
-  - component: {fileID: 1818392688}
   m_Layer: 0
   m_Name: '[VRTK_SDKSetups]'
   m_TagString: Untagged
@@ -7731,26 +7730,6 @@ Transform:
   m_Father: {fileID: 658427539}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1818392688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818392686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e30c4ccbe6f4ed24989516aaa22c30cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expectedSDKs:
-  - {fileID: 112072881}
-  - {fileID: 394073468}
-  - {fileID: 1575664734}
-  - {fileID: 172026623}
-  - {fileID: 402811949}
-  fallback: {fileID: 112072881}
-  timeToWait: 3
 --- !u!114 &1893223736 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5263055379510138495, guid: 050d1a8df4d6593499651f7be4e0ad91,
@@ -7986,7 +7965,7 @@ MonoBehaviour:
     max: 1.5
   messagePrefab: {fileID: 1101629643}
   messageContainer: {fileID: 1566627364}
-  startOnAwake: 1
+  startOnEnable: 1
 --- !u!1 &1950796249
 GameObject:
   m_ObjectHideFlags: 0
