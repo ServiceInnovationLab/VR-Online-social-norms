@@ -15,8 +15,11 @@ public class ScreenMessageFeedView : MonoBehaviour
     [Tooltip("The message display element to be used for showing a message")]
     [SerializeField] RectTransform messagePrefab;
 
-    [Tooltip("The object where the messages will be appended toa")]
+    [Tooltip("The object where the messages will be appended to")]
     [SerializeField] RectTransform messageContainer;
+
+    [Tooltip("Set to start the feed automatically when the object is enabled")]
+    [SerializeField] bool startOnEnable = true;
 
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
@@ -35,13 +38,24 @@ public class ScreenMessageFeedView : MonoBehaviour
     public void StopFeed()
     {
         StopAllCoroutines();
-    }    
+    }
 
-    void Start()
+    public void StartFeed()
+    {
+        StartCoroutine(DisplayMessages());
+    }
+
+    void Awake()
     {
         scrollRect = messageContainer.GetComponentInParent<ScrollRect>();
+    }
 
-        StartCoroutine(DisplayMessages());
+    private void OnEnable()
+    {
+        if (startOnEnable)
+        {
+            StartFeed();
+        }
     }
 
     IEnumerator DisplayMessages()

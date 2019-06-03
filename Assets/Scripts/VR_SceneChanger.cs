@@ -63,6 +63,7 @@ public class VR_SceneChanger : MonoBehaviour
                         teleporter.blinkTransitionSpeed = blinkTransition;
 
                         teleporter.Teleport(location.transform, location.transform.position);
+                        EventManager.TriggerEvent(Events.SceneSwitched, new SceneChangeEventArgs(teleportToName));
 
                         teleporter.distanceBlinkDelay = originalBlinkDelay;
                         teleporter.blinkTransitionSpeed = originalBlinkTransition;
