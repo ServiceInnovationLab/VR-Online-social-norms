@@ -35,7 +35,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void SendMessageToFeed(InputField input)
     {
-        DisplayMessage(input.text);
+        SendMessageToFeed(input.text);
         input.text = "";
     }
 

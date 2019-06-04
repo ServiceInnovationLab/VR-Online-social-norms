@@ -6468,6 +6468,7 @@ GameObject:
   - component: {fileID: 1564997964}
   - component: {fileID: 1564997962}
   - component: {fileID: 1564997965}
+  - component: {fileID: 1564997966}
   m_Layer: 0
   m_Name: Tablet
   m_TagString: Untagged
@@ -6742,6 +6743,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1564997966}
+        m_MethodName: StartFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnUngrab:
@@ -6779,6 +6791,23 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &1564997966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564997954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6067bde44bf024bb567417fc64f8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  duration: 0.1
+  stength: 0.3
+  pulseInterval: 0.05
+  timeBetween: 5
 --- !u!1 &1566627363
 GameObject:
   m_ObjectHideFlags: 0
@@ -9089,6 +9118,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Hate speech received :(
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1564997966}
+        m_MethodName: StopFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
