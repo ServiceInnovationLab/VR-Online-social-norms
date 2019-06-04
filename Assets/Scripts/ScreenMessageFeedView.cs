@@ -23,6 +23,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
+    bool forceComplete;
 
     public void SendMessageToFeed(string text)
     {
@@ -36,6 +37,11 @@ public class ScreenMessageFeedView : MonoBehaviour
     {
         DisplayMessage(input.text);
         input.text = "";
+    }
+
+    public void CompleteFeed()
+    {
+        forceComplete = true;
     }
 
     public void StopFeed()
@@ -70,7 +76,10 @@ public class ScreenMessageFeedView : MonoBehaviour
             DisplayMessage(messageFeed.messages[lastMessageShown]);
             lastMessageShown++;
 
-            yield return new WaitForSeconds(timeBetweenMessages.GetValue());
+            if (!forceComplete)
+            {
+                yield return new WaitForSeconds(timeBetweenMessages.GetValue());
+            }
         }
     }
 
