@@ -8,6 +8,6 @@ public class HelpTips : ScriptableObject
     public ControllerHelp leftController;
     public ControllerHelp rightController;
 
-    public float leftPositionScale = 1.0f;
-    public float rightPositionScale = 1.0f;
+    public float leftPosition = 0.0f;
+    public float rightPosition = 0.0f;
 }
