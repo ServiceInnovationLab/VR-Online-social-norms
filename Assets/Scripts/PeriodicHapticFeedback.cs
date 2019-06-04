@@ -25,7 +25,7 @@ public class PeriodicHapticFeedback : MonoBehaviour
 
     public void StartFeedback()
     {
-        time = timeBetween;
+        time = 0;
         isEnabled = true;
     }
 
