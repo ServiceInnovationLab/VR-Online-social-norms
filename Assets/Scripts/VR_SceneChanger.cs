@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using VRTK;
 
@@ -21,6 +22,8 @@ public class VR_SceneChanger : MonoBehaviour
 
     [Tooltip("The custom blink transition time to use for the teleport")]
     [SerializeField, Range(0, 10)] float blinkTransition = 1;
+
+    [SerializeField] UnityEvent onTeleport;
 
     bool switched;
 
@@ -64,6 +67,7 @@ public class VR_SceneChanger : MonoBehaviour
 
                         teleporter.Teleport(location.transform, location.transform.position);
                         EventManager.TriggerEvent(Events.SceneSwitched, new SceneChangeEventArgs(teleportToName));
+                        onTeleport?.Invoke();
 
                         teleporter.distanceBlinkDelay = originalBlinkDelay;
                         teleporter.blinkTransitionSpeed = originalBlinkTransition;

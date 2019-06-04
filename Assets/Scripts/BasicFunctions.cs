@@ -49,10 +49,39 @@ public class BasicFunctions : ScriptableObject
     /// Disables teleporting around
     /// </summary>
     public void DisableTeleporting()
-    {
+    {        
         foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
         {
             teleporter.enableTeleport = false;
+        }             
+    }
+
+    /// <summary>
+    /// Enables teleporting around
+    /// </summary>
+    public void EnableTeleporting()
+    {
+        foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
+        {
+            teleporter.enableTeleport = true;
         }
+    }
+
+    public void AlwaysShowStraightPointer()
+    {
+        var pointer = FindObjectOfType<VRTK_StraightPointerRenderer>();
+
+        pointer.tracerVisibility = VRTK_BasePointerRenderer.VisibilityStates.AlwaysOn;
+        pointer.cursorVisibility = VRTK_BasePointerRenderer.VisibilityStates.AlwaysOn;
+        pointer.cursorScaleMultiplier = 20;
+    }
+
+    public void NormalStraightPointer()
+    {
+        var pointer = FindObjectOfType<VRTK_StraightPointerRenderer>();
+
+        pointer.tracerVisibility = VRTK_BasePointerRenderer.VisibilityStates.OnWhenActive;
+        pointer.cursorVisibility = VRTK_BasePointerRenderer.VisibilityStates.OnWhenActive;
+        pointer.cursorScaleMultiplier = 25;
     }
 }

@@ -26,7 +26,10 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void SendMessageToFeed(string text)
     {
-        DisplayMessage(text);
+        if (!string.IsNullOrWhiteSpace(text))
+        {
+            DisplayMessage(text);
+        }
     }
 
     public void SendMessageToFeed(InputField input)
