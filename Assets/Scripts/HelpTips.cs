@@ -7,4 +7,7 @@ public class HelpTips : ScriptableObject
 
     public ControllerHelp leftController;
     public ControllerHelp rightController;
+
+    public float leftPositionScale = 1.0f;
+    public float rightPositionScale = 1.0f;
 }

@@ -14,6 +14,12 @@ public class HelpTipsManager : MonoBehaviour
     bool isVisible;
     string currentHelp;
 
+    VRTK_ObjectTooltip[] leftTooltips;
+    VRTK_ObjectTooltip[] rightTooltips;
+
+    float currentLeftScale = 1.0f;
+    float currentRightScale = 1.0f;
+
     private void Awake()
     {
         tooltipsLeft.touchpadTwoText = "";
@@ -23,6 +29,9 @@ public class HelpTipsManager : MonoBehaviour
         tooltipsRight.touchpadTwoText = "";
         tooltipsRight.buttonOneText = "";
         tooltipsRight.startMenuText = "";
+
+        leftTooltips = tooltipsLeft.GetComponentsInChildren<VRTK_ObjectTooltip>();
+        rightTooltips = tooltipsRight.GetComponentsInChildren<VRTK_ObjectTooltip>();
 
         if (tips.Length > 0)
         {
@@ -44,20 +53,44 @@ public class HelpTipsManager : MonoBehaviour
 
     private void Controller_ButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
     {
-        ShowHelp(!isVisible);
+        ShowHelp(!tooltipsLeft.gameObject.activeInHierarchy);
     }
 
     private void ShowHelp(HelpTips tips)
     {
+        if (currentLeftScale != tips.leftPositionScale)
+        {
+            foreach (var tooltip in leftTooltips)
+            {
+                var newPosition = tooltip.transform.position;
+                newPosition.x /= currentLeftScale;
+                newPosition.x *= tips.leftPositionScale;
+            }
+            currentLeftScale = tips.leftPositionScale;
+        }
+
+        if (currentRightScale != tips.rightPositionScale)
+        {
+            foreach (var tooltip in rightTooltips)
+            {
+                var newPosition = tooltip.transform.position;
+                newPosition.x /= currentLeftScale;
+                newPosition.x *= tips.leftPositionScale;
+            }
+            currentRightScale = tips.rightPositionScale;
+        }
+
         tooltipsLeft.triggerText = tips.leftController.triggerText;
         tooltipsLeft.gripText = tips.leftController.gripText;
         tooltipsLeft.touchpadText = tips.leftController.touchpadText;
         tooltipsLeft.buttonTwoText = tips.leftController.buttonText;
+        tooltipsLeft.ResetTooltip();
 
         tooltipsRight.triggerText = tips.rightController.triggerText;
         tooltipsRight.gripText = tips.rightController.gripText;
         tooltipsRight.touchpadText = tips.rightController.touchpadText;
         tooltipsRight.buttonTwoText = tips.rightController.buttonText;
+        tooltipsRight.ResetTooltip();
 
         if (tips.helpName != currentHelp)
         {
