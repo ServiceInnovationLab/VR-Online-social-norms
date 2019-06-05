@@ -6,7 +6,8 @@ using VRTK;
 public enum VR_Controller
 {
     Left = 1,
-    Right = 2
+    Right = 2,
+    Grabbed = 4
 }
 
 public class PeriodicHapticFeedback : MonoBehaviour
@@ -20,8 +21,25 @@ public class PeriodicHapticFeedback : MonoBehaviour
     VRTK_ControllerReference leftController;
     VRTK_ControllerReference rightController;
 
+    VRTK_ControllerReference grabbedController;
+
     float time;
     bool isEnabled;
+
+    private void Awake()
+    {
+        var interactableObject = GetComponent<VRTK_InteractableObject>();
+
+        if (interactableObject)
+        {
+            interactableObject.InteractableObjectGrabbed += InteractableObjectGrabbed;
+        }
+    }
+
+    private void InteractableObjectGrabbed(object sender, InteractableObjectEventArgs e)
+    {
+        grabbedController = VRTK_ControllerReference.GetControllerReference(e.interactingObject);
+    }
 
     public void StartFeedback()
     {
@@ -72,6 +90,11 @@ public class PeriodicHapticFeedback : MonoBehaviour
         if (time > timeBetween)
         {
             time = -duration;
+
+            if (controller.HasFlag(VR_Controller.Grabbed))
+            {
+                VRTK_ControllerHaptics.TriggerHapticPulse(grabbedController, stength, duration, pulseInterval);
+            }
 
             if (controller.HasFlag(VR_Controller.Left))
             {
