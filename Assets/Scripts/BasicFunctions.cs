@@ -115,4 +115,15 @@ public class BasicFunctions : ScriptableObject
             }
         }
     }
+
+    public void DisableTriggerPointerCollisions()
+    {
+        foreach (var pointer in FindObjectsOfType<VRTK_StraightPointerRenderer>())
+        {
+            if (pointer.customRaycast)
+            {
+                pointer.customRaycast.triggerInteraction = QueryTriggerInteraction.Ignore;
+            }
+        }
+    }
 }
