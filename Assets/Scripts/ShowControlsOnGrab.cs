@@ -13,7 +13,15 @@ public class ShowControlsOnGrab : MonoBehaviour
     void Awake()
     {
         interactableObject = GetComponent<VRTK_InteractableObject>();
-        manager = FindObjectOfType<HelpTipsManager>();
+        GetHelpManager();
+    }
+
+    private void GetHelpManager()
+    {
+        if (!manager)
+        {
+            manager = FindObjectOfType<HelpTipsManager>();
+        }
     }
 
     void OnEnable()
@@ -30,11 +38,13 @@ public class ShowControlsOnGrab : MonoBehaviour
 
     void InteractableObject_Ungrabbed(object sender, InteractableObjectEventArgs e)
     {
+        GetHelpManager();
         manager.ShowHelp(previousHelp);
     }
 
     void InteractableObject_Grabbed(object sender, InteractableObjectEventArgs e)
     {
+        GetHelpManager();
         previousHelp = manager.GetCurrentHelp();
         manager.ShowHelp(controlHelpName);
         manager.ShowHelp(true);
