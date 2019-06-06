@@ -2330,6 +2330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DestinationPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012676122638, guid: 5174ba385e2fcac40a9009762418e317, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010082710416, guid: 5174ba385e2fcac40a9009762418e317, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.0616505
@@ -2387,10 +2391,6 @@ PrefabInstance:
     - target: {fileID: 114000010870356714, guid: 5174ba385e2fcac40a9009762418e317,
         type: 3}
       propertyPath: hideDirectionIndicatorOnHover
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012676122638, guid: 5174ba385e2fcac40a9009762418e317, type: 3}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2937,7 +2937,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707624614}
-  - component: {fileID: 707624615}
   m_Layer: 0
   m_Name: '[VRTK_SDKSetups]'
   m_TagString: Untagged
@@ -2965,26 +2964,6 @@ Transform:
   m_Father: {fileID: 375406889}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &707624615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707624613}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e30c4ccbe6f4ed24989516aaa22c30cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expectedSDKs:
-  - {fileID: 1323997211}
-  - {fileID: 1532795555}
-  - {fileID: 1273088234}
-  - {fileID: 1973566707}
-  - {fileID: 669682252}
-  fallback: {fileID: 1532795555}
-  timeToWait: 3
 --- !u!1 &716721663
 GameObject:
   m_ObjectHideFlags: 0

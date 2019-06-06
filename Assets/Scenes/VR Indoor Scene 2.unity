@@ -5871,7 +5871,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1032048689}
-  - component: {fileID: 1032048690}
   m_Layer: 0
   m_Name: '[VRTK_SDKSetups]'
   m_TagString: Untagged
@@ -5898,26 +5897,6 @@ Transform:
   m_Father: {fileID: 639005229}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1032048690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1032048688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e30c4ccbe6f4ed24989516aaa22c30cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expectedSDKs:
-  - {fileID: 1617741403}
-  - {fileID: 662908076}
-  - {fileID: 2057341985}
-  - {fileID: 1750185190}
-  - {fileID: 1097725640}
-  fallback: {fileID: 1617741403}
-  timeToWait: 3
 --- !u!1 &1050650734
 GameObject:
   m_ObjectHideFlags: 0
@@ -7730,6 +7709,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: spider (76)
       objectReference: {fileID: 0}
+    - target: {fileID: 400048, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400048, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.1
+      objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.028401
@@ -7793,14 +7780,6 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400048, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400048, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 17.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
@@ -8173,6 +8152,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: spider (60)
       objectReference: {fileID: 0}
+    - target: {fileID: 400048, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400048, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.1
+      objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.982894
@@ -8236,14 +8223,6 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400048, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400048, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 17.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}

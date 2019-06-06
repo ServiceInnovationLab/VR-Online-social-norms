@@ -11799,7 +11799,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1482036877}
-  - component: {fileID: 1482036878}
   m_Layer: 0
   m_Name: '[VRTK_SDKSetups]'
   m_TagString: Untagged
@@ -11826,26 +11825,6 @@ Transform:
   m_Father: {fileID: 1753072039}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1482036878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482036876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e30c4ccbe6f4ed24989516aaa22c30cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expectedSDKs:
-  - {fileID: 1484050576}
-  - {fileID: 2059491129}
-  - {fileID: 1567685424}
-  - {fileID: 353895626}
-  - {fileID: 724138638}
-  fallback: {fileID: 1484050576}
-  timeToWait: 3
 --- !u!1 &1484050576
 GameObject:
   m_ObjectHideFlags: 0

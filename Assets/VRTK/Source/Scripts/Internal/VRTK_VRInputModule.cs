@@ -37,7 +37,7 @@
                     Hover(pointer, results);
                     Click(pointer, results);
                     Drag(pointer, results);
-                    Scroll(pointer, results);
+                    //Scroll(pointer, results);
                 }
             }
         }
@@ -184,6 +184,7 @@
                 case VRTK_UIPointer.ClickMethods.ClickOnButtonUp:
                     ClickOnUp(pointer, results);
                     break;
+
                 case VRTK_UIPointer.ClickMethods.ClickOnButtonDown:
                     ClickOnDown(pointer, results);
                     break;

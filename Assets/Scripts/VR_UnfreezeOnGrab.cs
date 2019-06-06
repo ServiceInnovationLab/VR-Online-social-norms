@@ -21,10 +21,9 @@ public class VR_UnfreezeOnGrab : MonoBehaviour
     {
         var rigidBody = e.target.GetComponentInChildren<Rigidbody>();
 
-        if (rigidBody.constraints == RigidbodyConstraints.FreezeAll)
+        if (rigidBody && rigidBody.constraints == RigidbodyConstraints.FreezeAll)
         {
             rigidBody.constraints = RigidbodyConstraints.None;
         }
     }
-
 }
