@@ -30,6 +30,8 @@ public class PerspectiveChanger : MonoBehaviour
 
     [SerializeField] bool scalePosition;
 
+    [SerializeField] bool scaleCamera;
+
     public void DoTeleport()
     {
         bool scaleRoom = sceneObjects && newSceneScale > 0;
@@ -49,6 +51,11 @@ public class PerspectiveChanger : MonoBehaviour
         }
 
         teleporter.Teleport(target, teleportPosition);
+
+        if (scaleCamera)
+        {
+            VRTK_SDKManager.instance.transform.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
+        }
 
         afterTeleport?.Invoke();
 
