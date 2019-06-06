@@ -17,13 +17,19 @@ public class RePosition : EditorWindow
 
         offset = EditorGUILayout.Vector3Field("Offset", offset);
 
-        if (GUILayout.Button("Reposition"))
+        if (GUILayout.Button("From selected"))
         {
-            DoReposition();
+            GetSelectedPosition();
         }
 
         EditorGUILayout.EndHorizontal();
 
+        EditorGUILayout.Space();
+
+        if (GUILayout.Button("Reposition"))
+        {
+            DoReposition();
+        }
     }
 
     void DoReposition()
@@ -31,7 +37,15 @@ public class RePosition : EditorWindow
         Undo.RecordObjects(Selection.transforms, "Reposition");
         foreach (var transform in Selection.transforms)
         {
-            transform.localPosition -= offset;
+            transform.localPosition += offset;
+        }
+    }
+
+    void GetSelectedPosition()
+    {
+        if (Selection.transforms != null && Selection.transforms.Length > 0)
+        {
+            offset = -Selection.transforms[0].localPosition;
         }
     }
 
