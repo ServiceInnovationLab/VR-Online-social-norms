@@ -11,6 +11,8 @@ public class TextEnterer : MonoBehaviour
     [SerializeField] Button sendButton;
     [SerializeField] UnityEvent typingCompleted;
 
+    bool started;
+
     public void Complete()
     {
         StopAllCoroutines();
@@ -19,7 +21,11 @@ public class TextEnterer : MonoBehaviour
 
     public void StartTypeText()
     {
-        StartCoroutine(TypeText());
+        if (!started)
+        {
+            StartCoroutine(TypeText());
+            started = true;
+        }
     }
 
     private void Awake()
