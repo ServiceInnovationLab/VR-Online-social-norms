@@ -132,4 +132,5 @@ public class BasicFunctions : ScriptableObject
     {
         button.onClick?.Invoke();
     }
+
 }

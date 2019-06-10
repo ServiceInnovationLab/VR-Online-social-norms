@@ -10,7 +10,7 @@ using VRTK;
 [RequireComponent(typeof(ScrollRect))]
 public class ScrollWithTouchpad : MonoBehaviour
 {
-    [SerializeField] VRTK_ControllerEvents controllerEvents;
+    [SerializeField] VRTK_InteractableObject interactableObject;
     [SerializeField] float dropOff = 0.9f;
     [SerializeField] float scrollScale = 10.0f;
     [SerializeField] float swipeScale = 2.5f;
@@ -23,27 +23,36 @@ public class ScrollWithTouchpad : MonoBehaviour
     Vector2 touchStartPosition;    
     float touchStartTime;
 
+    VRTK_ControllerEvents controllerEvents;
+
     private void Awake()
     {
         scrollView = GetComponent<ScrollRect>();
 
-        if (!controllerEvents)
+        if (!interactableObject)
         {
-            var controllerWithGrab = FindObjectOfType<VRTK_ObjectAutoGrab>();
+            interactableObject = GetComponentInParent<VRTK_InteractableObject>();
 
-            if (controllerWithGrab)
+            if (!interactableObject)
             {
-                controllerEvents = controllerWithGrab.GetComponent<VRTK_ControllerEvents>();
-            }
-            else
-            {
-                Debug.LogError("No controller events are attached!");
+                Debug.LogError("No interactable object found!");
+                return;
             }
         }
+
+        interactableObject.InteractableObjectGrabbed += InteractableObjectGrabbed;
+        interactableObject.InteractableObjectUngrabbed += InteractableObjectUngrabbed;       
     }
 
-    private void OnEnable()
+    private void InteractableObjectUngrabbed(object sender, InteractableObjectEventArgs e)
     {
+        controllerEvents = null;
+    }
+
+    private void InteractableObjectGrabbed(object sender, InteractableObjectEventArgs e)
+    {
+        controllerEvents = e.interactingObject.GetComponent<VRTK_ControllerEvents>();
+
         foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
         {
             teleporter.enabled = false;
@@ -65,6 +74,9 @@ public class ScrollWithTouchpad : MonoBehaviour
 
     private void Update()
     {
+        if (!controllerEvents)
+            return;
+
         bool isTouched = controllerEvents.IsButtonPressed(VRTK_ControllerEvents.ButtonAlias.TouchpadTouch) ||
             controllerEvents.IsButtonPressed(VRTK_ControllerEvents.ButtonAlias.TouchpadPress);
 

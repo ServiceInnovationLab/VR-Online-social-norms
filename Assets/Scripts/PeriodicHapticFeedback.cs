@@ -12,7 +12,7 @@ public enum VR_Controller
 
 public class PeriodicHapticFeedback : MonoBehaviour
 {
-    [SerializeField] VR_Controller controller;
+    [SerializeField, EnumFlagAttribute] VR_Controller controller;
     [SerializeField] float duration;
     [SerializeField, Range(0, 1)] float stength;
     [SerializeField] float pulseInterval = 0.05f;
@@ -91,19 +91,21 @@ public class PeriodicHapticFeedback : MonoBehaviour
         {
             time = -duration;
 
-            if (controller.HasFlag(VR_Controller.Grabbed))
+            if (controller.HasFlag(VR_Controller.Grabbed) && VRTK_ControllerReference.IsValid(grabbedController))
             {
                 VRTK_ControllerHaptics.TriggerHapticPulse(grabbedController, stength, duration, pulseInterval);
             }
-
-            if (controller.HasFlag(VR_Controller.Left))
+            else
             {
-                VRTK_ControllerHaptics.TriggerHapticPulse(leftController, stength, duration, pulseInterval);
-            }
+                if (controller.HasFlag(VR_Controller.Left))
+                {
+                    VRTK_ControllerHaptics.TriggerHapticPulse(leftController, stength, duration, pulseInterval);
+                }
 
-            if (controller.HasFlag(VR_Controller.Right))
-            {
-                VRTK_ControllerHaptics.TriggerHapticPulse(rightController, stength, duration, pulseInterval);
+                if (controller.HasFlag(VR_Controller.Right))
+                {
+                    VRTK_ControllerHaptics.TriggerHapticPulse(rightController, stength, duration, pulseInterval);
+                }
             }
         }
     }
