@@ -2,40 +2,29 @@
 using VRTK;
 
 [RequireComponent(typeof(VRTK_InteractableObject))]
-public class ForceGrabOther : MonoBehaviour
+public class ForceAttachOtherHand : MonoBehaviour
 {
-    [SerializeField] VRTK_InteractableObject objectToKeepInOtherHand;
+    [SerializeField] AttachToControllerNoGrab objectToKeepInOtherHand;
 
     VRTK_InteractableObject interactableObject;
-    VRTK_ObjectAutoGrab[] controllers;
 
     private void Awake()
     {
-        controllers = FindObjectsOfType<VRTK_ObjectAutoGrab>();
-
         interactableObject = GetComponent<VRTK_InteractableObject>();
-
         interactableObject.InteractableObjectGrabbed += InteractableObjectGrabbed;
     }
 
     private void InteractableObjectGrabbed(object sender, InteractableObjectEventArgs e)
     {
-        var thisController = e.interactingObject.GetComponent<VRTK_ObjectAutoGrab>();
+        var thisController = e.interactingObject.name;
 
         if (!objectToKeepInOtherHand.gameObject.activeInHierarchy)
         {
             objectToKeepInOtherHand.gameObject.SetActive(true);
         }
 
-        foreach (var grab in controllers)
-        {
-            if (grab == thisController)
-                continue;
-
-            grab.enabled = false;
-            grab.objectToGrab = objectToKeepInOtherHand;
-            grab.enabled = true;
-            break;
-        }
+        objectToKeepInOtherHand.enabled = false;
+        objectToKeepInOtherHand.controllerHand = thisController.Contains("Left") ? SDK_BaseController.ControllerHand.Right : SDK_BaseController.ControllerHand.Left;
+        objectToKeepInOtherHand.enabled = true;
     }
 }
