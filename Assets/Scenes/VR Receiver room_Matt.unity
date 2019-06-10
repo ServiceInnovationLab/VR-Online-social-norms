@@ -1274,7 +1274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00045776367, y: 0.00030574502}
+  m_AnchoredPosition: {x: 0.00045776367, y: 0.000037286944}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &196804117
@@ -2433,7 +2433,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 831798065}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9998464
+  m_Size: 0.99999326
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6153,7 +6153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111755424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.289, y: -0.021, z: 0.199}
+  m_LocalPosition: {x: -2.265, y: -0.021, z: 0.199}
   m_LocalScale: {x: 0.25, y: 1, z: 0.25}
   m_Children:
   - {fileID: 50566945}
@@ -7123,7 +7123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6067bde44bf024bb567417fc64f8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: 6
+  controller: 5
   duration: 0.1
   stength: 0.3
   pulseInterval: 0.05
@@ -7141,7 +7141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToActivate: {fileID: 624248742}
-  delayTime: 5
+  delayTime: 10
 --- !u!114 &1343497201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8869,7 +8869,7 @@ MonoBehaviour:
   blinkTransition: 2
   sceneObjects: {fileID: 1985784259}
   newSceneScale: 1.5
-  offset: {x: 0.1, y: 0, z: 1}
+  offset: {x: 0.2, y: 0, z: 1.2}
   afterTeleport:
     m_PersistentCalls:
       m_Calls: []

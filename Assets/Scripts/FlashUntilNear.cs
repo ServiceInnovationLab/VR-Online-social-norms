@@ -10,6 +10,7 @@ public class FlashUntilNear : MonoBehaviour
 
     [SerializeField] protected Color highlightColour = Color.clear;
     [SerializeField] float time = 0.5f;
+    [SerializeField] float maxTime = 0;
 
     VRTK_MaterialColorSwapHighlighter highlighter;
     VRTK_InteractObjectHighlighter highlighterObject;
@@ -44,7 +45,9 @@ public class FlashUntilNear : MonoBehaviour
 
     IEnumerator DoFlashing()
     {
-        while (true)
+        int maxTimes = maxTime > 0 ? Mathf.CeilToInt(maxTime / time) : -1;
+
+        while (maxTimes == -1 || maxTimes-- > 0)
         {
             yield return new WaitForSeconds(time);
 
@@ -59,7 +62,6 @@ public class FlashUntilNear : MonoBehaviour
 
             yield return new WaitForSeconds(time);
 
-
             if (highlighterObject)
             {
                 highlighterObject.Unhighlight();
@@ -70,6 +72,8 @@ public class FlashUntilNear : MonoBehaviour
                 highlighter.Unhighlight();
             }
         }
+
+        enabled = false;
     }
 
     private void Awake()
