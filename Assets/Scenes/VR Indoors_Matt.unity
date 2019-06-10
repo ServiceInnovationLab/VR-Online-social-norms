@@ -8851,6 +8851,7 @@ GameObject:
   - component: {fileID: 746468854}
   - component: {fileID: 746468853}
   - component: {fileID: 746468852}
+  - component: {fileID: 746468861}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Untagged
@@ -9194,6 +9195,20 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &746468861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746468850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50211200f286bb9469b399a3042e142f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlHelpName: Computer
+  controlsDirection: 2
 --- !u!1 &769155935
 GameObject:
   m_ObjectHideFlags: 0

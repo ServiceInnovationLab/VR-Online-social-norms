@@ -1928,6 +1928,7 @@ GameObject:
   - component: {fileID: 342001069}
   - component: {fileID: 342001076}
   - component: {fileID: 342001077}
+  - component: {fileID: 342001078}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Untagged
@@ -2271,6 +2272,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightColour: {r: 0, g: 1, b: 0.075618744, a: 1}
   time: 0.5
+--- !u!114 &342001078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342001067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50211200f286bb9469b399a3042e142f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlHelpName: Computer
+  controlsDirection: 2
 --- !u!1 &394073468
 GameObject:
   m_ObjectHideFlags: 0
