@@ -7315,6 +7315,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToActivate: {fileID: 624248742}
   delayTime: 10
+  afterDelay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1343497199}
+        m_MethodName: StartFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1343497201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8201,6 +8217,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToActivate: {fileID: 2092054115}
   delayTime: 5
+  afterDelay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1566627363
 GameObject:
   m_ObjectHideFlags: 0
@@ -8250,6 +8271,7 @@ GameObject:
   - component: {fileID: 1570828370}
   - component: {fileID: 1570828369}
   - component: {fileID: 1570828368}
+  - component: {fileID: 1570828372}
   m_Layer: 0
   m_Name: AnimationTrigger1
   m_TagString: Untagged
@@ -8319,7 +8341,7 @@ BoxCollider:
   m_GameObject: {fileID: 1570828366}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -8368,6 +8390,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570828366}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1570828372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570828366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051030d31c1165b4bb5852b817f35b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToWait: 10
+  onTimeUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 50566946}
+        m_MethodName: MoveObjectHereRotateX90
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1343497198}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1575664734
 GameObject:
   m_ObjectHideFlags: 0
@@ -8852,8 +8903,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1343497199}
-        m_MethodName: StartFeedback
+      - m_Target: {fileID: 1343497200}
+        m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8863,12 +8914,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1343497200}
-        m_MethodName: Activate
-        m_Mode: 1
+      - m_Target: {fileID: 50566946}
+        m_MethodName: MoveObjectHereRotateX90
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1343497198}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
