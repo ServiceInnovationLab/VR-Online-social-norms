@@ -18,6 +18,7 @@ public class DelayedUseObject : MonoBehaviour
         {
             highlighter.enabled = true;
         }
+        interactableObject.isUsable = true;
         canUse = true;
     }
 
@@ -29,6 +30,7 @@ public class DelayedUseObject : MonoBehaviour
             highlighter.enabled = false;
         }
         canUse = false;
+        interactableObject.isUsable = false;
     }
 
     private void Awake()

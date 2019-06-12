@@ -18,6 +18,7 @@ public class TwoUseObject : MonoBehaviour
     {
         canUseSecondAction = true;
         highlighter.enabled = true;
+        interactableObject.isUsable = true;
     }
 
     private void Awake()
@@ -44,5 +45,6 @@ public class TwoUseObject : MonoBehaviour
         }
         highlighter.Unhighlight();
         highlighter.enabled = false;
+        interactableObject.isUsable = false;
     }
 }

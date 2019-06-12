@@ -45,7 +45,7 @@ public class FlashUntilNear : MonoBehaviour
 
     IEnumerator DoFlashing()
     {
-        int maxTimes = maxTime > 0 ? Mathf.CeilToInt(maxTime / time) : -1;
+        int maxTimes = maxTime > 0 ? Mathf.CeilToInt(maxTime / time) + 1 : -1;
 
         while (maxTimes == -1 || maxTimes-- > 0)
         {
