@@ -1085,7 +1085,7 @@ Transform:
   - {fileID: 1025402446}
   - {fileID: 916212706}
   m_Father: {fileID: 165633976}
-  m_RootOrder: 79
+  m_RootOrder: 78
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &146075274
 PrefabInstance:
@@ -1261,40 +1261,41 @@ Transform:
   - {fileID: 1159749286}
   - {fileID: 261110775}
   - {fileID: 1677611284}
+  - {fileID: 1836175711}
   - {fileID: 1731887319}
   - {fileID: 367862505}
   - {fileID: 1161012949}
-  - {fileID: 1836175711}
   - {fileID: 735592482}
-  - {fileID: 1170605357}
   - {fileID: 538740184}
-  - {fileID: 1172599837}
+  - {fileID: 1170605357}
   - {fileID: 1951546958}
+  - {fileID: 1172599837}
+  - {fileID: 1507213363}
   - {fileID: 1780853400}
   - {fileID: 1812320817}
   - {fileID: 273389478}
   - {fileID: 1227303058}
-  - {fileID: 1507213363}
-  - {fileID: 10468205}
   - {fileID: 1264459632}
-  - {fileID: 1888239954}
+  - {fileID: 10468205}
   - {fileID: 146032035}
+  - {fileID: 1888239954}
+  - {fileID: 232133866}
   - {fileID: 259011361}
   - {fileID: 997401917}
   - {fileID: 1646445345}
   - {fileID: 1616044458}
   - {fileID: 585572079}
   - {fileID: 1842593795}
-  - {fileID: 232133866}
-  - {fileID: 271053615}
   - {fileID: 1569195039}
+  - {fileID: 271053615}
+  - {fileID: 1552286974}
   - {fileID: 1788340160}
   - {fileID: 1499574191}
   - {fileID: 2093763621}
-  - {fileID: 1552286974}
   - {fileID: 81554444}
   - {fileID: 1896785652}
   - {fileID: 1667820772}
+  - {fileID: 1927635562}
   - {fileID: 202381859}
   - {fileID: 755773156}
   - {fileID: 1916331411}
@@ -1331,7 +1332,6 @@ Transform:
   - {fileID: 998360948}
   - {fileID: 641576168}
   - {fileID: 648774198}
-  - {fileID: 1927635562}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2070,7 +2070,7 @@ Transform:
   m_LocalScale: {x: 1.3314279, y: 1.3314282, z: 1.3314282}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 86
+  m_RootOrder: 80
   m_LocalEulerAnglesHint: {x: 181.39, y: -171.189, z: 88.187}
 --- !u!1 &243274541
 GameObject:
@@ -5312,7 +5312,7 @@ Transform:
   m_LocalScale: {x: 4.8789053, y: 4.7012, z: 5.884962}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 68
+  m_RootOrder: 67
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &546802473
 PrefabInstance:
@@ -9523,7 +9523,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935160245}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abc4b5dd2be1cea4aaea2850b910d3f9, type: 3}
   m_Name: 
@@ -9676,7 +9676,7 @@ MonoBehaviour:
   allowedNearTouchControllers: 0
   allowedTouchControllers: 0
   ignoredColliders: []
-  isGrabbable: 1
+  isGrabbable: 0
   holdButtonToGrab: 0
   stayGrabbedOnTeleport: 1
   validDrop: 0
@@ -11242,7 +11242,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1576149581}
-        m_MethodName: MoveObjectHereRotateX90
+        m_MethodName: MoveObjectHereRotateToSetRotation
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 935160246}
@@ -11281,7 +11281,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1576149581}
-        m_MethodName: MoveObjectHereRotateX90
+        m_MethodName: MoveObjectHereRotateToSetRotation
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 935160246}
@@ -12748,7 +12748,7 @@ MonoBehaviour:
   blinkDistance: 32.1
   blinkTransition: 2
   sceneObjects: {fileID: 0}
-  newSceneScale: 7
+  newSceneScale: 5
   offset: {x: 0, y: 0, z: 0}
   afterTeleport:
     m_PersistentCalls:
@@ -12828,11 +12828,22 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1576149581}
-        m_MethodName: MoveObjectHereRotateX90
+        m_MethodName: MoveObjectHereRotateToSetRotation
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 935160246}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8b8985445a7a8c94cb1bd3bf60c4bf72, type: 2}
+        m_MethodName: AllowGrab
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 935160256}
+          m_ObjectArgumentAssemblyTypeName: VRTK.VRTK_InteractableObject, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -14383,7 +14394,7 @@ Transform:
   m_LocalScale: {x: 0.99771, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 77
+  m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1286293925
 GameObject:
@@ -17358,7 +17369,7 @@ Transform:
   m_LocalScale: {x: 3.5968559, y: 4.0493946, z: 4.976748}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 75
+  m_RootOrder: 71
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1509687617
 GameObject:
@@ -17813,7 +17824,7 @@ Transform:
   m_LocalScale: {x: 1.3314279, y: 1.3314282, z: 1.3314282}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 92
+  m_RootOrder: 89
   m_LocalEulerAnglesHint: {x: 181.39, y: -171.189, z: 88.187}
 --- !u!1 &1565711912
 GameObject:
@@ -18049,7 +18060,7 @@ Transform:
   m_LocalScale: {x: 3.604555, y: 3.102792, z: 4.870242}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 88
+  m_RootOrder: 87
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1569572187
 GameObject:
@@ -21407,7 +21418,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 65
+  m_RootOrder: 62
   m_LocalEulerAnglesHint: {x: 30.908, y: -270.628, z: -97.637}
 --- !u!4 &1839477659 stripped
 Transform:
@@ -22795,7 +22806,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 132
+  m_RootOrder: 96
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1927635563
 MonoBehaviour:
@@ -23013,7 +23024,7 @@ Transform:
   m_LocalScale: {x: 4.8927, y: 4.8927, z: 6.0992403}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 70
+  m_RootOrder: 69
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!4 &1960183668 stripped
 Transform:

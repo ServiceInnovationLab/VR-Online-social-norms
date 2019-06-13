@@ -705,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483fdbe17d93100468fff72e94b2dd9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: {x: 78.967, y: -25.264, z: -24.854}
 --- !u!1 &78939686
 GameObject:
   m_ObjectHideFlags: 0
@@ -9084,7 +9085,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 50566946}
-        m_MethodName: MoveObjectHereRotateX90
+        m_MethodName: MoveObjectHereRotateToSetRotation
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1343497198}
@@ -9171,7 +9172,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 50566946}
-        m_MethodName: MoveObjectHereRotateX90
+        m_MethodName: MoveObjectHereRotateToSetRotation
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1343497198}
@@ -9805,7 +9806,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 50566946}
-        m_MethodName: MoveObjectHereRotateX90
+        m_MethodName: MoveObjectHereRotateToSetRotation
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1343497198}

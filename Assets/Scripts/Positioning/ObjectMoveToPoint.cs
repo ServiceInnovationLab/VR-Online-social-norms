@@ -10,7 +10,7 @@ public class ObjectMoveToPoint : MonoBehaviour
         MoveObjectHere(transformToMove, transformToMove.localRotation);
     }
 
-    public void MoveObjectHereRotateX90(Transform transformToMove)
+    public void MoveObjectHereRotateToSetRotation(Transform transformToMove)
     {
         MoveObjectHere(transformToMove, Quaternion.Euler(rotation));
     }

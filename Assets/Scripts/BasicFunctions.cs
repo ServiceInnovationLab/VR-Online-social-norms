@@ -133,4 +133,15 @@ public class BasicFunctions : ScriptableObject
         button.onClick?.Invoke();
     }
 
+    public void AllowGrab(VRTK_InteractableObject interactableObject)
+    {
+        interactableObject.isGrabbable = true;
+
+        var highlighter = interactableObject.GetComponent<VRTK_InteractObjectHighlighter>();
+
+        if (highlighter)
+        {
+            highlighter.enabled = true;
+        }
+    }
 }
