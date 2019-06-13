@@ -79,9 +79,20 @@ public class VR_SceneChanger : MonoBehaviour
 
             if (!string.IsNullOrEmpty(scene.ScenePath))
             {
-                DisableTeleporters();
-                StartCoroutine(DoSwitchSceneLoad());
                 switched = true;
+
+                var steam = VRTK_SDKManager.instance.transform.Find("[VRTK_SDKSetups]/SteamVR");
+                if (steam && steam.gameObject.activeInHierarchy)
+                {
+                    var loader = gameObject.AddComponent<Valve.VR.SteamVR_LoadLevel>();
+                    loader.levelName = scene.ScenePath;
+                    loader.Trigger();
+                }
+                else
+                {
+                    DisableTeleporters();
+                    StartCoroutine(DoSwitchSceneLoad());
+                }
             }
         }
     }
