@@ -29,13 +29,13 @@ public class ScreenMessageFeedView : MonoBehaviour
     {
         if (!string.IsNullOrWhiteSpace(text))
         {
-            DisplayMessage(text);
+            DisplayMessage(new Message() { message = text });
         }
     }
 
     public void SendMessageToFeed(InputField input)
     {
-        DisplayMessage(input.text);
+        SendMessageToFeed(input.text);
         input.text = "";
     }
 
@@ -83,22 +83,36 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
-    void DisplayMessage(string text)
+    void DisplayMessage(Message theMessage)
     {
         var messageDisplay = Instantiate(messagePrefab, messageContainer);
-        messageDisplay.gameObject.SetActive(true);
-        var messageText = messageDisplay.GetComponentInChildren<Text>();
 
-        if (messageText)
+        var message = messageDisplay.GetComponent<ScreenMessage>();
+
+        if (!message)
         {
-            messageText.text = text;
+            Debug.LogError("No message!");
+            return;
         }
-#if UNITY_EDITOR
-        else
+
+        message.message = theMessage.message;
+
+        if (theMessage.profilePicture)
         {
-            print("Message prefab has no text element!");
+            message.profilePicture = theMessage.profilePicture;
         }
-#endif
+
+        if (!string.IsNullOrEmpty(theMessage.fromProfile))
+        {
+            message.from = theMessage.fromProfile;
+        }
+
+        if (!string.IsNullOrEmpty(theMessage.fromTag))
+        {
+            message.fromTag = theMessage.fromTag;
+        }
+
+        messageDisplay.gameObject.SetActive(true);
 
         messageDisplay.anchoredPosition = position;
 

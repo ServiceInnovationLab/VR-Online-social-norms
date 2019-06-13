@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using VRTK;
+using UnityEngine.UI;
 
 /// <summary>
 /// Provides some basic functions to be used for UnityEvents via the inspector
@@ -49,11 +51,11 @@ public class BasicFunctions : ScriptableObject
     /// Disables teleporting around
     /// </summary>
     public void DisableTeleporting()
-    {        
+    {
         foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
         {
             teleporter.enableTeleport = false;
-        }             
+        }
     }
 
     /// <summary>
@@ -84,4 +86,51 @@ public class BasicFunctions : ScriptableObject
         pointer.cursorVisibility = VRTK_BasePointerRenderer.VisibilityStates.OnWhenActive;
         pointer.cursorScaleMultiplier = 25;
     }
+
+    /// <summary>
+    /// This will go through each child of the given object and update the tag from IncludeTeleport to Exclude teleport
+    /// </summary>
+    /// <param name="baseObject">The object to start to look at children of</param>
+    public void MarkAllExcludeTeleport(GameObject baseObject)
+    {
+        Stack<Transform> transformsRemaining = new Stack<Transform>();
+        transformsRemaining.Push(baseObject.transform);
+
+        while (transformsRemaining.Count > 0)
+        {
+            var transform = transformsRemaining.Pop();
+
+            foreach (Transform child in transform)
+            {
+                if (child == transform)
+                {
+                    break;
+                }
+
+                if (child.CompareTag("IncludeTeleport"))
+                {
+                    child.tag = "ExcludeTeleport";
+                }
+
+                transformsRemaining.Push(child);
+            }
+        }
+    }
+
+    public void DisableTriggerPointerCollisions()
+    {
+        foreach (var pointer in FindObjectsOfType<VRTK_StraightPointerRenderer>())
+        {
+            if (pointer.customRaycast)
+            {
+                pointer.customRaycast.triggerInteraction = QueryTriggerInteraction.Ignore;
+            }
+        }
+    }
+
+    public void InvokeClick(Button button)
+    {
+        button.onClick?.Invoke();
+    }
+
 }

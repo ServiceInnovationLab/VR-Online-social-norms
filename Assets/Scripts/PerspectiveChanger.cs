@@ -28,9 +28,15 @@ public class PerspectiveChanger : MonoBehaviour
 
     [SerializeField] UnityEvent afterTeleport;
 
+    [SerializeField] bool scalePosition;
+
+    [SerializeField] bool scaleCamera;
+
     public void DoTeleport()
     {
-        var teleportPosition = target.position + offset;
+        bool scaleRoom = sceneObjects && newSceneScale > 0;
+
+        var teleportPosition = (target.position * (scaleRoom && scalePosition ? newSceneScale : 1)) + offset;
 
         var teleporter = FindObjectOfType<VRTK_BasicTeleport>();
         var originalBlinkDelay = teleporter.distanceBlinkDelay;
@@ -39,15 +45,17 @@ public class PerspectiveChanger : MonoBehaviour
         teleporter.distanceBlinkDelay = blinkDistance;
         teleporter.blinkTransitionSpeed = blinkTransition;
 
-        if (sceneObjects)
+        if (scaleRoom)
         {
-            if (newSceneScale > 0)
-            {
-                sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
-            }
+            sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
         teleporter.Teleport(target, teleportPosition);
+
+        if (scaleCamera)
+        {
+            VRTK_SDKManager.instance.transform.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
+        }
 
         afterTeleport?.Invoke();
 

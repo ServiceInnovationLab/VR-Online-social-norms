@@ -47,18 +47,21 @@ public class HelpTipsManager : MonoBehaviour
         ShowHelp(!tooltipsLeft.gameObject.activeInHierarchy);
     }
 
-    private void ShowHelp(HelpTips tips)
+    private void ShowHelp(HelpTips tips, bool swapLeftAndRight = false)
     {
-        tooltipsLeft.triggerText = tips.leftController.triggerText;
-        tooltipsLeft.gripText = tips.leftController.gripText;
-        tooltipsLeft.touchpadText = tips.leftController.touchpadText;
-        tooltipsLeft.buttonTwoText = tips.leftController.buttonText;
+        var leftController = swapLeftAndRight ? tips.rightController : tips.leftController;
+        var rightController = swapLeftAndRight ? tips.leftController : tips.rightController;
+
+        tooltipsLeft.triggerText = leftController.triggerText;
+        tooltipsLeft.gripText = leftController.gripText;
+        tooltipsLeft.touchpadText = leftController.touchpadText;
+        tooltipsLeft.buttonTwoText = leftController.buttonText;
         tooltipsLeft.ResetTooltip();
 
-        tooltipsRight.triggerText = tips.rightController.triggerText;
-        tooltipsRight.gripText = tips.rightController.gripText;
-        tooltipsRight.touchpadText = tips.rightController.touchpadText;
-        tooltipsRight.buttonTwoText = tips.rightController.buttonText;
+        tooltipsRight.triggerText = rightController.triggerText;
+        tooltipsRight.gripText = rightController.gripText;
+        tooltipsRight.touchpadText = rightController.touchpadText;
+        tooltipsRight.buttonTwoText = rightController.buttonText;
         tooltipsRight.ResetTooltip();
 
         tooltipsLeft.transform.localPosition = new Vector3(tips.leftPosition, 0, 0);
@@ -79,7 +82,7 @@ public class HelpTipsManager : MonoBehaviour
         tooltipsRight.gameObject.SetActive(isVisible);
     }
 
-    public void ShowHelp(string name)
+    public void ShowHelp(string name, bool swapLeftAndRight = false)
     {
         HelpTips toShow = null;
         foreach (var tip in tips)
@@ -93,7 +96,7 @@ public class HelpTipsManager : MonoBehaviour
 
         if (toShow)
         {
-            ShowHelp(toShow);
+            ShowHelp(toShow, swapLeftAndRight);
         }
         else
         {

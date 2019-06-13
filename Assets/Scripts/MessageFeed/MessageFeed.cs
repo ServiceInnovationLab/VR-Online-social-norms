@@ -7,17 +7,17 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "MessageFeed")]
 public class MessageFeed : ScriptableObject
 {
-    public List<string> messages;
+    public List<Message> messages;
 
     /// <summary>
     /// Adds new messages to the feed
     /// </summary>
     /// <param name="newMessages">The new messages to add</param>
-    public void AppendMessages(string[] newMessages)
+    public void AppendMessages(Message[] newMessages)
     {
         if (messages == null)
         {
-            messages = new List<string>();
+            messages = new List<Message>();
         }
 
         foreach (var message in newMessages)
@@ -30,8 +30,8 @@ public class MessageFeed : ScriptableObject
     /// Replaces the messages in the feed
     /// </summary>
     /// <param name="newMessages">The messages for the feed to contain</param>
-    public void SetMessages(string[] newMessages)
+    public void SetMessages(Message[] newMessages)
     {
-        messages = new List<string>(newMessages);
+        messages = new List<Message>(newMessages);
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(ScreenMessageFeedView))]
 public class TextEnterer : MonoBehaviour
 {
     [SerializeField] string textToEnter;
@@ -10,6 +11,17 @@ public class TextEnterer : MonoBehaviour
     [SerializeField] InputField input;
     [SerializeField] Button sendButton;
     [SerializeField] UnityEvent typingCompleted;
+    [SerializeField] UnityEvent onSend;
+
+    bool started;
+    ScreenMessageFeedView feedView;
+
+    public void SendText()
+    {
+        feedView.StopFeed();
+        feedView.SendMessageToFeed(input);
+        onSend?.Invoke();
+    }
 
     public void Complete()
     {
@@ -19,12 +31,17 @@ public class TextEnterer : MonoBehaviour
 
     public void StartTypeText()
     {
-        StartCoroutine(TypeText());
+        if (!started)
+        {
+            StartCoroutine(TypeText());
+            started = true;
+        }
     }
 
     private void Awake()
     {
         sendButton.interactable = false;
+        feedView = GetComponent<ScreenMessageFeedView>();
     }
 
     IEnumerator TypeText()
@@ -37,6 +54,11 @@ public class TextEnterer : MonoBehaviour
 
         typingCompleted?.Invoke();
 
-        sendButton.interactable = true;
+        if (sendButton)
+        {
+            sendButton.interactable = true;
+        }
+
+        feedView.StopFeed();
     }
 }
