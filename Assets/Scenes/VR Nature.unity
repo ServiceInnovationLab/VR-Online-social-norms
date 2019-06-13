@@ -17773,14 +17773,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4314178560886020, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5728
-      objectReference: {fileID: 0}
-    - target: {fileID: 4314178560886020, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 28.6
-      objectReference: {fileID: 0}
     - target: {fileID: 4738923781260352, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.435974
@@ -17836,6 +17828,14 @@ PrefabInstance:
     - target: {fileID: 4738923781260352, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3912315
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314178560886020, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5728
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314178560886020, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4f23d04e42f4b559542ad840db6530, type: 3}
@@ -39484,9 +39484,9 @@ GameObject:
   - component: {fileID: 1777075313}
   - component: {fileID: 1777075312}
   - component: {fileID: 1777075311}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

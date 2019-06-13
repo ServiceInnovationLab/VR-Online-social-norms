@@ -1292,10 +1292,10 @@ Transform:
   - {fileID: 1788340160}
   - {fileID: 1499574191}
   - {fileID: 2093763621}
+  - {fileID: 1927635562}
   - {fileID: 81554444}
   - {fileID: 1896785652}
   - {fileID: 1667820772}
-  - {fileID: 1927635562}
   - {fileID: 202381859}
   - {fileID: 755773156}
   - {fileID: 1916331411}
@@ -5234,9 +5234,9 @@ GameObject:
   - component: {fileID: 538740183}
   - component: {fileID: 538740182}
   - component: {fileID: 538740181}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: carpet
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11868,6 +11868,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5263055380110088583, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5263055379621391958, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11923,21 +11928,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5263055380110088586, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: maximumLength.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263055380867756747, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: maximumLength.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263055379510138493, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6122855029040675030, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -12217,11 +12207,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263055380110088583, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7658543486450975290, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
@@ -12233,6 +12218,11 @@ PrefabInstance:
       propertyPath: tooltipsRight
       value: 
       objectReference: {fileID: 1124140881}
+    - target: {fileID: 5263055379510138493, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1496714807337990638, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: m_IsActive
@@ -12243,6 +12233,16 @@ PrefabInstance:
       propertyPath: targetListPolicy
       value: 
       objectReference: {fileID: 1124140882}
+    - target: {fileID: 5263055380110088586, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: maximumLength.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263055380867756747, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: maximumLength.x
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 050d1a8df4d6593499651f7be4e0ad91, type: 3}
 --- !u!1 &1124140880 stripped
@@ -17982,9 +17982,9 @@ GameObject:
   - component: {fileID: 1569195038}
   - component: {fileID: 1569195037}
   - component: {fileID: 1569195036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: carpet (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19580,7 +19580,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713961739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.11, y: 0, z: 3.55}
+  m_LocalPosition: {x: -5.2, y: 0, z: -2.07}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children:
   - {fileID: 205263616}
@@ -22806,7 +22806,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 165633976}
-  m_RootOrder: 96
+  m_RootOrder: 93
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1927635563
 MonoBehaviour:
