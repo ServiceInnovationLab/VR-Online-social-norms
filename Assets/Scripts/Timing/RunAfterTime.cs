@@ -9,7 +9,7 @@ public class RunAfterTime : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke("CallEvent", timeToWait);
+        Invoke(nameof(CallEvent), timeToWait);
     }
 
     void CallEvent()
