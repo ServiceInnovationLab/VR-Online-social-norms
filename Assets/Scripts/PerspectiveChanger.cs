@@ -32,13 +32,15 @@ public class PerspectiveChanger : MonoBehaviour
 
     [SerializeField] bool scaleCamera;
 
+    [SerializeField] VRTK_BasicTeleport teleporter;
+
     public void DoTeleport()
     {
         bool scaleRoom = sceneObjects && newSceneScale > 0;
 
         var teleportPosition = (target.position * (scaleRoom && scalePosition ? newSceneScale : 1)) + offset;
 
-        var teleporter = FindObjectOfType<VRTK_BasicTeleport>();
+        var teleporter = this.teleporter ?? FindObjectOfType<VRTK_BasicTeleport>();
         var originalBlinkDelay = teleporter.distanceBlinkDelay;
         var originalBlinkTransition = teleporter.blinkTransitionSpeed;
 
