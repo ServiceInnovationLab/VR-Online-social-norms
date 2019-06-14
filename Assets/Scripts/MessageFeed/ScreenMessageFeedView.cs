@@ -97,6 +97,17 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         message.message = theMessage.message;
 
+        var textField = message.GetMessageTextField();
+        var currentTextHeight = textField.rectTransform.sizeDelta.y;
+        var perferredHeight = textField.cachedTextGeneratorForLayout.GetPreferredHeight(theMessage.message, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
+
+        if (perferredHeight > currentTextHeight)
+        {
+            var sizeDifference = new Vector2(0, perferredHeight);
+            textField.rectTransform.sizeDelta += sizeDifference;
+            messageDisplay.sizeDelta += sizeDifference;
+        }
+
         if (theMessage.profilePicture)
         {
             message.profilePicture = theMessage.profilePicture;
@@ -110,7 +121,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         if (!string.IsNullOrEmpty(theMessage.fromTag))
         {
             message.fromTag = theMessage.fromTag;
-        }
+        }       
 
         messageDisplay.gameObject.SetActive(true);
 

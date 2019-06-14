@@ -15,6 +15,11 @@ public class ScreenMessage : MonoBehaviour
 
     float time = 0;
 
+    public Text GetMessageTextField()
+    {
+        return messageText;
+    }
+
     private void Awake()
     {
         fromPersonText.text = from;
