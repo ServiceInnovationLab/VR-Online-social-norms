@@ -144,4 +144,14 @@ public class BasicFunctions : ScriptableObject
             highlighter.enabled = true;
         }
     }
+
+    public void AllowDropping(VRTK_InteractableObject interactableObject)
+    {
+        interactableObject.validDrop = VRTK_InteractableObject.ValidDropTypes.DropAnywhere;
+
+        //if (!interactableObject.GetComponent<Rigidbody>())
+        //{
+        //    interactableObject.gameObject.AddComponent<Rigidbody>();
+        //}
+    }
 }

@@ -20,7 +20,8 @@ public class ObjectMoveToPoint : MonoBehaviour
         var rigidBody = transformToMove.GetComponent<Rigidbody>();
 
         if (rigidBody)
-        {
+        {            
+            rigidBody.constraints = RigidbodyConstraints.None;
             rigidBody.MovePosition(transform.position);
             rigidBody.rotation = rotation;
         }

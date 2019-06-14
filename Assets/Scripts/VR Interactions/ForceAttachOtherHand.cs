@@ -12,6 +12,12 @@ public class ForceAttachOtherHand : MonoBehaviour
     {
         interactableObject = GetComponent<VRTK_InteractableObject>();
         interactableObject.InteractableObjectGrabbed += InteractableObjectGrabbed;
+        interactableObject.InteractableObjectUngrabbed += InteractableObjectUngrabbed;
+    }
+
+    private void InteractableObjectUngrabbed(object sender, InteractableObjectEventArgs e)
+    {
+        objectToKeepInOtherHand.gameObject.SetActive(false);
     }
 
     private void InteractableObjectGrabbed(object sender, InteractableObjectEventArgs e)
