@@ -46,6 +46,11 @@ public class ScrollWithTouchpad : MonoBehaviour
 
     private void InteractableObjectUngrabbed(object sender, InteractableObjectEventArgs e)
     {
+        foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
+        {
+            teleporter.enabled = true;
+        }
+
         controllerEvents = null;
     }
 
