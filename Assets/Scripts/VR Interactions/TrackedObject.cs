@@ -18,6 +18,9 @@ public class TrackedObject : MonoBehaviour
 
     private void LoadedSetupChanged(VRTK_SDKManager sender, VRTK_SDKManager.LoadedSetupChangeEventArgs e)
     {
+        if (!this)
+            return;
+
         StopAllCoroutines();
 
         if (trackedSteamVR)
@@ -31,6 +34,11 @@ public class TrackedObject : MonoBehaviour
 
         if (e.currentSetup.name.Contains("Steam"))
         {
+            if (!origin)
+            {
+                origin = FindObjectOfType<SteamVR_PlayArea>().transform;
+            }
+
             StartCoroutine(TryAndTrack());
         }
     }
