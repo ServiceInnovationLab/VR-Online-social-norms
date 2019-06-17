@@ -6,18 +6,20 @@ using Valve.VR;
 public class TrackedObject : MonoBehaviour
 {
     public uint trackerNumber;
+    public Transform origin;
 
     bool isTracked;
     SteamVR_TrackedObject trackedSteamVR;
 
     private void Awake()
     {
-        VRTK_SDKManager.instance.LoadedSetupChanged += LoadedSetupChanged; ;
-    
+        VRTK_SDKManager.instance.LoadedSetupChanged += LoadedSetupChanged;
     }
 
     private void LoadedSetupChanged(VRTK_SDKManager sender, VRTK_SDKManager.LoadedSetupChangeEventArgs e)
     {
+        StopAllCoroutines();
+
         if (trackedSteamVR)
         {
             Destroy(trackedSteamVR);
@@ -66,6 +68,11 @@ public class TrackedObject : MonoBehaviour
             {
                 trackedSteamVR = gameObject.AddComponent<SteamVR_TrackedObject>();
                 trackedSteamVR.index = (SteamVR_TrackedObject.EIndex)index;
+
+                if (origin)
+                {
+                    trackedSteamVR.origin = origin;
+                }
 
                 yield break;
             }
