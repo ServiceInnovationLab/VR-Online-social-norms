@@ -52,7 +52,9 @@ public class PerspectiveChanger : MonoBehaviour
             sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
-        teleporter.Teleport(target, teleportPosition);
+        var rotationY = Vector3.SignedAngle(Vector3.forward, target.forward, Vector3.up);
+
+        teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));
 
         if (scaleCamera)
         {
