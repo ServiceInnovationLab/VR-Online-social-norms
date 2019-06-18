@@ -52,7 +52,7 @@ public class PerspectiveChanger : MonoBehaviour
             sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
-        var rotationY = Vector3.SignedAngle(Vector3.forward, target.forward, Vector3.up);
+        var rotationY = Vector3.SignedAngle(VRTK_DeviceFinder.HeadsetTransform().forward, target.forward, Vector3.up);
 
         teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));
 
