@@ -52,7 +52,17 @@ public class PerspectiveChanger : MonoBehaviour
             sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
-        var rotationY = Vector3.SignedAngle(VRTK_DeviceFinder.HeadsetTransform().forward, target.forward, Vector3.up);
+        float rotationY;
+
+        if (VRTK_DeviceFinder.GetHeadsetTypeAsString() == "simulator")
+        {
+            // The simulator Y rotation is done by the play area and not the headset transform...
+            rotationY = Vector3.SignedAngle(Vector3.forward, target.forward, Vector3.up);
+        }
+        else
+        {
+            rotationY = Vector3.SignedAngle(VRTK_DeviceFinder.HeadsetTransform().forward, target.forward, Vector3.up);
+        }
 
         teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));
 
