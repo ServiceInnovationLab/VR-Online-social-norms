@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ScreenMessageFeedView))]
 public class TextEnterer : MonoBehaviour
 {
-    [SerializeField] string textToEnter;
+    [SerializeField] TextObject textToEnter;
     [SerializeField] float timeBetweenCharacters = 0.2f;
     [SerializeField] InputField input;
     [SerializeField] Button sendButton;
@@ -26,7 +26,7 @@ public class TextEnterer : MonoBehaviour
     public void Complete()
     {
         StopAllCoroutines();
-        input.text = textToEnter;
+        input.text = textToEnter.text;
     }
 
     public void StartTypeText()
@@ -46,9 +46,9 @@ public class TextEnterer : MonoBehaviour
 
     IEnumerator TypeText()
     {
-        for (int i = 0; i < textToEnter.Length; i++)
+        for (int i = 0; i < textToEnter.text.Length; i++)
         {
-            input.text = textToEnter.Substring(0, i + 1);
+            input.text = textToEnter.text.Substring(0, i + 1);
             yield return new WaitForSeconds(timeBetweenCharacters);
         }
 

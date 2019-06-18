@@ -25,6 +25,11 @@ public class ScreenMessageFeedView : MonoBehaviour
     Vector2 position = Vector2.zero;
     bool forceComplete;
 
+    public void SendMessageToFeed(TextObject text)
+    {
+        SendMessageToFeed(text.text);
+    }
+
     public void SendMessageToFeed(string text)
     {
         if (!string.IsNullOrWhiteSpace(text))

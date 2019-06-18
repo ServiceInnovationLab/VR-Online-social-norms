@@ -4739,8 +4739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3699d9d809b6c4a82f8a2ab96672dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToEnter: This is some very bad text that people shouldn't really be posting
-    online but they do for a variety of reasons like we've seen in the research
+  textToEnter: {fileID: 0}
   timeBetweenCharacters: 0.1
   input: {fileID: 1565594612}
   sendButton: {fileID: 374918864}
@@ -15480,17 +15479,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296208061}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 764648132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -0.00030517578, y: 15.8}
-  m_SizeDelta: {x: 64, y: 64}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 4, y: -4}
+  m_SizeDelta: {x: 72, y: 72}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1296208063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25955,8 +25954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3699d9d809b6c4a82f8a2ab96672dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToEnter: This is some very bad text that people shouldn't really be posting
-    online but they do for a variety of reasons like we've seen in the research
+  textToEnter: {fileID: 11400000, guid: 2786bbcb0fc1a164e9e13123a79b284c, type: 2}
   timeBetweenCharacters: 0.1
   input: {fileID: 1833867028}
   sendButton: {fileID: 470719120}
