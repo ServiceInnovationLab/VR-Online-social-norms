@@ -61,7 +61,7 @@ public class PerspectiveChanger : MonoBehaviour
         }
         else
         {
-            rotationY = Vector3.SignedAngle(VRTK_DeviceFinder.HeadsetTransform().forward, target.forward, Vector3.up);
+            rotationY = VectorUtils.AngleOffAroundAxis(target.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
         }
 
         teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));

@@ -23,7 +23,7 @@ public class ObjectMoveToPoint : MonoBehaviour
         {
             rigidBody.constraints = RigidbodyConstraints.None;
             rigidBody.position = transform.position;
-            rigidBody.rotation = rotation;
+            rigidBody.rotation = rigidBody.transform.parent.rotation * rotation;
             StartCoroutine(FixRigidBody(rigidBody));
         }
         else
