@@ -17978,6 +17978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d8f16615119d544abb004949e6fbf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  closeness: 1
   highlightColour: {r: 0.7294685, g: 0.990566, b: 0.55602527, a: 1}
   time: 0.5
   maxTime: 0
@@ -17993,7 +17994,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 56d0d11c0bd5e3e44a1a6c4f3ed21c88, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18134,7 +18135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
-  touchHighlight: {r: 0.9897504, g: 1, b: 0.042452812, a: 0}
+  touchHighlight: {r: 0.9938128, g: 1, b: 0.5235849, a: 0}
   grabHighlight: {r: 0, g: 0, b: 0, a: 0}
   useHighlight: {r: 0, g: 0, b: 0, a: 0}
   objectToMonitor: {fileID: 0}
@@ -28126,7 +28127,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 56d0d11c0bd5e3e44a1a6c4f3ed21c88, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -28223,7 +28224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
-  touchHighlight: {r: 0.9897504, g: 1, b: 0.042452812, a: 0}
+  touchHighlight: {r: 1, g: 0.7540867, b: 0.5254902, a: 0}
   grabHighlight: {r: 0, g: 0, b: 0, a: 0}
   useHighlight: {r: 0, g: 0, b: 0, a: 0}
   objectToMonitor: {fileID: 0}
@@ -28305,9 +28306,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d8f16615119d544abb004949e6fbf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightColour: {r: 0, g: 1, b: 0.075618744, a: 1}
+  closeness: 1
+  highlightColour: {r: 0.7294118, g: 0.99215686, b: 0.5568628, a: 1}
   time: 0.5
-  maxTime: 2
+  maxTime: 0
 --- !u!114 &1942055871 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5263055381172304631, guid: 050d1a8df4d6593499651f7be4e0ad91,
@@ -31012,9 +31014,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1297328602}
-        m_MethodName: AllowSecondUse
-        m_Mode: 1
+      - m_Target: {fileID: 1297328600}
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -31036,6 +31038,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1940835699}
         m_MethodName: AllowUse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1297328602}
+        m_MethodName: AllowSecondUse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
