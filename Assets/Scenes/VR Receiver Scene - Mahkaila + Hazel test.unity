@@ -1309,6 +1309,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2706790727220717145, guid: e5a51f115f8a51647a8c64fbdfbbf429,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: -8632144097551115124, guid: e5a51f115f8a51647a8c64fbdfbbf429,
         type: 3}
       propertyPath: m_TagString
@@ -1671,7 +1676,7 @@ GameObject:
   - component: {fileID: 146032035}
   m_Layer: 0
   m_Name: fencing
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9108,6 +9113,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5413d774f3662744900528bed7ddc2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  allowTrigger: 0
+  onlyTriggerOnce: 0
   interactableObject: {fileID: 0}
   dropOff: 0.9
   scrollScale: 100
@@ -16131,7 +16143,7 @@ GameObject:
   - component: {fileID: 1264459630}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -19650,6 +19662,10 @@ PrefabInstance:
     - target: {fileID: 107168, guid: 5eee0ef564f68bc489f8b8dde7899c02, type: 3}
       propertyPath: m_Name
       value: V1_T2_S4 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 107168, guid: 5eee0ef564f68bc489f8b8dde7899c02, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 406496, guid: 5eee0ef564f68bc489f8b8dde7899c02, type: 3}
       propertyPath: m_LocalPosition.x
