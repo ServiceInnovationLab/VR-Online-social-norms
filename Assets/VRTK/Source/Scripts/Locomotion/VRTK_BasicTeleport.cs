@@ -54,6 +54,9 @@ namespace VRTK
         [ObsoleteInspector]
         public float navMeshLimitDistance = 0f;
 
+        [HideInInspector]
+        public bool skipBlink = false;
+
         /// <summary>
         /// Emitted when the teleport process has begun.
         /// </summary>
@@ -243,6 +246,9 @@ namespace VRTK
 
         protected virtual void Blink(float transitionSpeed)
         {
+            if (skipBlink)
+                return;
+
             fadeInTime = transitionSpeed;
             if (transitionSpeed > 0f)
             {
