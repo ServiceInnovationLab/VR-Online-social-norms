@@ -11,7 +11,7 @@ public class TextEnterer : MonoBehaviour
     [SerializeField] InputField input;
     [SerializeField] Button sendButton;
     [SerializeField] UnityEvent typingCompleted;
-    [SerializeField] UnityEvent onSend;
+    [SerializeField] UnityEvent onSend;    
 
     bool started;
     ScreenMessageFeedView feedView;

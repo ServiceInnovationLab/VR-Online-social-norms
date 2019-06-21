@@ -140,4 +140,18 @@ public class ScreenMessageFeedView : MonoBehaviour
             scrollRect.verticalNormalizedPosition = 0;
         }
     }
+
+    public void SendToBottom(RectTransform transform)
+    {
+        transform.gameObject.SetActive(true);
+        transform.anchoredPosition = position;
+
+        position.y -= transform.rect.height;
+        messageContainer.sizeDelta = new Vector2(0, -position.y);
+
+        if (scrollRect && scrollToBottom)
+        {
+            scrollRect.verticalNormalizedPosition = 0;
+        }
+    }
 }
