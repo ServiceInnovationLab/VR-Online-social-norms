@@ -7,6 +7,7 @@ public class ScreenMessage : MonoBehaviour
     public string fromTag;
     public string message;
     public Sprite profilePicture;
+    public bool sent = true;
 
     [SerializeField] Text messageText;
     [SerializeField] Image profilePictureImage;
@@ -25,10 +26,14 @@ public class ScreenMessage : MonoBehaviour
         fromPersonText.text = from;
         messageText.text = message;
         profilePictureImage.sprite = profilePicture;
+        fromTime.text = fromTag;
     }
 
     private void FixedUpdate()
     {
+        if (!sent)
+            return;
+
         time += Time.deltaTime;
 
         if (time < 1)
@@ -49,5 +54,16 @@ public class ScreenMessage : MonoBehaviour
                 fromTime.text = fromTag + " - " + seconds + "s";
             }
         }
+    }
+
+    public void Send(InputField input)
+    {
+        transform.Find("Icons").gameObject.SetActive(true);
+        messageText.text = input.text;
+        input.gameObject.SetActive(false);
+
+        messageText.gameObject.SetActive(true);
+
+        sent = true;
     }
 }
