@@ -41,7 +41,7 @@ public class PeriodicHapticFeedback : MonoBehaviour
     {
         if (VRTK_ControllerReference.IsValid(grabbedController))
         {
-            VRTK_ControllerHaptics.CancelHapticPulse(grabbedController);
+            StopFeedback();
         }
         grabbedController = null;
     }
@@ -69,6 +69,11 @@ public class PeriodicHapticFeedback : MonoBehaviour
         if (controller.HasFlag(VR_Controller.Right))
         {
             VRTK_ControllerHaptics.CancelHapticPulse(rightController);
+        }
+
+        if (VRTK_ControllerReference.IsValid(grabbedController))
+        {
+            VRTK_ControllerHaptics.CancelHapticPulse(grabbedController);
         }
     }
 

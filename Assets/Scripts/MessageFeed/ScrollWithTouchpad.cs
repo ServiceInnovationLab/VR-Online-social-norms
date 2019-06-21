@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using VRTK;
 
 /// <summary>
@@ -10,6 +11,11 @@ using VRTK;
 [RequireComponent(typeof(ScrollRect))]
 public class ScrollWithTouchpad : MonoBehaviour
 {
+    public UnityEvent OnTrigger;
+
+    [SerializeField] bool allowTrigger;
+    [SerializeField] bool onlyTriggerOnce;
+    [SerializeField] GameObject triggerObject;
     [SerializeField] VRTK_InteractableObject interactableObject;
     [SerializeField] float dropOff = 0.9f;
     [SerializeField] float scrollScale = 10.0f;
@@ -22,6 +28,7 @@ public class ScrollWithTouchpad : MonoBehaviour
     Vector2 lastPosition;
     Vector2 touchStartPosition;    
     float touchStartTime;
+    bool canTrigger;
 
     VRTK_ControllerEvents controllerEvents;
 
@@ -41,15 +48,25 @@ public class ScrollWithTouchpad : MonoBehaviour
         }
 
         interactableObject.InteractableObjectGrabbed += InteractableObjectGrabbed;
-        interactableObject.InteractableObjectUngrabbed += InteractableObjectUngrabbed;       
+        interactableObject.InteractableObjectUngrabbed += InteractableObjectUngrabbed;
+
+        canTrigger = allowTrigger;
     }
 
     private void InteractableObjectUngrabbed(object sender, InteractableObjectEventArgs e)
     {
+        if (!controllerEvents)
+        {
+            return;
+        }
+
         foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
         {
             teleporter.enabled = true;
         }
+
+        controllerEvents.TriggerClicked -= ControllerEvents_TriggerClicked;
+        controllerEvents.TouchpadPressed -= ControllerEvents_TriggerClicked;
 
         controllerEvents = null;
     }
@@ -62,6 +79,52 @@ public class ScrollWithTouchpad : MonoBehaviour
         {
             teleporter.enabled = false;
         }
+
+        StartCoroutine(HookUpEvents());
+    }
+
+    private void ControllerEvents_TriggerClicked(object sender, ControllerInteractionEventArgs e)
+    {
+        if (canTrigger && (!triggerObject || triggerObject.activeInHierarchy))
+        {
+            canTrigger = !onlyTriggerOnce;
+            // Trigger after a delay as we need to wait until the trigger is no longer pressed otherwise the phone will drop right away!
+            StartCoroutine(InvokeTrigger());
+        }
+    }
+
+    private IEnumerator HookUpEvents()
+    {
+        yield return null;
+
+        if (controllerEvents)
+        {
+            controllerEvents.TriggerClicked += ControllerEvents_TriggerClicked;
+            controllerEvents.TouchpadPressed += ControllerEvents_TriggerClicked;
+        }
+    }
+
+    private IEnumerator InvokeTrigger()
+    {
+        yield return null;
+
+        OnTrigger?.Invoke();
+
+        bool unclicked = false;
+
+        ControllerInteractionEventHandler waitForUnclick = (s, a) =>
+        {
+            unclicked = true;
+        };
+
+        controllerEvents.TriggerReleased += waitForUnclick;
+        yield return new WaitUntil(() => unclicked);
+        yield return null;
+
+        // TODO: This part is too specfic and needs to be designed better
+        interactableObject.validDrop = VRTK_InteractableObject.ValidDropTypes.DropAnywhere;
+        
+        controllerEvents.TriggerUnclicked -= waitForUnclick;
     }
 
     private IEnumerator DoScroll(float velocity, Vector2 direction)

@@ -11643,10 +11643,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5413d774f3662744900528bed7ddc2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8b8985445a7a8c94cb1bd3bf60c4bf72, type: 2}
+        m_MethodName: InvokeClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1403161373}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  allowTrigger: 1
+  onlyTriggerOnce: 1
+  triggerObject: {fileID: 1403161370}
   interactableObject: {fileID: 0}
   dropOff: 0.9
-  scrollScale: 100
-  swipeScale: 2.5
+  scrollScale: 300
+  swipeScale: 4
 --- !u!114 &823052981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15824,7 +15843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051030d31c1165b4bb5852b817f35b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToWait: 20
+  timeToWait: 30
   onTimeUp:
     m_PersistentCalls:
       m_Calls:
@@ -21952,17 +21971,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 8b8985445a7a8c94cb1bd3bf60c4bf72, type: 2}
-        m_MethodName: AllowDropping
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 935160256}
-          m_ObjectArgumentAssemblyTypeName: VRTK.VRTK_InteractableObject, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -33501,8 +33509,8 @@ Transform:
   m_Children:
   - {fileID: 202381859}
   - {fileID: 1492681508}
-  - {fileID: 1227303058}
   - {fileID: 273389478}
+  - {fileID: 1227303058}
   - {fileID: 10468205}
   m_Father: {fileID: 0}
   m_RootOrder: 20

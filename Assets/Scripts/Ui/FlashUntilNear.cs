@@ -3,11 +3,18 @@ using UnityEngine;
 using VRTK;
 using VRTK.Highlighters;
 
+public enum Closeness
+{
+    NearTouch,
+    Touched
+}
+
 [RequireComponent(typeof(VRTK_InteractableObject))]
 public class FlashUntilNear : MonoBehaviour
 {
     VRTK_InteractableObject interactableObject;
 
+    [SerializeField] Closeness closeness = Closeness.NearTouch;
     [SerializeField] protected Color highlightColour = Color.clear;
     [SerializeField] float time = 0.5f;
     [SerializeField] float maxTime = 0;
@@ -17,7 +24,11 @@ public class FlashUntilNear : MonoBehaviour
 
     void OnEnable()
     {
-        if (!highlighterObject)
+        if (highlighterObject)
+        {
+            highlighterObject.InteractObjectHighlighterHighlighted += InteractObjectHighlighterHighlighted;
+        }
+        else
         {
             highlighter = new VRTK_MaterialColorSwapHighlighter();
             highlighter.Initialise(highlightColour, gameObject);
@@ -25,7 +36,24 @@ public class FlashUntilNear : MonoBehaviour
 
         StartCoroutine(DoFlashing());
 
-        interactableObject.InteractableObjectNearTouched += InteractableObjectNearTouched;
+        if (closeness == Closeness.NearTouch)
+        {
+            interactableObject.InteractableObjectNearTouched += InteractableObjectNearTouched;
+        }
+        else if (closeness == Closeness.Touched)
+        {
+            interactableObject.InteractableObjectTouched += InteractableObjectNearTouched;
+        }
+        else
+        {
+            Debug.LogError("Unknown closeness value");
+        }
+    }
+
+    private void InteractObjectHighlighterHighlighted(object sender, InteractObjectHighlighterEventArgs e)
+    {
+        StopAllCoroutines();
+        enabled = false;
     }
 
     private void OnDisable()
@@ -86,7 +114,7 @@ public class FlashUntilNear : MonoBehaviour
     {
         StopAllCoroutines();
 
-        if (highlighterObject)
+        if (highlighterObject && closeness != Closeness.Touched)
         {
             highlighterObject.Unhighlight();
         }
