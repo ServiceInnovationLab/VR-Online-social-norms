@@ -19,12 +19,12 @@ public class EventManager : MonoBehaviour
 
                 if (!eventManager)
                 {
-                    Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
+                    var obj = new GameObject("EventManager");
+                    eventManager = obj.AddComponent<EventManager>();
+                    //Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
                 }
-                else
-                {
-                    eventManager.Init();
-                }
+
+                eventManager.Init();
             }
 
             return eventManager;
