@@ -65,7 +65,6 @@ public class ScrollWithTouchpad : MonoBehaviour
             teleporter.enabled = true;
         }
 
-        controllerEvents.TriggerClicked -= ControllerEvents_TriggerClicked;
         controllerEvents.TouchpadPressed -= ControllerEvents_TriggerClicked;
 
         controllerEvents = null;
@@ -80,7 +79,7 @@ public class ScrollWithTouchpad : MonoBehaviour
             teleporter.enabled = false;
         }
 
-        StartCoroutine(HookUpEvents());
+        controllerEvents.TouchpadPressed += ControllerEvents_TriggerClicked;
     }
 
     private void ControllerEvents_TriggerClicked(object sender, ControllerInteractionEventArgs e)
@@ -88,43 +87,9 @@ public class ScrollWithTouchpad : MonoBehaviour
         if (canTrigger && (!triggerObject || triggerObject.activeInHierarchy))
         {
             canTrigger = !onlyTriggerOnce;
-            // Trigger after a delay as we need to wait until the trigger is no longer pressed otherwise the phone will drop right away!
-            StartCoroutine(InvokeTrigger());
+
+            OnTrigger?.Invoke();
         }
-    }
-
-    private IEnumerator HookUpEvents()
-    {
-        yield return null;
-
-        if (controllerEvents)
-        {
-            controllerEvents.TriggerClicked += ControllerEvents_TriggerClicked;
-            controllerEvents.TouchpadPressed += ControllerEvents_TriggerClicked;
-        }
-    }
-
-    private IEnumerator InvokeTrigger()
-    {
-        yield return null;
-
-        OnTrigger?.Invoke();
-
-        bool unclicked = false;
-
-        ControllerInteractionEventHandler waitForUnclick = (s, a) =>
-        {
-            unclicked = true;
-        };
-
-        controllerEvents.TriggerReleased += waitForUnclick;
-        yield return new WaitUntil(() => unclicked);
-        yield return null;
-
-        // TODO: This part is too specfic and needs to be designed better
-        interactableObject.validDrop = VRTK_InteractableObject.ValidDropTypes.DropAnywhere;
-        
-        controllerEvents.TriggerUnclicked -= waitForUnclick;
     }
 
     private IEnumerator DoScroll(float velocity, Vector2 direction)
