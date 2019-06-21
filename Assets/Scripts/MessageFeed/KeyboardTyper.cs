@@ -22,7 +22,14 @@ public class KeyboardTyper : MonoBehaviour
 
         var textArgs = (TextTypedEventArgs)args;
 
-        var key = transform.Find(textArgs.TypedText.ToUpper());
+        var keyName = textArgs.TypedText.ToUpper();
+
+        if (keyName == " ")
+        {
+            keyName = "Space";
+        }
+
+        var key = transform.Find(keyName);
 
         if (key)
         {
