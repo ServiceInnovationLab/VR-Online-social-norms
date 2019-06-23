@@ -4197,6 +4197,7 @@ GameObject:
   - component: {fileID: 234071306}
   - component: {fileID: 234071305}
   - component: {fileID: 234071304}
+  - component: {fileID: 234071311}
   m_Layer: 0
   m_Name: Phone
   m_TagString: Untagged
@@ -4444,6 +4445,35 @@ MonoBehaviour:
   useAppearanceDelay: 0
   unuseAppearanceDelay: 0
   validUseInteractingObject: 0
+--- !u!114 &234071311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234071298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e8949425c61bf428bfef67d5397562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHardCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 227005966}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  minimumVelocity: 9
 --- !u!1001 &236031160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36284,7 +36314,6 @@ GameObject:
   - component: {fileID: 5435752649663711897}
   - component: {fileID: 5435752649663711899}
   - component: {fileID: 5435752649663711898}
-  - component: {fileID: 5435752649663711900}
   m_Layer: 0
   m_Name: smartphone
   m_TagString: Untagged
@@ -36421,35 +36450,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5435752649663711900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5435752649663711896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e8949425c61bf428bfef67d5397562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHardCollision:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 8b8985445a7a8c94cb1bd3bf60c4bf72, type: 2}
-        m_MethodName: ToggleObject
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 227005966}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  minimumVelocity: 9
 --- !u!4 &5454281866860681056
 Transform:
   m_ObjectHideFlags: 0
