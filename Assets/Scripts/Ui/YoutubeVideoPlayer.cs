@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Video;
 using VideoLibrary;
-using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,10 +17,10 @@ public class YoutubeVideoPlayer : MonoBehaviour
     {
         videoPlayer = GetComponent<VideoPlayer>();
 
-        LoadVideo(url);
+        LoadVideo(videoPlayer, url, skipAmount);
     }
 
-    async Task LoadVideo(string url)
+    public static async Task LoadVideo(VideoPlayer videoPlayer, string url, float skipAmount = 0)
     {
         var youTube = YouTube.Default;
         var videos = await youTube.GetAllVideosAsync(url);
@@ -30,6 +29,7 @@ public class YoutubeVideoPlayer : MonoBehaviour
         if (video != null)
         {
             videoPlayer.url = video.Uri;
+            videoPlayer.Play();
             videoPlayer.time = skipAmount;
         }
     }
