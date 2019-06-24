@@ -33,6 +33,7 @@
         private bool disableIdle = true;
         private bool addrb = true;
         private bool addHaptics = true;
+        private bool freezeRigidBody = true;
         private Color touchColor = Color.clear;
 
         [MenuItem("Window/VRTK/Setup Interactable Object")]
@@ -72,6 +73,7 @@
             EditorGUILayout.LabelField("Misc Options", EditorStyles.boldLabel);
             disableIdle = EditorGUILayout.Toggle("Disable On Idle", disableIdle);
             addrb = EditorGUILayout.Toggle("Add RigidBody", addrb);
+            freezeRigidBody = EditorGUILayout.Toggle("Freeze RigidBody", freezeRigidBody);
             addHaptics = EditorGUILayout.Toggle("Add Haptics", addHaptics);
             EditorGUILayout.Space();
 
@@ -180,7 +182,12 @@
                 Rigidbody rb = givenObject.GetComponent<Rigidbody>();
                 if (rb == null)
                 {
-                    givenObject.gameObject.AddComponent<Rigidbody>();
+                    rb = givenObject.gameObject.AddComponent<Rigidbody>();
+                }
+
+                if (freezeRigidBody)
+                {
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
                 }
             }
         }
