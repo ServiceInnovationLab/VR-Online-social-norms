@@ -12,14 +12,8 @@ using VRTK;
 public class ScrollWithTouchpad : MonoBehaviour
 {
     public UnityEvent OnTrigger;
-    public UnityEvent OnTrigger2;
-    public UnityEvent OnTrigger3;
 
     [SerializeField] bool allowTrigger;
-    [SerializeField] bool onlyTriggerOnce;
-    [SerializeField] GameObject triggerObject;
-    [SerializeField] GameObject triggerObject2;
-    [SerializeField] GameObject triggerObject3;
     [SerializeField] VRTK_InteractableObject interactableObject;
     [SerializeField] float dropOff = 0.9f;
     [SerializeField] float scrollScale = 10.0f;
@@ -88,23 +82,9 @@ public class ScrollWithTouchpad : MonoBehaviour
 
     private void ControllerEvents_TriggerClicked(object sender, ControllerInteractionEventArgs e)
     {
-        if (canTrigger &&  triggerObject.activeInHierarchy)
+        if (canTrigger)
         {
-           // canTrigger = !onlyTriggerOnce;
-
             OnTrigger?.Invoke();
-        }
-        else if (canTrigger && triggerObject2.activeInHierarchy)
-        {
-            // canTrigger = !onlyTriggerOnce;
-
-            OnTrigger2?.Invoke();
-        }
-        else if (canTrigger && triggerObject3.activeInHierarchy)
-        {
-            canTrigger = false;
-
-            OnTrigger3?.Invoke();
         }
     }
 

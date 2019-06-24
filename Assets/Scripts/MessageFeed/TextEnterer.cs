@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(ScreenMessageFeedView))]
 public class TextEnterer : MonoBehaviour
 {
     [SerializeField] TextObject textToEnter;
@@ -12,9 +11,9 @@ public class TextEnterer : MonoBehaviour
     [SerializeField] Button sendButton;
     [SerializeField] UnityEvent typingCompleted;
     [SerializeField] UnityEvent onSend;    
+    [SerializeField] ScreenMessageFeedView feedView;
 
     bool started;
-    ScreenMessageFeedView feedView;
 
     public void SendText()
     {
@@ -41,7 +40,11 @@ public class TextEnterer : MonoBehaviour
     private void Awake()
     {
         sendButton.interactable = false;
-        feedView = GetComponent<ScreenMessageFeedView>();
+
+        if (!feedView)
+        {
+            feedView = GetComponent<ScreenMessageFeedView>();
+        }
     }
 
     IEnumerator TypeText()
@@ -62,6 +65,9 @@ public class TextEnterer : MonoBehaviour
             sendButton.interactable = true;
         }
 
-        feedView.StopFeed();
+        if (feedView)
+        {
+            feedView.StopFeed();
+        }
     }
 }

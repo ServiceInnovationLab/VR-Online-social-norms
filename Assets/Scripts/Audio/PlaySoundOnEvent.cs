@@ -4,6 +4,8 @@
 public class PlaySoundOnEvent : MonoBehaviour
 {
     [SerializeField] AudioClip[] clips;
+    [SerializeField] bool changePitch;
+    [SerializeField] FloatRange pitch;
     public string eventName;
 
     AudioSource source;
@@ -29,6 +31,12 @@ public class PlaySoundOnEvent : MonoBehaviour
     void OnEventTriggered()
     {
         var clip = clips[Random.Range(0, clips.Length)];
+
+        if (changePitch)
+        {
+            source.pitch = pitch.GetValue();
+        }
+
         source.PlayOneShot(clip);
     }
 }
