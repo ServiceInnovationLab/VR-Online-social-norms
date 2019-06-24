@@ -42,63 +42,65 @@ public class VR_StartingPoint : MonoBehaviour
         fromAction.onTransformUpdated.RemoveListener(SteamTransformUpdate);
         fromAction.onTransformChanged.RemoveListener(SteamTransformUpdate);       
 
-        var allZValues = boundryVertices.Select(v => v.z).ToArray();
-        var allXValues = boundryVertices.Select(v => v.x).ToArray();
+        // TODO: Movement of the play area
 
-        float minX = Mathf.Min(allXValues);
-        float maxX = Mathf.Max(allXValues);
-        float minZ = Mathf.Min(allZValues);
-        float maxZ = Mathf.Max(allZValues);
+        //var allZValues = boundryVertices.Select(v => v.z).ToArray();
+        //var allXValues = boundryVertices.Select(v => v.x).ToArray();
 
-        float centreX = (maxX + minX) / 2;
-        float centreZ = (maxZ + minZ) / 2;
+        //float minX = Mathf.Min(allXValues);
+        //float maxX = Mathf.Max(allXValues);
+        //float minZ = Mathf.Min(allZValues);
+        //float maxZ = Mathf.Max(allZValues);
 
-        var playerPos = fromAction.transform.localPosition;
+        //float centreX = (maxX + minX) / 2;
+        //float centreZ = (maxZ + minZ) / 2;
 
-        var currentPoint = DesiredPoint.None;
+        //var playerPos = fromAction.transform.localPosition;
 
-        if (playerPos.x < centreX)
-        {
-            currentPoint |= DesiredPoint.Left;
-        }
-        else
-        {
-            currentPoint |= DesiredPoint.Right;
-        }
+        //var currentPoint = DesiredPoint.None;
 
-        if (playerPos.z < centreZ)
-        {
-            currentPoint |= DesiredPoint.Front;
-        }
-        else
-        {
-            currentPoint |= DesiredPoint.Back;
-        }
+        //if (playerPos.x < centreX)
+        //{
+        //    currentPoint |= DesiredPoint.Left;
+        //}
+        //else
+        //{
+        //    currentPoint |= DesiredPoint.Right;
+        //}
 
-        if (currentPoint != orientation)
-        {
-            var playarea = VRTK_DeviceFinder.PlayAreaTransform();
+        //if (playerPos.z < centreZ)
+        //{
+        //    currentPoint |= DesiredPoint.Front;
+        //}
+        //else
+        //{
+        //    currentPoint |= DesiredPoint.Back;
+        //}
 
-            if (currentPoint.HasFlag(DesiredPoint.Front) && orientation.HasFlag(DesiredPoint.Back))
-            {
-                playarea.transform.localPosition += new Vector3(0, 0, minZ);
-            }
-            else if (currentPoint.HasFlag(DesiredPoint.Back) && orientation.HasFlag(DesiredPoint.Front))
-            {
-                playarea.transform.localPosition += new Vector3(0, 0, maxZ);
-            }
+        //if (currentPoint != orientation)
+        //{
+        //    var playarea = VRTK_DeviceFinder.PlayAreaTransform();
 
-            if (currentPoint.HasFlag(DesiredPoint.Left) && orientation.HasFlag(DesiredPoint.Right))
-            {
-                playarea.transform.localPosition += new Vector3(minX, 0, 0);
-                playarea.transform.localRotation = Quaternion.Euler(0, 180, 0);
-            }
-            else if (currentPoint.HasFlag(DesiredPoint.Right) && orientation.HasFlag(DesiredPoint.Left))
-            {
-                playarea.transform.localPosition += new Vector3(maxX, 0, maxZ);
-                playarea.transform.localRotation = Quaternion.Euler(0, 180, 0);
-            }
-        }
+        //    if (currentPoint.HasFlag(DesiredPoint.Front) && orientation.HasFlag(DesiredPoint.Back))
+        //    {
+        //        playarea.transform.localPosition += new Vector3(0, 0, minZ);
+        //    }
+        //    else if (currentPoint.HasFlag(DesiredPoint.Back) && orientation.HasFlag(DesiredPoint.Front))
+        //    {
+        //        playarea.transform.localPosition += new Vector3(0, 0, maxZ);
+        //    }
+
+        //    if (currentPoint.HasFlag(DesiredPoint.Left) && orientation.HasFlag(DesiredPoint.Right))
+        //    {
+        //        playarea.transform.localPosition += new Vector3(minX, 0, 0);
+        //        playarea.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        //    }
+        //    else if (currentPoint.HasFlag(DesiredPoint.Right) && orientation.HasFlag(DesiredPoint.Left))
+        //    {
+        //        playarea.transform.localPosition += new Vector3(maxX, 0, maxZ);
+        //        playarea.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        //    }
+        //}
 
        DoTeleport();
     }
