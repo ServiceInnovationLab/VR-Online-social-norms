@@ -38867,6 +38867,7 @@ GameObject:
   - component: {fileID: 5435752649663711897}
   - component: {fileID: 5435752649663711899}
   - component: {fileID: 5435752649663711898}
+  - component: {fileID: 5435752649663711900}
   m_Layer: 0
   m_Name: smartphone
   m_TagString: Untagged
@@ -38883,7 +38884,7 @@ MeshCollider:
   m_GameObject: {fileID: 5435752649663711896}
   m_Material: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -39003,6 +39004,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &5435752649663711900
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5435752649663711896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06688932, y: 0.006965241, z: 0.1380187}
+  m_Center: {x: -1.0385386e-10, y: 0.0034852645, z: -0.0000001791255}
 --- !u!4 &5454281866860681056
 Transform:
   m_ObjectHideFlags: 0
