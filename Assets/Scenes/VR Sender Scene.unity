@@ -644,7 +644,7 @@ GameObject:
   - component: {fileID: 36804686}
   m_Layer: 0
   m_Name: Offset
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1836,6 +1836,10 @@ PrefabInstance:
     - target: {fileID: 191300, guid: 30506e06c40703349b3b014b826e1a01, type: 3}
       propertyPath: m_Name
       value: Deodorant
+      objectReference: {fileID: 0}
+    - target: {fileID: 191300, guid: 30506e06c40703349b3b014b826e1a01, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 469398, guid: 30506e06c40703349b3b014b826e1a01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6314,6 +6318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dish_Original (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1134634293712184, guid: 0a97cbe626a9ca148a61088796943352, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 4497012157758718, guid: 0a97cbe626a9ca148a61088796943352, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.903
@@ -6846,6 +6854,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monitor (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 157708, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 139308, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 418434, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.324
@@ -6901,6 +6917,10 @@ PrefabInstance:
     - target: {fileID: 418434, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 155236, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
@@ -8819,6 +8839,10 @@ PrefabInstance:
     - target: {fileID: 1441134368620514, guid: ac18017692e94344896239e6fc57f757, type: 3}
       propertyPath: m_Name
       value: BP_beer_color_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441134368620514, guid: ac18017692e94344896239e6fc57f757, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 4246941288697392, guid: ac18017692e94344896239e6fc57f757, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11183,6 +11207,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: keyboard
       objectReference: {fileID: 0}
+    - target: {fileID: 108552, guid: 14460a0c9bcb56e40ad480ca1765179c, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 499384, guid: 14460a0c9bcb56e40ad480ca1765179c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.106
@@ -11662,6 +11690,10 @@ PrefabInstance:
     - target: {fileID: 6479832, guid: 14460a0c9bcb56e40ad480ca1765179c, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 112018, guid: 14460a0c9bcb56e40ad480ca1765179c, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14460a0c9bcb56e40ad480ca1765179c, type: 3}
@@ -12243,6 +12275,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speaker
       objectReference: {fileID: 0}
+    - target: {fileID: 193866, guid: 3b65d553ffead574bb2395cee9299543, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 414948, guid: 3b65d553ffead574bb2395cee9299543, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6019
@@ -12790,7 +12826,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932744283}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15683,6 +15719,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: coffeecup_01
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0c571db2bde9e1a4dbce88157a01164c,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c571db2bde9e1a4dbce88157a01164c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16794,6 +16835,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: books
+      objectReference: {fileID: 0}
+    - target: {fileID: -6755101439264051273, guid: 08e091500e68ded43b4abfb1b3f718d0,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: -450059930258446736, guid: 08e091500e68ded43b4abfb1b3f718d0,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: -2199879681628819267, guid: 08e091500e68ded43b4abfb1b3f718d0,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176412476755982868, guid: 08e091500e68ded43b4abfb1b3f718d0,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 08e091500e68ded43b4abfb1b3f718d0,
         type: 3}
@@ -18153,6 +18214,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monitor
       objectReference: {fileID: 0}
+    - target: {fileID: 157708, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 139308, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 418434, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.113
@@ -18208,6 +18277,10 @@ PrefabInstance:
     - target: {fileID: 418434, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 155236, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
@@ -18864,6 +18937,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clipboard
       objectReference: {fileID: 0}
+    - target: {fileID: 1685343955664076, guid: 72653085a6b827f48b10b434c7972f1c, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 4795266759639050, guid: 72653085a6b827f48b10b434c7972f1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.0567
@@ -19051,6 +19128,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: table_lamp3
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 60526c59f3733438a9b05ca2a10ad428, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 60526c59f3733438a9b05ca2a10ad428, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.334999
@@ -19153,6 +19234,10 @@ PrefabInstance:
     - target: {fileID: 1299607530134270, guid: 97040231d13449049ae427c70f780724, type: 3}
       propertyPath: m_Name
       value: Cutlery Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299607530134270, guid: 97040231d13449049ae427c70f780724, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 4279358976815674, guid: 97040231d13449049ae427c70f780724, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23583,6 +23668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: smartphone
       objectReference: {fileID: 0}
+    - target: {fileID: 1191933010613832, guid: 42db2464346d91c47b812288879592f1, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 4717887507390182, guid: 42db2464346d91c47b812288879592f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.192
@@ -24804,7 +24893,7 @@ GameObject:
   - component: {fileID: 1806386174}
   m_Layer: 0
   m_Name: Box105
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27072,6 +27161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouse (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 179904, guid: a32bf73ad4c4e644d9b8c8f8712bed74, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 481598, guid: a32bf73ad4c4e644d9b8c8f8712bed74, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1274
@@ -27127,6 +27220,18 @@ PrefabInstance:
     - target: {fileID: 481598, guid: a32bf73ad4c4e644d9b8c8f8712bed74, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 157366, guid: a32bf73ad4c4e644d9b8c8f8712bed74, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 159570, guid: a32bf73ad4c4e644d9b8c8f8712bed74, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: a32bf73ad4c4e644d9b8c8f8712bed74, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a32bf73ad4c4e644d9b8c8f8712bed74, type: 3}
@@ -27582,6 +27687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mug
       objectReference: {fileID: 0}
+    - target: {fileID: 1411003019843990, guid: 423906e3a82141942aa314fe7f592788, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 4054476460464272, guid: 423906e3a82141942aa314fe7f592788, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.5229988
@@ -27823,6 +27932,10 @@ PrefabInstance:
     - target: {fileID: 193866, guid: 3b65d553ffead574bb2395cee9299543, type: 3}
       propertyPath: m_Name
       value: Speaker (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 193866, guid: 3b65d553ffead574bb2395cee9299543, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 414948, guid: 3b65d553ffead574bb2395cee9299543, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28066,7 +28179,7 @@ GameObject:
   - component: {fileID: 2013918272}
   - component: {fileID: 2013918271}
   - component: {fileID: 2013918270}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Ceiling
   m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
@@ -29245,7 +29358,7 @@ GameObject:
   - component: {fileID: 4320854390525803}
   m_Layer: 0
   m_Name: Teacher_Desk_Prefab
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29264,7 +29377,7 @@ GameObject:
   - component: {fileID: 1381844185025780}
   m_Layer: 0
   m_Name: Drawer (2)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29476,7 +29589,7 @@ GameObject:
   - component: {fileID: 786827073045621723}
   m_Layer: 0
   m_Name: book_jenna
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30823,7 +30936,7 @@ GameObject:
   - component: {fileID: 8708335927135781029}
   m_Layer: 0
   m_Name: pillow
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

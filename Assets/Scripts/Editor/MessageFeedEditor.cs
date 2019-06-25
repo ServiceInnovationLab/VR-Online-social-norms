@@ -8,7 +8,7 @@ public class MessageFeedEditor : Editor
 {
     Sprite sprite;
     string from;
-    string fromTag;
+    string fromTag = "@";
     int startIndex;
 
     public override void OnInspectorGUI()
