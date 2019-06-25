@@ -11,6 +11,8 @@ public class PerspectiveChanger : MonoBehaviour
     [Tooltip("The target location the player will be teleported to on entering the sphere")]
     [SerializeField] Transform target;
 
+    [SerializeField] Transform targetRotation;
+
     [Tooltip("The custom blink distance to use for the teleport to allow for a longer blink when teleporting to a nearby location")]
     [SerializeField, Range(0f, 32.9f)] float blinkDistance = 20;
 
@@ -36,6 +38,11 @@ public class PerspectiveChanger : MonoBehaviour
 
     public void DoTeleport()
     {
+        if (!targetRotation)
+        {
+            targetRotation = target;
+        }
+
         bool scaleRoom = sceneObjects && newSceneScale > 0;
 
         var teleportPosition = (target.position * (scaleRoom && scalePosition ? newSceneScale : 1)) + offset;
@@ -45,7 +52,7 @@ public class PerspectiveChanger : MonoBehaviour
         var originalBlinkTransition = teleporter.blinkTransitionSpeed;
 
         teleporter.distanceBlinkDelay = blinkDistance;
-        teleporter.blinkTransitionSpeed = blinkTransition;
+        teleporter.blinkTransitionSpeed = blinkTransition;        
 
         if (scaleRoom)
         {
@@ -57,11 +64,11 @@ public class PerspectiveChanger : MonoBehaviour
         if (VRTK_DeviceFinder.GetHeadsetTypeAsString() == "simulator")
         {
             // The simulator Y rotation is done by the play area and not the headset transform...
-            rotationY = Vector3.SignedAngle(Vector3.forward, target.forward, Vector3.up);
+            rotationY = Vector3.SignedAngle(Vector3.forward, targetRotation.forward, Vector3.up);
         }
         else
         {
-            rotationY = VectorUtils.AngleOffAroundAxis(target.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
+            rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
         }
 
         teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));
