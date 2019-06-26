@@ -22,10 +22,21 @@ public class VR_StartingPoint : MonoBehaviour
     [SerializeField, EnumFlag] DesiredPoint orientation = DesiredPoint.Back | DesiredPoint.Right;
 
     Vector3[] boundryVertices;
+    [SerializeField] HeadsetEat headsetEat;
 
     private void Awake()
     {
         manager.LoadedSetupChanged += LoadedSetupChanged;
+
+        if (!headsetEat)
+        {
+            headsetEat = FindObjectOfType<HeadsetEat>();
+        }
+
+        if (headsetEat)
+        {
+            headsetEat.enabled = false;
+        }
     }
 
     private void DoTeleport()
@@ -33,9 +44,9 @@ public class VR_StartingPoint : MonoBehaviour
 
         teleport.skipBlink = true;
         teleport.Teleport(transform, transform.position);
-      //  manager.transform.position = Vector3.zero;
-      //  teleport.Teleport(transform, transform.position);
         teleport.skipBlink = false;
+
+        headsetEat.enabled = true;
 
         Destroy(gameObject);
     }
