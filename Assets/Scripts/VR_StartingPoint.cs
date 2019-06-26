@@ -30,7 +30,10 @@ public class VR_StartingPoint : MonoBehaviour
 
     private void DoTeleport()
     {
+
         teleport.skipBlink = true;
+        teleport.Teleport(transform, transform.position);
+        manager.transform.position = Vector3.zero;
         teleport.Teleport(transform, transform.position);
         teleport.skipBlink = false;
 
