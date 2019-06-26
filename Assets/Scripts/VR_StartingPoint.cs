@@ -33,8 +33,8 @@ public class VR_StartingPoint : MonoBehaviour
 
         teleport.skipBlink = true;
         teleport.Teleport(transform, transform.position);
-        manager.transform.position = Vector3.zero;
-        teleport.Teleport(transform, transform.position);
+      //  manager.transform.position = Vector3.zero;
+      //  teleport.Teleport(transform, transform.position);
         teleport.skipBlink = false;
 
         Destroy(gameObject);
