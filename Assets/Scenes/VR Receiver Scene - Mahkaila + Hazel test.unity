@@ -3657,6 +3657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RFAIPP_Armchair_2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1698738104575242, guid: 6b97ddfa5d6f8b246af44ace27347bdc, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 4156133368212626, guid: 6b97ddfa5d6f8b246af44ace27347bdc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.96
@@ -10493,9 +10497,10 @@ GameObject:
   - component: {fileID: 601882651}
   - component: {fileID: 601882650}
   - component: {fileID: 601882649}
+  - component: {fileID: 601882652}
   m_Layer: 0
   m_Name: OuterRing
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10573,6 +10578,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601882647}
   m_Mesh: {fileID: 4300000, guid: 7ecbc4e55964e9e42bcc68d8c7a526e7, type: 3}
+--- !u!65 &601882652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601882647}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5508367, y: 0, z: 0.57116526}
+  m_Center: {x: -0.0013268297, y: 4.656613e-10, z: 0.0144169675}
 --- !u!1001 &607152466
 PrefabInstance:
   m_ObjectHideFlags: 0
