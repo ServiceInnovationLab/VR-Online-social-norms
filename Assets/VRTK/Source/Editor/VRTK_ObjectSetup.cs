@@ -33,7 +33,7 @@
         private bool disableIdle = true;
         private bool addrb = true;
         private bool addHaptics = true;
-        private bool freezeRigidBody = true;
+        private bool freezeRigidBody = false;
         private Color touchColor = Color.clear;
 
         [MenuItem("Window/VRTK/Setup Interactable Object")]
