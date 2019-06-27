@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using VRTK;
+using UnityEngine.UI;
 
 /// <summary>
 /// Provides some basic functions to be used for UnityEvents via the inspector
@@ -50,11 +51,11 @@ public class BasicFunctions : ScriptableObject
     /// Disables teleporting around
     /// </summary>
     public void DisableTeleporting()
-    {        
+    {
         foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
         {
             teleporter.enableTeleport = false;
-        }             
+        }
     }
 
     /// <summary>
@@ -125,5 +126,32 @@ public class BasicFunctions : ScriptableObject
                 pointer.customRaycast.triggerInteraction = QueryTriggerInteraction.Ignore;
             }
         }
+    }
+
+    public void InvokeClick(Button button)
+    {
+        button.onClick?.Invoke();
+    }
+
+    public void AllowGrab(VRTK_InteractableObject interactableObject)
+    {
+        interactableObject.isGrabbable = true;
+
+        var highlighter = interactableObject.GetComponent<VRTK_InteractObjectHighlighter>();
+
+        if (highlighter)
+        {
+            highlighter.enabled = true;
+        }
+    }
+
+    public void AllowDropping(VRTK_InteractableObject interactableObject)
+    {
+        interactableObject.validDrop = VRTK_InteractableObject.ValidDropTypes.DropAnywhere;
+
+        //if (!interactableObject.GetComponent<Rigidbody>())
+        //{
+        //    interactableObject.gameObject.AddComponent<Rigidbody>();
+        //}
     }
 }

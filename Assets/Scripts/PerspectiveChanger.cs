@@ -11,6 +11,8 @@ public class PerspectiveChanger : MonoBehaviour
     [Tooltip("The target location the player will be teleported to on entering the sphere")]
     [SerializeField] Transform target;
 
+    [SerializeField] Transform targetRotation;
+
     [Tooltip("The custom blink distance to use for the teleport to allow for a longer blink when teleporting to a nearby location")]
     [SerializeField, Range(0f, 32.9f)] float blinkDistance = 20;
 
@@ -28,26 +30,53 @@ public class PerspectiveChanger : MonoBehaviour
 
     [SerializeField] UnityEvent afterTeleport;
 
+    [SerializeField] bool scalePosition;
+
+    [SerializeField] bool scaleCamera;
+
+    [SerializeField] VRTK_BasicTeleport teleporter;
+
     public void DoTeleport()
     {
-        var teleportPosition = target.position + offset;
+        if (!targetRotation)
+        {
+            targetRotation = target;
+        }
 
-        var teleporter = FindObjectOfType<VRTK_BasicTeleport>();
+        bool scaleRoom = sceneObjects && newSceneScale > 0;
+
+        var teleportPosition = (target.position * (scaleRoom && scalePosition ? newSceneScale : 1)) + offset;
+
+        var teleporter = this.teleporter ?? FindObjectOfType<VRTK_BasicTeleport>();
         var originalBlinkDelay = teleporter.distanceBlinkDelay;
         var originalBlinkTransition = teleporter.blinkTransitionSpeed;
 
         teleporter.distanceBlinkDelay = blinkDistance;
-        teleporter.blinkTransitionSpeed = blinkTransition;
+        teleporter.blinkTransitionSpeed = blinkTransition;        
 
-        if (sceneObjects)
+        if (scaleRoom)
         {
-            if (newSceneScale > 0)
-            {
-                sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
-            }
+            sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
-        teleporter.Teleport(target, teleportPosition);
+        float rotationY;
+
+        if (VRTK_DeviceFinder.GetHeadsetTypeAsString() == "simulator")
+        {
+            // The simulator Y rotation is done by the play area and not the headset transform...
+            rotationY = Vector3.SignedAngle(Vector3.forward, targetRotation.forward, Vector3.up);
+        }
+        else
+        {
+            rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
+        }
+
+        teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));
+
+        if (scaleCamera)
+        {
+            VRTK_SDKManager.instance.transform.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
+        }
 
         afterTeleport?.Invoke();
 
