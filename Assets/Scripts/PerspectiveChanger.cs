@@ -43,6 +43,9 @@ public class PerspectiveChanger : MonoBehaviour
             targetRotation = target;
         }
 
+        // Force enabling the teleport
+        target.tag = "IncludeTeleport";
+
         bool scaleRoom = sceneObjects && newSceneScale > 0;
 
         var teleportPosition = (target.position * (scaleRoom && scalePosition ? newSceneScale : 1)) + offset;

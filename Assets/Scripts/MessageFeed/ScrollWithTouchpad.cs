@@ -18,6 +18,9 @@ public class ScrollWithTouchpad : MonoBehaviour
     [SerializeField] float dropOff = 0.9f;
     [SerializeField] float scrollScale = 10.0f;
     [SerializeField] float swipeScale = 2.5f;
+    [SerializeField] bool invert = true;
+    [SerializeField] float scrollThreshold = 0.08f;
+    [SerializeField] int numberBadChecks = 0;
 
     ScrollRect scrollView;
 
@@ -27,6 +30,9 @@ public class ScrollWithTouchpad : MonoBehaviour
     Vector2 touchStartPosition;    
     float touchStartTime;
     bool canTrigger;
+    float invertMultiplier;
+    int skippedBadInput;
+    float lastDir = 0;
 
     VRTK_ControllerEvents controllerEvents;
 
@@ -49,6 +55,7 @@ public class ScrollWithTouchpad : MonoBehaviour
         interactableObject.InteractableObjectUngrabbed += InteractableObjectUngrabbed;
 
         canTrigger = allowTrigger;
+        invertMultiplier = invert ? -1 : 1;
     }
 
     private void InteractableObjectUngrabbed(object sender, InteractableObjectEventArgs e)
@@ -113,6 +120,8 @@ public class ScrollWithTouchpad : MonoBehaviour
 
         if (isTouched && !wasTouched)
         {
+            skippedBadInput = 0;
+            lastDir = 0;
             scrollAmount = Vector2.zero;
             lastPosition = currentAxis;
             touchStartPosition = currentAxis;
@@ -128,20 +137,33 @@ public class ScrollWithTouchpad : MonoBehaviour
             {
                 var swipeVector = lastPosition - touchStartPosition;
                 var velocity = swipeVector.magnitude / touchTime;
-                var scrollDir = new Vector2(0, Mathf.Sign(swipeVector.y));
 
-                StartCoroutine(DoScroll(velocity * swipeScale, scrollDir));
+                if (velocity >= scrollThreshold)
+                {
+                    var scrollDir = new Vector2(0, Mathf.Sign(swipeVector.y) * invertMultiplier);
+
+                    StartCoroutine(DoScroll(velocity * swipeScale, scrollDir));
+                }
             }
         }        
 
         if (isTouched)
         {
             scrollAmount = currentAxis - lastPosition;
-            lastPosition = currentAxis;
+            float currentDirection = Mathf.Sign(scrollAmount.y);
 
-            if (scrollAmount.y != 0)
+            if (Mathf.Abs(scrollAmount.y) >= scrollThreshold)
             {
-                var eventData = new PointerEventData(EventSystem.current) { scrollDelta = scrollAmount * scrollScale };
+                if (lastDir != 0 && currentDirection != lastDir && skippedBadInput < numberBadChecks)
+                {
+                    skippedBadInput++;
+                    return;
+                }
+
+                skippedBadInput = 0;
+                lastPosition = currentAxis;            
+
+                var eventData = new PointerEventData(EventSystem.current) { scrollDelta = scrollAmount * scrollScale * invertMultiplier};
 
                 ExecuteEvents.ExecuteHierarchy(gameObject, eventData, ExecuteEvents.scrollHandler);
             }
