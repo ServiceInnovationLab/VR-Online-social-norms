@@ -13152,8 +13152,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.65
+  m_Color: {r: 0.9339623, g: 0.7885814, b: 0.7885814, a: 1}
+  m_Intensity: 0.56
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -20622,21 +20622,6 @@ PrefabInstance:
       propertyPath: tooltipsRight
       value: 
       objectReference: {fileID: 1124140881}
-    - target: {fileID: 5263055379510138493, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1496714807337990638, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263055380110088587, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: targetListPolicy
-      value: 
-      objectReference: {fileID: 1124140882}
     - target: {fileID: 5263055379510138495, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: identifiers.Array.size
@@ -20657,6 +20642,21 @@ PrefabInstance:
       propertyPath: identifiers.Array.data[0]
       value: IncludeTeleport
       objectReference: {fileID: 0}
+    - target: {fileID: 5263055379510138493, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496714807337990638, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263055380110088587, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: targetListPolicy
+      value: 
+      objectReference: {fileID: 1124140882}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 050d1a8df4d6593499651f7be4e0ad91, type: 3}
 --- !u!1 &1124140880 stripped
@@ -26124,6 +26124,9 @@ MonoBehaviour:
   dropOff: 0.9
   scrollScale: 450
   swipeScale: 5
+  invert: 1
+  scrollThreshold: 0.08
+  numberBadChecks: 0
 --- !u!114 &1464617746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30596,8 +30599,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 2
-  m_Color: {r: 1, g: 0.9964623, b: 0.9858491, a: 1}
-  m_Intensity: 0.98
+  m_Color: {r: 0.9622642, g: 0.93299395, b: 0.89417946, a: 1}
+  m_Intensity: 0.91
   m_Range: 328.29
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -33867,8 +33870,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 0.99918675, g: 1, b: 0.9764151, a: 1}
-  m_Intensity: 0.69
+  m_Color: {r: 0.9245283, g: 0.8411576, b: 0.48406905, a: 1}
+  m_Intensity: 0.51
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
