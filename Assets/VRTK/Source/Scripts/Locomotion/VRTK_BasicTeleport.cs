@@ -34,6 +34,9 @@ namespace VRTK
     {
         [Header("Base Settings")]
 
+        public bool hookUpToControllers = true;
+        public bool hookUpToPhysics = true;
+
         [Tooltip("The colour to fade to when fading on teleport.")]
         public Color blinkToColor = Color.black;
         [Tooltip("The time taken to fade to the `Blink To Color`. Setting the speed to `0` will mean no fade effect is present.")]
@@ -429,13 +432,19 @@ namespace VRTK
             GameObject leftHand = VRTK_DeviceFinder.GetControllerLeftHand();
             GameObject rightHand = VRTK_DeviceFinder.GetControllerRightHand();
 
-            InitDestinationSetListener(leftHand, state);
-            InitDestinationSetListener(rightHand, state);
+            if (hookUpToControllers)
+            {
+                InitDestinationSetListener(leftHand, state);
+                InitDestinationSetListener(rightHand, state);
+            }
+
             for (int i = 0; i < VRTK_ObjectCache.registeredDestinationMarkers.Count; i++)
             {
                 VRTK_DestinationMarker destinationMarker = VRTK_ObjectCache.registeredDestinationMarkers[i];
                 if (destinationMarker.gameObject != leftHand && destinationMarker.gameObject != rightHand)
                 {
+                    if (destinationMarker is VRTK_BodyPhysics && !hookUpToPhysics)
+                        continue;
                     InitDestinationSetListener(destinationMarker.gameObject, state);
                 }
             }
