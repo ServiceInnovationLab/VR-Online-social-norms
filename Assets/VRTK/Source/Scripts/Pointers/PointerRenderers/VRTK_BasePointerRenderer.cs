@@ -52,6 +52,8 @@ namespace VRTK
 
         [Header("Renderer Supplement Settings")]
 
+        public VRTK_BasicTeleport teleporter;
+
         [Tooltip("An optional Play Area Cursor generator to add to the destination position of the pointer tip.")]
         public VRTK_PlayAreaCursor playareaCursor;
         [Tooltip("A custom VRTK_PointerDirectionIndicator to use to determine the rotation given to the destination set event.")]
@@ -414,6 +416,9 @@ namespace VRTK
 
         protected virtual bool ValidDestination()
         {
+            if (destinationHit.collider == null)
+                return false;
+
             bool validNavMeshLocation = false;
             if (navMeshData != null)
             {
@@ -427,7 +432,13 @@ namespace VRTK
             {
                 validNavMeshLocation = true;
             }
-            return (validNavMeshLocation && destinationHit.collider != null && !(VRTK_PolicyList.Check(destinationHit.collider.gameObject, invalidListPolicy)));
+
+            if (teleporter)
+            {
+                validNavMeshLocation = teleporter.ValidLocation(destinationHit.collider.transform, destinationHit.point);
+            }
+
+            return (validNavMeshLocation && !(VRTK_PolicyList.Check(destinationHit.collider.gameObject, invalidListPolicy)));
         }
 
         protected virtual void ToggleElement(GameObject givenObject, bool pointerState, bool actualState, VisibilityStates givenVisibility, ref bool currentVisible)
