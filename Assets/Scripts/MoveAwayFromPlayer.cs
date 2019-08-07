@@ -49,7 +49,7 @@ public class MoveAwayFromPlayer : MonoBehaviour
 
         var direction = transform.position.XZ() - player.position.XZ();
 
-        if (!skipRunningAway && direction.sqrMagnitude < 9 && playerMovement.magnitude > walkingDistance * Time.deltaTime)
+        if (!skipRunningAway && direction.sqrMagnitude < 4 && playerMovement.magnitude > walkingDistance * Time.deltaTime)
         {
             transform.LookAt(transform.position + direction);
             velocity = 1.0f;

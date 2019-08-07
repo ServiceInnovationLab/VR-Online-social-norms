@@ -1843,7 +1843,7 @@ MonoBehaviour:
   allowedTouchControllers: 0
   ignoredColliders: []
   isGrabbable: 1
-  holdButtonToGrab: 0
+  holdButtonToGrab: 1
   stayGrabbedOnTeleport: 1
   validDrop: 1
   grabOverrideButton: 0
@@ -5323,6 +5323,7 @@ GameObject:
   - component: {fileID: 1009001647}
   - component: {fileID: 1009001646}
   - component: {fileID: 1009001645}
+  - component: {fileID: 1009001652}
   m_Layer: 0
   m_Name: UI Pointer
   m_TagString: Untagged
@@ -5483,6 +5484,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1009001652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009001644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c98fd026c4dbbe46a2d9cf290ee2bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1010754559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6714,7 +6727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248382850}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.55, y: 0.125, z: 3.1815972}
+  m_LocalPosition: {x: -4.44, y: 0.125, z: 3.1815972}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7756,6 +7769,24 @@ Transform:
   m_Father: {fileID: 1009001651}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1435419667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5263055379621391957, guid: 050d1a8df4d6593499651f7be4e0ad91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1010754559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1435419671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435419667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c6cdb57c133804fba1c62374bfe101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1457161665
 GameObject:
   m_ObjectHideFlags: 0
