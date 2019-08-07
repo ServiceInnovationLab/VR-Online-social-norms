@@ -154,4 +154,9 @@ public class BasicFunctions : ScriptableObject
         //    interactableObject.gameObject.AddComponent<Rigidbody>();
         //}
     }
+
+    public void Log(string text)
+    {
+        Debug.Log(text);
+    }
 }

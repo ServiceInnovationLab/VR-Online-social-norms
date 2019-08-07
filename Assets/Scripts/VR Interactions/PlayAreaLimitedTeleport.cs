@@ -3,19 +3,32 @@ using VRTK;
 
 public class PlayAreaLimitedTeleport : VRTK_HeightAdjustTeleport
 {
+    [SerializeField] VrPlayArea[] playAreas;
 
-    [SerializeField] Collider playBounds;
+    protected override void Awake()
+    {
+        if (playAreas.Length == 0)
+        {
+            Debug.LogError("No play areas!", gameObject);
+        }
+
+        base.Awake();
+    }
 
     public override bool ValidLocation(Transform target, Vector3 destinationPosition)
     {
-        var max = playBounds.bounds.max;
-        var min = playBounds.bounds.min;
+        bool inPlayArea = false;
 
-        if (destinationPosition.x < min.x || destinationPosition.x > max.x
-                || destinationPosition.z < min.z || destinationPosition.z > max.z)
-            return false;
+        foreach (var area in playAreas)
+        {
+            if (area.IsDestinationPointValid(destinationPosition))
+            {
+                inPlayArea = true;
+                break;
+            }
+        }
 
-        return base.ValidLocation(target, destinationPosition);
+        return inPlayArea && base.ValidLocation(target, destinationPosition);
     }
 
 }
