@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using VRTK;
 
-public class DisablePointerOnValidPointer : MonoBehaviour
+public class DisableTeleportOnValidPointer : MonoBehaviour
 {
     DisableTeleportOnTouch touchTeleport;
     VRTK_Pointer pointer;
