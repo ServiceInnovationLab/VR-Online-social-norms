@@ -15,6 +15,12 @@ public class RubbishBin : MonoBehaviour
         if (!other.attachedRigidbody || objectsInside.Contains(other.attachedRigidbody))
             return;
 
+        if (Mathf.Abs(other.attachedRigidbody.velocity.y) < Mathf.Epsilon * 2)
+        {
+            other.attachedRigidbody.Sleep();
+        }
+
+
         if (!other.attachedRigidbody.isKinematic && other.attachedRigidbody.IsSleeping())
         {
             Debug.Log("In the bin!");

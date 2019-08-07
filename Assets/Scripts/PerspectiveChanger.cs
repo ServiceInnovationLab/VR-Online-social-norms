@@ -30,6 +30,8 @@ public class PerspectiveChanger : MonoBehaviour
 
     [SerializeField] UnityEvent afterTeleport;
 
+    [SerializeField] UnityEvent beforeTeleport;
+
     [SerializeField] bool scalePosition;
 
     [SerializeField] bool scaleCamera;
@@ -73,6 +75,8 @@ public class PerspectiveChanger : MonoBehaviour
         {
             rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
         }
+
+        beforeTeleport?.Invoke();
 
         teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));
 

@@ -2,16 +2,25 @@
 
 public class VrPlayArea : MonoBehaviour
 {
+    public bool pickUpChildrenColliders = false;
     public bool canUse = true;
 
     Collider[] colliders;
 
     private void Awake()
     {
-        colliders = GetComponentsInChildren<Collider>();
+        if (pickUpChildrenColliders)
+        {
+            colliders = GetComponentsInChildren<Collider>();
+        }
+        else
+        {
+            colliders = GetComponents<Collider>();
+        }
+
 
 #if UNITY_EDITOR
-        if (colliders.Length == 0)
+            if (colliders.Length == 0)
         {
             Debug.LogError("No colliders given in this play area!", gameObject);
         }

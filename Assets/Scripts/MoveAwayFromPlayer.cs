@@ -7,19 +7,30 @@ using VRTK;
 public class MoveAwayFromPlayer : MonoBehaviour
 {
     public float speed = 5;
+    public float walkingDistance = 1.0f;
+    public VRTK_BasicTeleport teleport;
 
     CharacterController controller;
     float velocity;
     bool runningAway = false;
+    bool skipRunningAway = false;
 
     GameObject[] targets;
     int target = -1;
+    Vector3 lastPlayerPosition;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
 
         targets = GameObject.FindGameObjectsWithTag("Food");
+        teleport.Teleporting += Teleport_Teleported;
+        teleport.Teleported += Teleport_Teleported;
+    }
+
+    private void Teleport_Teleported(object sender, DestinationMarkerEventArgs e)
+    {
+        skipRunningAway = true;
     }
 
     private void FixedUpdate()
@@ -29,26 +40,44 @@ public class MoveAwayFromPlayer : MonoBehaviour
         if (!player)
             return;
 
+        Vector3 playerMovement = player.transform.position.XZ() - lastPlayerPosition.XZ();
+
+        if (playerMovement.magnitude != 0 || skipRunningAway)
+        {
+            lastPlayerPosition = player.transform.position;
+        }
+
         var direction = transform.position.XZ() - player.position.XZ();
 
-        if (direction.sqrMagnitude < 9)
+        if (!skipRunningAway && direction.sqrMagnitude < 9 && playerMovement.magnitude > walkingDistance * Time.deltaTime)
         {
             transform.LookAt(transform.position + direction);
             velocity = 1.0f;
             runningAway = true;
-        }        
+        }
 
         if (runningAway)
         {
-            controller.Move(transform.forward * speed * velocity * Time.deltaTime);
+            if (skipRunningAway)
+            {
+                runningAway = false;
+            }
+            else
+            {
+                controller.Move(transform.forward * speed * velocity * Time.deltaTime);
 
-            velocity *= 0.9f;
-            runningAway = velocity >= 0.05f;
+                velocity *= 0.9f;
+                runningAway = velocity >= 0.05f;
+            }
+
+            target = -1;
         }
         else
         {
             GoAfterTarget(player);
         }
+
+        skipRunningAway = false;
     }
 
     void GoAfterTarget(Transform player)
@@ -83,11 +112,11 @@ public class MoveAwayFromPlayer : MonoBehaviour
 
         if (target > -1)
         {
-            if ((targets[target].transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9)
+           /* if ((targets[target].transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9)
             {
                 target = -1;
                 return;
-            }
+            }*/
 
             var distance = Vector3.Distance(transform.position.XZ(), targets[target].transform.position.XZ());
 
