@@ -5,6 +5,8 @@ public class DisableTeleportOnValidPointer : MonoBehaviour
 {
     DisableTeleportOnTouch touchTeleport;
     VRTK_Pointer pointer;
+    VRTK_UIPointer uiPointer;
+    VRTK_ControllerEvents events;
 
     bool valid = false;
 
@@ -12,6 +14,7 @@ public class DisableTeleportOnValidPointer : MonoBehaviour
     {
         touchTeleport = FindObjectOfType<DisableTeleportOnTouch>();
         pointer = GetComponent<VRTK_Pointer>();
+        uiPointer = GetComponent<VRTK_UIPointer>();
 
         pointer.PointerStateValid += PointerStateValid;
         pointer.PointerStateInvalid += PointerStateInvalid;
@@ -21,7 +24,7 @@ public class DisableTeleportOnValidPointer : MonoBehaviour
     {
         if (valid)
         {
-            touchTeleport.RemoveDisabler();
+            touchTeleport.RemoveDisabler(events);
             valid = false;
         }
     }
@@ -30,7 +33,8 @@ public class DisableTeleportOnValidPointer : MonoBehaviour
     {
         if (!valid)
         {
-            touchTeleport.AddDisabler();
+            events = uiPointer.controllerEvents;
+            touchTeleport.AddDisabler(events);
             valid = true;
         }        
     }

@@ -3,52 +3,109 @@ using VRTK;
 
 public class DisableTeleportOnTouch : MonoBehaviour
 {
+    public bool affectBoth = false;
+
     VRTK_Pointer[] pointers;
-    VRTK_InteractTouch[] touches;
+    VRTK_ControllerEvents[] controllers;
+    int[] counts;
 
     int touchCount = 0;
 
     private void Awake()
     {
-        touches = GetComponentsInChildren<VRTK_InteractTouch>();
-        pointers = GetComponentsInChildren<VRTK_Pointer>();
+        controllers = GetComponentsInChildren<VRTK_ControllerEvents>();
+        counts = new int[controllers.Length];
+        pointers = new VRTK_Pointer[controllers.Length];
 
-        foreach (var touch in touches)
+        for (int i = 0; i < controllers.Length; i++)
         {
-            touch.ControllerStartTouchInteractableObject += ControllerStartTouchInteractableObject;
-            touch.ControllerStartUntouchInteractableObject += ControllerStartUntouchInteractableObject;
+            VRTK_InteractTouch touch = controllers[i].GetComponent<VRTK_InteractTouch>();
+            VRTK_Pointer pointer = controllers[i].GetComponent<VRTK_Pointer>();
+
+            pointers[i] = pointer;
+
+            int copy = i;
+
+            touch.ControllerStartTouchInteractableObject += (s, a) =>
+            {
+                AddDisabler(copy);
+            };
+
+            touch.ControllerStartUntouchInteractableObject += (s, a) =>
+            {
+                RemoveDisabler(copy);
+            };
         }
     }
 
-    private void ControllerStartUntouchInteractableObject(object sender, ObjectInteractEventArgs e)
+    private void AddDisabler(int index)
     {
-        RemoveDisabler();
-    }
-
-    private void ControllerStartTouchInteractableObject(object sender, ObjectInteractEventArgs e)
-    {
-        AddDisabler();
-    }
-
-    public void AddDisabler()
-    {
-        touchCount++;
-
-        foreach (var pointer in pointers)
+        if (affectBoth)
         {
-            pointer.enabled = false;
-        }
-    }
+            touchCount++;
 
-    public void RemoveDisabler()
-    {
-        if (--touchCount == 0)
-        {
             foreach (var pointer in pointers)
             {
-                pointer.enabled = true;
+                pointer.enabled = false;
             }
         }
+        else
+        {
+            counts[index]++;
+            pointers[index].enabled = false;
+        }
+    }
+
+    private void RemoveDisabler(int index)
+    {
+        if (affectBoth)
+        {
+            if (--touchCount <= 0)
+            {
+                touchCount = 0;
+                foreach (var pointer in pointers)
+                {
+                    pointer.enabled = true;
+                }
+            }
+        }
+        else
+        {
+            counts[index]--;
+            if (counts[index] <= 0)
+            {
+                counts[index] = 0;
+                pointers[index].enabled = true;
+            }
+        }
+    }
+
+    public void AddDisabler(VRTK_ControllerEvents controller)
+    {
+        for (int i = 0; i < controllers.Length; i++)
+        {
+            if (controller == controllers[i])
+            {
+                AddDisabler(i);
+                return;
+            }
+        }
+
+        Debug.LogError("Invalid controller");
+    }
+
+    public void RemoveDisabler(VRTK_ControllerEvents controller)
+    {
+        for (int i = 0; i < controllers.Length; i++)
+        {
+            if (controller == controllers[i])
+            {
+                RemoveDisabler(i);
+                return;
+            }
+        }
+
+        Debug.LogError("Invalid controller");
     }
 
 }
