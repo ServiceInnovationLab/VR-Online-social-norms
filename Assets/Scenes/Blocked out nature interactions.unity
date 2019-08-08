@@ -5873,6 +5873,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8816357222113915036, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: hookUpToControllers
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5263055379510138495, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: operation
@@ -5882,11 +5887,6 @@ PrefabInstance:
         type: 3}
       propertyPath: identifiers.Array.data[0]
       value: IncludeTeleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 8816357222113915036, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: hookUpToControllers
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5263055381172304631, guid: 050d1a8df4d6593499651f7be4e0ad91, type: 3}
@@ -6912,8 +6912,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.35345185}
+  m_Center: {x: 0, y: 0, z: -0.005898297}
 --- !u!23 &1303093073
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7188,8 +7188,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5508367, y: 0, z: 0.57116526}
-  m_Center: {x: -0.0013268297, y: 4.656613e-10, z: 0.0144169675}
+  m_Size: {x: 0.6649408, y: 0, z: 0.67591804}
+  m_Center: {x: 0.009867427, y: 4.6566115e-10, z: 0.023336401}
 --- !u!114 &1380508441
 MonoBehaviour:
   m_ObjectHideFlags: 0
