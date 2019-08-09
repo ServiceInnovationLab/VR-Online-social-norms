@@ -9,19 +9,17 @@ public class DisableTeleportOnTouch : MonoBehaviour
 
     VRTK_Pointer[] pointers;
     VRTK_ControllerEvents[] controllers;
-    int[] counts;
-
     HashSet<GameObject>[] controllersTouching;
-
-    int touchCount = 0;
 
     private void Awake()
     {
         controllers = GetComponentsInChildren<VRTK_ControllerEvents>();
-        counts = new int[controllers.Length];
         pointers = new VRTK_Pointer[controllers.Length];
         controllersTouching = new HashSet<GameObject>[controllers.Length];
+    }
 
+    private void OnEnable()
+    {
         for (int i = 0; i < controllers.Length; i++)
         {
             controllersTouching[i] = new HashSet<GameObject>();
@@ -56,7 +54,7 @@ public class DisableTeleportOnTouch : MonoBehaviour
             if (!touching.Contains(a.target) && !a.target.name.Contains("[NearTouch][CollidersContainer]"))
             {
                 touching.Add(a.target);
-                AddDisabler(index);
+                OnChange();
             }
         };
 
@@ -67,7 +65,7 @@ public class DisableTeleportOnTouch : MonoBehaviour
             if (touching.Contains(a.target))
             {
                 touching.Remove(a.target);
-                RemoveDisabler(index);
+                OnChange();
             }
         };
     }
@@ -82,64 +80,67 @@ public class DisableTeleportOnTouch : MonoBehaviour
 
         touch.ControllerStartTouchInteractableObject += (s, a) =>
         {
-            AddDisabler(index);
+            var touching = controllersTouching[index];
+
+            if (!touching.Contains(a.target) && !a.target.name.Contains("[NearTouch][CollidersContainer]"))
+            {
+                touching.Add(a.target);
+                OnChange();
+            }
         };
 
         touch.ControllerStartUntouchInteractableObject += (s, a) =>
         {
-            RemoveDisabler(index);
+            var touching = controllersTouching[index];
+
+            if (touching.Contains(a.target))
+            {
+                touching.Remove(a.target);
+                OnChange();
+            }
         };
     }
 
-    private void AddDisabler(int index)
+    private void OnChange()
     {
         if (affectBoth)
         {
-            touchCount++;
+            bool anyTouches = false;
+
+            for (int i = 0; i < controllers.Length; i++)
+            {
+                if (controllersTouching[i].Count > 0)
+                {
+                    anyTouches = true;
+                    break;
+                }
+            }
 
             foreach (var pointer in pointers)
             {
-                pointer.enabled = false;
+                pointer.enabled = !anyTouches;
             }
         }
         else
         {
-            counts[index]++;
-            pointers[index].enabled = false;
-        }
-    }
-
-    private void RemoveDisabler(int index)
-    {
-        if (affectBoth)
-        {
-            if (--touchCount <= 0)
+            for (int i = 0; i < controllers.Length; i++)
             {
-                touchCount = 0;
-                foreach (var pointer in pointers)
-                {
-                    pointer.enabled = true;
-                }
-            }
-        }
-        else
-        {
-            counts[index]--;
-            if (counts[index] <= 0)
-            {
-                counts[index] = 0;
-                pointers[index].enabled = true;
+                pointers[i].enabled = controllersTouching[i].Count == 0;
             }
         }
     }
 
-    public void AddDisabler(VRTK_ControllerEvents controller)
+    public void AddDisabler(VRTK_ControllerEvents controller, GameObject gameObject)
     {
+        if (!enabled)
+            return;
+
         for (int i = 0; i < controllers.Length; i++)
         {
             if (controller == controllers[i])
             {
-                AddDisabler(i);
+                controllersTouching[i].Add(gameObject);
+                OnChange();
                 return;
             }
         }
@@ -147,13 +148,17 @@ public class DisableTeleportOnTouch : MonoBehaviour
         Debug.LogError("Invalid controller");
     }
 
-    public void RemoveDisabler(VRTK_ControllerEvents controller)
+    public void RemoveDisabler(VRTK_ControllerEvents controller, GameObject gameObject)
     {
+        if (!enabled)
+            return;
+
         for (int i = 0; i < controllers.Length; i++)
         {
             if (controller == controllers[i])
             {
-                RemoveDisabler(i);
+                controllersTouching[i].Remove(gameObject);
+                OnChange();
                 return;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using VRTK;
 
 /// <summary>
@@ -10,26 +11,43 @@ public class AttachToControllerNoGrab : MonoBehaviour
 
     private void OnEnable()
     {
-        var controller = VRTK_DeviceFinder.GetControllerReferenceForHand(controllerHand);
+        StartCoroutine(DoAttach());  
+    }
 
-        var grab = controller.scriptAlias.GetComponent<VRTK_InteractGrab>();
-
-        if (!grab || !grab.controllerAttachPoint)
+    IEnumerator DoAttach()
+    {
+        while (true)
         {
-            Debug.LogError("Couldn't find attachment point!");
-            return;
-        }
+            var controller = VRTK_DeviceFinder.GetControllerReferenceForHand(controllerHand);
 
-        gameObject.transform.SetParent(grab.controllerAttachPoint.transform);
-        gameObject.transform.localPosition = Vector3.zero;
-        gameObject.transform.localRotation = Quaternion.identity;
+            if (controller == null || !controller.scriptAlias)
+            {
+                yield return new WaitForFixedUpdate();
+                continue;
+            }
+
+            var grab = controller.scriptAlias.GetComponent<VRTK_InteractGrab>();
+
+            if (!grab || !grab.controllerAttachPoint)
+            {
+                Debug.LogError("Couldn't find attachment point!");
+                yield return new WaitForFixedUpdate();
+                continue;
+            }
+
+            gameObject.transform.SetParent(grab.controllerAttachPoint.transform);
+            gameObject.transform.localPosition = Vector3.zero;
+            gameObject.transform.localRotation = Quaternion.identity;
 
 
-        var pointer = GetComponent<VRTK_UIPointer>();
-        if (pointer)
-        {
-            pointer.controllerEvents = grab.GetComponent<VRTK_ControllerEvents>();
-            pointer.enabled = true;
+            var pointer = GetComponent<VRTK_UIPointer>();
+            if (pointer)
+            {
+                pointer.controllerEvents = grab.GetComponent<VRTK_ControllerEvents>();
+                pointer.enabled = true;
+            }
+
+            break;
         }
     }
 }
