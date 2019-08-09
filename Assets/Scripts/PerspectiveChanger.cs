@@ -67,10 +67,11 @@ public class PerspectiveChanger : MonoBehaviour
             sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
-        float rotationY;
-
+        Quaternion? rotation = null;
+        
         if (doRotate)
         {
+            float rotationY;
 
             if (VRTK_DeviceFinder.GetHeadsetTypeAsString() == "simulator")
             {
@@ -81,10 +82,8 @@ public class PerspectiveChanger : MonoBehaviour
             {
                 rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
             }
-        }
-        else
-        {
-            rotationY = 0;
+
+            rotation = Quaternion.Euler(0, rotationY, 0);
         }
 
         beforeTeleport?.Invoke();
@@ -94,7 +93,7 @@ public class PerspectiveChanger : MonoBehaviour
             VRTK_SDKManager.instance.transform.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
-        teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));
+        teleporter.Teleport(target, teleportPosition, rotation);
 
         if (scaleCamera && !resizeFirst)
         {
