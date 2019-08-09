@@ -172,4 +172,9 @@ public class BasicFunctions : ScriptableObject
     {
         Debug.Log(text);
     }
+
+    public void GrowObject(GameObject gameObject)
+    {
+        gameObject.transform.localScale *= 1.1f;
+    }
 }

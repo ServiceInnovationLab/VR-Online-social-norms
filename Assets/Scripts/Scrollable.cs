@@ -57,6 +57,13 @@ public abstract class Scrollable : MonoBehaviour
             return;
         }
 
+        var disabler = FindObjectOfType<DisableTeleportOnTouch>();
+
+        if (disabler)
+        {
+            disabler.RemoveDisabler(controllerEvents, gameObject);
+        }
+
         foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
         {
             teleporter.enabled = true;
@@ -70,6 +77,13 @@ public abstract class Scrollable : MonoBehaviour
     private void InteractableObjectGrabbed(object sender, InteractableObjectEventArgs e)
     {
         controllerEvents = e.interactingObject.GetComponent<VRTK_ControllerEvents>();
+
+        var disabler = FindObjectOfType<DisableTeleportOnTouch>();
+
+        if (disabler)
+        {
+            disabler.AddDisabler(controllerEvents, gameObject);
+        }
 
         foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
         {

@@ -80,7 +80,7 @@ public class PerspectiveChanger : MonoBehaviour
             }
             else
             {
-                rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
+                rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up) + VRTK_SDKManager.instance.transform.rotation.eulerAngles.y;
             }
 
             rotation = Quaternion.Euler(0, rotationY, 0);
