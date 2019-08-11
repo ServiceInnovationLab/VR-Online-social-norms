@@ -12,6 +12,7 @@ Subshader {
 CGINCLUDE
 // Common code used by several SSAO passes below
 #include "UnityCG.cginc"
+#pragma exclude_renderers gles
 struct v2f_ao {
 	float4 pos : SV_POSITION;
 	float2 uv : TEXCOORD0;

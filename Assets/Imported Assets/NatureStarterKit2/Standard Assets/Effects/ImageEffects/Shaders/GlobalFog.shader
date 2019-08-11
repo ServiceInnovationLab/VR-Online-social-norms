@@ -21,7 +21,7 @@ CGINCLUDE
 	// x = start distance
 	uniform float4 _DistanceParams;
 	
-	int4 _SceneFogMode; // x = fog mode, y = use radial flag
+	int _SceneFogMode;
 	float4 _SceneFogParams;
 	#ifndef UNITY_APPLY_FOG
 	half4 unity_FogColor;
@@ -65,17 +65,17 @@ CGINCLUDE
 	half ComputeFogFactor (float coord)
 	{
 		float fogFac = 0.0;
-		if (_SceneFogMode.x == 1) // linear
+		if (_SceneFogMode == 1) // linear
 		{
 			// factor = (end-z)/(end-start) = z * (-1/(end-start)) + (end/(end-start))
 			fogFac = coord * _SceneFogParams.z + _SceneFogParams.w;
 		}
-		if (_SceneFogMode.x == 2) // exp
+		if (_SceneFogMode == 2) // exp
 		{
 			// factor = exp(-density*z)
 			fogFac = _SceneFogParams.y * coord; fogFac = exp2(-fogFac);
 		}
-		if (_SceneFogMode.x == 3) // exp2
+		if (_SceneFogMode == 3) // exp2
 		{
 			// factor = exp(-(density*z)^2)
 			fogFac = _SceneFogParams.x * coord; fogFac = exp2(-fogFac*fogFac);
@@ -84,18 +84,10 @@ CGINCLUDE
 	}
 
 	// Distance-based fog
-	float ComputeDistance (float3 camDir, float zdepth)
+	float ComputeDistance (float3 camDir)
 	{
-		float dist; 
-		if (_SceneFogMode.y == 1)
-			dist = length(camDir);
-		else
-			dist = zdepth * _ProjectionParams.z;
-		// Built-in fog starts at near plane, so match that by
-		// subtracting the near value. Not a perfect approximation
-		// if near plane is very large, but good enough.
-		dist -= _ProjectionParams.y;
-		return dist;
+		float coord = length(camDir);
+		return coord;
 	}
 
 	// Linear half-space fog, from https://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf
@@ -132,14 +124,14 @@ CGINCLUDE
 		// Compute fog distance
 		float g = _DistanceParams.x;
 		if (distance)
-			g += ComputeDistance (wsDir, dpth);
+			g += ComputeDistance (wsDir);
 		if (height)
 			g += ComputeHalfSpace (wsDir);
 
 		// Compute fog amount
 		half fogFac = ComputeFogFactor (max(0.0,g));
 		// Do not fog skybox
-		if (rawDepth == _DistanceParams.y)
+		if (rawDepth >= 0.999999)
 			fogFac = 1.0;
 		//return fogFac; // for debugging
 		
