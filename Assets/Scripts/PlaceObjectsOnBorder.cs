@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlaceObjectsOnBorder : MonoBehaviour
 {
     public GameObject left, right, top, bottom;
 
-    private void Awake()
+    private void OnEnable()
+    {
+        DoPlacement();
+    }
+
+    public void DoPlacement()
     {
         var bounds = GetComponent<Collider>().bounds;
 
@@ -28,6 +32,5 @@ public class PlaceObjectsOnBorder : MonoBehaviour
         {
             bottom.transform.position = new Vector3(bounds.center.x, bottom.transform.position.y, bounds.max.z);
         }
-
     }
 }
