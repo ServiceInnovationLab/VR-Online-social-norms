@@ -420,7 +420,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -564,6 +564,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263d36769c8679e44a335d5e20e5da86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photoTaken:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8b8985445a7a8c94cb1bd3bf60c4bf72, type: 2}
+        m_MethodName: AllowDropping
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 43738329}
+          m_ObjectArgumentAssemblyTypeName: VRTK.VRTK_InteractableObject, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   container: {fileID: 272125362}
   prefab: {fileID: 1094709538}
   captureCamera: {fileID: 1906009823}

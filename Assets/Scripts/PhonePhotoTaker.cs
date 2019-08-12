@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PhonePhotoTaker : MonoBehaviour
 {
+    [SerializeField] UnityEvent photoTaken;
     [SerializeField] StackChildren container;
     [SerializeField] Image prefab;
     [SerializeField] Camera captureCamera;
@@ -57,6 +59,8 @@ public class PhonePhotoTaker : MonoBehaviour
         container.Resize();
 
         takingPhoto = false;
+
+        photoTaken?.Invoke();
     }
 
 }
