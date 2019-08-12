@@ -3,12 +3,6 @@ using UnityEngine;
 using VRTK;
 using VRTK.Highlighters;
 
-public enum Closeness
-{
-    NearTouch,
-    Touched
-}
-
 [RequireComponent(typeof(VRTK_InteractableObject))]
 public class FlashUntilNear : MonoBehaviour
 {

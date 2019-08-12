@@ -8,6 +8,9 @@ using VRTK;
 /// </summary>
 public class PerspectiveChanger : MonoBehaviour
 {
+    public bool resizeFirst;
+    public bool doRotate = true;
+
     [Tooltip("The target location the player will be teleported to on entering the sphere")]
     [SerializeField] Transform target;
 
@@ -64,23 +67,35 @@ public class PerspectiveChanger : MonoBehaviour
             sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
-        float rotationY;
+        Quaternion? rotation = null;
+        
+        if (doRotate)
+        {
+            float rotationY;
 
-        if (VRTK_DeviceFinder.GetHeadsetTypeAsString() == "simulator")
-        {
-            // The simulator Y rotation is done by the play area and not the headset transform...
-            rotationY = Vector3.SignedAngle(Vector3.forward, targetRotation.forward, Vector3.up);
-        }
-        else
-        {
-            rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
+            if (VRTK_DeviceFinder.GetHeadsetTypeAsString() == "simulator")
+            {
+                // The simulator Y rotation is done by the play area and not the headset transform...
+                rotationY = Vector3.SignedAngle(Vector3.forward, targetRotation.forward, Vector3.up);
+            }
+            else
+            {
+                rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up) + VRTK_SDKManager.instance.transform.rotation.eulerAngles.y;
+            }
+
+            rotation = Quaternion.Euler(0, rotationY, 0);
         }
 
         beforeTeleport?.Invoke();
 
-        teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));
+        if (scaleCamera && resizeFirst)
+        {
+            VRTK_SDKManager.instance.transform.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
+        }
 
-        if (scaleCamera)
+        teleporter.Teleport(target, teleportPosition, rotation);
+
+        if (scaleCamera && !resizeFirst)
         {
             VRTK_SDKManager.instance.transform.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }

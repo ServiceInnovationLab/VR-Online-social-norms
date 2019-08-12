@@ -63,9 +63,22 @@ public class BasicFunctions : ScriptableObject
     /// </summary>
     public void EnableTeleporting()
     {
-        foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
+        var leftHand = VRTK_DeviceFinder.GetControllerLeftHand();
+
+        if (leftHand)
         {
-            teleporter.enableTeleport = true;
+            leftHand.GetComponent<VRTK_Pointer>().enableTeleport = true;
+            leftHand.GetComponent<VRTK_Pointer>().enabled = true;
+            leftHand.GetComponent<VRTK_BasePointerRenderer>().enabled = true;
+        }
+
+        leftHand = VRTK_DeviceFinder.GetControllerRightHand();
+
+        if (leftHand)
+        {
+            leftHand.GetComponent<VRTK_Pointer>().enableTeleport = true;
+            leftHand.GetComponent<VRTK_Pointer>().enabled = true;
+            leftHand.GetComponent<VRTK_BasePointerRenderer>().enabled = true;
         }
     }
 
@@ -158,5 +171,10 @@ public class BasicFunctions : ScriptableObject
     public void Log(string text)
     {
         Debug.Log(text);
+    }
+
+    public void GrowObject(GameObject gameObject)
+    {
+        gameObject.transform.localScale *= 1.1f;
     }
 }

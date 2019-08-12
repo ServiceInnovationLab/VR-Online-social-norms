@@ -24,7 +24,7 @@ public class DisableTeleportOnValidPointer : MonoBehaviour
     {
         if (valid)
         {
-            touchTeleport.RemoveDisabler(events);
+            touchTeleport.RemoveDisabler(events, gameObject);
             valid = false;
         }
     }
@@ -34,7 +34,7 @@ public class DisableTeleportOnValidPointer : MonoBehaviour
         if (!valid)
         {
             events = uiPointer.controllerEvents;
-            touchTeleport.AddDisabler(events);
+            touchTeleport.AddDisabler(events, gameObject);
             valid = true;
         }        
     }
