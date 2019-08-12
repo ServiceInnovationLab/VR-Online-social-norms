@@ -2,8 +2,11 @@
 
 public class VrPlayArea : MonoBehaviour
 {
-    public bool pickUpChildrenColliders = false;
-    public bool canUse = true;
+
+    [SerializeField] Collider[] excludeAreas;
+
+    [SerializeField] bool pickUpChildrenColliders = false;
+    [SerializeField] bool canUse = true;
 
     Collider[] colliders;
 
@@ -36,6 +39,20 @@ public class VrPlayArea : MonoBehaviour
     {
         if (!canUse)
             return false;
+
+        if (excludeAreas != null)
+        {
+            foreach (var collider in excludeAreas)
+            {
+                if (!collider || !collider.gameObject.activeInHierarchy)
+                    continue;
+
+                position.y = collider.bounds.center.y;
+
+                if (VectorUtils.IsPointWithinCollider(collider, position))
+                    return false;
+            }
+        }
 
         foreach (var collider in colliders)
         {

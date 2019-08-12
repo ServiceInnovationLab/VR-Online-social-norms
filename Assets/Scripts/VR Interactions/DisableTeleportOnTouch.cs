@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
@@ -128,6 +129,37 @@ public class DisableTeleportOnTouch : MonoBehaviour
                 pointers[i].enabled = controllersTouching[i].Count == 0;
             }
         }
+    }
+
+    public void RemoveDeleted()
+    {
+        StartCoroutine(DoRemove());
+    }
+
+    IEnumerator DoRemove()
+    {
+        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForEndOfFrame();
+
+        foreach (var touching in controllersTouching)
+        {
+            var toRemove = new HashSet<GameObject>();
+
+            foreach (var obj in touching)
+            {
+                if (!obj)
+                {
+                    toRemove.Add(obj);
+                }
+            }
+
+            foreach (var remove in toRemove)
+            {
+                touching.Remove(remove);
+            }
+        }
+
+        OnChange();
     }
 
     public void AddDisabler(VRTK_ControllerEvents controller, GameObject gameObject)
