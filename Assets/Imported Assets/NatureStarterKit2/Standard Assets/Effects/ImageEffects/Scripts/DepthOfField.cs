@@ -9,30 +9,30 @@ public class DepthOfField : PostEffectsBase {
 
     public bool  visualizeFocus = false;
 	public float focalLength = 10.0f;
-	public float focalSize = 0.05f; 
+	public float focalSize = 0.05f;
 	public float aperture = 11.5f;
 	public Transform focalTransform = null;
 	public float maxBlurSize = 2.0f;
 	public bool  highResolution = false;
-	
+
 	public enum BlurType {
 		DiscBlur = 0,
 		DX11 = 1,
 	}
-	
+
 	public enum BlurSampleCount {
 		Low = 0,
 		Medium = 1,
 		High = 2,
-	}	
-	 
+	}
+
 	public BlurType blurType = BlurType.DiscBlur;
 	public BlurSampleCount blurSampleCount = BlurSampleCount.High;
-	
-    public bool  nearBlur = false;	
+
+    public bool  nearBlur = false;
 	public float foregroundOverlap = 1.0f;
-	
-	public Shader dofHdrShader;		
+
+	public Shader dofHdrShader;
 	private Material dofHdrMaterial = null;
 
 	public Shader dx11BokehShader;
@@ -44,16 +44,16 @@ public class DepthOfField : PostEffectsBase {
 	public float dx11BokehScale = 1.2f;
 	public float dx11BokehIntensity = 2.5f;
 
-	private float focalDistance01 = 10.0f;	
+	private float focalDistance01 = 10.0f;
 	private ComputeBuffer cbDrawArgs;
-	private ComputeBuffer cbPoints;	
+	private ComputeBuffer cbPoints;
 	private float internalBlurWidth = 1.0f;
 
 
     public override bool CheckResources (){
 		 CheckSupport (true); // only requires depth, not HDR
-			
-		dofHdrMaterial = CheckShaderAndCreateMaterial (dofHdrShader, dofHdrMaterial); 
+
+		dofHdrMaterial = CheckShaderAndCreateMaterial (dofHdrShader, dofHdrMaterial);
 		if(supportDX11 && blurType == BlurType.DX11) {
 			dx11bokehMaterial = CheckShaderAndCreateMaterial(dx11BokehShader, dx11bokehMaterial);
 			CreateComputeResources ();
@@ -62,16 +62,16 @@ public class DepthOfField : PostEffectsBase {
 		if(!isSupported)
 			ReportAutoDisable ();
 
-		return isSupported;		  
+		return isSupported;
 	}
 
 	void OnEnable (){
-		GetComponent<Camera>().depthTextureMode |= DepthTextureMode.Depth;	
-	}	
+		GetComponent<Camera>().depthTextureMode |= DepthTextureMode.Depth;
+	}
 
 	void OnDisable (){
 		ReleaseComputeResources ();
-		
+
 		if(dofHdrMaterial) DestroyImmediate(dofHdrMaterial);
 		dofHdrMaterial = null;
 		if(dx11bokehMaterial) DestroyImmediate(dx11bokehMaterial);
@@ -79,10 +79,10 @@ public class DepthOfField : PostEffectsBase {
 	}
 
 	void ReleaseComputeResources (){
-		if(cbDrawArgs != null) cbDrawArgs.Release(); 
+		if(cbDrawArgs != null) cbDrawArgs.Release();
 		cbDrawArgs = null;
-		if(cbPoints != null) cbPoints.Release(); 
-		cbPoints = null;		
+		if(cbPoints != null) cbPoints.Release();
+		cbPoints = null;
 	}
 
 	void CreateComputeResources (){
@@ -97,14 +97,14 @@ public class DepthOfField : PostEffectsBase {
 		{
 			cbPoints = new ComputeBuffer (90000, 12+16, ComputeBufferType.Append);
 		}
-	}		
+	}
 
 	float FocalDistance01 ( float worldDist  ){
-		return GetComponent<Camera>().WorldToViewportPoint((worldDist-GetComponent<Camera>().nearClipPlane) * GetComponent<Camera>().transform.forward + GetComponent<Camera>().transform.position).z / (GetComponent<Camera>().farClipPlane-GetComponent<Camera>().nearClipPlane);	
+		return GetComponent<Camera>().WorldToViewportPoint((worldDist-GetComponent<Camera>().nearClipPlane) * GetComponent<Camera>().transform.forward + GetComponent<Camera>().transform.position).z / (GetComponent<Camera>().farClipPlane-GetComponent<Camera>().nearClipPlane);
 	}
 
 	private void WriteCoc ( RenderTexture fromTo ,   bool fgDilate  ){
-		 dofHdrMaterial.SetTexture("_FgOverlap", null); 
+		 dofHdrMaterial.SetTexture("_FgOverlap", null);
 
 		if (nearBlur && fgDilate) {
 
@@ -113,8 +113,8 @@ public class DepthOfField : PostEffectsBase {
 
 			// capture fg coc
 			RenderTexture temp2 = RenderTexture.GetTemporary (rtW, rtH, 0, fromTo.format);
-			Graphics.Blit (fromTo, temp2, dofHdrMaterial, 4); 
-			
+			Graphics.Blit (fromTo, temp2, dofHdrMaterial, 4);
+
 			// special blur
 			float fgAdjustment = internalBlurWidth * foregroundOverlap;
 
@@ -123,7 +123,7 @@ public class DepthOfField : PostEffectsBase {
 			Graphics.Blit (temp2, temp1, dofHdrMaterial, 2);
 			RenderTexture.ReleaseTemporary(temp2);
 
-			dofHdrMaterial.SetVector ("_Offsets", new Vector4 (fgAdjustment, 0.0f, 0.0f, fgAdjustment));		
+			dofHdrMaterial.SetVector ("_Offsets", new Vector4 (fgAdjustment, 0.0f, 0.0f, fgAdjustment));
 			temp2 = RenderTexture.GetTemporary (rtW, rtH, 0, fromTo.format);
 			Graphics.Blit (temp1, temp2, dofHdrMaterial, 2);
 			RenderTexture.ReleaseTemporary(temp1);
@@ -136,14 +136,14 @@ public class DepthOfField : PostEffectsBase {
 		}
 		else {
 			// capture full coc in alpha channel (fromTo is not read, but bound to detect screen flip)
-			Graphics.Blit (fromTo, fromTo, dofHdrMaterial,  0);	
+			Graphics.Blit (fromTo, fromTo, dofHdrMaterial,  0);
 		}
 	}
-			
-	void OnRenderImage ( RenderTexture source ,   RenderTexture destination  ){		
+
+	void OnRenderImage ( RenderTexture source ,   RenderTexture destination  ){
 		if(!CheckResources ()) {
 			Graphics.Blit (source, destination);
-			return; 
+			return;
 		}
 
 		// clamp & prepare values so they make sense
@@ -151,8 +151,8 @@ public class DepthOfField : PostEffectsBase {
 		if (aperture < 0.0f) aperture = 0.0f;
 		if (maxBlurSize < 0.1f) maxBlurSize = 0.1f;
 		focalSize = Mathf.Clamp(focalSize, 0.0f, 2.0f);
-		internalBlurWidth = Mathf.Max(maxBlurSize, 0.0f); 
-					
+		internalBlurWidth = Mathf.Max(maxBlurSize, 0.0f);
+
 		// focal & coc calculations
 
 		focalDistance01 = (focalTransform) ? (GetComponent<Camera>().WorldToViewportPoint (focalTransform.position)).z / (GetComponent<Camera>().farClipPlane) : FocalDistance01 (focalLength);
@@ -160,13 +160,13 @@ public class DepthOfField : PostEffectsBase {
 
         // possible render texture helpers
 
-		RenderTexture rtLow = null;		
+		RenderTexture rtLow = null;
 		RenderTexture rtLow2 = null;
 		RenderTexture rtSuperLow1 = null;
 		RenderTexture rtSuperLow2 = null;
 		float fgBlurDist = internalBlurWidth * foregroundOverlap;
-			
-		if(visualizeFocus) 
+
+		if(visualizeFocus)
 		{
 
 			//
@@ -177,8 +177,8 @@ public class DepthOfField : PostEffectsBase {
 
 			WriteCoc (source, true);
 			Graphics.Blit (source, destination, dofHdrMaterial, 16);
-		}		
-		else if ((blurType == BlurType.DX11) && dx11bokehMaterial) 
+		}
+		else if ((blurType == BlurType.DX11) && dx11bokehMaterial)
 		{
 
 			//
@@ -187,15 +187,15 @@ public class DepthOfField : PostEffectsBase {
 			//
 			//
 
-            
+
 			if(highResolution) {
 
 				internalBlurWidth = internalBlurWidth < 0.1f ? 0.1f : internalBlurWidth;
 				fgBlurDist = internalBlurWidth * foregroundOverlap;
 
-				rtLow = RenderTexture.GetTemporary (source.width, source.height, 0, source.format);	
+				rtLow = RenderTexture.GetTemporary (source.width, source.height, 0, source.format);
 
-				var dest2= RenderTexture.GetTemporary (source.width, source.height, 0, source.format);	
+				var dest2= RenderTexture.GetTemporary (source.width, source.height, 0, source.format);
 
 				// capture COC
 				WriteCoc (source, false);
@@ -207,7 +207,7 @@ public class DepthOfField : PostEffectsBase {
 				Graphics.Blit(source, rtSuperLow1, dofHdrMaterial, 15);
 				dofHdrMaterial.SetVector ("_Offsets", new Vector4 (0.0f, 1.5f , 0.0f, 1.5f));
 				Graphics.Blit (rtSuperLow1, rtSuperLow2, dofHdrMaterial, 19);
-				dofHdrMaterial.SetVector ("_Offsets", new Vector4 (1.5f, 0.0f, 0.0f, 1.5f));		
+				dofHdrMaterial.SetVector ("_Offsets", new Vector4 (1.5f, 0.0f, 0.0f, 1.5f));
 				Graphics.Blit (rtSuperLow2, rtSuperLow1, dofHdrMaterial, 19);
 
 				// capture fg coc
@@ -220,7 +220,7 @@ public class DepthOfField : PostEffectsBase {
 				dx11bokehMaterial.SetTexture ("_FgCocMask", nearBlur ? rtSuperLow2 : null);
 
 				// collect bokeh candidates and replace with a darker pixel
-				Graphics.SetRandomWriteTarget (1, cbPoints); 
+				Graphics.SetRandomWriteTarget (1, cbPoints);
 				Graphics.Blit (source, rtLow, dx11bokehMaterial, 0);
 				Graphics.ClearRandomWriteTargets ();
 
@@ -228,7 +228,7 @@ public class DepthOfField : PostEffectsBase {
 				if(nearBlur) {
 					dofHdrMaterial.SetVector ("_Offsets", new Vector4 (0.0f, fgBlurDist , 0.0f, fgBlurDist));
 					Graphics.Blit (rtSuperLow2, rtSuperLow1, dofHdrMaterial, 2);
-					dofHdrMaterial.SetVector ("_Offsets", new Vector4 (fgBlurDist, 0.0f, 0.0f, fgBlurDist));		
+					dofHdrMaterial.SetVector ("_Offsets", new Vector4 (fgBlurDist, 0.0f, 0.0f, fgBlurDist));
 					Graphics.Blit (rtSuperLow1, rtSuperLow2, dofHdrMaterial, 2);
 
 					// merge fg coc with bg coc
@@ -244,26 +244,26 @@ public class DepthOfField : PostEffectsBase {
 				dofHdrMaterial.SetVector ("_Offsets", new Vector4 (0.0f, internalBlurWidth, 0.0f, internalBlurWidth));
 				Graphics.Blit (source, dest2, dofHdrMaterial, 21);
 
-				// apply bokeh candidates		
+				// apply bokeh candidates
 				Graphics.SetRenderTarget (dest2);
 				ComputeBuffer.CopyCount (cbPoints, cbDrawArgs, 0);
 				dx11bokehMaterial.SetBuffer ("pointBuffer", cbPoints);
 				dx11bokehMaterial.SetTexture ("_MainTex", dx11BokehTexture);
 				dx11bokehMaterial.SetVector ("_Screen", new Vector3(1.0f/(1.0f*source.width), 1.0f/(1.0f*source.height), internalBlurWidth));
 				dx11bokehMaterial.SetPass (2);
-				
-				Graphics.DrawProceduralIndirect (MeshTopology.Points, cbDrawArgs, 0);
+
+				Graphics.DrawProceduralIndirectNow(MeshTopology.Points, cbDrawArgs, 0);
 
 				Graphics.Blit (dest2, destination);	// hackaround for DX11 high resolution flipfun (OPTIMIZEME)
 
 				RenderTexture.ReleaseTemporary(dest2);
 				RenderTexture.ReleaseTemporary(rtSuperLow1);
-				RenderTexture.ReleaseTemporary(rtSuperLow2);						
+				RenderTexture.ReleaseTemporary(rtSuperLow2);
 			}
 			else {
-				rtLow = RenderTexture.GetTemporary (source.width>>1, source.height>>1, 0, source.format);		
-				rtLow2 = RenderTexture.GetTemporary (source.width>>1, source.height>>1, 0, source.format);		
-				
+				rtLow = RenderTexture.GetTemporary (source.width>>1, source.height>>1, 0, source.format);
+				rtLow2 = RenderTexture.GetTemporary (source.width>>1, source.height>>1, 0, source.format);
+
 				fgBlurDist = internalBlurWidth * foregroundOverlap;
 
 				// capture COC & color in low resolution
@@ -278,8 +278,8 @@ public class DepthOfField : PostEffectsBase {
 				Graphics.Blit(rtLow, rtSuperLow1, dofHdrMaterial, 15);
 				dofHdrMaterial.SetVector ("_Offsets", new Vector4 (0.0f, 1.5f , 0.0f, 1.5f));
 				Graphics.Blit (rtSuperLow1, rtSuperLow2, dofHdrMaterial, 19);
-				dofHdrMaterial.SetVector ("_Offsets", new Vector4 (1.5f, 0.0f, 0.0f, 1.5f));		
-				Graphics.Blit (rtSuperLow2, rtSuperLow1, dofHdrMaterial, 19);				
+				dofHdrMaterial.SetVector ("_Offsets", new Vector4 (1.5f, 0.0f, 0.0f, 1.5f));
+				Graphics.Blit (rtSuperLow2, rtSuperLow1, dofHdrMaterial, 19);
 
 				RenderTexture rtLow3 = null;
 
@@ -295,7 +295,7 @@ public class DepthOfField : PostEffectsBase {
 				dx11bokehMaterial.SetTexture ("_FgCocMask", rtLow3);
 
 				// collect bokeh candidates and replace with a darker pixel
-				Graphics.SetRandomWriteTarget (1, cbPoints); 
+				Graphics.SetRandomWriteTarget (1, cbPoints);
 				Graphics.Blit (rtLow, rtLow2, dx11bokehMaterial, 0);
 				Graphics.ClearRandomWriteTargets ();
 
@@ -306,9 +306,9 @@ public class DepthOfField : PostEffectsBase {
 				if(nearBlur) {
 					dofHdrMaterial.SetVector ("_Offsets", new Vector4 (0.0f, fgBlurDist , 0.0f, fgBlurDist));
 					Graphics.Blit (rtLow3, rtLow, dofHdrMaterial, 2);
-					dofHdrMaterial.SetVector ("_Offsets", new Vector4 (fgBlurDist, 0.0f, 0.0f, fgBlurDist));		
+					dofHdrMaterial.SetVector ("_Offsets", new Vector4 (fgBlurDist, 0.0f, 0.0f, fgBlurDist));
 					Graphics.Blit (rtLow, rtLow3, dofHdrMaterial, 2);
-					
+
 					// merge fg coc with bg coc
 					Graphics.Blit (rtLow3, rtLow2, dofHdrMaterial, 3);
 				}
@@ -317,7 +317,7 @@ public class DepthOfField : PostEffectsBase {
 				dofHdrMaterial.SetVector ("_Offsets", new Vector4 (internalBlurWidth, 0.0f , 0.0f, internalBlurWidth));
 				Graphics.Blit (rtLow2, rtLow, dofHdrMaterial, 5);
 				dofHdrMaterial.SetVector ("_Offsets", new Vector4 (0.0f, internalBlurWidth, 0.0f, internalBlurWidth));
-				Graphics.Blit (rtLow, rtLow2, dofHdrMaterial, 5);	
+				Graphics.Blit (rtLow, rtLow2, dofHdrMaterial, 5);
 
 				// apply bokeh candidates
 				Graphics.SetRenderTarget (rtLow2);
@@ -326,7 +326,7 @@ public class DepthOfField : PostEffectsBase {
 				dx11bokehMaterial.SetTexture ("_MainTex", dx11BokehTexture);
 				dx11bokehMaterial.SetVector ("_Screen", new Vector3(1.0f/(1.0f*rtLow2.width), 1.0f/(1.0f*rtLow2.height), internalBlurWidth));
 				dx11bokehMaterial.SetPass (1);
-				Graphics.DrawProceduralIndirect (MeshTopology.Points, cbDrawArgs, 0);
+				Graphics.DrawProceduralIndirectNow(MeshTopology.Points, cbDrawArgs, 0);
 
 				// upsample & combine
 				dofHdrMaterial.SetTexture ("_LowRez", rtLow2);
@@ -337,8 +337,8 @@ public class DepthOfField : PostEffectsBase {
 				if(rtLow3) RenderTexture.ReleaseTemporary(rtLow3);
 			}
 		}
-		else 
-		{ 		
+		else
+		{
 
 			//
 			// 2.
@@ -377,6 +377,6 @@ public class DepthOfField : PostEffectsBase {
 		}
 
 		if(rtLow) RenderTexture.ReleaseTemporary(rtLow);
-		if(rtLow2) RenderTexture.ReleaseTemporary(rtLow2);		
-	}	
+		if(rtLow2) RenderTexture.ReleaseTemporary(rtLow2);
+	}
 }
