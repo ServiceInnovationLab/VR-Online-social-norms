@@ -64,7 +64,7 @@ public class MoveAwayFromPlayer : MonoBehaviour
             }
             else
             {
-                controller.Move(transform.forward * speed * velocity * Time.deltaTime);
+                controller.Move(transform.forward.XZ() * speed * velocity * Time.deltaTime);
 
                 velocity *= 0.9f;
                 runningAway = velocity >= 0.05f;
@@ -80,9 +80,19 @@ public class MoveAwayFromPlayer : MonoBehaviour
         skipRunningAway = false;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.transform.CompareTag("Food"))
+            return;
+
+        Destroy(collision.transform.gameObject);
+        transform.localScale *= 1.05f;
+        target = -1;
+    }
+
     void GoAfterTarget(Transform player)
     {
-        if (target > -1 && targets[target].tag != "Food")
+        if (target > -1 && (!targets[target] || targets[target].tag != "Food"))
         {
             target = -1;
         }
@@ -95,14 +105,14 @@ public class MoveAwayFromPlayer : MonoBehaviour
             {
                 i++;
 
-                if (go.tag != "Food")
+                if (!go || go.tag != "Food")
                     continue;
 
                 var distance = Vector3.Distance(transform.position, go.transform.position);
 
-                if ((go.transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9) continue;
+                //if ((go.transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9) continue;
 
-                if (distance < closest)
+                if (distance < closest && go.transform.position.y < 1)
                 {
                     closest = distance;
                     target = i;
@@ -121,11 +131,16 @@ public class MoveAwayFromPlayer : MonoBehaviour
             var distance = Vector3.Distance(transform.position.XZ(), targets[target].transform.position.XZ());
 
             if (distance < 0.5f)
+            {
+                Destroy(targets[target].gameObject);
+                transform.localScale *= 1.05f;
+                target = -1;
                 return;
+            }
 
             transform.LookAt(targets[target].transform.position.XZ());
             velocity = Random.Range(0.0f, 0.5f);
-            controller.Move(transform.forward * velocity * speed * Time.deltaTime);
+            controller.Move(transform.forward.XZ() * velocity * speed * Time.deltaTime);
         }
     }
 }
