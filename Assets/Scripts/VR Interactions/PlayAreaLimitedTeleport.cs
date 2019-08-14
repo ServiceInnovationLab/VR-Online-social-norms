@@ -3,10 +3,12 @@ using VRTK;
 
 public class PlayAreaLimitedTeleport : VRTK_HeightAdjustTeleport
 {
-    [SerializeField] VrPlayArea[] playAreas;
+    VrPlayArea[] playAreas;
 
     protected override void Awake()
     {
+        playAreas = FindObjectsOfType<VrPlayArea>();
+
         if (playAreas.Length == 0)
         {
             Debug.LogError("No play areas!", gameObject);
