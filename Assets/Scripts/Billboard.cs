@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    Camera camera;
+    Transform headset;
 
     private void Awake()
     {
@@ -15,15 +15,16 @@ public class Billboard : MonoBehaviour
         if (!this || e.currentSetup == null)
             return;
 
-        camera = e.currentSetup.headsetSDK.GetHeadsetCamera().GetComponentInChildren<Camera>();
+        headset = VRTK_DeviceFinder.HeadsetTransform();
     }
 
     //Orient the camera after all movement is completed this frame to avoid jittering
     void LateUpdate()
     {
-        if (!camera)
+        if (!headset)
             return;
 
-        transform.LookAt(transform.position + camera.transform.rotation * Vector3.forward, Vector3.up);
+        //transform.LookAt(transform.position + headset.transform.rotation * Vector3.forward, Vector3.up);
+        transform.LookAt(headset);
     }
 }

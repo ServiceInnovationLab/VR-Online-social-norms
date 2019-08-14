@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 using VRTK;
 
 [RequireComponent(typeof(CharacterController))]
-public class MoveAwayFromPlayer : MonoBehaviour
+public class AnimalAfterFood : MonoBehaviour
 {
-    public float speed = 5;
-    public float walkingDistance = 1.0f;
-    public VRTK_BasicTeleport teleport;
+    [SerializeField] UnityEvent foodEaten;
+
+    [SerializeField] float speed = 5;
+    [SerializeField] float walkingDistance = 1.0f;
+    [SerializeField] VRTK_BasicTeleport teleport;
 
     CharacterController controller;
     float velocity;
@@ -80,14 +83,29 @@ public class MoveAwayFromPlayer : MonoBehaviour
         skipRunningAway = false;
     }
 
+    private void EatFood(GameObject food)
+    {
+        Destroy(food);
+        transform.localScale *= 1.05f;
+        target = -1;
+
+        foodEaten?.Invoke();
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (!hit.transform.CompareTag("Food"))
+            return;
+
+        EatFood(hit.transform.gameObject);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.transform.CompareTag("Food"))
             return;
 
-        Destroy(collision.transform.gameObject);
-        transform.localScale *= 1.05f;
-        target = -1;
+        EatFood(collision.transform.gameObject);
     }
 
     void GoAfterTarget(Transform player)
@@ -128,15 +146,13 @@ public class MoveAwayFromPlayer : MonoBehaviour
                 return;
             }*/
 
-            var distance = Vector3.Distance(transform.position.XZ(), targets[target].transform.position.XZ());
+           /* var distance = Vector3.Distance(transform.position.XZ(), targets[target].transform.position.XZ());
 
             if (distance < 0.5f)
             {
-                Destroy(targets[target].gameObject);
-                transform.localScale *= 1.05f;
-                target = -1;
+                EatFood(targets[target].gameObject);
                 return;
-            }
+            }*/
 
             transform.LookAt(targets[target].transform.position.XZ());
             velocity = Random.Range(0.0f, 0.5f);
