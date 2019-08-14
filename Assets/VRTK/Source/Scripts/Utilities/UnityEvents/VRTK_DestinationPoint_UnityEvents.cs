@@ -15,6 +15,7 @@
         public DestinationPointEvent OnDestinationPointLocked = new DestinationPointEvent();
         public DestinationPointEvent OnDestinationPointUnlocked = new DestinationPointEvent();
         public DestinationPointEvent OnDestinationPointReset = new DestinationPointEvent();
+        public DestinationPointEvent OnDestinationPointTeleportedTo = new DestinationPointEvent();
 
         protected override void AddListeners(VRTK_DestinationPoint component)
         {
@@ -23,6 +24,7 @@
             component.DestinationPointLocked += DestinationPointLocked;
             component.DestinationPointUnlocked += DestinationPointUnlocked;
             component.DestinationPointReset += DestinationPointReset;
+            component.DestinationPointTeleportedTo += DestinationPointTeleportedTo;
         }
 
         protected override void RemoveListeners(VRTK_DestinationPoint component)
@@ -32,6 +34,7 @@
             component.DestinationPointLocked -= DestinationPointLocked;
             component.DestinationPointUnlocked -= DestinationPointUnlocked;
             component.DestinationPointReset -= DestinationPointReset;
+            component.DestinationPointTeleportedTo -= DestinationPointTeleportedTo;
         }
 
         private void DestinationPointEnabled(object o)
@@ -57,6 +60,11 @@
         private void DestinationPointReset(object o)
         {
             OnDestinationPointReset.Invoke(o);
+        }
+
+        private void DestinationPointTeleportedTo(object sender)
+        {
+            OnDestinationPointTeleportedTo.Invoke(sender);
         }
     }
 }

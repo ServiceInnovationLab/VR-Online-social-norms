@@ -90,6 +90,8 @@ namespace VRTK
         /// </summary>
         public event DestinationPointEventHandler DestinationPointReset;
 
+        public event DestinationPointEventHandler DestinationPointTeleportedTo;
+
         protected Collider pointCollider;
         protected bool createdCollider;
         protected Rigidbody pointRigidbody;
@@ -173,9 +175,15 @@ namespace VRTK
         protected override void OnDisable()
         {
             base.OnDisable();
+
             if (initaliseListeners != null)
             {
                 StopCoroutine(initaliseListeners);
+            }
+
+            if (teleporter)
+            {
+                teleporter.Teleporting -= Teleporter_Teleporting;
             }
 
             ManageDestinationMarkers(false);
@@ -245,6 +253,25 @@ namespace VRTK
                 ManageDestinationMarkers(true);
             }
             teleporter = (teleporter == null && VRTK_ObjectCache.registeredTeleporters.Count > 0 ? VRTK_ObjectCache.registeredTeleporters[0] : teleporter);
+
+            if (teleporter)
+            {
+                teleporter.Teleporting += Teleporter_Teleporting;
+            }
+        }
+
+        private void Teleporter_Teleporting(object sender, DestinationMarkerEventArgs e)
+        {
+            if (e.target == transform)
+            {
+                DestinationPointTeleportedTo?.Invoke(this);
+
+                var pointer = e.controllerReference.scriptAlias.GetComponent<VRTK_BasePointerRenderer>();
+                if (pointer)
+                {
+                    pointer.cursorVisibility = storedCursorState;
+                }
+            }
         }
 
         protected virtual void ManageDestinationMarkers(bool state)

@@ -3,6 +3,7 @@ using VRTK;
 
 public class PlayAreaLimitedTeleport : VRTK_HeightAdjustTeleport
 {
+    public bool onlyTeleportToPointers;
     VrPlayArea[] playAreas;
 
     protected override void Awake()
@@ -15,10 +16,20 @@ public class PlayAreaLimitedTeleport : VRTK_HeightAdjustTeleport
         }
 
         base.Awake();
+    }    
+
+    public void SetOnlyToPointers(bool value)
+    {
+        onlyTeleportToPointers = value;
     }
 
     public override bool ValidLocation(Transform target, Vector3 destinationPosition)
     {
+        if (onlyTeleportToPointers && !target.GetComponent<VRTK_DestinationPoint>())
+        {
+            return false;
+        }
+
         bool inPlayArea = false;
 
         foreach (var area in playAreas)

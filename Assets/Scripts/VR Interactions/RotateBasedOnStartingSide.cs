@@ -51,6 +51,7 @@ public class RotateBasedOnStartingSide : MonoBehaviour
         if (playerLocation.x < centreX)
         {
             sdkManager.transform.rotation = Quaternion.Euler(0, 180, 0);
+            Debug.Log("Rotating play area!");
         }
 
         afterCheck?.Invoke();

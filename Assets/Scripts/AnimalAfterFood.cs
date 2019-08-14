@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using System.Linq;
 
 using VRTK;
 
@@ -18,7 +19,7 @@ public class AnimalAfterFood : MonoBehaviour
     bool runningAway = false;
     bool skipRunningAway = false;
 
-    GameObject[] targets;
+    Rigidbody[] targets;
     int target = -1;
     Vector3 lastPlayerPosition;
 
@@ -26,7 +27,7 @@ public class AnimalAfterFood : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
 
-        targets = GameObject.FindGameObjectsWithTag("Food");
+        targets = GameObject.FindGameObjectsWithTag("Food").Select(x => x.GetComponent<Rigidbody>()).ToArray();
         teleport.Teleporting += Teleport_Teleported;
         teleport.Teleported += Teleport_Teleported;
     }
@@ -130,7 +131,7 @@ public class AnimalAfterFood : MonoBehaviour
 
                 //if ((go.transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9) continue;
 
-                if (distance < closest && go.transform.position.y < 1)
+                if (distance < closest && (go.transform.position.y < 1 || !go.IsSleeping() || go.isKinematic))
                 {
                     closest = distance;
                     target = i;
@@ -140,23 +141,26 @@ public class AnimalAfterFood : MonoBehaviour
 
         if (target > -1)
         {
-           /* if ((targets[target].transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9)
-            {
-                target = -1;
-                return;
-            }*/
+            /* if ((targets[target].transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9)
+             {
+                 target = -1;
+                 return;
+             }*/
 
-           /* var distance = Vector3.Distance(transform.position.XZ(), targets[target].transform.position.XZ());
+            /* var distance = Vector3.Distance(transform.position.XZ(), targets[target].transform.position.XZ());
 
-            if (distance < 0.5f)
-            {
-                EatFood(targets[target].gameObject);
-                return;
-            }*/
+             if (distance < 0.5f)
+             {
+                 EatFood(targets[target].gameObject);
+                 return;
+             }*/
 
-            transform.LookAt(targets[target].transform.position.XZ());
+            var lookPos = targets[target].transform.position - transform.position;
+            lookPos.y = 0;            
+            transform.localRotation = Quaternion.LookRotation(lookPos);
+
             velocity = Random.Range(0.0f, 0.5f);
-            controller.Move(transform.forward.XZ() * velocity * speed * Time.deltaTime);
+            controller.SimpleMove(transform.forward.XZ() * velocity * speed);// * Time.deltaTime);
         }
     }
 }
