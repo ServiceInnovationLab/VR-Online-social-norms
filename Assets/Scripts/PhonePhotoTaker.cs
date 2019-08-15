@@ -55,6 +55,7 @@ public class PhonePhotoTaker : MonoBehaviour
         RenderTexture.active = currentRT;
 
         var newItem = Instantiate(prefab, container.transform);
+        newItem.gameObject.SetActive(true);
         newItem.sprite = Sprite.Create(image, rect, rect.size / 2);
         container.Resize();
 

@@ -28,7 +28,7 @@ public class StackChildren : MonoBehaviour
         {
             var rectTransform = child as RectTransform;
 
-            if (!rectTransform)
+            if (!rectTransform || !rectTransform.gameObject.activeInHierarchy)
                 continue;
 
             rectTransform.anchoredPosition = new Vector2(0, height);
