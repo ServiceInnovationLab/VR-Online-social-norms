@@ -256,7 +256,7 @@ namespace VRTK
 
             if (teleporter)
             {
-                teleporter.Teleporting += Teleporter_Teleporting;
+                teleporter.Teleported += Teleporter_Teleporting;
             }
         }
 
