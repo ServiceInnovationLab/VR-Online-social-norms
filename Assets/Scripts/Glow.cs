@@ -6,6 +6,7 @@ public class Glow : MonoBehaviour
 {
     [SerializeField] float fadeTime = 1;
     [SerializeField] float minGlow = 0.2f;
+    [SerializeField] float maxGlow = 1.0f;
 
     new Renderer renderer;
     float sign = 1;
@@ -21,7 +22,7 @@ public class Glow : MonoBehaviour
     {
         var colour = renderer.material.color;
 
-        float step = (1 - minGlow) * Time.deltaTime * (1 / fadeTime);
+        float step = (maxGlow - minGlow) * Time.deltaTime * (1 / fadeTime);
         step *= sign;
 
         if (colour.a + step > 1)
