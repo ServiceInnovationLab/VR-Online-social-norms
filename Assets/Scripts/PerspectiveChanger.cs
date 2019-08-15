@@ -10,6 +10,7 @@ public class PerspectiveChanger : MonoBehaviour
 {
     public bool resizeFirst;
     public bool doRotate = true;
+    public bool deleteTarget = true;
 
     [Tooltip("The target location the player will be teleported to on entering the sphere")]
     [SerializeField] Transform target;
@@ -102,7 +103,10 @@ public class PerspectiveChanger : MonoBehaviour
 
         afterTeleport?.Invoke();
 
-        Destroy(target.gameObject);
+        if (deleteTarget)
+        {
+            Destroy(target.gameObject);
+        }
 
         teleporter.distanceBlinkDelay = originalBlinkDelay;
         teleporter.blinkTransitionSpeed = originalBlinkTransition;
