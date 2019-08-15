@@ -19293,6 +19293,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -16.192001
       objectReference: {fileID: 0}
+    - target: {fileID: 2928073809878169894, guid: 08e091500e68ded43b4abfb1b3f718d0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 153061f29d41be9438999ac2fae2c894, type: 2}
     - target: {fileID: -8856865354197063074, guid: 08e091500e68ded43b4abfb1b3f718d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19423,11 +19428,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -27.69
       objectReference: {fileID: 0}
-    - target: {fileID: 2928073809878169894, guid: 08e091500e68ded43b4abfb1b3f718d0,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 153061f29d41be9438999ac2fae2c894, type: 2}
     - target: {fileID: -1715842831618369241, guid: 08e091500e68ded43b4abfb1b3f718d0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -24126,10 +24126,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.3299987
+  m_Radius: 0.6
+  m_Height: 2.5322344
   m_Direction: 1
-  m_Center: {x: 0, y: 0.66499937, z: 0}
+  m_Center: {x: 0, y: 0.76611674, z: 0}
 --- !u!4 &1248323591
 Transform:
   m_ObjectHideFlags: 0
@@ -24138,8 +24138,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248323587}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.02, y: 0.0023508386, z: -4.54}
-  m_LocalScale: {x: 5, y: 8, z: 5}
+  m_LocalPosition: {x: -22.7, y: 0.0023508386, z: -5.19}
+  m_LocalScale: {x: 8, y: 12, z: 8}
   m_Children:
   - {fileID: 668164982}
   - {fileID: 312551037}
