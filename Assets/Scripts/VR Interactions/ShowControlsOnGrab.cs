@@ -39,12 +39,14 @@ public class ShowControlsOnGrab : MonoBehaviour
         GetHelpManager();
     }
 
-    private void GetHelpManager()
+    private bool GetHelpManager()
     {
         if (!manager)
         {
             manager = FindObjectOfType<HelpTipsManager>();
         }
+
+        return manager;
     }
 
     void OnEnable()
@@ -61,13 +63,17 @@ public class ShowControlsOnGrab : MonoBehaviour
 
     void InteractableObject_Ungrabbed(object sender, InteractableObjectEventArgs e)
     {
-        GetHelpManager();
-        manager.ShowHelp(previousHelp);
+        if (GetHelpManager())
+        {
+            manager.ShowHelp(previousHelp);
+        }
     }
 
     void InteractableObject_Grabbed(object sender, InteractableObjectEventArgs e)
     {
-        GetHelpManager();
+        if (!GetHelpManager())
+            return;
+
         previousHelp = manager.GetCurrentHelp();
 
         bool swapLeftAndRight = false;
