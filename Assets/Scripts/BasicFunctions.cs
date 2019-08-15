@@ -177,4 +177,12 @@ public class BasicFunctions : ScriptableObject
     {
         gameObject.transform.localScale *= 1.1f;
     }
+
+    public void AlignPlayAreaToObject(Transform transform)
+    {
+        var playarea = VRTK_DeviceFinder.PlayAreaTransform();
+
+        playarea.rotation = transform.rotation;
+        playarea.position = transform.position;
+    }
 }
