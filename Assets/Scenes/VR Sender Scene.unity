@@ -2834,6 +2834,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8816357222113915036, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: hookUpToControllers
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263055381172304631, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: hookUpToPhysics
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 050d1a8df4d6593499651f7be4e0ad91, type: 3}
 --- !u!1 &189331162
@@ -5324,8 +5334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene:
-    sceneAsset: {fileID: 102900000, guid: e130d40d8f1390248a1f8f709c1cbc13, type: 3}
-    scenePath: Assets/Scenes/Blocked Out Scenes/VR Receiver room_Matt.unity
+    sceneAsset: {fileID: 0}
+    scenePath: 
   blinkToColor: {r: 0, g: 0, b: 0, a: 1}
   delay: 3
   teleportToName: ReceiverRoomPoint
@@ -6004,6 +6014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640c18bc2a87fc04097d1fb8d3c3792f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resizeFirst: 0
+  doRotate: 1
+  deleteTarget: 1
   target: {fileID: 983765194}
   targetRotation: {fileID: 420723565}
   blinkDistance: 32.1
@@ -6036,6 +6049,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  beforeTeleport:
+    m_PersistentCalls:
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   scalePosition: 0
@@ -7297,7 +7315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &470719119
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15342,6 +15360,7 @@ GameObject:
   - component: {fileID: 1074813026}
   - component: {fileID: 1074813025}
   - component: {fileID: 1074813024}
+  - component: {fileID: 1074813028}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Floor
@@ -15422,6 +15441,22 @@ Transform:
   m_Father: {fileID: 1729653027}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1074813028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074813023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9815d255a2571b43be4bfe7670b5cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleport: {fileID: 1776828917}
+  floor: {fileID: 0}
+  offset: {x: 0, y: 0.5, z: 0}
+  disableOnUse: 1
 --- !u!1 &1076747856
 GameObject:
   m_ObjectHideFlags: 0
@@ -18310,6 +18345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc65878c7102524bb8c2bcfbefff497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleporter: {fileID: 0}
   playareaCursor: {fileID: 0}
   directionIndicator: {fileID: 0}
   customRaycast: {fileID: 1300017464}
@@ -20439,8 +20475,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -100, y: 203}
-  m_SizeDelta: {x: -200, y: 120}
+  m_AnchoredPosition: {x: 0, y: 203}
+  m_SizeDelta: {x: 0, y: 120}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1504091718
 MonoBehaviour:
@@ -24132,6 +24168,7 @@ GameObject:
   - component: {fileID: 1753072038}
   - component: {fileID: 1753072037}
   - component: {fileID: 1753072040}
+  - component: {fileID: 1753072041}
   m_Layer: 0
   m_Name: '[VRTK_SDKManager]'
   m_TagString: Untagged
@@ -24209,6 +24246,34 @@ MonoBehaviour:
   blinkToColor: {r: 0, g: 0, b: 0, a: 1}
   fadeInTime: 3
   blinkPause: 1
+--- !u!114 &1753072041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753072036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7587040f76f5414fbbd3c913f2f08226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLoadedSetupChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1074813028}
+        m_MethodName: DoSnapToFloor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: VRTK.UnityEventHelper.VRTK_SDKManager_UnityEvents+LoadedSetupChangeEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!4 &1754082638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414948, guid: 3b65d553ffead574bb2395cee9299543,
@@ -25325,6 +25390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc65878c7102524bb8c2bcfbefff497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleporter: {fileID: 0}
   playareaCursor: {fileID: 0}
   directionIndicator: {fileID: 0}
   customRaycast: {fileID: 1793284708}
@@ -30590,6 +30656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 2
   minGlow: 0.2
+  maxGlow: 1
 --- !u!65 &1315844270435097654
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31161,7 +31228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene:
     sceneAsset: {fileID: 102900000, guid: a7a74fcbc48f4f242b56c609d0611cd2, type: 3}
-    scenePath: Assets/Scenes/VR Receiver Scene - Mahkaila + Hazel test.unity
+    scenePath: Assets/Scenes/VR Receiver Scene.unity
   blinkToColor: {r: 0, g: 0, b: 0, a: 1}
   delay: 2.5
   teleportToName: ReceiverRoomPoint
