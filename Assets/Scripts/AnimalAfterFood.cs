@@ -9,6 +9,7 @@ using VRTK;
 public class AnimalAfterFood : MonoBehaviour
 {
     [SerializeField] UnityEvent foodEaten;
+    [SerializeField] Collider colliderBounds;
 
     [SerializeField] float speed = 5;
     [SerializeField] float walkingDistance = 1.0f;
@@ -117,7 +118,7 @@ public class AnimalAfterFood : MonoBehaviour
         }
 
         float closest = 10000;
-        if (target == -1)
+      //  if (target == -1)
         {
             int i = -1;
             foreach (var go in targets)
@@ -131,7 +132,7 @@ public class AnimalAfterFood : MonoBehaviour
 
                 //if ((go.transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9) continue;
 
-                if (distance < closest && (go.transform.position.y < 1 || !go.IsSleeping() || go.isKinematic))
+                if (distance < closest && (go.isKinematic || !VectorUtils.IsPointWithinCollider(colliderBounds, go.position.XZ())))
                 {
                     closest = distance;
                     target = i;

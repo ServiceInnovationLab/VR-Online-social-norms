@@ -593,7 +593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43738316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4999931, z: 0.491}
+  m_LocalPosition: {x: 0.00000047683716, y: 0.70699316, z: 0.49100024}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 2121601210}
@@ -1342,8 +1342,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 62744752}
   m_HandleRect: {fileID: 62744751}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999666
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4512,7 +4512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0010128925}
+  m_AnchoredPosition: {x: 0, y: -0.0025031045}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &272125362
@@ -5804,6 +5804,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  colliderBounds: {fileID: 689334321}
   speed: 3
   walkingDistance: 0.5
   teleport: {fileID: 1010754564}
@@ -6832,8 +6833,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499614027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1.5}
+  m_LocalPosition: {x: 0, y: -0.293, z: 0}
+  m_LocalScale: {x: 0.5, y: 2, z: 1.5}
   m_Children: []
   m_Father: {fileID: 406570665}
   m_RootOrder: 1
@@ -9216,9 +9217,10 @@ GameObject:
   - component: {fileID: 689334321}
   - component: {fileID: 689334325}
   - component: {fileID: 689334326}
-  m_Layer: 0
+  - component: {fileID: 689334327}
+  m_Layer: 8
   m_Name: Platform 1
-  m_TagString: IncludeTeleport
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9333,6 +9335,22 @@ MonoBehaviour:
   right: {fileID: 1407928714}
   top: {fileID: 207287265}
   bottom: {fileID: 848454571}
+--- !u!114 &689334327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689334320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9815d255a2571b43be4bfe7670b5cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleport: {fileID: 1547631593}
+  floor: {fileID: 0}
+  offset: {x: 0, y: 0.5, z: 0}
+  disableOnUse: 1
 --- !u!1 &695162189
 GameObject:
   m_ObjectHideFlags: 0
@@ -11650,7 +11668,7 @@ BoxCollider:
   m_GameObject: {fileID: 865550956}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -13237,6 +13255,7 @@ GameObject:
   - component: {fileID: 978971864}
   - component: {fileID: 978971863}
   - component: {fileID: 978971867}
+  - component: {fileID: 978971868}
   m_Layer: 0
   m_Name: '[VRTK_SDKManager]'
   m_TagString: Untagged
@@ -13359,6 +13378,34 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   sdkManager: {fileID: 978971865}
+--- !u!114 &978971868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978971862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7587040f76f5414fbbd3c913f2f08226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLoadedSetupChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 689334327}
+        m_MethodName: DoSnapToFloor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: VRTK.UnityEventHelper.VRTK_SDKManager_UnityEvents+LoadedSetupChangeEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &982625190
 GameObject:
   m_ObjectHideFlags: 0
@@ -15193,6 +15240,11 @@ PrefabInstance:
       propertyPath: hookUpToControllers
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4121109340330072345, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: checkType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5263055380110088587, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: enableTeleport
@@ -16581,6 +16633,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203924020}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1205950751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1205950752}
+  m_Layer: 0
+  m_Name: DestinationPoint
+  m_TagString: IncludeTeleport
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1205950752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205950751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4119596093287494}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1226648326
 GameObject:
   m_ObjectHideFlags: 0
@@ -27031,7 +27113,7 @@ MonoBehaviour:
   defaultCursorObject: {fileID: 0}
   hoverCursorObject: {fileID: 0}
   lockedCursorObject: {fileID: 0}
-  destinationLocation: {fileID: 0}
+  destinationLocation: {fileID: 1205950752}
   snapToPoint: 1
   hidePointerCursorOnHover: 1
   hideDirectionIndicatorOnHover: 0
@@ -27127,6 +27209,7 @@ GameObject:
   - component: {fileID: 1878265989}
   - component: {fileID: 1878265988}
   - component: {fileID: 1878265987}
+  - component: {fileID: 1878265993}
   m_Layer: 0
   m_Name: Platform 3
   m_TagString: IncludeTeleport
@@ -27246,6 +27329,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 32.782, z: 0}
+--- !u!114 &1878265993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878265986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9815d255a2571b43be4bfe7670b5cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleport: {fileID: 1010754564}
+  floor: {fileID: 0}
+  offset: {x: 0, y: 0.5, z: 0}
+  disableOnUse: 0
 --- !u!1 &1882488572
 GameObject:
   m_ObjectHideFlags: 0
@@ -29740,6 +29839,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1878265993}
+        m_MethodName: DoSnapToFloor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: VRTK.UnityEventHelper.VRTK_DestinationPoint_UnityEvents+DestinationPointEvent,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1652576351055011
@@ -29809,6 +29919,7 @@ Transform:
   m_Children:
   - {fileID: 1646312876}
   - {fileID: 1672869112}
+  - {fileID: 1205950752}
   m_Father: {fileID: 1878265992}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
