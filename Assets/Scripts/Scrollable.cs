@@ -3,6 +3,11 @@ using System.Collections;
 using UnityEngine.Events;
 using VRTK;
 
+/// <summary>
+/// Base class allowing an Interactable object to react to touchpad movements.
+/// 
+/// Currently only supports the Y axis of touchpad.
+/// </summary>
 public abstract class Scrollable : MonoBehaviour
 {
     public UnityEvent OnTrigger;
