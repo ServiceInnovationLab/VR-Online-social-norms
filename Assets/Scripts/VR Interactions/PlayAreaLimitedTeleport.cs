@@ -25,7 +25,7 @@ public class PlayAreaLimitedTeleport : VRTK_HeightAdjustTeleport
 
     public override bool ValidLocation(Transform target, Vector3 destinationPosition)
     {
-        if (onlyTeleportToPointers && !target.GetComponent<VRTK_DestinationPoint>() && !!target.GetComponentInParent<VRTK_DestinationPoint>())
+        if (onlyTeleportToPointers && (!target.GetComponent<VRTK_DestinationPoint>() || !target.GetComponentInParent<VRTK_DestinationPoint>()))
         {
             return false;
         }
