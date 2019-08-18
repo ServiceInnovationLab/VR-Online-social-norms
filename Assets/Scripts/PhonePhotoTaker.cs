@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PhonePhotoTaker : MonoBehaviour
 {
     [SerializeField] UnityEvent photoTaken;
+    [SerializeField] UnityEvent cameraShown;
     [SerializeField] StackChildren container;
     [SerializeField] Image prefab;
     [SerializeField] Camera captureCamera;
@@ -22,6 +23,8 @@ public class PhonePhotoTaker : MonoBehaviour
 
             realTimeCamera.gameObject.SetActive(true);
             realTimeView.SetActive(true);
+
+            cameraShown?.Invoke();
         }
         else
         {
