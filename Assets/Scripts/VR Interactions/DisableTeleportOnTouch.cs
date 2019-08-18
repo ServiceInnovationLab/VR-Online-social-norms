@@ -71,6 +71,46 @@ public class DisableTeleportOnTouch : MonoBehaviour
         };
     }
 
+    private void AddTouching(GameObject gameObject, int controllerIndex)
+    {
+        controllersTouching[controllerIndex].Add(gameObject);
+        OnChange();
+
+        var destroyHandler = gameObject.AddComponent<OnDestroyHandler>();
+        destroyHandler.owner = gameObject;
+        destroyHandler.OnDestroyed += OnDisablerDestroyed;
+    }
+
+    private void RemoveTouching(GameObject gameObject, int controllerIndex, bool raiseChange = true)
+    {
+        controllersTouching[controllerIndex].Remove(gameObject);
+        if (raiseChange)
+        {
+            OnChange();
+        }
+
+        if (gameObject)
+        {
+            var destroyHandlers = gameObject.GetComponents<OnDestroyHandler>();
+            foreach (var handler in destroyHandlers)
+            {
+                if (handler.owner == gameObject)
+                {
+                    Destroy(handler);
+                }
+            }
+        }
+    }
+
+    private void OnDisablerDestroyed(GameObject gameObject)
+    {
+        for (int i = 0; i < controllersTouching.Length; i++)
+        {
+            RemoveTouching(gameObject, i, false);
+        }
+        OnChange();
+    }
+
     private void SetupTouch(VRTK_InteractTouch touch, int index)
     {
         if (!touch)
@@ -85,8 +125,7 @@ public class DisableTeleportOnTouch : MonoBehaviour
 
             if (!touching.Contains(a.target) && !a.target.name.Contains("[NearTouch][CollidersContainer]"))
             {
-                touching.Add(a.target);
-                OnChange();
+                AddTouching(a.target, index);
             }
         };
 
@@ -96,8 +135,7 @@ public class DisableTeleportOnTouch : MonoBehaviour
 
             if (touching.Contains(a.target))
             {
-                touching.Remove(a.target);
-                OnChange();
+                RemoveTouching(a.target, index);
             }
         };
     }
@@ -131,37 +169,6 @@ public class DisableTeleportOnTouch : MonoBehaviour
         }
     }
 
-    public void RemoveDeleted()
-    {
-        StartCoroutine(DoRemove());
-    }
-
-    IEnumerator DoRemove()
-    {
-        yield return new WaitForSeconds(0.5f);
-        yield return new WaitForEndOfFrame();
-
-        foreach (var touching in controllersTouching)
-        {
-            var toRemove = new HashSet<GameObject>();
-
-            foreach (var obj in touching)
-            {
-                if (!obj)
-                {
-                    toRemove.Add(obj);
-                }
-            }
-
-            foreach (var remove in toRemove)
-            {
-                touching.Remove(remove);
-            }
-        }
-
-        OnChange();
-    }
-
     public void AddDisabler(VRTK_ControllerEvents controller, GameObject gameObject)
     {
         if (!enabled)
@@ -171,8 +178,7 @@ public class DisableTeleportOnTouch : MonoBehaviour
         {
             if (controller == controllers[i])
             {
-                controllersTouching[i].Add(gameObject);
-                OnChange();
+                AddTouching(gameObject, i);                
                 return;
             }
         }
@@ -189,8 +195,7 @@ public class DisableTeleportOnTouch : MonoBehaviour
         {
             if (controller == controllers[i])
             {
-                controllersTouching[i].Remove(gameObject);
-                OnChange();
+                RemoveTouching(gameObject, i);
                 return;
             }
         }

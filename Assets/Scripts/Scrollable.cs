@@ -32,6 +32,7 @@ public abstract class Scrollable : MonoBehaviour
     float lastDir = 0;
 
     VRTK_ControllerEvents controllerEvents;
+    DisableTeleportOnTouch teleportDisabler;
 
     protected abstract void OnScroll(Vector2 velocity);
 
@@ -53,6 +54,8 @@ public abstract class Scrollable : MonoBehaviour
 
         canTrigger = allowTrigger;
         invertMultiplier = invert ? -1 : 1;
+
+        teleportDisabler = FindObjectOfType<DisableTeleportOnTouch>();
     }
 
     private void InteractableObjectUngrabbed(object sender, InteractableObjectEventArgs e)
@@ -62,20 +65,19 @@ public abstract class Scrollable : MonoBehaviour
             return;
         }
 
-        var disabler = FindObjectOfType<DisableTeleportOnTouch>();
-
-        if (disabler)
+        if (teleportDisabler)
         {
-            disabler.RemoveDisabler(controllerEvents, gameObject);
+            teleportDisabler.RemoveDisabler(controllerEvents, gameObject);
         }
-
-        foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
+        else
         {
-            teleporter.enabled = true;
+            foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
+            {
+                teleporter.enabled = true;
+            }
         }
 
         controllerEvents.TouchpadPressed -= ControllerEvents_TriggerClicked;
-
         controllerEvents = null;
     }
 
@@ -83,16 +85,16 @@ public abstract class Scrollable : MonoBehaviour
     {
         controllerEvents = e.interactingObject.GetComponent<VRTK_ControllerEvents>();
 
-        var disabler = FindObjectOfType<DisableTeleportOnTouch>();
-
-        if (disabler)
+        if (teleportDisabler)
         {
-            disabler.AddDisabler(controllerEvents, gameObject);
+            teleportDisabler.AddDisabler(controllerEvents, gameObject);
         }
-
-        foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
+        else
         {
-            teleporter.enabled = false;
+            foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
+            {
+                teleporter.enabled = false;
+            }
         }
 
         controllerEvents.TouchpadPressed += ControllerEvents_TriggerClicked;
