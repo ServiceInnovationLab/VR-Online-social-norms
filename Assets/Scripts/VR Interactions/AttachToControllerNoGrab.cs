@@ -8,6 +8,7 @@ using VRTK;
 public class AttachToControllerNoGrab : MonoBehaviour
 {
     public SDK_BaseController.ControllerHand controllerHand;
+    public Vector3 offset = Vector3.zero;
 
     private void OnEnable()
     {
@@ -36,7 +37,7 @@ public class AttachToControllerNoGrab : MonoBehaviour
             }
 
             gameObject.transform.SetParent(grab.controllerAttachPoint.transform);
-            gameObject.transform.localPosition = Vector3.zero;
+            gameObject.transform.localPosition = offset;
             gameObject.transform.localRotation = Quaternion.identity;
 
 
