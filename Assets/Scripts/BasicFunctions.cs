@@ -15,7 +15,10 @@ public class BasicFunctions : ScriptableObject
     /// <param name="gameObject">The <see cref="GameObject"/> to change</param>
     public void ToggleObject(GameObject gameObject)
     {
-        gameObject.SetActive(!gameObject.activeInHierarchy);
+        if (gameObject)
+        {
+            gameObject.SetActive(!gameObject.activeInHierarchy);
+        }
     }
 
     /// <summary>
@@ -25,6 +28,18 @@ public class BasicFunctions : ScriptableObject
     public void DestroyObject(GameObject gameObject)
     {
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Destroys the given game object, if it is active
+    /// </summary>
+    /// <param name="gameObject">The <see cref="GameObject"/> to destroy</param>
+    public void DestroyObjectIfActive(GameObject gameObject)
+    {
+        if (gameObject && gameObject.activeInHierarchy)
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>

@@ -11228,6 +11228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 2
   minGlow: 0.2
+  maxGlow: 1
 --- !u!23 &601882650
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21086,6 +21087,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377ced3493c4e1842a5b1c23f56519db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1124140910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124140880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c6cdb57c133804fba1c62374bfe101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeness: 1
+  affectBoth: 0
 --- !u!1 &1126071998 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1142869793867862, guid: bf30eb16cc26b774e8aed73fb6c17a1f,
@@ -21774,6 +21789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resizeFirst: 0
   doRotate: 1
+  deleteTarget: 1
   target: {fileID: 198109557}
   targetRotation: {fileID: 183618040}
   blinkDistance: 32.1
@@ -22395,6 +22411,7 @@ GameObject:
   - component: {fileID: 1179596710}
   - component: {fileID: 1179596712}
   - component: {fileID: 1179596711}
+  - component: {fileID: 1179596717}
   m_Layer: 0
   m_Name: UI Pointer
   m_TagString: Untagged
@@ -22555,6 +22572,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1179596717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179596709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c98fd026c4dbbe46a2d9cf290ee2bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1180291432
 GameObject:
   m_ObjectHideFlags: 0
