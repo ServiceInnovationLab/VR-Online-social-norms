@@ -31,7 +31,7 @@ public class ShowIfCloseToPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!player)
+        if (!player || !objectToToggle || !objectToCompareDistance)
             return;
 
         var distance = Vector3.Distance(player.position.XZ(), objectToCompareDistance.position.XZ());
