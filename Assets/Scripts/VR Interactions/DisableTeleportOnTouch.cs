@@ -40,36 +40,6 @@ public class DisableTeleportOnTouch : MonoBehaviour
         }
     }
 
-    private void SetupNearTouch(VRTK_InteractNearTouch touch, int index)
-    {
-        if (!touch)
-        {
-            Debug.LogError("No VRTK_InteractNearTouch given");
-            return;
-        }
-
-        touch.ControllerNearTouchInteractableObject += (s, a) =>
-        {
-            var touching = controllersTouching[index];
-
-            if (!touching.Contains(a.target) && !a.target.name.Contains("[NearTouch][CollidersContainer]"))
-            {
-                touching.Add(a.target);
-                OnChange();
-            }
-        };
-
-        touch.ControllerNearUntouchInteractableObject += (s, a) =>
-        {
-            var touching = controllersTouching[index];
-
-            if (touching.Contains(a.target))
-            {
-                touching.Remove(a.target);
-                OnChange();
-            }
-        };
-    }
 
     private void AddTouching(GameObject gameObject, int controllerIndex)
     {
@@ -109,6 +79,35 @@ public class DisableTeleportOnTouch : MonoBehaviour
             RemoveTouching(gameObject, i, false);
         }
         OnChange();
+    }
+
+    private void SetupNearTouch(VRTK_InteractNearTouch touch, int index)
+    {
+        if (!touch)
+        {
+            Debug.LogError("No VRTK_InteractNearTouch given");
+            return;
+        }
+
+        touch.ControllerNearTouchInteractableObject += (s, a) =>
+        {
+            var touching = controllersTouching[index];
+
+            if (!touching.Contains(a.target) && !a.target.name.Contains("[NearTouch][CollidersContainer]"))
+            {
+                AddTouching(a.target, index);
+            }
+        };
+
+        touch.ControllerNearUntouchInteractableObject += (s, a) =>
+        {
+            var touching = controllersTouching[index];
+
+            if (touching.Contains(a.target))
+            {
+                RemoveTouching(a.target, index);                
+            }
+        };
     }
 
     private void SetupTouch(VRTK_InteractTouch touch, int index)
