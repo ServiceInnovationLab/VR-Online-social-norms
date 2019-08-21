@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class DetechScrollToBottom : MonoBehaviour
 {
     [SerializeField] UnityEvent onReachedThreshold = new UnityEvent();
+    [SerializeField] bool bottomIsZero = true;
     [SerializeField] float threshold = 0.8f;
 
     ScrollRect rect;
@@ -27,8 +28,7 @@ public class DetechScrollToBottom : MonoBehaviour
 
     private void OnScroll(Vector2 amount)
     {
-        Debug.Log(rect.verticalNormalizedPosition);
-        if (rect.verticalNormalizedPosition >= threshold)
+        if ((rect.verticalNormalizedPosition >= threshold && !bottomIsZero) || (bottomIsZero && rect.verticalNormalizedPosition <= 1 - threshold))
         {
             onReachedThreshold?.Invoke();
         }
