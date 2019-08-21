@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ResetIfOutOfArea : MonoBehaviour
 {
     [SerializeField] Transform resetPoint;
@@ -34,15 +34,7 @@ public class ResetIfOutOfArea : MonoBehaviour
         if (inBounds || (isAbove && !body.IsSleeping()))
             return;
 
-        if (body)
-        {
-            body.MovePosition(resetPoint.position);
-            body.MoveRotation(resetPoint.rotation);
-        }
-        else
-        {
-            transform.position = resetPoint.position;
-            transform.rotation = resetPoint.rotation;
-        }
+        body.MovePosition(resetPoint.position);
+        body.MoveRotation(resetPoint.rotation);
     }
 }
