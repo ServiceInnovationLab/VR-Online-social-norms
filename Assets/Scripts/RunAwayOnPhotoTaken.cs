@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.AI;
 
 public class RunAwayOnPhotoTaken : MonoBehaviour
 {
+    [SerializeField] UnityEvent onRunAway;
     [SerializeField] new Renderer renderer;    
     [SerializeField] NavMeshAgent agent;
     bool runningAway = false;
@@ -41,6 +43,7 @@ public class RunAwayOnPhotoTaken : MonoBehaviour
         if (!GeometryUtility.TestPlanesAABB(planes, renderer.bounds))
             return;
 
+        onRunAway?.Invoke();
         StartCoroutine(RunAway(-agent.transform.forward.XZ().normalized));
 
         runningAway = true;
