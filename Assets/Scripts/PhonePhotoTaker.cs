@@ -64,6 +64,7 @@ public class PhonePhotoTaker : MonoBehaviour
         takingPhoto = false;
 
         photoTaken?.Invoke();
+        EventManager.TriggerEvent(Events.PhotoTaken, new PhotoTakenEventArgs(captureCamera));
     }
 
 }
