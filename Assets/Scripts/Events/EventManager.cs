@@ -115,7 +115,7 @@ public class EventManager : MonoBehaviour
         Action thisEvent = null;
         if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
-            thisEvent.Invoke();
+            thisEvent?.Invoke();
         }
     }
 
@@ -124,7 +124,7 @@ public class EventManager : MonoBehaviour
         Action<IEventArgs> thisEvent = null;
         if (Instance.eventArgsDictionary.TryGetValue(eventName, out thisEvent))
         {
-            thisEvent.Invoke(eventArgs);
+            thisEvent?.Invoke(eventArgs);
         }
     }
 }

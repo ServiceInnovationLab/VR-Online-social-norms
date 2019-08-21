@@ -25,7 +25,13 @@ public class ResetIfOutOfArea : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (VectorUtils.IsPointWithinCollider(area, transform.position.XZ()) && transform.position.y > area.bounds.max.y)
+        var positionToCheck = transform.position.XZ();
+        positionToCheck.y = area.bounds.center.y;
+
+        var inBounds = VectorUtils.IsPointWithinCollider(area, positionToCheck);
+        var isAbove = transform.position.y > area.bounds.max.y;
+
+        if (inBounds || (isAbove && !body.IsSleeping()))
             return;
 
         if (body)

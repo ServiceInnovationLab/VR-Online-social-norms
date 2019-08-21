@@ -4,18 +4,24 @@ using UnityEngine.AI;
 
 public class RunAwayOnPhotoTaken : MonoBehaviour
 {
-    [SerializeField] new Renderer renderer;
-    [SerializeField] Transform facing;
-    NavMeshAgent agent;
+    [SerializeField] new Renderer renderer;    
+    [SerializeField] NavMeshAgent agent;
+    bool runningAway = false;
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        if (!agent)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
     }
     
     void OnEnable()
     {
-        EventManager.StartListening(Events.PhotoTaken, OnPhotoTaken);
+        if (!runningAway)
+        {
+            EventManager.StartListening(Events.PhotoTaken, OnPhotoTaken);
+        }
     }
 
     private void OnDisable()
@@ -35,7 +41,10 @@ public class RunAwayOnPhotoTaken : MonoBehaviour
         if (!GeometryUtility.TestPlanesAABB(planes, renderer.bounds))
             return;
 
-        StartCoroutine(RunAway(-facing.forward.XZ().normalized));
+        StartCoroutine(RunAway(-agent.transform.forward.XZ().normalized));
+
+        runningAway = true;
+        EventManager.StopListening(Events.PhotoTaken, OnPhotoTaken);
     }
 
     IEnumerator RunAway(Vector3 direction)
