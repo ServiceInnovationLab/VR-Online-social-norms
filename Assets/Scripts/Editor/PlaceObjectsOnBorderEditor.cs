@@ -12,9 +12,11 @@ public class PlaceObjectsOnBorderEditor : Editor
         if (GUILayout.Button("Place now"))
         {
             var targetObject = target as PlaceObjectsOnBorder;
-            targetObject.DoPlacement();
 
-            EditorUtility.SetDirty(target);
+            Undo.RecordObjects(new[] { targetObject.left.transform, targetObject.right.transform, targetObject.top.transform, targetObject.bottom.transform }, "Place Objects");
+
+
+            targetObject.DoPlacement();
 
             EditorUtility.SetDirty(targetObject.left);
             EditorUtility.SetDirty(targetObject.right);

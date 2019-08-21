@@ -7,6 +7,7 @@ public class SnapToFloor : MonoBehaviour
     [SerializeField] Transform floor;
     [SerializeField] Vector3 offset = Vector3.up * 0.5f;
     [SerializeField] bool disableOnUse = false;
+    [SerializeField] bool keepTeleportToPointerValue = true;
 
     private void Awake()
     {
@@ -29,14 +30,21 @@ public class SnapToFloor : MonoBehaviour
         var player = VRTK_DeviceFinder.HeadsetTransform();
 
         var playAreaTeleport = teleport as PlayAreaLimitedTeleport;
+        bool originalValue = false;
 
         if (playAreaTeleport)
         {
+            originalValue = playAreaTeleport.GetOnlyTeleportToPointers();
             playAreaTeleport.SetOnlyToPointers(false);
         }
 
         teleport.Teleport(floor, player.position + offset);
 
         enabled = !disableOnUse;
+
+        if (keepTeleportToPointerValue && playAreaTeleport)
+        {
+            playAreaTeleport.SetOnlyToPointers(originalValue);
+        }
     }
 }
