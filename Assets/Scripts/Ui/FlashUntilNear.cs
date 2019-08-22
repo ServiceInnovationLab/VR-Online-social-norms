@@ -15,6 +15,7 @@ public class FlashUntilNear : MonoBehaviour
 
     VRTK_MaterialColorSwapHighlighter highlighter;
     VRTK_InteractObjectHighlighter highlighterObject;
+    bool disableHighlight;
 
     void OnEnable()
     {
@@ -42,24 +43,30 @@ public class FlashUntilNear : MonoBehaviour
         {
             Debug.LogError("Unknown closeness value");
         }
+
+        disableHighlight = true;
     }
 
     private void InteractObjectHighlighterHighlighted(object sender, InteractObjectHighlighterEventArgs e)
     {
+        if (e.interactionType == VRTK_InteractableObject.InteractionType.NearTouch && closeness == Closeness.Touched)
+            return;
+
         StopAllCoroutines();
         enabled = false;
+        disableHighlight = false;
     }
 
     private void OnDisable()
     {
         StopAllCoroutines();
 
-        if (highlighterObject)
+        if (highlighterObject && disableHighlight)
         {
             highlighterObject.Unhighlight();
         }
 
-        if (highlighter)
+        if (highlighter && disableHighlight)
         {
             highlighter.Unhighlight();
         }
@@ -71,7 +78,7 @@ public class FlashUntilNear : MonoBehaviour
 
         while (maxTimes == -1 || maxTimes-- > 0)
         {
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(time);            
 
             if (highlighterObject)
             {
