@@ -346,6 +346,9 @@ namespace VRTK
 
         protected virtual void DoDestinationMarkerSet(object sender, DestinationMarkerEventArgs e)
         {
+            if (!gameObject.activeInHierarchy)
+                return;
+
             if (e.raycastHit.transform == transform)
             {
                 currentDestinationPoint = this;
