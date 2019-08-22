@@ -47,6 +47,16 @@ namespace VRTK
             }
         }
 
+        public static bool TriggerHapticFrequency(VRTK_ControllerReference controllerReference, float strength, float duration, float frequency)
+        {
+            SetupInstance();
+            if (instance != null)
+            {
+                return instance.InternalTriggerHapticFrequency(controllerReference, strength, duration, frequency);
+            }
+            return false;
+        }
+
         /// <summary>
         /// The TriggerHapticPulse/2 method calls a haptic pulse based on a given audio clip.
         /// </summary>
@@ -102,6 +112,12 @@ namespace VRTK
             SDK_ControllerHapticModifiers hapticModifiers = VRTK_SDK_Bridge.GetHapticModifiers();
             Coroutine hapticLoop = StartCoroutine(SimpleHapticPulseRoutine(controllerReference, duration * hapticModifiers.durationModifier, hapticPulseStrength, pulseInterval * hapticModifiers.intervalModifier));
             VRTK_SharedMethods.AddDictionaryValue(hapticLoopCoroutines, controllerReference, hapticLoop);
+        }
+
+        protected virtual bool InternalTriggerHapticFrequency(VRTK_ControllerReference controllerReference, float strength, float duration, float frequency)
+        {
+            InternalCancelHapticPulse(controllerReference);
+            return VRTK_SDK_Bridge.HapticPulse(controllerReference, strength, duration, frequency);
         }
 
         protected virtual void InternalTriggerHapticPulse(VRTK_ControllerReference controllerReference, AudioClip clip)

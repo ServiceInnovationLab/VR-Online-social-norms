@@ -447,6 +447,11 @@ namespace VRTK
         /// <param name="strength">The intensity of the rumble of the controller motor. `0` to `1`.</param>
         public abstract void HapticPulse(VRTK_ControllerReference controllerReference, float strength = 0.5f);
 
+        public virtual bool HapticPulse(VRTK_ControllerReference controllerReference, float strength = 0.5f, float duration = 1.0f, float frequency = 150)
+        {
+            return false;
+        }
+
         /// <summary>
         /// The HapticPulse/2 method is used to initiate a haptic pulse based on an audio clip on the tracked object of the given controller reference.
         /// </summary>

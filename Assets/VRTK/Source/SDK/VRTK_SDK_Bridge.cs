@@ -130,6 +130,11 @@
             GetControllerSDK().SetControllerRenderModelWheel(renderModel, state);
         }
 
+        public static bool HapticPulse(VRTK_ControllerReference controllerReference, float strength = 0.5f, float duration = 1.0f, float frequency = 150)
+        {
+            return GetControllerSDK().HapticPulse(controllerReference, strength, duration, frequency);
+        }
+
         public static void HapticPulse(VRTK_ControllerReference controllerReference, float strength = 0.5f)
         {
             GetControllerSDK().HapticPulse(controllerReference, strength);
