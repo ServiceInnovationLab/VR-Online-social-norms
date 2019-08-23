@@ -12,6 +12,16 @@ public static class VectorExtensions
     }
 
     /// <summary>
+    /// Returns the vector with just the Y component
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <returns></returns>
+    public static Vector3 Y(this Vector3 vector)
+    {
+        return new Vector3(0, vector.y, 0);
+    }
+
+    /// <summary>
     /// Returns a vector with just the absolute value of each component
     /// </summary>
     public static Vector3 Abs(this Vector3 vector)

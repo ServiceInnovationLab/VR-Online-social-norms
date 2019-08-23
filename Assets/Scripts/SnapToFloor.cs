@@ -8,12 +8,19 @@ public class SnapToFloor : MonoBehaviour
     [SerializeField] Vector3 offset = Vector3.up * 0.5f;
     [SerializeField] bool disableOnUse = false;
     [SerializeField] bool keepTeleportToPointerValue = true;
+    [SerializeField] bool snapManagerHere = false;
 
     private void Awake()
     {
         if (!floor)
         {
             floor = transform;
+        }
+
+        if (snapManagerHere)
+        {
+            var manager = FindObjectOfType<VRTK_SDKManager>();
+            manager.transform.position = transform.position.XZ();
         }
     }
 
