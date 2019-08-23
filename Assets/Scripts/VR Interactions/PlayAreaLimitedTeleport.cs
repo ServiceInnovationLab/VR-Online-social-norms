@@ -5,6 +5,7 @@ public class PlayAreaLimitedTeleport : VRTK_HeightAdjustTeleport
 {
     [SerializeField] bool onlyTeleportToPointers;
     [SerializeField] bool checkForCollisions = true;
+    [SerializeField] LayerMask collisionDetectionMask = ~0;
     VrPlayArea[] playAreas;
 
     VRTK_BodyPhysics bodyPhysics;
@@ -80,7 +81,7 @@ public class PlayAreaLimitedTeleport : VRTK_HeightAdjustTeleport
                 var originalY = destinationPosition.y;
                 destinationPosition.y = GetTeleportY(target, destinationPosition) + bodyCollider.radius * 2 + 0.05f;
 
-                int count = Physics.OverlapCapsuleNonAlloc(destinationPosition, destinationPosition + Vector3.up * bodyCollider.height, bodyCollider.radius * 2, hitColliders, ~0, QueryTriggerInteraction.Ignore);
+                int count = Physics.OverlapCapsuleNonAlloc(destinationPosition, destinationPosition + Vector3.up * bodyCollider.height, bodyCollider.radius * 2, hitColliders, collisionDetectionMask, QueryTriggerInteraction.Ignore);
 
               /*  var newItem = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
                 newItem.position = destinationPosition;
