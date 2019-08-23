@@ -78,6 +78,11 @@ public class HapticOnObjectTouch : MonoBehaviour
 
     protected virtual void TouchHaptics(object sender, InteractableObjectEventArgs e)
     {
+        var interactableObject = sender as VRTK_InteractableObject;
+
+        if (interactableObject && !interactableObject.isGrabbable && !interactableObject.isUsable)
+            return;
+
         VRTK_ControllerReference controllerReference = VRTK_ControllerReference.GetControllerReference(e.interactingObject);
         if (VRTK_ControllerReference.IsValid(controllerReference))
         {
