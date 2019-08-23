@@ -2794,6 +2794,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8816357222113915036, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: hookUpToControllers
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5263055379510138495, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: identifiers.Array.size
@@ -2813,11 +2818,6 @@ PrefabInstance:
         type: 3}
       propertyPath: identifiers.Array.data[0]
       value: IncludeTeleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 8816357222113915036, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: hookUpToControllers
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5263055381172304631, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
@@ -2866,6 +2866,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closeness: 1
   affectBoth: 0
+--- !u!114 &183925772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183925770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f959574ce280c824f86c3451f8bbe2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 1
+  duration: 0.05
+  frequency: 100
+  strengthOnTouch: 0.05
+  durationOnTouch: 0.04
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
+--- !u!114 &183925773 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5263055380110088587, guid: 050d1a8df4d6593499651f7be4e0ad91,
+    type: 3}
+  m_PrefabInstance: {fileID: 183925769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288559927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &183925774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5263055380867756748, guid: 050d1a8df4d6593499651f7be4e0ad91,
+    type: 3}
+  m_PrefabInstance: {fileID: 183925769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415424725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &189331162
 GameObject:
   m_ObjectHideFlags: 0
@@ -7011,6 +7054,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: ExcludeTeleport
       objectReference: {fileID: 0}
+    - target: {fileID: 139308, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 418434, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.324
@@ -7068,10 +7115,6 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 155236, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
-      propertyPath: m_TagString
-      value: ExcludeTeleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 139308, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
       propertyPath: m_TagString
       value: ExcludeTeleport
       objectReference: {fileID: 0}
@@ -14905,6 +14948,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf30eb16cc26b774e8aed73fb6c17a1f, type: 3}
+--- !u!114 &1042750062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114641195797302576, guid: bf30eb16cc26b774e8aed73fb6c17a1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1042750061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018062829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5890e3cad70bea64d91aef9145ba3454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1042750063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114813580761721416, guid: bf30eb16cc26b774e8aed73fb6c17a1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1042750061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102906316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5890e3cad70bea64d91aef9145ba3454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1045897575 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1411003019843990, guid: 423906e3a82141942aa314fe7f592788,
@@ -15477,6 +15544,7 @@ MonoBehaviour:
   floor: {fileID: 0}
   offset: {x: 0, y: 0.5, z: 0}
   disableOnUse: 1
+  keepTeleportToPointerValue: 1
 --- !u!1 &1076747856
 GameObject:
   m_ObjectHideFlags: 0
@@ -16588,7 +16656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec2ac476f2fc9a45a4e69712580a603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  precisionGrab: 0
+  precisionGrab: 1
   rightSnapHandle: {fileID: 0}
   leftSnapHandle: {fileID: 0}
   throwVelocityWithAttachDistance: 0
@@ -18192,6 +18260,22 @@ MonoBehaviour:
     min: 0
     max: 0
   eventName: KeyboardTextTyped
+--- !u!114 &1297328608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297328597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc366c4ab9b63a4dad97fc1290dc00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  unhighlightOnDisable: 1
+  emissionDarken: 0
+  customMaterial: {fileID: 0}
 --- !u!1 &1299031426
 GameObject:
   m_ObjectHideFlags: 0
@@ -18981,6 +19065,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: ExcludeTeleport
       objectReference: {fileID: 0}
+    - target: {fileID: 139308, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 418434, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.113
@@ -19038,10 +19126,6 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 155236, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
-      propertyPath: m_TagString
-      value: ExcludeTeleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 139308, guid: 92c13c89ae4f45048b7dbcbb03538250, type: 3}
       propertyPath: m_TagString
       value: ExcludeTeleport
       objectReference: {fileID: 0}
@@ -24189,6 +24273,7 @@ GameObject:
   - component: {fileID: 1753072037}
   - component: {fileID: 1753072040}
   - component: {fileID: 1753072041}
+  - component: {fileID: 1753072042}
   m_Layer: 0
   m_Name: '[VRTK_SDKManager]'
   m_TagString: Untagged
@@ -24294,6 +24379,28 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: VRTK.UnityEventHelper.VRTK_SDKManager_UnityEvents+LoadedSetupChangeEvent,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &1753072042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753072036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b084884fa6e4403468dcd1298347fa18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sdkManager: {fileID: 1753072038}
+  controllerLeft: {fileID: 1042750063}
+  controllerRight: {fileID: 1042750062}
+  leftPointer: {fileID: 183925774}
+  rightPointer: {fileID: 183925773}
+  triggerButtonColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.39215687}
+  touchpadButtonColour: {r: 0, g: 0, b: 1, a: 0.39215687}
+  animateTouchpad: 0
+  animateTrigger: 0
+  showTriggers: 1
 --- !u!4 &1754082638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414948, guid: 3b65d553ffead574bb2395cee9299543,
@@ -25383,6 +25490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerHand: 2
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &1793284708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28341,7 +28449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
-  touchHighlight: {r: 1, g: 0.7540867, b: 0.5254902, a: 0}
+  touchHighlight: {r: 0.99215686, g: 1, b: 0.5254902, a: 0}
   grabHighlight: {r: 0, g: 0, b: 0, a: 0}
   useHighlight: {r: 0, g: 0, b: 0, a: 0}
   objectToMonitor: {fileID: 0}
@@ -28427,6 +28535,22 @@ MonoBehaviour:
   highlightColour: {r: 0.7294118, g: 0.99215686, b: 0.5568628, a: 1}
   time: 0.5
   maxTime: 0
+--- !u!114 &1940835707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940835698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc366c4ab9b63a4dad97fc1290dc00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  unhighlightOnDisable: 1
+  emissionDarken: 0
+  customMaterial: {fileID: 0}
 --- !u!114 &1942055871 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5263055381172304631, guid: 050d1a8df4d6593499651f7be4e0ad91,
@@ -30995,7 +31119,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912126846009022162}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1518a5e598c7da244bc4850d3ae63354, type: 3}
   m_Name: 

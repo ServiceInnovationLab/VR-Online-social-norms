@@ -78,6 +78,11 @@ public class HapticOnObjectTouch : MonoBehaviour
 
     protected virtual void TouchHaptics(object sender, InteractableObjectEventArgs e)
     {
+        var interactableObject = sender as VRTK_InteractableObject;
+
+        if (interactableObject && !interactableObject.isGrabbable && !interactableObject.isUsable)
+            return;
+
         VRTK_ControllerReference controllerReference = VRTK_ControllerReference.GetControllerReference(e.interactingObject);
         if (VRTK_ControllerReference.IsValid(controllerReference))
         {
@@ -85,22 +90,15 @@ public class HapticOnObjectTouch : MonoBehaviour
         }
     }
 
-    VRTK_ControllerReference CancelOn(GameObject givenObject)
-    {
-        VRTK_ControllerReference controllerReference = VRTK_ControllerReference.GetControllerReference(givenObject);
-        if (VRTK_ControllerReference.IsValid(controllerReference))
-        {
-            CancelHaptics(controllerReference);
-        }
-
-        return controllerReference;
-    }
-
     protected virtual void CancelTouchHaptics(object sender, InteractableObjectEventArgs e)
     {
         if (cancelOnUntouch)
         {
-            var controller = CancelOn(e.interactingObject);
+            VRTK_ControllerReference controllerReference = VRTK_ControllerReference.GetControllerReference(e.interactingObject);
+            if (VRTK_ControllerReference.IsValid(controllerReference))
+            {
+                CancelHaptics(controllerReference);
+            }
         }
     }
 }
