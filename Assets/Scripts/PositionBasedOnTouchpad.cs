@@ -40,7 +40,7 @@ public class PositionBasedOnTouchpad : MonoBehaviour
             if (isTouched)
             {
                 var currentAxis = controllerEvents.GetTouchpadAxis();
-                transform.localPosition.Set(currentAxis.x * scaleX, transform.localPosition.y, currentAxis.y * scaleZ);
+                transform.localPosition = new Vector3(currentAxis.x * scaleX, transform.localPosition.y, currentAxis.y * scaleZ);
             }
         }
     }
