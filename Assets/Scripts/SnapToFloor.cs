@@ -36,6 +36,9 @@ public class SnapToFloor : MonoBehaviour
 
         var player = VRTK_DeviceFinder.HeadsetTransform();
 
+        if (!player)
+            return;
+
         var playAreaTeleport = teleport as PlayAreaLimitedTeleport;
         bool originalValue = false;
 
