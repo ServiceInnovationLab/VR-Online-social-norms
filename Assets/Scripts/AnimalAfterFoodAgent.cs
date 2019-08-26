@@ -125,7 +125,7 @@ public class AnimalAfterFoodAgent : MonoBehaviour
 
                 //if ((go.transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9) continue;
 
-                if (distance < closest && (go.isKinematic || !VectorUtils.IsPointWithinCollider(colliderBounds, go.position.XZ())))
+                if (distance < closest && (go.isKinematic || !VectorUtils.IsPointWithinCollider(colliderBounds, go.position.XZ(), true)))
                 {
                     closest = distance;
                     target = i;
@@ -135,6 +135,15 @@ public class AnimalAfterFoodAgent : MonoBehaviour
 
         if (target > -1)
         {
+            var distance = Vector3.Distance(transform.position, targets[target].transform.position);
+
+            // Sometimes collisons aren't detected?
+            if (distance < agent.radius)
+            {
+                EatFood(targets[target].gameObject);
+                return;
+            }
+
             if (targets[target].isKinematic)
             {
                 var lookPos = targets[target].transform.position - transform.position;

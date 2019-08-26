@@ -33,6 +33,13 @@ public class WorldScaleManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
         SceneManager.activeSceneChanged += ActiveSceneChanged;
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.playModeStateChanged += (a) =>
+        {
+            Physics.gravity = originalGravity;
+        };
+#endif
     }
 
     private void ActiveSceneChanged(Scene current, Scene next)
@@ -46,8 +53,14 @@ public class WorldScaleManager : MonoBehaviour
 
         if (worldScale.sdkManager)
         {
-            worldScale.sdkManager.transform.localScale = new Vector3(worldScale.scale, worldScale.scale, worldScale.scale);
+            worldScale.sdkManager.LoadedSetupChanged += (s, e) =>
+            {
+                if (e.currentSetup == null)
+                    return;
+
+                VRTK.VRTK_DeviceFinder.HeadsetCamera().localScale = new Vector3(worldScale.scale, worldScale.scale, worldScale.scale);
+            };
+          //  worldScale.sdkManager.transform.localScale = new Vector3(worldScale.scale, worldScale.scale, worldScale.scale);
         }
     }
-
 }

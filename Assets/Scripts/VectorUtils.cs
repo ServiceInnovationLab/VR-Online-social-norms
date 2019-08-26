@@ -28,8 +28,13 @@ public static class VectorUtils
         return Mathf.Atan2(Vector3.Dot(v, right), Vector3.Dot(v, forward)) * Mathf.Rad2Deg;
     }
 
-    public static bool IsPointWithinCollider(Collider collider, Vector3 point)
+    public static bool IsPointWithinCollider(Collider collider, Vector3 point, bool ignoreY = false)
     {
+        if (ignoreY)
+        {
+            point.y = collider.bounds.center.y;
+        }
+
         var z = collider.ClosestPoint(point);
         return (collider.ClosestPoint(point) - point).sqrMagnitude < Mathf.Epsilon * Mathf.Epsilon;
     }
