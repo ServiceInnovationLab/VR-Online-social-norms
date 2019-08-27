@@ -19294,11 +19294,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -16.192001
       objectReference: {fileID: 0}
-    - target: {fileID: 2928073809878169894, guid: 08e091500e68ded43b4abfb1b3f718d0,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 153061f29d41be9438999ac2fae2c894, type: 2}
     - target: {fileID: -8856865354197063074, guid: 08e091500e68ded43b4abfb1b3f718d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19429,6 +19424,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -27.69
       objectReference: {fileID: 0}
+    - target: {fileID: 2928073809878169894, guid: 08e091500e68ded43b4abfb1b3f718d0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 153061f29d41be9438999ac2fae2c894, type: 2}
     - target: {fileID: -1715842831618369241, guid: 08e091500e68ded43b4abfb1b3f718d0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -20965,11 +20965,6 @@ PrefabInstance:
       propertyPath: identifiers.Array.data[0]
       value: IncludeTeleport
       objectReference: {fileID: 0}
-    - target: {fileID: 5263055380110088587, guid: 050d1a8df4d6593499651f7be4e0ad91,
-        type: 3}
-      propertyPath: targetListPolicy
-      value: 
-      objectReference: {fileID: 1124140882}
     - target: {fileID: 5263055380110088583, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: m_IsActive
@@ -20985,6 +20980,11 @@ PrefabInstance:
       propertyPath: tooltipsRight
       value: 
       objectReference: {fileID: 1124140881}
+    - target: {fileID: 5263055380110088587, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: targetListPolicy
+      value: 
+      objectReference: {fileID: 1124140882}
     - target: {fileID: 5263055379510138493, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: m_IsActive
@@ -22432,6 +22432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerHand: 2
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &1179596711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24105,8 +24106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene:
-    sceneAsset: {fileID: 102900000, guid: 6f32bad68fb12ea479f9dfb0fe7655a4, type: 3}
-    scenePath: Assets/Scenes/Blocked out nature interactions.unity
+    sceneAsset: {fileID: 102900000, guid: 9aa4e66b337e9c84685e39874fc7393e, type: 3}
+    scenePath: Assets/Scenes/NZ Nature Play Area Test.unity
   blinkToColor: {r: 0, g: 0, b: 0, a: 1}
   delay: 0
   teleportToName: 
