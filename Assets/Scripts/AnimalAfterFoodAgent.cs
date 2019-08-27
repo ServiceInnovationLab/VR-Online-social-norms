@@ -154,5 +154,9 @@ public class AnimalAfterFoodAgent : MonoBehaviour
             agent.speed = Random.Range(0, speed / 2);
             agent.SetDestination(targets[target].transform.position);
         }
+        else
+        {
+            agent.ResetPath();
+        }
     }
 }
