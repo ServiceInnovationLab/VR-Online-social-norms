@@ -1543,6 +1543,16 @@ PrefabInstance:
       propertyPath: throwMultiplier
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 5263055381172304632, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: enableTeleport
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263055381172304632, guid: 050d1a8df4d6593499651f7be4e0ad91,
+        type: 3}
+      propertyPath: fallRestriction
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5263055381172304631, guid: 050d1a8df4d6593499651f7be4e0ad91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 050d1a8df4d6593499651f7be4e0ad91, type: 3}
@@ -5154,6 +5164,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8b8985445a7a8c94cb1bd3bf60c4bf72, type: 2}
+        m_MethodName: DisableTeleporting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: VRTK.UnityEventHelper.VRTK_DestinationPoint_UnityEvents+DestinationPointEvent,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &246486004
@@ -7206,6 +7227,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.495008
       objectReference: {fileID: 0}
+    - target: {fileID: 5004046366126177315, guid: 14fc08c9584532942b0c5877043ffffc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 897650271146234968, guid: 14fc08c9584532942b0c5877043ffffc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323157849609849692, guid: 14fc08c9584532942b0c5877043ffffc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4300444316536590986, guid: 14fc08c9584532942b0c5877043ffffc,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -7310,21 +7346,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5004046366126177315, guid: 14fc08c9584532942b0c5877043ffffc,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 897650271146234968, guid: 14fc08c9584532942b0c5877043ffffc,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 2323157849609849692, guid: 14fc08c9584532942b0c5877043ffffc,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14fc08c9584532942b0c5877043ffffc, type: 3}
@@ -18046,7 +18067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0070380596}
+  m_AnchoredPosition: {x: 0, y: -0.0074400255}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &826437743
@@ -19822,6 +19843,10 @@ PrefabInstance:
     - target: {fileID: 148444, guid: 39aa6e3f7c442a04d997c9ed23f46981, type: 3}
       propertyPath: m_Name
       value: FramesPerSecondCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 148444, guid: 39aa6e3f7c442a04d997c9ed23f46981, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22449092, guid: 39aa6e3f7c442a04d997c9ed23f46981, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26026,7 +26051,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187863968}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16b7bba281a212a44bd42b4e595d429b, type: 3}
   m_Name: 
@@ -27757,21 +27782,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.49500763
       objectReference: {fileID: 0}
-    - target: {fileID: 621072355969718745, guid: 14fc08c9584532942b0c5877043ffffc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 621072355969718745, guid: 14fc08c9584532942b0c5877043ffffc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 621072355969718745, guid: 14fc08c9584532942b0c5877043ffffc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5004046366126177315, guid: 14fc08c9584532942b0c5877043ffffc,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -27786,6 +27796,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 621072355969718745, guid: 14fc08c9584532942b0c5877043ffffc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 621072355969718745, guid: 14fc08c9584532942b0c5877043ffffc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 621072355969718745, guid: 14fc08c9584532942b0c5877043ffffc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14fc08c9584532942b0c5877043ffffc, type: 3}
@@ -35459,7 +35484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784293282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.82251, y: 0, z: -4.17}
+  m_LocalPosition: {x: 39.82251, y: 0, z: -4.61}
   m_LocalScale: {x: 18.110016, y: 1, z: 13.855203}
   m_Children: []
   m_Father: {fileID: 46697218}
@@ -38694,6 +38719,8 @@ MonoBehaviour:
   teleport: {fileID: 80893117}
   walkingDistance: 0.5
   speed: 4
+  runFromPlayer: 0
+  updateRate: 15
 --- !u!136 &1971722791
 CapsuleCollider:
   m_ObjectHideFlags: 0

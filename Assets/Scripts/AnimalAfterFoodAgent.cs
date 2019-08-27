@@ -11,6 +11,8 @@ public class AnimalAfterFoodAgent : MonoBehaviour
     [SerializeField] VRTK_BasicTeleport teleport;
     [SerializeField] float walkingDistance = 1.0f;
     [SerializeField] float speed = 2;
+    [SerializeField] bool runFromPlayer = false;
+    [SerializeField] int updateRate = 20;
 
     NavMeshAgent agent;
     bool runningAway = false;
@@ -18,7 +20,9 @@ public class AnimalAfterFoodAgent : MonoBehaviour
     
     Rigidbody[] targets;
     int target = -1;
-    Vector3 lastPlayerPosition;    
+    Vector3 lastPlayerPosition;
+
+    private int times;
 
     private void Awake()
     {
@@ -36,6 +40,13 @@ public class AnimalAfterFoodAgent : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!runFromPlayer)
+        {
+            GoAfterTarget();
+            return;
+        }
+
+
         var player = VRTK_DeviceFinder.HeadsetTransform();
 
         if (!player)
@@ -72,7 +83,7 @@ public class AnimalAfterFoodAgent : MonoBehaviour
         }
         else
         {
-            GoAfterTarget(player);
+            GoAfterTarget();
         }
 
         skipRunningAway = false;
@@ -103,8 +114,14 @@ public class AnimalAfterFoodAgent : MonoBehaviour
         EatFood(collision.transform.gameObject);
     }
 
-    void GoAfterTarget(Transform player)
+    void GoAfterTarget()
     {
+        if (times++ < updateRate)
+        {
+            return;
+        }
+        times = 0;
+
         if (target > -1 && (!targets[target] || targets[target].tag != "Food"))
         {
             target = -1;
@@ -122,8 +139,6 @@ public class AnimalAfterFoodAgent : MonoBehaviour
                     continue;
 
                 var distance = Vector3.Distance(transform.position, go.transform.position);
-
-                //if ((go.transform.position.XZ() - player.position.XZ()).sqrMagnitude < 9) continue;
 
                 if (distance < closest && (go.isKinematic || !VectorUtils.IsPointWithinCollider(colliderBounds, go.position.XZ(), true)))
                 {
@@ -151,7 +166,7 @@ public class AnimalAfterFoodAgent : MonoBehaviour
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(lookPos), 0.75f); ;
             }
 
-            agent.speed = Random.Range(0, speed / 2);
+            agent.speed = Random.Range(speed / 4, speed / 2);
             agent.SetDestination(targets[target].transform.position);
         }
         else
