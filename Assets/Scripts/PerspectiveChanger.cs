@@ -57,6 +57,16 @@ public class PerspectiveChanger : MonoBehaviour
         var teleportPosition = (target.position * (scaleRoom && scalePosition ? newSceneScale : 1)) + offset;
 
         var teleporter = this.teleporter ?? FindObjectOfType<VRTK_BasicTeleport>();
+
+        var playAreaTeleport = teleporter as PlayAreaLimitedTeleport;
+        bool originalCheckForCollisiosn = false;
+
+        if (playAreaTeleport)
+        {
+            originalCheckForCollisiosn = playAreaTeleport.checkForCollisions;
+            playAreaTeleport.checkForCollisions = false;
+        }
+
         var originalBlinkDelay = teleporter.distanceBlinkDelay;
         var originalBlinkTransition = teleporter.blinkTransitionSpeed;
 
@@ -110,5 +120,10 @@ public class PerspectiveChanger : MonoBehaviour
 
         teleporter.distanceBlinkDelay = originalBlinkDelay;
         teleporter.blinkTransitionSpeed = originalBlinkTransition;
+
+        if (playAreaTeleport)
+        {
+            playAreaTeleport.checkForCollisions = originalCheckForCollisiosn;
+        }
     }
 }
