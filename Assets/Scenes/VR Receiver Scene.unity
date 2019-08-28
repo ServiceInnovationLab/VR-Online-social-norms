@@ -18945,6 +18945,30 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4663403420412342955, guid: bf30eb16cc26b774e8aed73fb6c17a1f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bf30eb16cc26b774e8aed73fb6c17a1f, type: 3}
+--- !u!114 &1049035220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114641195797302576, guid: bf30eb16cc26b774e8aed73fb6c17a1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1049035219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477111625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5890e3cad70bea64d91aef9145ba3454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1049035221 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114813580761721416, guid: bf30eb16cc26b774e8aed73fb6c17a1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1049035219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703853136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5890e3cad70bea64d91aef9145ba3454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1051069406
 GameObject:
   m_ObjectHideFlags: 0
@@ -21087,6 +21111,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377ced3493c4e1842a5b1c23f56519db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1124140889 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5263055380110088587, guid: 050d1a8df4d6593499651f7be4e0ad91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1124140879}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124140885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1124140890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5263055380867756748, guid: 050d1a8df4d6593499651f7be4e0ad91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1124140879}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124140886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1124140891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124140880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f959574ce280c824f86c3451f8bbe2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 1
+  duration: 0.05
+  frequency: 100
+  strengthOnTouch: 0.05
+  durationOnTouch: 0.04
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
 --- !u!114 &1124140910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21099,7 +21166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c6cdb57c133804fba1c62374bfe101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeness: 1
+  closeness: 0
   affectBoth: 0
 --- !u!1 &1126071998 stripped
 GameObject:
@@ -31471,6 +31538,7 @@ GameObject:
   - component: {fileID: 1713961742}
   - component: {fileID: 1713961741}
   - component: {fileID: 1713961740}
+  - component: {fileID: 1713961745}
   m_Layer: 0
   m_Name: '[VRTK_SDKManager]'
   m_TagString: Untagged
@@ -31559,6 +31627,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713961745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713961739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b084884fa6e4403468dcd1298347fa18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sdkManager: {fileID: 1713961743}
+  controllerLeft: {fileID: 1049035221}
+  controllerRight: {fileID: 1049035220}
+  leftPointer: {fileID: 1124140890}
+  rightPointer: {fileID: 1124140889}
+  triggerButtonColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.39215687}
+  touchpadButtonColour: {r: 0, g: 0, b: 1, a: 0.39215687}
+  animateTouchpad: 0
+  animateTrigger: 0
+  showTriggers: 1
 --- !u!1001 &1715211720
 PrefabInstance:
   m_ObjectHideFlags: 0

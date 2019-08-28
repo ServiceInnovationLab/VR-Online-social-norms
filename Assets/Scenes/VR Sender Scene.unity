@@ -2487,7 +2487,7 @@ PrefabInstance:
     - target: {fileID: 5263055379621391958, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5263055379621391958, guid: 050d1a8df4d6593499651f7be4e0ad91,
         type: 3}
@@ -2864,7 +2864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c6cdb57c133804fba1c62374bfe101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeness: 1
+  closeness: 0
   affectBoth: 0
 --- !u!114 &183925772
 MonoBehaviour:
@@ -6086,7 +6086,7 @@ MonoBehaviour:
   blinkTransition: 2
   sceneObjects: {fileID: 0}
   newSceneScale: 0.8
-  offset: {x: -0.4, y: 0, z: 0.1}
+  offset: {x: -0.2, y: 0, z: 0}
   afterTeleport:
     m_PersistentCalls:
       m_Calls:
@@ -8114,7 +8114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013126526570, guid: f21e4a2c0e17b7e4a9cca4b8b584a5cd, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4000013126526570, guid: f21e4a2c0e17b7e4a9cca4b8b584a5cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9316,7 +9316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4246941288697392, guid: ac18017692e94344896239e6fc57f757, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4246941288697392, guid: ac18017692e94344896239e6fc57f757, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14767,7 +14767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15545,6 +15545,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.5, z: 0}
   disableOnUse: 1
   keepTeleportToPointerValue: 1
+  snapManagerHere: 0
 --- !u!1 &1076747856
 GameObject:
   m_ObjectHideFlags: 0
@@ -30913,7 +30914,7 @@ Transform:
   m_Children:
   - {fileID: 4307050538700278130}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 87.19401, y: -125.033005, z: -146.001}
 --- !u!4 &1849772017867360058
 Transform:
@@ -31715,7 +31716,7 @@ Transform:
   - {fileID: 2302745795878219824}
   - {fileID: 3994841276880462511}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -107.704, y: -30.09198, z: 20.64999}
 --- !u!4 &4307050538700278130
 Transform:
