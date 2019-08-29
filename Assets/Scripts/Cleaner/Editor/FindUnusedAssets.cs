@@ -77,21 +77,28 @@ namespace AssetClean
             using (var scrollScope = new EditorGUILayout.ScrollViewScope(scroll))
             {
                 scroll = scrollScope.scrollPosition;
-                foreach (var asset in deleteAssets)
+                using (var writer = new StreamWriter("D:\\unusedAssets.csv"))
                 {
-                    if (string.IsNullOrEmpty(asset.path))
+                    foreach (var asset in deleteAssets)
                     {
-                        continue;
-                    }
-
-                    using (var horizonal = new EditorGUILayout.HorizontalScope())
-                    {
-                        asset.isDelete = EditorGUILayout.Toggle(asset.isDelete, GUILayout.Width(20));
-                        var icon = AssetDatabase.GetCachedIcon(asset.path);
-                        GUILayout.Label(icon, GUILayout.Width(20), GUILayout.Height(20));
-                        if (GUILayout.Button(asset.path, EditorStyles.largeLabel))
+                        if (string.IsNullOrEmpty(asset.path))
                         {
-                            Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(asset.path);
+                            continue;
+                        }
+
+                        var info = new FileInfo(asset.path);                        
+
+                        writer.WriteLine(asset.path.Replace(',', '-') + "," + (info.Length / 1024));
+
+                        using (var horizonal = new EditorGUILayout.HorizontalScope())
+                        {
+                            asset.isDelete = EditorGUILayout.Toggle(asset.isDelete, GUILayout.Width(20));
+                            var icon = AssetDatabase.GetCachedIcon(asset.path);
+                            GUILayout.Label(icon, GUILayout.Width(20), GUILayout.Height(20));
+                            if (GUILayout.Button(asset.path, EditorStyles.largeLabel))
+                            {
+                                Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(asset.path);
+                            }
                         }
                     }
                 }
