@@ -11,6 +11,7 @@ public class PerspectiveChanger : MonoBehaviour
     public bool resizeFirst;
     public bool doRotate = true;
     public bool deleteTarget = true;
+    public bool doTeleport = true;
 
     [Tooltip("The target location the player will be teleported to on entering the sphere")]
     [SerializeField] Transform target;
@@ -71,7 +72,7 @@ public class PerspectiveChanger : MonoBehaviour
         var originalBlinkTransition = teleporter.blinkTransitionSpeed;
 
         teleporter.distanceBlinkDelay = blinkDistance;
-        teleporter.blinkTransitionSpeed = blinkTransition;        
+        teleporter.blinkTransitionSpeed = blinkTransition;
 
         if (scaleRoom)
         {
@@ -79,7 +80,7 @@ public class PerspectiveChanger : MonoBehaviour
         }
 
         Quaternion? rotation = null;
-        
+
         if (doRotate)
         {
             float rotationY;
@@ -104,7 +105,15 @@ public class PerspectiveChanger : MonoBehaviour
             VRTK_SDKManager.instance.transform.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
-        teleporter.Teleport(target, teleportPosition, rotation);
+        if (doTeleport)
+        {
+            teleporter.Teleport(target, teleportPosition, rotation);
+        }
+        else
+        {
+            VRTK_SDK_Bridge.HeadsetFade(Color.black, 0);
+            teleporter.Invoke("ReleaseBlink", 1.0f);
+        }
 
         if (scaleCamera && !resizeFirst)
         {
@@ -126,4 +135,5 @@ public class PerspectiveChanger : MonoBehaviour
             playAreaTeleport.checkForCollisions = originalCheckForCollisiosn;
         }
     }
+
 }
