@@ -39,7 +39,7 @@ namespace AssetClean
 
             window.Show();
         }
-
+        /*
         [MenuItem("Assets/Delete Unused Assets/Unused by editor", false, 51)]
         static void InitWithout()
         {
@@ -59,7 +59,7 @@ namespace AssetClean
             window.CopyDeleteFileList(window.collection.deleteFileList);
 
             window.Show();
-        }
+        }*/
 
         void OnGUI()
         {
@@ -73,6 +73,11 @@ namespace AssetClean
                     Close();
                 }
             }
+
+            var skipFolders = new string[] { "Assets/Data", "Assets/Plugins", "Assets/Scenes", "Assets/SteamVR", "Assets/VRTK" };
+
+
+            deleteAssets.RemoveAll(x => skipFolders.Any(skipPath => x.path.StartsWith(skipPath)));
 
             using (var scrollScope = new EditorGUILayout.ScrollViewScope(scroll))
             {
