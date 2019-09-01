@@ -28,6 +28,7 @@ namespace AssetClean
         AssetCollector collection = new AssetCollector();
         List<DeleteAsset> deleteAssets = new List<DeleteAsset>();
         Vector2 scroll;
+        static bool newData = false;
 
         [MenuItem("Assets/Delete Unused Assets/Only resource", false, 50)]
         static void InitWithoutCode()
@@ -37,6 +38,7 @@ namespace AssetClean
             window.collection.Collection();
             window.CopyDeleteFileList(window.collection.deleteFileList);
 
+            newData = true;
             window.Show();
         }
         /*
@@ -74,16 +76,17 @@ namespace AssetClean
                 }
             }
 
-            var skipFolders = new string[] { "Assets/Data", "Assets/Plugins", "Assets/Scenes", "Assets/SteamVR", "Assets/VRTK" };
-
-
-            deleteAssets.RemoveAll(x => skipFolders.Any(skipPath => x.path.StartsWith(skipPath)));
-
-            using (var scrollScope = new EditorGUILayout.ScrollViewScope(scroll))
+            if (newData)
             {
-                scroll = scrollScope.scrollPosition;
+                var skipFolders = new string[] { "Assets/Data", "Assets/Plugins", "Assets/Scenes", "Assets/SteamVR",
+                    "Assets/VRTK", "Assets/Imported Assets/Screen", "Assets/Character Animations",
+                    "Assets/Imported Assets/DesktopComputerSet", "Assets/Imported Assets/Office Stuff",
+                    "Assets/Imported Assets/Standard Assets", "Assets/Prefabs/computer.fbx"};
+                deleteAssets.RemoveAll(x => skipFolders.Any(skipPath => x.path.StartsWith(skipPath) || x.path.EndsWith(".txt")));
+
                 using (var writer = new StreamWriter("D:\\unusedAssets.csv"))
                 {
+                    writer.WriteLine("Path, Size");
                     foreach (var asset in deleteAssets)
                     {
                         if (string.IsNullOrEmpty(asset.path))
@@ -91,19 +94,33 @@ namespace AssetClean
                             continue;
                         }
 
-                        var info = new FileInfo(asset.path);                        
+                        var info = new FileInfo(asset.path);
 
                         writer.WriteLine(asset.path.Replace(',', '-') + "," + (info.Length / 1024));
+                    }
+                }
 
-                        using (var horizonal = new EditorGUILayout.HorizontalScope())
+                newData = false;
+            }
+
+            using (var scrollScope = new EditorGUILayout.ScrollViewScope(scroll))
+            {
+                scroll = scrollScope.scrollPosition;
+                foreach (var asset in deleteAssets)
+                {
+                    if (string.IsNullOrEmpty(asset.path))
+                    {
+                        continue;
+                    }
+
+                    using (var horizonal = new EditorGUILayout.HorizontalScope())
+                    {
+                        asset.isDelete = EditorGUILayout.Toggle(asset.isDelete, GUILayout.Width(20));
+                        var icon = AssetDatabase.GetCachedIcon(asset.path);
+                        GUILayout.Label(icon, GUILayout.Width(20), GUILayout.Height(20));
+                        if (GUILayout.Button(asset.path, EditorStyles.largeLabel))
                         {
-                            asset.isDelete = EditorGUILayout.Toggle(asset.isDelete, GUILayout.Width(20));
-                            var icon = AssetDatabase.GetCachedIcon(asset.path);
-                            GUILayout.Label(icon, GUILayout.Width(20), GUILayout.Height(20));
-                            if (GUILayout.Button(asset.path, EditorStyles.largeLabel))
-                            {
-                                Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(asset.path);
-                            }
+                            Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(asset.path);
                         }
                     }
                 }
