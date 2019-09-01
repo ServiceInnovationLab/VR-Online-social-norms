@@ -25,6 +25,10 @@ public class VR_SceneChanger : MonoBehaviour
 
     [SerializeField] UnityEvent onTeleport;
 
+    [SerializeField] bool preload = false;
+
+    AsyncOperation loadingOperation;
+
     bool switched;
 
     public void SwitchScenes()
@@ -81,6 +85,13 @@ public class VR_SceneChanger : MonoBehaviour
             {
                 switched = true;
 
+                if (loadingOperation != null)
+                {
+                    VRTK_SDK_Bridge.HeadsetFade(blinkToColor, 0, true);
+                    loadingOperation.allowSceneActivation = true;
+                    return;
+                }
+
                 var steam = VRTK_SDKManager.instance.transform.Find("[VRTK_SDKSetups]/SteamVR");
                 if (false && steam && steam.gameObject.activeInHierarchy)
                 {
@@ -92,16 +103,35 @@ public class VR_SceneChanger : MonoBehaviour
                 else
                 {
                     DisableTeleporters();
-                    StartCoroutine(DoSwitchSceneLoad());
+                    StartCoroutine(DoSwitchSceneLoad(false));
                 }
             }
         }
     }
 
-    IEnumerator DoSwitchSceneLoad()
+    private void Start()
     {
-        VRTK_SDK_Bridge.HeadsetFade(blinkToColor, 0, true);
+        if (preload)
+        {
+            Invoke(nameof(PreLoad), 5.0f);
+        }
+    }
 
-        yield return SceneManager.LoadSceneAsync(scene.ScenePath, LoadSceneMode.Single);
+    private void PreLoad()
+    {
+        StartCoroutine(DoSwitchSceneLoad(true));
+    }
+
+    IEnumerator DoSwitchSceneLoad(bool preload)
+    {
+        if (!preload)
+        {
+            VRTK_SDK_Bridge.HeadsetFade(blinkToColor, 0, true);
+        }
+
+        loadingOperation = SceneManager.LoadSceneAsync(scene.ScenePath);
+        loadingOperation.allowSceneActivation = !preload;
+
+        yield return loadingOperation;
     }
 }

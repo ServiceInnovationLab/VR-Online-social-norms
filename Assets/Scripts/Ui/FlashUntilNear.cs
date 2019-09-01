@@ -61,6 +61,9 @@ public class FlashUntilNear : MonoBehaviour
     {
         StopAllCoroutines();
 
+        if (interactableObject.IsTouched())
+            return;
+
         if (highlighterObject && disableHighlight)
         {
             highlighterObject.Unhighlight();
@@ -78,7 +81,13 @@ public class FlashUntilNear : MonoBehaviour
 
         while (maxTimes == -1 || maxTimes-- > 0)
         {
-            yield return new WaitForSeconds(time);            
+            yield return new WaitForSeconds(time);
+
+            if (interactableObject.IsTouched())
+            {
+                disableHighlight = false;
+                break;
+            }
 
             if (highlighterObject)
             {
@@ -90,6 +99,12 @@ public class FlashUntilNear : MonoBehaviour
             }
 
             yield return new WaitForSeconds(time);
+
+            if (interactableObject.IsTouched())
+            {
+                disableHighlight = false;
+                break;
+            }
 
             if (highlighterObject)
             {

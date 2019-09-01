@@ -8,18 +8,25 @@ public class RunAwayOnPhotoTaken : MonoBehaviour
     [SerializeField] UnityEvent onRunAway;
     [SerializeField] new Renderer renderer;    
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] CharacterController controller;
+    [SerializeField] Transform direction;
+    [SerializeField] float characterSpeed = 2.0f;
+    [SerializeField] float delay = 2.0f;
     bool runningAway = false;
 
     private void Awake()
     {
-        if (!agent)
+        if (!agent && !controller)
         {
-            agent = GetComponent<NavMeshAgent>();
+            Debug.LogError("Some form of controller is needed on this script", gameObject);
         }
     }
     
     void OnEnable()
     {
+        if (!agent && !controller)
+            return;
+
         if (!runningAway)
         {
             EventManager.StartListening(Events.PhotoTaken, OnPhotoTaken);
@@ -44,7 +51,7 @@ public class RunAwayOnPhotoTaken : MonoBehaviour
             return;
 
         onRunAway?.Invoke();
-        StartCoroutine(RunAway(-agent.transform.forward.XZ().normalized));
+        StartCoroutine(RunAway(-direction.forward.XZ().normalized));
 
         runningAway = true;
         EventManager.StopListening(Events.PhotoTaken, OnPhotoTaken);
@@ -52,10 +59,23 @@ public class RunAwayOnPhotoTaken : MonoBehaviour
 
     IEnumerator RunAway(Vector3 direction)
     {
-        while (true)
+        yield return new WaitForSeconds(delay);
+
+        while (agent)
         {
             yield return new WaitForSeconds(0.5f);
             agent.SetDestination(transform.position + direction * 2);
+        }
+
+        Quaternion startingRotation = transform.localRotation;
+        float startTime = Time.time;
+
+        while (controller)
+        {
+            yield return new WaitForFixedUpdate();
+            controller.SimpleMove(direction * characterSpeed);
+
+            transform.localRotation = Quaternion.Euler(0, Mathf.Lerp(0, 180, (Time.time - startTime) / characterSpeed), 0) * startingRotation;
         }
     }
 }

@@ -27,14 +27,24 @@ public class EmissionGlow : MonoBehaviour
 
     void Update()
     {
+        float step = (maxGlow - minGlow) * Time.deltaTime * (1 / fadeTime);
+
         if (showEmission && !animate)
         {
-            alpha = maxGlow;
-            sign = -1;
+            // Fade it in
+            if (alpha < maxGlow)
+            {
+                alpha += step * 4;
+                sign = 1;
+            }
+            else
+            {
+                alpha = maxGlow;
+                sign = -1;
+            }
         }
         else if (showEmission && animate)
         {
-            float step = (maxGlow - minGlow) * Time.deltaTime * (1 / fadeTime);
             step *= sign;
 
             if (alpha + step > maxGlow)
@@ -54,8 +64,17 @@ public class EmissionGlow : MonoBehaviour
         }
         else
         {
-            alpha = 0;
-            sign = 1;
+            // Fade it out
+            if (alpha > 0)
+            {
+                alpha -= step * 4;
+                sign = -1;
+            }
+            else
+            {
+                alpha = 0;
+                sign = 1;
+            }
         }
 
        

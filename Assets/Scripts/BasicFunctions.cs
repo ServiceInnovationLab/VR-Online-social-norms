@@ -67,9 +67,22 @@ public class BasicFunctions : ScriptableObject
     /// </summary>
     public void DisableTeleporting()
     {
-        foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
+        var leftHand = VRTK_DeviceFinder.GetControllerLeftHand();
+
+        if (leftHand)
         {
-            teleporter.enableTeleport = false;
+            leftHand.GetComponent<VRTK_Pointer>().enableTeleport = false;
+            leftHand.GetComponent<VRTK_Pointer>().enabled = false;
+            leftHand.GetComponent<VRTK_BasePointerRenderer>().enabled = false;
+        }
+
+        leftHand = VRTK_DeviceFinder.GetControllerRightHand();
+
+        if (leftHand)
+        {
+            leftHand.GetComponent<VRTK_Pointer>().enableTeleport = false;
+            leftHand.GetComponent<VRTK_Pointer>().enabled = false;
+            leftHand.GetComponent<VRTK_BasePointerRenderer>().enabled = false;
         }
     }
 

@@ -44,7 +44,7 @@ public class VrPlayArea : MonoBehaviour
         {
             foreach (var collider in excludeAreas)
             {
-                if (!collider || !collider.gameObject.activeInHierarchy)
+                if (!collider || !collider.gameObject.activeInHierarchy || !collider.enabled)
                     continue;
 
                 position.y = collider.bounds.center.y;
