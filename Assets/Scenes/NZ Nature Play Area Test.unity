@@ -12084,6 +12084,7 @@ MonoBehaviour:
   resizeFirst: 0
   doRotate: 1
   deleteTarget: 1
+  doTeleport: 1
   target: {fileID: 591308428}
   targetRotation: {fileID: 0}
   blinkDistance: 32.1
@@ -17777,7 +17778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.01915404}
+  m_AnchoredPosition: {x: 0, y: -0.02075819}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &826437743
@@ -36868,6 +36869,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 780611a67e8e941a2b3aa96e5915a793, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 780611a67e8e941a2b3aa96e5915a793, type: 3}
       propertyPath: m_LocalPosition.x
       value: 572
@@ -39193,7 +39198,7 @@ MonoBehaviour:
   colliderBounds: {fileID: 1784293283}
   teleport: {fileID: 80893117}
   walkingDistance: 0.5
-  speed: 4
+  speed: 6
   runFromPlayer: 0
   updateRate: 15
 --- !u!136 &1971722791
@@ -42949,7 +42954,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[VRTK_Controller_Scripts]'
       objectReference: {fileID: 0}
+    - target: {fileID: 80893118, guid: 8a3d621b0213b65499436695fbeeb742, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9218986917985187341, guid: 8a3d621b0213b65499436695fbeeb742,
+        type: 3}
+      propertyPath: enableTeleport
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218986916685667658, guid: 8a3d621b0213b65499436695fbeeb742,
         type: 3}
       propertyPath: enableTeleport
       value: 0
@@ -43028,15 +43042,6 @@ PrefabInstance:
         type: 3}
       propertyPath: maximumLength.x
       value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218986916685667658, guid: 8a3d621b0213b65499436695fbeeb742,
-        type: 3}
-      propertyPath: enableTeleport
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 80893118, guid: 8a3d621b0213b65499436695fbeeb742, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a3d621b0213b65499436695fbeeb742, type: 3}
