@@ -156,14 +156,14 @@ public class DisableTeleportOnTouch : MonoBehaviour
 
             foreach (var pointer in pointers)
             {
-                pointer.enabled = !anyTouches;
+                pointer.enabled = pointer.IsPointerActive() || !anyTouches;
             }
         }
         else
         {
             for (int i = 0; i < controllers.Length; i++)
             {
-                pointers[i].enabled = controllersTouching[i].Count == 0;
+                pointers[i].enabled = pointers[i].IsPointerActive() || controllersTouching[i].Count == 0;
             }
         }
     }
