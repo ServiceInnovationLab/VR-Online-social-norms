@@ -21366,7 +21366,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8477925954629728517, guid: 212053667a3972743a922f316ee2a16d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 212053667a3972743a922f316ee2a16d, type: 3}
 --- !u!43 &1610961736
 Mesh:
@@ -31023,7 +31024,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  preload: 1
+  preload: 0
 --- !u!1 &1912126846825037970
 GameObject:
   m_ObjectHideFlags: 0

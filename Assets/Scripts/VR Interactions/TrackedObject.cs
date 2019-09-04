@@ -6,10 +6,20 @@ using Valve.VR;
 public class TrackedObject : MonoBehaviour
 {
     public uint trackerNumber;
-    public Transform origin;
+    public Transform origin;   
 
-    bool isTracked;
     SteamVR_TrackedObject trackedSteamVR;
+
+    /// <summary>
+    /// Gets if the tracker is currently working
+    /// </summary>
+    public bool IsTracked
+    {
+        get
+        {
+            return trackedSteamVR && trackedSteamVR.isValid;
+        }
+    }
 
     private void Awake()
     {
