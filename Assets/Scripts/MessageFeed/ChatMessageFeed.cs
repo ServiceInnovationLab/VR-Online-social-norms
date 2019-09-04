@@ -75,7 +75,7 @@ public class ChatMessageFeed : MonoBehaviour
         }
 
         message.message = theMessage.message;
-        message.from = theMessage.fromTag;
+        message.from = theMessage.profile.username;
 
         messageDisplay.gameObject.SetActive(true);
 

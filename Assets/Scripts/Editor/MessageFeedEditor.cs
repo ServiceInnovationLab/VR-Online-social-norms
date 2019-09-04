@@ -6,16 +6,18 @@ using System.Linq;
 [CustomEditor(typeof(MessageFeed))]
 public class MessageFeedEditor : Editor
 {
-    Sprite sprite;
-    string from;
-    string fromTag = "@";
+    OnlineProfile onlineProfile;
     int startIndex;
 
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
+        EditorGUILayout.LabelField("Editing options", EditorStyles.boldLabel);
+
         MessageFeed feed = Selection.activeObject as MessageFeed;
+
+        onlineProfile = (OnlineProfile)EditorGUILayout.ObjectField(onlineProfile, typeof(OnlineProfile), false);
 
         if (feed && GUILayout.Button("Append from file"))
         {
@@ -31,19 +33,14 @@ public class MessageFeedEditor : Editor
             EditorUtility.SetDirty(feed);
         }
 
-        from = GUILayout.TextArea(from);
-        fromTag = GUILayout.TextArea(fromTag);
-        sprite = (Sprite)EditorGUILayout.ObjectField(sprite, typeof(Sprite));
         startIndex = EditorGUILayout.IntField(startIndex);
 
-        if (feed && GUILayout.Button("Set Every second"))
+        if (feed && GUILayout.Button("Set Every Second Profile"))
         {
             for (int i = startIndex; i < feed.messages.Count; i += 2)
             {
                 var message = feed.messages[i];
-                message.fromProfile = from;
-                message.fromTag = fromTag;
-                message.profilePicture = sprite;
+                message.profile = onlineProfile;
 
                 feed.messages[i] = message;
             }

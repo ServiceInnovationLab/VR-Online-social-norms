@@ -6,8 +6,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 {
     public bool scrollToBottom = true;
 
-    [Tooltip("The messages to be displayed")]
-    [SerializeField] MessageFeed messageFeed;
+    MessageFeed messageFeed;
 
     [Tooltip("The time variances between messages showing up in the feed, in seconds")]
     [SerializeField] FloatRange timeBetweenMessages;
@@ -64,6 +63,11 @@ public class ScreenMessageFeedView : MonoBehaviour
         scrollRect = messageContainer.GetComponentInParent<ScrollRect>();
     }
 
+    private void Start()
+    {
+        messageFeed = SocialMediaScenarioPicker.Instance.CurrentScenario.messageFeed;
+    }
+
     private void OnEnable()
     {
         if (startOnEnable)
@@ -74,6 +78,11 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     IEnumerator DisplayMessages()
     {
+        while (!messageFeed)
+        {
+            yield return null;
+        }
+
         int lastMessageShown = 0;
 
         while (lastMessageShown < messageFeed.messages.Count)
@@ -113,19 +122,19 @@ public class ScreenMessageFeedView : MonoBehaviour
             messageDisplay.sizeDelta += sizeDifference;
         }
 
-        if (theMessage.profilePicture)
+        if (theMessage.profile.picture)
         {
-            message.profilePicture = theMessage.profilePicture;
+            message.profilePicture = theMessage.profile.picture;
         }
 
-        if (!string.IsNullOrEmpty(theMessage.fromProfile))
+        if (!string.IsNullOrEmpty(theMessage.profile.username))
         {
-            message.from = theMessage.fromProfile;
+            message.from = theMessage.profile.username;
         }
 
-        if (!string.IsNullOrEmpty(theMessage.fromTag))
+        if (!string.IsNullOrEmpty(theMessage.profile.tag))
         {
-            message.fromTag = theMessage.fromTag;
+            message.fromTag = theMessage.profile.tag;
         }       
 
         messageDisplay.gameObject.SetActive(true);

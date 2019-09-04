@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TextEnterer : MonoBehaviour
 {
-    [SerializeField] TextObject textToEnter;
+    [SerializeField] SocialMediaScenarioTextType textToEnterType;
     [SerializeField] FloatRange timeBetweenCharacters = new FloatRange() { min = 0.2f, max = 0.25f };
     [SerializeField] InputField input;
     [SerializeField] Button sendButton;
@@ -14,6 +14,7 @@ public class TextEnterer : MonoBehaviour
     [SerializeField] ScreenMessageFeedView feedView;
 
     bool started;
+    string textToEnter;
 
     public void SendText()
     {
@@ -25,7 +26,7 @@ public class TextEnterer : MonoBehaviour
     public void Complete()
     {
         StopAllCoroutines();
-        input.text = textToEnter.text;
+        input.text = textToEnter;
     }
 
     public void StartTypeText()
@@ -49,9 +50,11 @@ public class TextEnterer : MonoBehaviour
 
     IEnumerator TypeText()
     {
-        for (int i = 0; i < textToEnter.text.Length; i++)
+        textToEnter = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(textToEnterType);
+
+        for (int i = 0; i < textToEnter.Length; i++)
         {
-            input.text = textToEnter.text.Substring(0, i + 1);
+            input.text = textToEnter.Substring(0, i + 1);
             EventManager.TriggerEvent(Events.KeyboardTextTyped);
             EventManager.TriggerEvent(Events.KeyboardTextTyped, new TextTypedEventArgs(input.text[input.text.Length - 1].ToString()));
 
