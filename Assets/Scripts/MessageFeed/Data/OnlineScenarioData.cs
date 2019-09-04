@@ -13,7 +13,7 @@ public struct OnlineScenarioData
 
     public SocialMediaScenario ToSocialMediaScenario()
     {
-        var result = new SocialMediaScenario();
+        var result = ScriptableObject.CreateInstance<SocialMediaScenario>();
 
         result.senderMessage = SenderMessage;
         result.receiverMessage = ReceiverMessage;
@@ -21,7 +21,7 @@ public struct OnlineScenarioData
         var profiles = ConstructProfiles();
         
 
-        var messages = new MessageFeed();
+        var messages = ScriptableObject.CreateInstance<MessageFeed>();
         messages.messages = new List<Message>();
 
         foreach (var message in MessageFeedData.MessageStream)
@@ -60,7 +60,12 @@ public struct OnlineScenarioData
                 sprite = Sprite.Create(texture, rect, rect.size / 2);
             }
 
-            profiles.Add(new OnlineProfile() { picture = sprite, username = profile.username, tag = profile.tag });
+            var newProfile = ScriptableObject.CreateInstance<OnlineProfile>();
+            newProfile.picture = sprite;
+            newProfile.username = profile.username;
+            newProfile.tag = profile.tag;
+
+            profiles.Add(newProfile);
         }
 
         return profiles;

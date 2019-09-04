@@ -127,17 +127,17 @@ public class ScreenMessageFeedView : MonoBehaviour
             messageDisplay.sizeDelta += sizeDifference;
         }
 
-        if (theMessage.profile.picture)
+        if (theMessage.profile?.picture != null)
         {
             message.profilePicture = theMessage.profile.picture;
         }
 
-        if (!string.IsNullOrEmpty(theMessage.profile.username))
+        if (!string.IsNullOrEmpty(theMessage.profile?.username))
         {
             message.from = theMessage.profile.username;
         }
 
-        if (!string.IsNullOrEmpty(theMessage.profile.tag))
+        if (!string.IsNullOrEmpty(theMessage.profile?.tag))
         {
             message.fromTag = theMessage.profile.tag;
         }       
