@@ -43,6 +43,11 @@ public class ScreenMessageFeedView : MonoBehaviour
         input.text = "";
     }
 
+    public void SendSenderMessageToFeed()
+    {
+        DisplayMessage(new Message() { message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Sender) });
+    }
+
     public void CompleteFeed()
     {
         forceComplete = true;

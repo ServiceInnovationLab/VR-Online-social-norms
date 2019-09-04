@@ -81,7 +81,7 @@ namespace AssetClean
                 var skipFolders = new string[] { "Assets/Data", "Assets/Plugins", "Assets/Scenes", "Assets/SteamVR",
                     "Assets/VRTK", "Assets/Imported Assets/Screen", "Assets/Character Animations",
                     "Assets/Imported Assets/DesktopComputerSet", "Assets/Imported Assets/Office Stuff",
-                    "Assets/Imported Assets/Standard Assets", "Assets/Prefabs/computer.fbx"};
+                    "Assets/Imported Assets/Standard Assets", "Assets/Prefabs/computer.fbx", "Assets/Streaming Assets"};
                 deleteAssets.RemoveAll(x => skipFolders.Any(skipPath => x.path.StartsWith(skipPath) || x.path.EndsWith(".txt")));
 
                 using (var writer = new StreamWriter("D:\\unusedAssets.csv"))
