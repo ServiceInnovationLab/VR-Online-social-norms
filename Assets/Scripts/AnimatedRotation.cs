@@ -5,10 +5,15 @@ public class AnimatedRotation : MonoBehaviour
     [SerializeField] float targetRotation;
     [SerializeField] float time;
 
-    float startTime;
+    float startTime = -1;
 
     private void OnEnable()
     {
+        if (startTime > 0)
+        {
+            enabled = false;
+        }
+
         startTime = Time.time;
     }
 
