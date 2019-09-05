@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.IO;
 using System.Linq;
-using System;
+using System.Collections.Generic;
 
 [CustomEditor(typeof(MessageFeed))]
 public class MessageFeedEditor : Editor
@@ -10,7 +10,16 @@ public class MessageFeedEditor : Editor
     OnlineProfile onlineProfile;
     int startIndex;
 
-    bool[] fadeStatus;
+    List<bool> fadeStatus = new List<bool>();
+
+    OnlineProfile[] allProfiles;
+    string[] profileNames;
+
+    private void OnEnable()
+    {
+        allProfiles = EditorHelper.GetAllInstances<OnlineProfile>();
+        profileNames = allProfiles.Select(x => x.name).ToArray();
+    }
 
     public override void OnInspectorGUI()
     {
@@ -19,7 +28,10 @@ public class MessageFeedEditor : Editor
         if (!feed)
             return;
 
-        Array.Resize(ref fadeStatus, feed.messages.Count);
+        for (int i = fadeStatus.Count; i < feed.messages.Count; i++)
+        {
+            fadeStatus.Add(true);
+        }
 
         EditorGUILayout.LabelField("Messages", EditorStyles.boldLabel);
 
@@ -27,17 +39,17 @@ public class MessageFeedEditor : Editor
 
         if (GUILayout.Button("Expand All", GUILayout.Width(100)))
         {
-            for (int i = 0; i < fadeStatus.Length; i++)
+            for (int i = 0; i < fadeStatus.Count; i++)
             {
-                fadeStatus[i] = false;
+                fadeStatus[i] = true;
             }
-        }
+        } 
 
         if (GUILayout.Button("Collapse All", GUILayout.Width(100)))
         {
-            for (int i = 0; i < fadeStatus.Length; i++)
+            for (int i = 0; i < fadeStatus.Count; i++)
             {
-                fadeStatus[i] = true;
+                fadeStatus[i] = false;
             }
         }
 
@@ -45,13 +57,23 @@ public class MessageFeedEditor : Editor
 
         for (int i = 0; i < feed.messages.Count; i++)
         {
-            fadeStatus[i] = !EditorGUILayout.BeginFoldoutHeaderGroup(!fadeStatus[i], "Message " + i);
+            string details = fadeStatus[i] ? "" : " [" + feed.messages[i].message + "]";
+            fadeStatus[i] = EditorGUILayout.BeginFoldoutHeaderGroup(fadeStatus[i], "Message " + (i + 1) + details);
 
-            if (!fadeStatus[i])
+            if (fadeStatus[i])
             {
                 feed.messages[i].message = EditorGUILayout.TextArea(feed.messages[i].message);
 
                 feed.messages[i].profile = (OnlineProfile)EditorGUILayout.ObjectField(feed.messages[i].profile, typeof(OnlineProfile), false);
+
+                int currentIndex = allProfiles.IndexOf(feed.messages[i].profile);
+
+                var newIndex = EditorGUILayout.Popup(currentIndex, profileNames);
+
+                if (currentIndex != newIndex)
+                {
+                    feed.messages[i].profile = allProfiles[newIndex];
+                }
 
                 EditorGUILayout.Separator();
 
@@ -59,12 +81,12 @@ public class MessageFeedEditor : Editor
 
                 if (GUILayout.Button("Insert Before", GUILayout.Width(100)))
                 {
-                    feed.messages.Insert(i, new Message());
+                    InsertMessage(feed.messages, i);
                 }
 
                 if (GUILayout.Button("Insert After", GUILayout.Width(100)))
                 {
-                    feed.messages.Insert(i + 1, new Message());
+                    InsertMessage(feed.messages, i + 1);
                 }
 
                 GUILayout.Space(100);
@@ -72,6 +94,7 @@ public class MessageFeedEditor : Editor
                 if (GUILayout.Button("Delete", GUILayout.Width(100)))
                 {
                     feed.messages.RemoveAt(i);
+                    fadeStatus.RemoveAt(i);
                     i--;
                 }
 
@@ -80,8 +103,6 @@ public class MessageFeedEditor : Editor
 
             EditorGUILayout.EndFoldoutHeaderGroup();
         }
-
-        //DrawDefaultInspector();
 
         EditorGUILayout.Separator();
 
@@ -102,7 +123,7 @@ public class MessageFeedEditor : Editor
             feed.AppendMessages(lines);
         }
 
-        if (GUILayout.Button("Import from file"))
+        if (GUILayout.Button("Import from file (removes existing!)"))
         {
             var lines = LoadLines();
             feed.SetMessages(lines);
@@ -122,6 +143,12 @@ public class MessageFeedEditor : Editor
         }
 
         EditorUtility.SetDirty(feed);
+    }
+
+    private void InsertMessage(List<Message> messages, int index)
+    {
+        messages.Insert(index, new Message());
+        fadeStatus.Insert(index, true);
     }
 
     private Message[] LoadLines()
