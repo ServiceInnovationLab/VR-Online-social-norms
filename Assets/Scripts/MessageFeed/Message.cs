@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public struct Message 
+public class Message 
 {
     public string message;
     public OnlineProfile profile;

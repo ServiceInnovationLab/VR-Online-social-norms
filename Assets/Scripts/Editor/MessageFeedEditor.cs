@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.IO;
 using System.Linq;
+using System;
 
 [CustomEditor(typeof(MessageFeed))]
 public class MessageFeedEditor : Editor
@@ -9,33 +10,107 @@ public class MessageFeedEditor : Editor
     OnlineProfile onlineProfile;
     int startIndex;
 
+    bool[] fadeStatus;
+
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector();
+        MessageFeed feed = Selection.activeObject as MessageFeed;
+
+        if (!feed)
+            return;
+
+        Array.Resize(ref fadeStatus, feed.messages.Count);
+
+        EditorGUILayout.LabelField("Messages", EditorStyles.boldLabel);
+
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Expand All", GUILayout.Width(100)))
+        {
+            for (int i = 0; i < fadeStatus.Length; i++)
+            {
+                fadeStatus[i] = false;
+            }
+        }
+
+        if (GUILayout.Button("Collapse All", GUILayout.Width(100)))
+        {
+            for (int i = 0; i < fadeStatus.Length; i++)
+            {
+                fadeStatus[i] = true;
+            }
+        }
+
+        GUILayout.EndHorizontal();
+
+        for (int i = 0; i < feed.messages.Count; i++)
+        {
+            fadeStatus[i] = !EditorGUILayout.BeginFoldoutHeaderGroup(!fadeStatus[i], "Message " + i);
+
+            if (!fadeStatus[i])
+            {
+                feed.messages[i].message = EditorGUILayout.TextArea(feed.messages[i].message);
+
+                feed.messages[i].profile = (OnlineProfile)EditorGUILayout.ObjectField(feed.messages[i].profile, typeof(OnlineProfile), false);
+
+                EditorGUILayout.Separator();
+
+                GUILayout.BeginHorizontal();
+
+                if (GUILayout.Button("Insert Before", GUILayout.Width(100)))
+                {
+                    feed.messages.Insert(i, new Message());
+                }
+
+                if (GUILayout.Button("Insert After", GUILayout.Width(100)))
+                {
+                    feed.messages.Insert(i + 1, new Message());
+                }
+
+                GUILayout.Space(100);
+
+                if (GUILayout.Button("Delete", GUILayout.Width(100)))
+                {
+                    feed.messages.RemoveAt(i);
+                    i--;
+                }
+
+                GUILayout.EndHorizontal();
+            }
+
+            EditorGUILayout.EndFoldoutHeaderGroup();
+        }
+
+        //DrawDefaultInspector();
+
+        EditorGUILayout.Separator();
+
+        if (GUILayout.Button("Add Message", GUILayout.Width(100)))
+        {
+            feed.messages.Add(new Message());
+        }
+
+        EditorGUILayout.Separator();
 
         EditorGUILayout.LabelField("Editing options", EditorStyles.boldLabel);
 
-        MessageFeed feed = Selection.activeObject as MessageFeed;
-
         onlineProfile = (OnlineProfile)EditorGUILayout.ObjectField(onlineProfile, typeof(OnlineProfile), false);
 
-        if (feed && GUILayout.Button("Append from file"))
+        if (GUILayout.Button("Append from file"))
         {
             var lines = LoadLines();
             feed.AppendMessages(lines);
-            EditorUtility.SetDirty(feed);
         }
 
-        if (feed && GUILayout.Button("Import from file"))
+        if (GUILayout.Button("Import from file"))
         {
             var lines = LoadLines();
             feed.SetMessages(lines);
-            EditorUtility.SetDirty(feed);
         }
 
         startIndex = EditorGUILayout.IntField(startIndex);
 
-        if (feed && GUILayout.Button("Set Every Second Profile"))
+        if (GUILayout.Button("Set Every Second Profile"))
         {
             for (int i = startIndex; i < feed.messages.Count; i += 2)
             {
@@ -44,8 +119,9 @@ public class MessageFeedEditor : Editor
 
                 feed.messages[i] = message;
             }
-            EditorUtility.SetDirty(feed);
         }
+
+        EditorUtility.SetDirty(feed);
     }
 
     private Message[] LoadLines()
