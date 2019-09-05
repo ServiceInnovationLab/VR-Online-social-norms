@@ -52,7 +52,6 @@ public struct OnlineScenarioData
                 var data = File.ReadAllBytes(Path.Combine(SocialMediaScenarioPicker.CustomScenarioProfilePicturePath, profile.picture));
 
                 var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false, true);
-                texture.alphaIsTransparency = true;
                 texture.LoadImage(data);                
 
                 var rect = new Rect(0, 0, texture.width, texture.height);
