@@ -66,6 +66,8 @@ public class ScreenMessageFeedView : MonoBehaviour
     void Awake()
     {
         scrollRect = messageContainer.GetComponentInParent<ScrollRect>();
+
+        messagePrefab.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -116,16 +118,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         message.message = theMessage.message;
 
-        var textField = message.GetMessageTextField();
-        var currentTextHeight = textField.rectTransform.sizeDelta.y;
-        var perferredHeight = textField.cachedTextGeneratorForLayout.GetPreferredHeight(theMessage.message, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
-
-        if (perferredHeight > currentTextHeight)
-        {
-            var sizeDifference = new Vector2(0, perferredHeight);
-            textField.rectTransform.sizeDelta += sizeDifference;
-            messageDisplay.sizeDelta += sizeDifference;
-        }
+        IncreaseHeightToFitText(messageDisplay, message.MessageTextField, theMessage.message);
 
         if (theMessage.profile?.picture != null)
         {
@@ -136,11 +129,12 @@ public class ScreenMessageFeedView : MonoBehaviour
         {
             message.from = theMessage.profile.username;
         }
+        SetWidthBasedOnText(message.UsernameTextField, message.from, message.TagAndTimeTextField.rectTransform);
 
         if (!string.IsNullOrEmpty(theMessage.profile?.tag))
         {
             message.fromTag = theMessage.profile.tag;
-        }       
+        }
 
         messageDisplay.gameObject.SetActive(true);
 
@@ -152,6 +146,41 @@ public class ScreenMessageFeedView : MonoBehaviour
         if (scrollRect && scrollToBottom)
         {
             scrollRect.verticalNormalizedPosition = 0;
+        }
+    }
+
+    private void IncreaseHeightToFitText(RectTransform container, Text textField, string newText)
+    {
+        var currentTextHeight = textField.rectTransform.sizeDelta.y;
+        var perferredHeight = textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
+
+        if (perferredHeight > currentTextHeight)
+        {
+            var sizeDifference = new Vector2(0, perferredHeight);
+            textField.rectTransform.sizeDelta += sizeDifference;
+            container.sizeDelta += sizeDifference;
+        }
+    }
+
+    private void SetWidthBasedOnText(Text textField, string newText, params RectTransform[] toTheRightOf)
+    {
+        // Based on being top, centre pivot
+        var perferredWidth = textField.cachedTextGeneratorForLayout.GetPreferredWidth(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
+
+        var difference = new Vector2(perferredWidth - textField.rectTransform.sizeDelta.x, 0);
+
+        textField.rectTransform.sizeDelta += difference;
+
+        textField.rectTransform.anchoredPosition += difference / 2;
+
+        if (difference.x > 0)
+        {
+            difference += difference / 2;
+        }
+
+        foreach (var control in toTheRightOf)
+        {
+            control.anchoredPosition += difference;
         }
     }
 

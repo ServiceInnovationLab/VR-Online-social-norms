@@ -16,9 +16,19 @@ public class ScreenMessage : MonoBehaviour
 
     float time = 0;
 
-    public Text GetMessageTextField()
+    public Text MessageTextField
     {
-        return messageText;
+        get { return messageText; }
+    }
+
+    public Text UsernameTextField
+    {
+        get { return fromPersonText; }
+    }
+
+    public Text TagAndTimeTextField
+    {
+        get { return fromTime; }
     }
 
     private void Awake()
