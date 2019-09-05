@@ -4,6 +4,8 @@ public class AnimatedRotation : MonoBehaviour
 {
     [SerializeField] float targetRotation;
     [SerializeField] float time;
+    [SerializeField] AudioClip[] soundOnAnimate;
+    [SerializeField] float volume = 0.2f;
 
     float startTime = -1;
 
@@ -15,6 +17,11 @@ public class AnimatedRotation : MonoBehaviour
         }
 
         startTime = Time.time;
+
+        if (soundOnAnimate != null && soundOnAnimate.Length > 0)
+        {
+            AudioSource.PlayClipAtPoint(soundOnAnimate.RandomItem(), transform.position, volume);
+        }
     }
 
     private void FixedUpdate()
