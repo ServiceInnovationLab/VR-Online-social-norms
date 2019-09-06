@@ -22,11 +22,19 @@ public class LiquidContainer : MonoBehaviour
     [SerializeField] float loseRate = 0.01f;
     [SerializeField] float giveRate = 0.01f;
 
+    [SerializeField] AudioClip fillingAudio;
+    [SerializeField] AudioClip drainingAudio;
+
+    AudioSource audioSource;
+
     float checkRadius;
 
     private void Awake()
     {
         fillMask = LayerMask.GetMask("LiquidContainers");
+
+        audioSource = GetComponent<AudioSource>();
+
         var rend = GetComponent<Renderer>();
         if (rend)
         {
@@ -54,13 +62,24 @@ public class LiquidContainer : MonoBehaviour
 
             RaycastHit hit;
 
-           if (Physics.SphereCast(transform.position, checkRadius, -Vector3.up, out hit, 30, fillMask))
+            if (Physics.SphereCast(transform.position, checkRadius, -Vector3.up, out hit, 30, fillMask))
             {
                 var liquid = hit.collider.GetComponent<LiquidContainer>();
                 if (liquid)
                 {
                     liquid.Fill(giveRate);
+
+                    if (liquid.audioSource && !liquid.audioSource.isPlaying && liquid.fillingAudio)
+                    {
+                        liquid.audioSource.clip = liquid.fillingAudio;
+                        liquid.audioSource.Play();
+                    }
                 }
+            }
+            else if (audioSource && !audioSource.isPlaying && drainingAudio)
+            {
+                audioSource.clip = drainingAudio;
+                audioSource.Play();
             }
         }
     }

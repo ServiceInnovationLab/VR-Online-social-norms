@@ -52,10 +52,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   UseCollisionVelocity: 1
-  ScaleImpactVolume: 1
+  ScaleImpactVolume: 0
   AudioSets:
   - Key: 5
     Impacts:
     - {fileID: 8300000, guid: c3ee2b180f96b3943839780e74fa553d, type: 3}
+    - {fileID: 8300000, guid: dac4c796ed299b348a1e3f8a59982a54, type: 3}
+    Slide: {fileID: 0}
+  - Key: 6
+    Impacts:
     - {fileID: 8300000, guid: dac4c796ed299b348a1e3f8a59982a54, type: 3}
     Slide: {fileID: 0}
