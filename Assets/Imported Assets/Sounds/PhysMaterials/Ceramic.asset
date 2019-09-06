@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1a46b85acec488479294b28044c0b36, type: 3}
-  m_Name: Bread
+  m_Name: Ceramic
   m_EditorClassIdentifier: 
-  MaterialTypeKey: 1
+  MaterialTypeKey: 3
   FallbackTypeIndex: 0
-  FallbackTypeKey: 0
+  FallbackTypeKey: -1
   VolumeCurve:
     serializedVersion: 2
     m_Curve:
@@ -52,13 +52,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   UseCollisionVelocity: 1
-  ScaleImpactVolume: 0
+  ScaleImpactVolume: 1
   AudioSets:
-  - Key: 0
+  - Key: 5
     Impacts:
-    - {fileID: 8300000, guid: c9ebc6e62c0afda4aa4ba16042b9e9ab, type: 3}
-    Slide: {fileID: 0}
-  - Key: 2
-    Impacts:
-    - {fileID: 8300000, guid: 1d1eba3babb8ba94db444ecd09e64a39, type: 3}
+    - {fileID: 8300000, guid: c3ee2b180f96b3943839780e74fa553d, type: 3}
+    - {fileID: 8300000, guid: dac4c796ed299b348a1e3f8a59982a54, type: 3}
     Slide: {fileID: 0}

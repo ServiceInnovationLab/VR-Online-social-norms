@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1a46b85acec488479294b28044c0b36, type: 3}
-  m_Name: PhysSoundMaterial
+  m_Name: Bread
   m_EditorClassIdentifier: 
-  MaterialTypeKey: 10
-  FallbackTypeIndex: 1
-  FallbackTypeKey: 0
+  MaterialTypeKey: 1
+  FallbackTypeIndex: 2
+  FallbackTypeKey: -1
   VolumeCurve:
     serializedVersion: 2
     m_Curve:
@@ -52,9 +52,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   UseCollisionVelocity: 1
-  ScaleImpactVolume: 1
+  ScaleImpactVolume: 0
   AudioSets:
   - Key: 0
     Impacts:
-    - {fileID: 8300000, guid: 18c9564a1ead8c04b9daf06958885534, type: 3}
+    - {fileID: 8300000, guid: c9ebc6e62c0afda4aa4ba16042b9e9ab, type: 3}
+    Slide: {fileID: 0}
+  - Key: 2
+    Impacts:
+    - {fileID: 8300000, guid: 1d1eba3babb8ba94db444ecd09e64a39, type: 3}
     Slide: {fileID: 0}

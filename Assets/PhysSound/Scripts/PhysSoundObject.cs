@@ -229,7 +229,7 @@ namespace PhysSound
 
             relativeVelocity = c.relativeVelocity;
 
-            playImpactSound(c.collider.gameObject, deltaVel, contactNormal, contactPoint);
+            //playImpactSound(c.collider.gameObject, deltaVel, contactNormal, contactPoint);
             setSlideTargetVolumes(c.collider.gameObject, relativeVelocity, contactNormal, contactPoint, false);
 
             _prevVelocity = _r.velocity;
