@@ -14,6 +14,7 @@ public class AnimatedRotation : MonoBehaviour
         if (startTime > 0)
         {
             enabled = false;
+            return;
         }
 
         startTime = Time.time;

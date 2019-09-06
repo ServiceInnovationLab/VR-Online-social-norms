@@ -6,7 +6,9 @@ using Valve.VR;
 public class TrackedObject : MonoBehaviour
 {
     public uint trackerNumber;
-    public Transform origin;   
+    public Transform origin;
+    [SerializeField] GameObject hideObjectIfTracked;
+    [SerializeField] GameObject hideIfNotTracked;
 
     SteamVR_TrackedObject trackedSteamVR;
 
@@ -17,13 +19,15 @@ public class TrackedObject : MonoBehaviour
     {
         get
         {
-            return trackedSteamVR && trackedSteamVR.isValid;
+            return trackedSteamVR;
         }
     }
 
     private void Awake()
     {
         VRTK_SDKManager.instance.LoadedSetupChanged += LoadedSetupChanged;
+
+        hideIfNotTracked?.SetActive(false);
     }
 
     private void LoadedSetupChanged(VRTK_SDKManager sender, VRTK_SDKManager.LoadedSetupChangeEventArgs e)
@@ -90,7 +94,14 @@ public class TrackedObject : MonoBehaviour
                 if (origin)
                 {
                     trackedSteamVR.origin = origin;
+                }                
+
+                while (!trackedSteamVR.isValid)
+                {
+                    yield return null;
                 }
+                hideObjectIfTracked?.SetActive(false);
+                hideIfNotTracked?.SetActive(true);
 
                 yield break;
             }
