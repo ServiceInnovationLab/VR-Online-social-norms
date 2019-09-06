@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace PhysSound
 {
+    [CreateAssetMenu(menuName = "PhysSoundMaterial In Folder")]
     public class PhysSoundMaterial : ScriptableObject
     {
         public int MaterialTypeKey;
