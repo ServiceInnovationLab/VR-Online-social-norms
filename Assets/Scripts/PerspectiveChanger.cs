@@ -136,4 +136,9 @@ public class PerspectiveChanger : MonoBehaviour
         }
     }
 
+    public void DisableTeleport()
+    {
+        doTeleport = false;
+    }
+
 }

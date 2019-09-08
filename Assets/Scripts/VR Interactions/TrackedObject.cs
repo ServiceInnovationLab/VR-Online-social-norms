@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using VRTK;
 using Valve.VR;
@@ -7,6 +8,7 @@ public class TrackedObject : MonoBehaviour
 {
     public uint trackerNumber;
     public Transform origin;
+    public UnityEvent onBeginTracking;
     [SerializeField] GameObject hideObjectIfTracked;
     [SerializeField] GameObject hideIfNotTracked;
 
@@ -102,6 +104,8 @@ public class TrackedObject : MonoBehaviour
                 }
                 hideObjectIfTracked?.SetActive(false);
                 hideIfNotTracked?.SetActive(true);
+
+                onBeginTracking?.Invoke();
 
                 yield break;
             }
