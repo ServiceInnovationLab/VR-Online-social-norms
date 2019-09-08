@@ -139,6 +139,8 @@ public class PerspectiveChanger : MonoBehaviour
     public void DisableTeleport()
     {
         doTeleport = false;
+        scaleCamera = false;
+        transform.localScale = new Vector3(2, 2, 2);
     }
 
 }
