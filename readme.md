@@ -22,4 +22,4 @@ The project is currently set up to run in Unity 2019.1.2.
 
 ## Quick Links
 
-See the [wiki](https://github.com/ServiceInnovationLab/VR-Empathy/wiki) for more details to help cloning and modifying.
+See the [wiki](https://github.com/ServiceInnovationLab/VR-Empathy/wiki) for more details to help with cloning and modifying.
