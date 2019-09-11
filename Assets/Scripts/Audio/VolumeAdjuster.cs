@@ -46,10 +46,10 @@ public class VolumeAdjuster : MonoBehaviour
             {
                 current = raisedVolume;
             }
-        }
 
-        audioMixer.SetFloat(volumeType, current);
-        yield return new WaitForFixedUpdate();
+            audioMixer.SetFloat(volumeType, current);
+            yield return new WaitForFixedUpdate();
+        }
     }
 
 

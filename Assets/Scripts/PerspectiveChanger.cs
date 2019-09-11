@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using VRTK;
+using System.Linq;
 
 /// <summary>
 /// This component allows teleporting to a target game object and have the player replace them,
 /// with custom blink transition times to improve the feel of the POV change.
 /// </summary>
+[ExecuteInEditMode]
 public class PerspectiveChanger : MonoBehaviour
 {
     public bool resizeFirst;
@@ -42,6 +44,31 @@ public class PerspectiveChanger : MonoBehaviour
     [SerializeField] bool scaleCamera;
 
     [SerializeField] VRTK_BasicTeleport teleporter;
+
+    [SerializeField, HideInInspector] Collider[] excludeColliders;
+
+
+    private void Awake()
+    {
+        // When the persepctive changer gets deleted, it can make physics objects go crazy. So load up all items touching it and ignore collisions
+        // Seems to be easier for now, swapping to layers may be better or it being a trigger collider (but need to stop teleporting into it)
+
+        var collider = GetComponent<Collider>();
+
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+        {            
+            excludeColliders = FindObjectsOfType<Collider>().Where(x => x.bounds.Intersects(collider.bounds)).ToArray();
+
+            return;
+        }
+#endif
+
+        foreach (var exclude in excludeColliders)
+        {
+            Physics.IgnoreCollision(exclude, collider);
+        }
+    }
 
     public void DoTeleport()
     {
