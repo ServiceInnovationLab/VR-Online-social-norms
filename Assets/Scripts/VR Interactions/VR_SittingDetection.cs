@@ -10,6 +10,8 @@ public class VR_SittingDetection : MonoBehaviour
     [SerializeField] UnityEvent sittingDetected;
     [SerializeField] TrackedObject objectNeededForSitting;
     [SerializeField] int secondsToSettle = 1;
+    [SerializeField] float minimumSittingDifference = 0.1f;
+    [SerializeField] float minThreshold = 0.001f;
     Transform headsetTransform;
 
     SteamVR_RingBuffer<float> heights;
@@ -35,7 +37,7 @@ public class VR_SittingDetection : MonoBehaviour
     {
         headsetTransform = VRTK_DeviceFinder.HeadsetTransform();
 
-        bufferSize = Mathf.CeilToInt(1 / Time.fixedUnscaledDeltaTime);
+        bufferSize = Mathf.CeilToInt(1 / Time.fixedDeltaTime);
         heights = new SteamVR_RingBuffer<float>(bufferSize);
     }
     
@@ -45,7 +47,7 @@ public class VR_SittingDetection : MonoBehaviour
 
         seen++;
 
-        if (seen < bufferSize)
+        if (seen > bufferSize)
         {
             seen = 0;
 
@@ -74,9 +76,11 @@ public class VR_SittingDetection : MonoBehaviour
             }
             else
             {
-                if (currentHeight < lastStandingHeight && Mathf.Approximately(heading, 0))
+                if (currentHeight < lastStandingHeight - minimumSittingDifference && Mathf.Abs(heading) < minThreshold)
                 {
                     settledSeconds++;
+
+                    //Debug.Log("Current " + currentHeight + ", Standing: " + lastStandingHeight);
 
                     if (settledSeconds >= secondsToSettle)
                     {

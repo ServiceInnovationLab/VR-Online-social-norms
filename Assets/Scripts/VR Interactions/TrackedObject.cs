@@ -14,6 +14,8 @@ public class TrackedObject : MonoBehaviour
 
     SteamVR_TrackedObject trackedSteamVR;
 
+    bool isTracked;
+
     /// <summary>
     /// Gets if the tracker is currently working
     /// </summary>
@@ -21,7 +23,7 @@ public class TrackedObject : MonoBehaviour
     {
         get
         {
-            return trackedSteamVR;
+            return isTracked;
         }
     }
 
@@ -34,6 +36,8 @@ public class TrackedObject : MonoBehaviour
 
     private void LoadedSetupChanged(VRTK_SDKManager sender, VRTK_SDKManager.LoadedSetupChangeEventArgs e)
     {
+        isTracked = false;
+
         if (!this)
             return;
 
@@ -104,6 +108,7 @@ public class TrackedObject : MonoBehaviour
                 }
                 hideObjectIfTracked?.SetActive(false);
                 hideIfNotTracked?.SetActive(true);
+                isTracked = true;
 
                 onBeginTracking?.Invoke();
 
