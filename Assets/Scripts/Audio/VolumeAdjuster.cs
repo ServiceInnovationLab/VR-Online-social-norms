@@ -4,17 +4,18 @@ using UnityEngine.Audio;
 public class VolumeAdjuster : MonoBehaviour
 {
     [SerializeField] float startingVolume = 0;
+    [SerializeField] string volumeType = "MasterVolume";
     [SerializeField] float raisedVolume = 0;
     [SerializeField] AudioMixer audioMixer;
 
-    private void Awake()
+    private void Start()
     {
-        audioMixer.SetFloat("MasterVolume", startingVolume);
+        var result = audioMixer.SetFloat(volumeType, startingVolume);
     }
 
     public void RaiseVolume()
     {
-        audioMixer.SetFloat("MasterVolume", raisedVolume);
+        audioMixer.SetFloat(volumeType, raisedVolume);
     }
 
 

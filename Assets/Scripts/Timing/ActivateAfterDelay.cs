@@ -16,7 +16,11 @@ public class ActivateAfterDelay : MonoBehaviour
     IEnumerator DoActivate()
     {
         yield return new WaitForSeconds(delayTime);
-        objectToActivate.SetActive(true);
+
+        if (objectToActivate)
+        {
+            objectToActivate.SetActive(true);
+        }
         afterDelay?.Invoke();
     }
     
