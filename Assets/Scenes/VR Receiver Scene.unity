@@ -4098,6 +4098,12 @@ MonoBehaviour:
   HitsTriggers: 0
   ImpactAudio: {fileID: 0}
   AudioContainers: []
+--- !u!64 &183618043 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 64720301163810564, guid: 6b97ddfa5d6f8b246af44ace27347bdc,
+    type: 3}
+  m_PrefabInstance: {fileID: 183618039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &184904710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21768,6 +21774,17 @@ MonoBehaviour:
   scalePosition: 0
   scaleCamera: 1
   teleporter: {fileID: 1741552760}
+  excludeColliders:
+  - {fileID: 2138590350}
+  - {fileID: 183618043}
+  - {fileID: 146383872}
+  - {fileID: 443180181}
+  - {fileID: 538740185}
+  - {fileID: 601882652}
+  - {fileID: 1159749289}
+  - {fileID: 1264459630}
+  - {fileID: 5435752649663711897}
+  - {fileID: 5435752649663711900}
 --- !u!114 &1159749288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24140,7 +24157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene:
     sceneAsset: {fileID: 102900000, guid: 9aa4e66b337e9c84685e39874fc7393e, type: 3}
-    scenePath: Assets/Scenes/NZ Nature Play Area Test.unity
+    scenePath: Assets/Scenes/NZ Nature Scene.unity
   blinkToColor: {r: 0, g: 0, b: 0, a: 1}
   delay: 0
   teleportToName: 
@@ -32245,6 +32262,36 @@ PrefabInstance:
       propertyPath: cursorRadius
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9218986916685667663, guid: 8a3d621b0213b65499436695fbeeb742,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218986916685667663, guid: 8a3d621b0213b65499436695fbeeb742,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218986916685667663, guid: 8a3d621b0213b65499436695fbeeb742,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218986917985187342, guid: 8a3d621b0213b65499436695fbeeb742,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218986917985187342, guid: 8a3d621b0213b65499436695fbeeb742,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218986917985187342, guid: 8a3d621b0213b65499436695fbeeb742,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a3d621b0213b65499436695fbeeb742, type: 3}
 --- !u!114 &1741552760 stripped
@@ -40159,6 +40206,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe7ec3b45ebffbe46a6607a6a507a5b8, type: 3}
+--- !u!64 &2138590350 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 64440004546288126, guid: fe7ec3b45ebffbe46a6607a6a507a5b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2138590349}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2145730058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 66cfe382bd2863f4ab72a7c012c322c9,
