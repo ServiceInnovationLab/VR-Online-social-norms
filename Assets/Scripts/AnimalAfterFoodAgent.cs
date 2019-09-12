@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.AI;
 using VRTK;
 using System.Linq;
+using System.Collections;
 
 public class AnimalAfterFoodAgent : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class AnimalAfterFoodAgent : MonoBehaviour
     [SerializeField] float speed = 2;
     [SerializeField] bool runFromPlayer = false;
     [SerializeField] int updateRate = 20;
+    [SerializeField] float waterOffset = -0.1f;
 
     NavMeshAgent agent;
     bool runningAway = false;
@@ -23,10 +25,66 @@ public class AnimalAfterFoodAgent : MonoBehaviour
     Vector3 lastPlayerPosition;
 
     private int times;
+    new Animation animation;
+
+    string walkingAnimation;
+    string idleAnimation;
+    string eatingAnimation;
+
+    int waterLayer;
+    bool eating = false;
+    float eatingLength;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == waterLayer)
+        {
+            agent.baseOffset = waterOffset;
+        }
+        else
+        {
+            if (!other.transform.CompareTag("Food"))
+                return;
+
+            EatFood(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == waterLayer)
+        {
+            agent.baseOffset = 0;
+        }
+    }
 
     private void Awake()
     {
+        waterLayer = LayerMask.NameToLayer("Water");
         agent = GetComponent<NavMeshAgent>();
+        animation = GetComponent<Animation>();
+
+        if (animation)
+        {
+            foreach (AnimationState state in animation)
+            {
+                var name = state.name.ToLower();
+
+                if (name.Contains("eat"))
+                {
+                    eatingAnimation = state.name;
+                    eatingLength = state.clip.length;
+                }
+                else if (name.Contains("idle"))
+                {
+                    idleAnimation = state.name;
+                }
+                else if (name.Contains("walk"))
+                {
+                    walkingAnimation = state.name;
+                }
+            }
+        }
 
         targets = GameObject.FindGameObjectsWithTag("Food").Select(x => x.GetComponent<Rigidbody>()).ToArray();
         teleport.Teleporting += Teleport_Teleported;
@@ -36,6 +94,21 @@ public class AnimalAfterFoodAgent : MonoBehaviour
     private void Teleport_Teleported(object sender, DestinationMarkerEventArgs e)
     {
         skipRunningAway = true;
+    }
+
+    private void Update()
+    {
+        if (!animation || eating)
+            return;
+
+        if (agent.velocity.sqrMagnitude >= 0.1f)
+        {
+            animation.Play(walkingAnimation);
+        }
+        else
+        {
+            animation.Play(idleAnimation);
+        }
     }
 
     private void FixedUpdate()
@@ -91,32 +164,55 @@ public class AnimalAfterFoodAgent : MonoBehaviour
 
     private void EatFood(GameObject food)
     {
+        food.tag = "Untagged";
+        target = -1;
+        foodEaten?.Invoke();
+        agent.ResetPath();
+
+        if (animation && !string.IsNullOrEmpty(eatingAnimation))
+        {
+            StartCoroutine(DoEatFoodAnimation(food));
+        }
+        else
+        {
+            Destroy(food);
+            transform.localScale *= 1.05f;
+        }
+    }
+
+    IEnumerator DoEatFoodAnimation(GameObject food)
+    {
+        var lookPos = food.transform.position - transform.position;
+        lookPos.y = 0;
+        transform.localRotation = Quaternion.LookRotation(lookPos);
+
+        eating = true;
+        animation.Play(eatingAnimation);
+
+        float startTime = Time.time;
+
+        Vector3 originalScale = food.transform.localScale;
+
+        do
+        {
+            yield return new WaitForFixedUpdate();
+
+            float scale = (Time.time - startTime) / eatingLength;
+            scale = Mathf.Clamp(scale, 0, 1);
+            scale = 1 - (scale * scale);
+
+            food.transform.localScale = originalScale * scale;
+        }
+        while (animation.IsPlaying(eatingAnimation));
+
         Destroy(food);
         transform.localScale *= 1.05f;
-        target = -1;
-
-        foodEaten?.Invoke();
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (!hit.transform.CompareTag("Food"))
-            return;
-
-        EatFood(hit.transform.gameObject);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (!collision.transform.CompareTag("Food"))
-            return;
-
-        EatFood(collision.transform.gameObject);
+        eating = false;
     }
 
     void GoAfterTarget()
     {
-        if (times++ < updateRate)
+        if (times++ < updateRate || eating)
         {
             return;
         }
@@ -152,7 +248,6 @@ public class AnimalAfterFoodAgent : MonoBehaviour
         {
             var distance = Vector3.Distance(transform.position, targets[target].transform.position);
 
-            // Sometimes collisons aren't detected?
             if (distance < agent.radius)
             {
                 EatFood(targets[target].gameObject);
@@ -163,7 +258,7 @@ public class AnimalAfterFoodAgent : MonoBehaviour
             {
                 var lookPos = targets[target].transform.position - transform.position;
                 lookPos.y = 0;
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(lookPos), 0.75f); ;
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(lookPos), 0.75f);
             }
 
             agent.speed = Random.Range(speed / 4, speed / 2);

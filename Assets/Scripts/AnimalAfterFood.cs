@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Events;
 using System.Collections;
 using System.Linq;
@@ -14,6 +15,9 @@ public class AnimalAfterFood : MonoBehaviour
     [SerializeField] float speed = 5;
     [SerializeField] float walkingDistance = 1.0f;
     [SerializeField] VRTK_BasicTeleport teleport;
+    [SerializeField] int eatClip = 0;
+    [SerializeField] int idleClip = 1;
+    [SerializeField] int walkClip = 2;
 
     CharacterController controller;
     float velocity;
@@ -24,9 +28,12 @@ public class AnimalAfterFood : MonoBehaviour
     int target = -1;
     Vector3 lastPlayerPosition;
 
+    new Animation animation;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        animation = GetComponent<Animation>();
 
         targets = GameObject.FindGameObjectsWithTag("Food").Select(x => x.GetComponent<Rigidbody>()).ToArray();
         teleport.Teleporting += Teleport_Teleported;
