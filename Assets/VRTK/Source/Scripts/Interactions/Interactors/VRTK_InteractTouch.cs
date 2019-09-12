@@ -512,6 +512,11 @@ namespace VRTK
             }
             else
             {
+                if (destroyColliderOnDisable)
+                {
+                    Destroy(controllerCollisionDetector);
+                }
+
                 if (CustomRigidBodyIsChild())
                 {
                     controllerCollisionDetector = customColliderContainer;
