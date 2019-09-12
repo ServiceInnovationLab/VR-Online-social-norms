@@ -34,7 +34,11 @@ public class ResetIfOutOfArea : MonoBehaviour
         if (inBounds || (isAbove && !body.IsSleeping()))
             return;
 
-        body.MovePosition(resetPoint.position);
-        body.MoveRotation(resetPoint.rotation);
+        body.velocity = Vector3.zero;
+        body.angularVelocity = Vector3.zero;
+        body.Sleep();
+
+        body.position = resetPoint.position;
+        body.rotation = resetPoint.rotation;
     }
 }
