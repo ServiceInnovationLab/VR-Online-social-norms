@@ -58,7 +58,7 @@ public class PerspectiveChanger : MonoBehaviour
 #if UNITY_EDITOR
         if (!Application.isPlaying)
         {            
-            excludeColliders = FindObjectsOfType<Collider>().Where(x => x.bounds.Intersects(collider.bounds)).ToArray();
+            excludeColliders = FindObjectsOfType<Collider>().Where(x => x.bounds.Intersects(collider.bounds)).OrderBy(x => x.gameObject.name).ToArray();
 
             return;
         }
