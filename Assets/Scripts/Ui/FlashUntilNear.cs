@@ -54,14 +54,14 @@ public class FlashUntilNear : MonoBehaviour
 
         StopAllCoroutines();
         enabled = false;
-        disableHighlight = false;
+        disableHighlight = !(interactableObject.isUsable || interactableObject.isGrabbable);
     }
 
     private void OnDisable()
     {
         StopAllCoroutines();
 
-        if (interactableObject.IsTouched())
+        if (interactableObject.IsTouched() && (interactableObject.isUsable || interactableObject.isGrabbable))
             return;
 
         if (highlighterObject && disableHighlight)

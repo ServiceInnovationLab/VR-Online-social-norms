@@ -6,15 +6,16 @@ using UnityEngine.UI;
 public class TextEnterer : MonoBehaviour
 {
     [SerializeField] SocialMediaScenarioTextType textToEnterType;
-    [SerializeField] FloatRange timeBetweenCharacters = new FloatRange() { min = 0.2f, max = 0.25f };
+    [SerializeField] protected FloatRange timeBetweenCharacters = new FloatRange() { min = 0.2f, max = 0.25f };
     [SerializeField] InputField input;
     [SerializeField] Button sendButton;
     [SerializeField] UnityEvent typingCompleted;
-    [SerializeField] UnityEvent onSend;    
+    [SerializeField] UnityEvent onSend;
     [SerializeField] ScreenMessageFeedView feedView;
 
     bool started;
-    string textToEnter;
+    protected string textToEnter;
+    protected bool isTypingCompleted { get; private set; }
 
     public void SendText()
     {
@@ -38,7 +39,7 @@ public class TextEnterer : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         sendButton.interactable = false;
 
@@ -48,19 +49,31 @@ public class TextEnterer : MonoBehaviour
         }
     }
 
-    IEnumerator TypeText()
+    protected virtual void Start()
     {
         textToEnter = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(textToEnterType);
+    }
+
+    protected virtual IEnumerator TypeText()
+    {
+        if (textToEnter == null)
+        {
+            textToEnter = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(textToEnterType);
+        }
 
         for (int i = 0; i < textToEnter.Length; i++)
         {
-            input.text = textToEnter.Substring(0, i + 1);
-            EventManager.TriggerEvent(Events.KeyboardTextTyped);
-            EventManager.TriggerEvent(Events.KeyboardTextTyped, new TextTypedEventArgs(input.text[input.text.Length - 1].ToString()));
+            TypeCharacter(i + 1);
 
             yield return new WaitForSeconds(timeBetweenCharacters.GetValue());
         }
 
+        OnTypingFinished();
+    }
+
+    protected virtual void OnTypingFinished()
+    {
+        isTypingCompleted = true;
         typingCompleted?.Invoke();
 
         if (sendButton)
@@ -72,5 +85,18 @@ public class TextEnterer : MonoBehaviour
         {
             feedView.StopFeed();
         }
+    }
+
+    /// <summary>
+    /// Types the text to be entered up to the length specified.
+    /// </summary>
+    /// <param name="length"></param>
+    protected void TypeCharacter(int length)
+    {
+        length = Mathf.Min(length, textToEnter.Length);
+
+        input.text = textToEnter.Substring(0, length);
+        EventManager.TriggerEvent(Events.KeyboardTextTyped);
+        EventManager.TriggerEvent(Events.KeyboardTextTyped, new TextTypedEventArgs(input.text[input.text.Length - 1].ToString()));
     }
 }

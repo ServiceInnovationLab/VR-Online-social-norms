@@ -16,9 +16,18 @@ public class TwoUseObject : MonoBehaviour
 
     public void AllowSecondUse()
     {
-        canUseSecondAction = true;
-        highlighter.enabled = true;
-        interactableObject.isUsable = true;
+        if (enabled)
+        {
+            canUseSecondAction = true;
+            highlighter.enabled = true;
+            interactableObject.isUsable = true;
+        }
+        else
+        {
+            highlighter.Unhighlight();
+            highlighter.enabled = false;
+            interactableObject.isUsable = false;
+        }
     }
 
     private void Awake()
