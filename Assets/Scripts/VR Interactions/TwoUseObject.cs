@@ -5,6 +5,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(VRTK_InteractableObject))]
 public class TwoUseObject : MonoBehaviour
 {
+    public bool forceUse;
     public UnityEvent onFirstUse;
     public UnityEvent onSecondUseUse;
 
@@ -16,6 +17,11 @@ public class TwoUseObject : MonoBehaviour
 
     public void AllowSecondUse()
     {
+        if (forceUse)
+        {
+            enabled = true;
+        }
+
         if (enabled)
         {
             canUseSecondAction = true;
