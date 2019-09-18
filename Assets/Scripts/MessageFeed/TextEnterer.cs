@@ -13,7 +13,7 @@ public class TextEnterer : MonoBehaviour
     [SerializeField] UnityEvent onSend;
     [SerializeField] ScreenMessageFeedView feedView;
 
-    bool started;
+    protected bool started;
     protected string textToEnter;
     protected bool isTypingCompleted { get; private set; }
 
