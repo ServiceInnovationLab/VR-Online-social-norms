@@ -213,4 +213,11 @@ public class BasicFunctions : ScriptableObject
         playarea.rotation = transform.rotation;
         playarea.position = transform.position;
     }
+
+    public void FlipPlayArea()
+    {
+        var playarea = VRTK_DeviceFinder.PlayAreaTransform();
+
+        playarea.rotation = Quaternion.Euler(playarea.rotation.eulerAngles + new Vector3(0, 180, 0));
+    }
 }
