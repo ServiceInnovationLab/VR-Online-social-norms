@@ -6,7 +6,7 @@ using VRTK.Highlighters;
 [RequireComponent(typeof(VRTK_InteractableObject))]
 public class FlashUntilNear : MonoBehaviour
 {
-    VRTK_InteractableObject interactableObject;
+    protected VRTK_InteractableObject interactableObject;
 
     [SerializeField] Closeness closeness = Closeness.NearTouch;
     [SerializeField] protected Color highlightColour = Color.clear;
@@ -60,6 +60,16 @@ public class FlashUntilNear : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
+
+
+        if (closeness == Closeness.NearTouch)
+        {
+            interactableObject.InteractableObjectNearTouched -= InteractableObjectNearTouched;
+        }
+        else if (closeness == Closeness.Touched)
+        {
+            interactableObject.InteractableObjectTouched -= InteractableObjectNearTouched;
+        }
 
         if (interactableObject.IsTouched() && (interactableObject.isUsable || interactableObject.isGrabbable))
             return;

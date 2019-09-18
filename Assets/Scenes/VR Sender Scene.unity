@@ -28798,11 +28798,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1940835698}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d8f16615119d544abb004949e6fbf9, type: 3}
+  m_Script: {fileID: 11500000, guid: dd351a88d319ba642a937675dea29b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   closeness: 1
-  highlightColour: {r: 0.7294118, g: 0.99215686, b: 0.5568628, a: 1}
+  highlightColour: {r: 0.3963964, g: 1, b: 0, a: 1}
   time: 0.5
   maxTime: 0
 --- !u!114 &1940835707
@@ -28819,8 +28819,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   unhighlightOnDisable: 1
-  emissionDarken: 0
-  customMaterial: {fileID: 0}
+  emissionDarken: 60
+  customMaterial: {fileID: 2100000, guid: b8d1dc2bdcbdb1246b26afd1eba36b15, type: 2}
 --- !u!64 &1940835708 stripped
 MeshCollider:
   m_CorrespondingSourceObject: {fileID: 6498428, guid: a32bf73ad4c4e644d9b8c8f8712bed74,
@@ -32105,9 +32105,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1940835706}
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 1940835699}
+        m_MethodName: DisallowUse
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -32149,7 +32149,7 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: a7a74fcbc48f4f242b56c609d0611cd2, type: 3}
     scenePath: Assets/Scenes/VR Receiver Scene.unity
   blinkToColor: {r: 0, g: 0, b: 0, a: 1}
-  delay: 4
+  delay: 3
   teleportToName: ReceiverRoomPoint
   blinkDistance: 32.1
   blinkTransition: 1
@@ -33402,7 +33402,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.04393
+      value: 217.01974
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
