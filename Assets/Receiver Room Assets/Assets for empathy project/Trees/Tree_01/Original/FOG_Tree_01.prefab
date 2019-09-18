@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1222894583236364}
+  m_RootGameObject: {fileID: 1505805102406520}
   m_IsPrefabParent: 1
---- !u!1 &1222894583236364
+--- !u!1 &1505805102406520
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4326935784386458}
-  - component: {fileID: 193749892217181786}
-  - component: {fileID: 33055366591763604}
-  - component: {fileID: 23661569373369458}
+  - component: {fileID: 4767258568242360}
+  - component: {fileID: 193179616546088090}
+  - component: {fileID: 33380191733291948}
+  - component: {fileID: 23255824270759184}
   m_Layer: 0
-  m_Name: Furn_00
+  m_Name: FOG_Tree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4326935784386458
+--- !u!4 &4767258568242360
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222894583236364}
+  m_GameObject: {fileID: 1505805102406520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.85, y: -3.454, z: 13.44}
+  m_LocalPosition: {x: 8.19, y: -3.09, z: 13.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23661569373369458
+--- !u!23 &23255824270759184
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222894583236364}
+  m_GameObject: {fileID: 1505805102406520}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,7 +57,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 21616324748542092, guid: 7d50a63fbc4048243adadeae496b4160, type: 2}
+  - {fileID: 21047784549973280, guid: 837422042c91f924099b84e93fa99165, type: 2}
+  - {fileID: 21327802466154624, guid: 837422042c91f924099b84e93fa99165, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,19 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33055366591763604
+--- !u!33 &33380191733291948
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222894583236364}
-  m_Mesh: {fileID: 43109284457218576, guid: 7d50a63fbc4048243adadeae496b4160, type: 2}
---- !u!193 &193749892217181786
+  m_GameObject: {fileID: 1505805102406520}
+  m_Mesh: {fileID: 43065801574405942, guid: 837422042c91f924099b84e93fa99165, type: 2}
+--- !u!193 &193179616546088090
 Tree:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222894583236364}
+  m_GameObject: {fileID: 1505805102406520}
   m_SpeedTreeWindAsset: {fileID: 0}
-  m_TreeData: {fileID: 114631084275169474, guid: 7d50a63fbc4048243adadeae496b4160,
+  m_TreeData: {fileID: 114944494617551664, guid: 837422042c91f924099b84e93fa99165,
     type: 2}
