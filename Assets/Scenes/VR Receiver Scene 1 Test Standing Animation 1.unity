@@ -5356,16 +5356,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234071298}
-  m_LocalRotation: {x: -0.4884027, y: -0.0023044967, z: -0.0034914305, w: 0.87260836}
-  m_LocalPosition: {x: 0.5438871, y: 0.6752357, z: 0.2069122}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.2673054, y: 1.8278422, z: 1.3717589}
   m_Children:
   - {fileID: 2304667787967324379}
   - {fileID: 669876481}
   - {fileID: 1917678129}
-  m_Father: {fileID: 1106005382260933480}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -58.472, y: -0.067, z: -0.421}
+  m_Father: {fileID: 1576149580}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &234071300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7541,7 +7541,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7834,9 +7834,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -27, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &354101998
 MonoBehaviour:
@@ -9193,7 +9193,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 341430595}
   m_HandleRect: {fileID: 341430594}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -12096,7 +12096,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600646319}
   m_LocalRotation: {x: -0, y: -0.77587485, z: -0, w: 0.630887}
-  m_LocalPosition: {x: -13.71, y: 6.34, z: -17.7}
+  m_LocalPosition: {x: 5.92, y: 6.34, z: -13.61}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 165633976}
@@ -13084,7 +13084,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00006
+      value: 216.99998
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -17197,7 +17197,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1785732589}
-        m_MethodName: SendSenderMessageToFeed
+        m_MethodName: SendFriendMessageToFeed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25629,11 +25629,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1248323591}
-  - component: {fileID: 1248323590}
-  - component: {fileID: 1248323589}
   - component: {fileID: 1248323588}
   m_Layer: 0
-  m_Name: NatureSceneExit
+  m_Name: NextSceneExit
   m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25652,10 +25650,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene:
-    sceneAsset: {fileID: 102900000, guid: 9aa4e66b337e9c84685e39874fc7393e, type: 3}
-    scenePath: Assets/Scenes/NZ Nature Scene.unity
+    sceneAsset: {fileID: 102900000, guid: 96dfe8940ada5bb449003503c33a508d, type: 3}
+    scenePath: Assets/Scenes/VR Sender Scene 2.unity
   blinkToColor: {r: 0, g: 0, b: 0, a: 1}
-  delay: 0
+  delay: 3
   teleportToName: 
   blinkDistance: 32.1
   blinkTransition: 1
@@ -25665,48 +25663,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   preload: 0
---- !u!114 &1248323589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248323587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6038e818a05a11f42b9c60ac09000c98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onEaten:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1248323588}
-        m_MethodName: SwitchScenes
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!136 &1248323590
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248323587}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2.5322344
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.76611674, z: 0}
 --- !u!4 &1248323591
 Transform:
   m_ObjectHideFlags: 0
@@ -29719,7 +29675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000523718}
+  m_AnchoredPosition: {x: 0, y: -0.00043293962}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1527341967
@@ -30424,9 +30380,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1248323587}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1248323588}
+        m_MethodName: SwitchScenes
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -31208,7 +31164,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.45, y: 0.3676, z: -0.2067}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 234071299}
   m_Father: {fileID: 1882324404}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35226,6 +35183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollToBottom: 1
+  MessageFeedType: 2
   timeBetweenMessages:
     min: 1
     max: 1.5
@@ -42942,7 +42900,6 @@ Transform:
   m_Children:
   - {fileID: 198109557}
   - {fileID: 917656837244535253}
-  - {fileID: 234071299}
   m_Father: {fileID: 1148901467}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 222.66399, z: 0}

@@ -8,6 +8,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     MessageFeed messageFeed;
 
+    [SerializeField] SocialMediaScenatioMessageFeedType MessageFeedType = SocialMediaScenatioMessageFeedType.Default;
+
     [Tooltip("The time variances between messages showing up in the feed, in seconds")]
     [SerializeField] FloatRange timeBetweenMessages;
 
@@ -48,6 +50,17 @@ public class ScreenMessageFeedView : MonoBehaviour
         DisplayMessage(new Message() { message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Sender) });
     }
 
+    public void SendFriendMessageToFeed()
+    {
+        DisplayMessage(new Message() { message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend) });
+    }
+
+    public void SendFriendAndReplyMessage()
+    {
+        DisplayMessage(new Message() { message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend) });
+        DisplayMessage(new Message() { message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Receiver) });
+    }
+
     public void CompleteFeed()
     {
         forceComplete = true;
@@ -72,7 +85,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     private void Start()
     {
-        messageFeed = SocialMediaScenarioPicker.Instance.CurrentScenario.messageFeed;
+        messageFeed = SocialMediaScenarioPicker.Instance.CurrentScenario.GetMessageFeed(MessageFeedType);
     }
 
     private void OnEnable()

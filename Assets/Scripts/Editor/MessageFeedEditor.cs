@@ -28,6 +28,11 @@ public class MessageFeedEditor : Editor
         if (!feed)
             return;
 
+        if (feed.messages == null)
+        {
+            feed.messages = new List<Message>();
+        }
+
         for (int i = fadeStatus.Count; i < feed.messages.Count; i++)
         {
             fadeStatus.Add(true);
