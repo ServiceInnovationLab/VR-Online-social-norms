@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -7,6 +8,8 @@ public class ScreenMessageFeedView : MonoBehaviour
     public bool scrollToBottom = true;
 
     MessageFeed messageFeed;
+
+    [SerializeField] UnityEvent OnComplete = new UnityEvent();
 
     [SerializeField] SocialMediaScenatioMessageFeedType MessageFeedType = SocialMediaScenatioMessageFeedType.Default;
 
@@ -115,6 +118,8 @@ public class ScreenMessageFeedView : MonoBehaviour
                 yield return new WaitForSeconds(timeBetweenMessages.GetValue());
             }
         }
+
+        OnComplete?.Invoke();
     }
 
     void DisplayMessage(Message theMessage)
