@@ -9917,7 +9917,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 32, y: 0}
-  m_SizeDelta: {x: 780, y: 80}
+  m_SizeDelta: {x: 780, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734754084
 MonoBehaviour:
@@ -10116,6 +10116,7 @@ MonoBehaviour:
   message: 
   profilePicture: {fileID: 21300000, guid: b538375d61bd8224d8843557545d1219, type: 3}
   sent: 1
+  profile: {fileID: 0}
   messageText: {fileID: 734754084}
   profilePictureImage: {fileID: 1296208063}
   fromTime: {fileID: 1353124600}
@@ -32023,6 +32024,12 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  OnNewMessage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  loop: 0
   MessageFeedType: 1
   timeBetweenMessages:
     min: 1.5
@@ -33430,7 +33437,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00002
+      value: 217.18196
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
