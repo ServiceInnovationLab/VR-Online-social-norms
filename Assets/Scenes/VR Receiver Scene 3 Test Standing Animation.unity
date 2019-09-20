@@ -13084,7 +13084,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00035
+      value: 217.00006
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -23004,6 +23004,12 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d2b245800c69ab489a9000e99746a40, type: 3}
+--- !u!4 &1145141122 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 9d2b245800c69ab489a9000e99746a40,
+    type: 3}
+  m_PrefabInstance: {fileID: 1145141121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1146166314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 07f208ce7f143d9449ab9d46857a41cb,
@@ -23250,16 +23256,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resizeFirst: 0
-  doRotate: 1
+  doRotate: 0
   deleteTarget: 1
-  doTeleport: 1
-  target: {fileID: 198109557}
-  targetRotation: {fileID: 183618040}
+  doTeleport: 0
+  target: {fileID: 1145141122}
+  targetRotation: {fileID: 0}
   blinkDistance: 32.1
   blinkTransition: 2
   sceneObjects: {fileID: 0}
-  newSceneScale: 6.5
-  offset: {x: -8, y: 0, z: 5}
+  newSceneScale: 1
+  offset: {x: 0, y: 0, z: 0}
   afterTeleport:
     m_PersistentCalls:
       m_Calls: []
@@ -23271,7 +23277,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   scalePosition: 0
-  scaleCamera: 1
+  scaleCamera: 0
   teleporter: {fileID: 1741552760}
   excludeColliders:
   - {fileID: 538740185}
