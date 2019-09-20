@@ -74,11 +74,18 @@ public class TrackedObject : MonoBehaviour
             int foundCount = 0;
             bool found = false;
 
+            /* for (uint i = 0; i < 16; i++)
+             {
+                 var result = new System.Text.StringBuilder(64);
+                 OpenVR.System.GetStringTrackedDeviceProperty(i, ETrackedDeviceProperty.Prop_RenderModelName_String, result, 64, ref error);
+                 Debug.LogError(result.ToString());
+             }*/
+
             for (uint i = 0; i < 16; i++)
             {
                 var result = new System.Text.StringBuilder(64);
                 OpenVR.System.GetStringTrackedDeviceProperty(i, ETrackedDeviceProperty.Prop_RenderModelName_String, result, 64, ref error);
-                if (result.ToString().Contains("tracker"))
+                if (result.ToString().Contains("tracker_vive"))
                 {
                     if (foundCount != trackerNumber)
                     {
