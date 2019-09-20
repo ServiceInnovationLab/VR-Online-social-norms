@@ -5342,6 +5342,7 @@ GameObject:
   - component: {fileID: 234071304}
   - component: {fileID: 234071311}
   - component: {fileID: 234071312}
+  - component: {fileID: 234071313}
   m_Layer: 0
   m_Name: Phone
   m_TagString: Untagged
@@ -5385,7 +5386,7 @@ MonoBehaviour:
   isGrabbable: 0
   holdButtonToGrab: 0
   stayGrabbedOnTeleport: 1
-  validDrop: 0
+  validDrop: 1
   grabOverrideButton: 0
   allowedGrabControllers: 0
   grabAttachMechanicScript: {fileID: 234071302}
@@ -5637,6 +5638,21 @@ MonoBehaviour:
   ImpactAudio: {fileID: 1211560616668849710, guid: 6804f77b089873b4d806f2dc11260032,
     type: 3}
   AudioContainers: []
+--- !u!114 &234071313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234071298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848644e34faf5004aa34a951fc093eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableOnTurnOff: {fileID: 1785732587}
+  requiredHeldTime: 2
+  button: 8
 --- !u!1001 &236031160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13084,7 +13100,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00006
+      value: 217
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -23324,28 +23340,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1785732589}
-        m_MethodName: CompleteFeed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 234071307}
-        m_MethodName: Activate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1576149581}
         m_MethodName: MoveObjectHereRotateToSetRotation
         m_Mode: 2
@@ -23385,6 +23379,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1496883682}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1785732589}
+        m_MethodName: StartFeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -35239,11 +35244,27 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  OnNewMessage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 234071303}
+        m_MethodName: TriggerPulse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   loop: 1
   MessageFeedType: 4
   timeBetweenMessages:
-    min: 1
-    max: 1.5
+    min: 2
+    max: 5
   messagePrefab: {fileID: 1677147115}
   messageContainer: {fileID: 1526844659}
   startOnEnable: 0

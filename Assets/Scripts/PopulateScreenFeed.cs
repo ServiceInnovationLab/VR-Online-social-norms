@@ -20,9 +20,11 @@ public class PopulateScreenFeed : MonoBehaviour
                 {
                     message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(message),
                     profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(message)
-                });
+                }, triggerEvent: false);
             }
         }
+
+        screenMessageFeed.scrollToBottom = false;
     }
 
 

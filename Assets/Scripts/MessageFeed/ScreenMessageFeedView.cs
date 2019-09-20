@@ -11,6 +11,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     [SerializeField] UnityEvent OnComplete = new UnityEvent();
 
+    [SerializeField] UnityEvent OnNewMessage = new UnityEvent();
+
     [SerializeField] bool loop = false;
 
     [SerializeField] SocialMediaScenatioMessageFeedType MessageFeedType = SocialMediaScenatioMessageFeedType.Default;
@@ -142,7 +144,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         OnComplete?.Invoke();
     }
 
-    public void DisplayMessage(Message theMessage)
+    public void DisplayMessage(Message theMessage, bool triggerEvent = true)
     {
         var messageDisplay = Instantiate(messagePrefab, messageContainer);
 
@@ -184,6 +186,11 @@ public class ScreenMessageFeedView : MonoBehaviour
         if (scrollRect && scrollToBottom)
         {
             scrollRect.verticalNormalizedPosition = 0;
+        }
+
+        if (triggerEvent)
+        {
+            OnNewMessage?.Invoke();
         }
     }
 
@@ -240,7 +247,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     {
         foreach (var message in feed.messages)
         {
-            DisplayMessage(message);
+            DisplayMessage(message, false);
         }
     }
 }
