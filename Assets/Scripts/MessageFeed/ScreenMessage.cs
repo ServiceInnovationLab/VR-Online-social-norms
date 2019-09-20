@@ -9,6 +9,7 @@ public class ScreenMessage : MonoBehaviour
     public Sprite profilePicture;
     public bool sent = true;
 
+    [SerializeField] OnlineProfile profile;
     [SerializeField] Text messageText;
     [SerializeField] Image profilePictureImage;
     [SerializeField] Text fromTime;
@@ -33,6 +34,13 @@ public class ScreenMessage : MonoBehaviour
 
     private void Awake()
     {
+        if (profile)
+        {
+            from = profile.username;
+            profilePicture = profile.picture;
+            fromTag = profile.tag;
+        }
+
         fromPersonText.text = from;
         messageText.text = message;
         profilePictureImage.sprite = profilePicture;

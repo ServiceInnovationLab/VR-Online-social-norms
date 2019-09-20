@@ -9,6 +9,7 @@ public enum SocialMediaScenarioTextType
 
 public enum SocialMediaScenatioMessageFeedType
 {
+    None,
     Default,
     Sender,
     Receiver,
@@ -27,6 +28,12 @@ public class SocialMediaScenario : ScriptableObject
 
     public MessageFeed pileOnMessageFeed;
 
+
+    public OnlineProfile receiverProfile;
+
+    public OnlineProfile senderProfile;
+
+    public OnlineProfile friendProfile;
 
     public string senderMessage;
 
@@ -63,8 +70,27 @@ public class SocialMediaScenario : ScriptableObject
 
             case SocialMediaScenatioMessageFeedType.PileOn:
                 return pileOnMessageFeed;
-            default:
+            case SocialMediaScenatioMessageFeedType.Default:
                 return messageFeed;
+        }
+
+        return null;
+    }
+
+    public OnlineProfile GetProfile(SocialMediaScenarioTextType type)
+    {
+        switch (type)
+        {
+            case SocialMediaScenarioTextType.Sender:
+                return senderProfile;
+
+            case SocialMediaScenarioTextType.Receiver:
+                return receiverProfile;
+
+            case SocialMediaScenarioTextType.Friend:
+                return friendProfile;
+            default:
+                return null;
         }
     }
 }

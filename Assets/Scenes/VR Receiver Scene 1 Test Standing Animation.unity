@@ -3525,6 +3525,7 @@ MonoBehaviour:
   message: 
   profilePicture: {fileID: 21300000, guid: b538375d61bd8224d8843557545d1219, type: 3}
   sent: 1
+  profile: {fileID: 0}
   messageText: {fileID: 940026875}
   profilePictureImage: {fileID: 1798745257}
   fromTime: {fileID: 798390253}
@@ -14242,7 +14243,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.01498
+      value: 217
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -28660,6 +28661,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollToBottom: 1
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   MessageFeedType: 0
   timeBetweenMessages:
     min: 1
@@ -33289,6 +33295,7 @@ MonoBehaviour:
   message: 
   profilePicture: {fileID: 21300000, guid: 23498128d2890ee40bf6e6b890018a37, type: 3}
   sent: 0
+  profile: {fileID: 0}
   messageText: {fileID: 1711916627}
   profilePictureImage: {fileID: 1756496288}
   fromTime: {fileID: 579609829}
@@ -36019,6 +36026,7 @@ MonoBehaviour:
   message: 
   profilePicture: {fileID: 21300000, guid: b538375d61bd8224d8843557545d1219, type: 3}
   sent: 1
+  profile: {fileID: 0}
   messageText: {fileID: 2053444190}
   profilePictureImage: {fileID: 429389555}
   fromTime: {fileID: 197898247}
@@ -38966,6 +38974,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollToBottom: 1
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   MessageFeedType: 2
   timeBetweenMessages:
     min: 1
@@ -42247,6 +42260,7 @@ MonoBehaviour:
   message: 
   profilePicture: {fileID: 21300000, guid: 23498128d2890ee40bf6e6b890018a37, type: 3}
   sent: 0
+  profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
   messageText: {fileID: 1051069408}
   profilePictureImage: {fileID: 1321035217}
   fromTime: {fileID: 466437107}

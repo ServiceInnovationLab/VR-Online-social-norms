@@ -11,6 +11,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     [SerializeField] UnityEvent OnComplete = new UnityEvent();
 
+    [SerializeField] bool loop = false;
+
     [SerializeField] SocialMediaScenatioMessageFeedType MessageFeedType = SocialMediaScenatioMessageFeedType.Default;
 
     [Tooltip("The time variances between messages showing up in the feed, in seconds")]
@@ -50,18 +52,31 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void SendSenderMessageToFeed()
     {
-        DisplayMessage(new Message() { message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Sender) });
+        DisplayMessage(new Message()
+        {
+            message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Sender),
+            profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Sender)
+        });
     }
 
     public void SendFriendMessageToFeed()
     {
-        DisplayMessage(new Message() { message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend) });
+        DisplayMessage(new Message()
+        {
+            message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend),
+            profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Friend)
+        });
     }
 
     public void SendFriendAndReplyMessage()
     {
-        DisplayMessage(new Message() { message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend) });
-        DisplayMessage(new Message() { message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Receiver) });
+        SendFriendMessageToFeed();
+
+        DisplayMessage(new Message()
+        {
+            message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Receiver),
+            profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Receiver)
+        });
     }
 
     public void CompleteFeed()
@@ -108,7 +123,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         int lastMessageShown = 0;
 
-        while (lastMessageShown < messageFeed.messages.Count)
+        while (lastMessageShown < messageFeed.messages.Count || loop)
         {
             DisplayMessage(messageFeed.messages[lastMessageShown]);
             lastMessageShown++;
@@ -117,12 +132,17 @@ public class ScreenMessageFeedView : MonoBehaviour
             {
                 yield return new WaitForSeconds(timeBetweenMessages.GetValue());
             }
+
+            if (loop && messageFeed.messages.Count <= lastMessageShown)
+            {
+                lastMessageShown = 0;
+            }
         }
 
         OnComplete?.Invoke();
     }
 
-    void DisplayMessage(Message theMessage)
+    public void DisplayMessage(Message theMessage)
     {
         var messageDisplay = Instantiate(messagePrefab, messageContainer);
 
@@ -213,6 +233,14 @@ public class ScreenMessageFeedView : MonoBehaviour
         if (scrollRect && scrollToBottom)
         {
             scrollRect.verticalNormalizedPosition = 0;
+        }
+    }
+
+    public void Populate(int timeOffset, MessageFeed feed)
+    {
+        foreach (var message in feed.messages)
+        {
+            DisplayMessage(message);
         }
     }
 }

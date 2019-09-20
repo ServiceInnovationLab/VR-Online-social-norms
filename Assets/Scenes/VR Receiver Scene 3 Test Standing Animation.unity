@@ -5356,16 +5356,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234071298}
-  m_LocalRotation: {x: -0.4884027, y: -0.0023044967, z: -0.0034914305, w: 0.87260836}
-  m_LocalPosition: {x: 0.5438871, y: 0.6752357, z: 0.2069122}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.34334, y: 7.042575, z: 6.438604}
+  m_LocalScale: {x: 12, y: 12, z: 12}
   m_Children:
   - {fileID: 2304667787967324379}
   - {fileID: 669876481}
   - {fileID: 1917678129}
-  m_Father: {fileID: 1106005382260933480}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -58.472, y: -0.067, z: -0.421}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &234071300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7541,7 +7541,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7834,9 +7834,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -27, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &354101998
 MonoBehaviour:
@@ -9193,7 +9193,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 341430595}
   m_HandleRect: {fileID: 341430594}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13084,7 +13084,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00006
+      value: 217.00035
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -29719,7 +29719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000523718}
+  m_AnchoredPosition: {x: 0, y: -0.00074557273}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1527341967
@@ -32771,6 +32771,7 @@ MonoBehaviour:
   message: 
   profilePicture: {fileID: 21300000, guid: b538375d61bd8224d8843557545d1219, type: 3}
   sent: 1
+  profile: {fileID: 0}
   messageText: {fileID: 2053444190}
   profilePictureImage: {fileID: 429389555}
   fromTime: {fileID: 197898247}
@@ -35181,6 +35182,7 @@ GameObject:
   - component: {fileID: 1785732591}
   - component: {fileID: 1785732590}
   - component: {fileID: 1785732589}
+  - component: {fileID: 1785732594}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Interface
@@ -35226,12 +35228,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollToBottom: 1
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  loop: 1
+  MessageFeedType: 4
   timeBetweenMessages:
     min: 1
     max: 1.5
   messagePrefab: {fileID: 1677147115}
   messageContainer: {fileID: 1526844659}
-  startOnEnable: 1
+  startOnEnable: 0
 --- !u!114 &1785732590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35306,6 +35315,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1785732594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785732587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894650655278d0d43ac37f63d09d0bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageFeedType: 3
+  messages: 020000000100000000000000
 --- !u!4 &1786178613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4736322099219358, guid: 837422042c91f924099b84e93fa99165,
@@ -38315,6 +38338,7 @@ MonoBehaviour:
   message: 
   profilePicture: {fileID: 21300000, guid: 23498128d2890ee40bf6e6b890018a37, type: 3}
   sent: 0
+  profile: {fileID: 0}
   messageText: {fileID: 1051069408}
   profilePictureImage: {fileID: 1321035217}
   fromTime: {fileID: 466437107}
@@ -42942,7 +42966,6 @@ Transform:
   m_Children:
   - {fileID: 198109557}
   - {fileID: 917656837244535253}
-  - {fileID: 234071299}
   m_Father: {fileID: 1148901467}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 222.66399, z: 0}
