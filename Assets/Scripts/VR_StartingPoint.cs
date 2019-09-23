@@ -18,6 +18,7 @@ public class VR_StartingPoint : MonoBehaviour
 {
     [SerializeField] VRTK_SDKManager manager;
     [SerializeField] VRTK_BasicTeleport teleport;
+    [SerializeField] bool rotate;
 
     [SerializeField, EnumFlag] DesiredPoint orientation = DesiredPoint.Back | DesiredPoint.Right;
 
@@ -41,9 +42,16 @@ public class VR_StartingPoint : MonoBehaviour
 
     private void DoTeleport()
     {
+        Quaternion? rotation = null;
+
+        if (rotate)
+        {
+            var rotationY = VectorUtils.AngleOffAroundAxis(transform.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
+            rotation = Quaternion.Euler(0, rotationY, 0);
+        }
 
         teleport.skipBlink = true;
-        teleport.Teleport(transform, transform.position);
+        teleport.Teleport(transform, transform.position, rotation);
         teleport.skipBlink = false;
 
         headsetEat.enabled = true;
