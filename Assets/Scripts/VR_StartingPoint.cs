@@ -50,6 +50,15 @@ public class VR_StartingPoint : MonoBehaviour
             rotation = Quaternion.Euler(0, rotationY, 0);
         }
 
+        var playAreaTeleport = teleport as PlayAreaLimitedTeleport;
+        bool originalCheckForCollisions = false;
+
+        if (playAreaTeleport)
+        {
+            originalCheckForCollisions = playAreaTeleport.checkForCollisions;
+            playAreaTeleport.checkForCollisions = false;
+        }
+
         teleport.skipBlink = true;
         teleport.Teleport(transform, transform.position, rotation);
         teleport.skipBlink = false;
@@ -57,6 +66,11 @@ public class VR_StartingPoint : MonoBehaviour
         headsetEat.enabled = true;
 
         Destroy(gameObject);
+
+        if (playAreaTeleport)
+        {
+            playAreaTeleport.checkForCollisions = originalCheckForCollisions;
+        }
     }
 
     private void SteamTransformUpdate(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource)

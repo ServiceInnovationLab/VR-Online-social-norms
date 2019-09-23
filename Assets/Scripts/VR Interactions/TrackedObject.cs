@@ -31,7 +31,10 @@ public class TrackedObject : MonoBehaviour
     {
         VRTK_SDKManager.instance.LoadedSetupChanged += LoadedSetupChanged;
 
-        hideIfNotTracked?.SetActive(false);
+        if (hideIfNotTracked)
+        {
+            hideIfNotTracked.SetActive(false);
+        }
     }
 
     private void LoadedSetupChanged(VRTK_SDKManager sender, VRTK_SDKManager.LoadedSetupChangeEventArgs e)
