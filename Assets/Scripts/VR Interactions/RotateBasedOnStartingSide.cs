@@ -10,8 +10,14 @@ public class RotateBasedOnStartingSide : MonoBehaviour
     [SerializeField] UnityEvent afterCheck;
     [SerializeField] VRTK_SDKManager sdkManager;
 
+    HeadsetEat headsetEat;
+
     private void Awake()
     {
+        headsetEat = FindObjectOfType<HeadsetEat>();
+
+        headsetEat.enabled = false;
+
         sdkManager.LoadedSetupChanged += SdkManager_LoadedSetupChanged;
     }
 
@@ -24,6 +30,10 @@ public class RotateBasedOnStartingSide : MonoBehaviour
         {
             StartCoroutine(CorrectStartingAreaSteamVR());
         }
+        else
+        {
+            headsetEat.enabled = true;
+        }
     }
 
     private IEnumerator CorrectStartingAreaSteamVR()
@@ -34,6 +44,7 @@ public class RotateBasedOnStartingSide : MonoBehaviour
         if (!SteamVR_PlayArea.GetBounds(SteamVR_PlayArea.Size.Calibrated, ref rect))
         {
             Debug.LogError("Could not get the bounds of the play area!");
+            headsetEat.enabled = true;
             yield break;
         }
 
@@ -55,5 +66,6 @@ public class RotateBasedOnStartingSide : MonoBehaviour
         }
 
         afterCheck?.Invoke();
+        headsetEat.enabled = true;
     }
 }

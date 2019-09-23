@@ -710,6 +710,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 50059007}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &50059009 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 6412352, guid: 7f22ea43813cba84abe2fbd923d4290f,
+    type: 3}
+  m_PrefabInstance: {fileID: 50059007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &50059010 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 6431660, guid: 7f22ea43813cba84abe2fbd923d4290f,
+    type: 3}
+  m_PrefabInstance: {fileID: 50059007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &50266456 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1374480850700790, guid: bf30eb16cc26b774e8aed73fb6c17a1f,
@@ -5075,11 +5087,14 @@ MonoBehaviour:
   - {fileID: 617313124}
   - {fileID: 1147759261}
   - {fileID: 1147759262}
+  - {fileID: 50059010}
   - {fileID: 858846618}
   - {fileID: 858846574}
   - {fileID: 858846573}
   - {fileID: 858846580}
   - {fileID: 123146759}
+  - {fileID: 414288992}
+  - {fileID: 414288991}
   - {fileID: 1381844185025780}
   - {fileID: 858846621}
   - {fileID: 858846535}
@@ -5099,6 +5114,7 @@ MonoBehaviour:
   - {fileID: 858846595}
   - {fileID: 858846588}
   - {fileID: 1074813024}
+  - {fileID: 50059009}
   - {fileID: 858846600}
   - {fileID: 858846575}
   - {fileID: 858846612}
@@ -5152,6 +5168,7 @@ MonoBehaviour:
   - {fileID: 1984817981}
   - {fileID: 858846616}
   - {fileID: 858846587}
+  - {fileID: 1143876597}
   - {fileID: 1449355743}
   - {fileID: 169585081}
   - {fileID: 1057649741947692}
@@ -5765,6 +5782,18 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!64 &414288991 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 64759754158680226, guid: 0a97cbe626a9ca148a61088796943352,
+    type: 3}
+  m_PrefabInstance: {fileID: 414288984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &414288992 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 64101112737332640, guid: 0a97cbe626a9ca148a61088796943352,
+    type: 3}
+  m_PrefabInstance: {fileID: 414288984}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &419040311
 GameObject:
   m_ObjectHideFlags: 0
@@ -10739,7 +10768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4262316034228546, guid: 962b799cb3076c9449425f236220538b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4262316034228546, guid: 962b799cb3076c9449425f236220538b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23739,6 +23768,7 @@ GameObject:
   - component: {fileID: 1753072040}
   - component: {fileID: 1753072041}
   - component: {fileID: 1753072042}
+  - component: {fileID: 1753072043}
   m_Layer: 0
   m_Name: '[VRTK_SDKManager]'
   m_TagString: Untagged
@@ -23866,6 +23896,29 @@ MonoBehaviour:
   animateTouchpad: 0
   animateTrigger: 0
   showTriggers: 1
+--- !u!114 &1753072043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753072036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abedc8375ad10b4a95464226226edf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beforeCheck:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  afterCheck:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  sdkManager: {fileID: 1753072038}
 --- !u!4 &1754082638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414948, guid: 3b65d553ffead574bb2395cee9299543,
@@ -33369,7 +33422,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00009
+      value: 217.00003
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
