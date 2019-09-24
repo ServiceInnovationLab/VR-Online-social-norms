@@ -9,6 +9,7 @@ public class RotateBasedOnStartingSide : MonoBehaviour
     [SerializeField] UnityEvent beforeCheck;
     [SerializeField] UnityEvent afterCheck;
     [SerializeField] VRTK_SDKManager sdkManager;
+    [SerializeField] VR_StartingPoint startingPoint;
 
     HeadsetEat headsetEat;
 
@@ -33,6 +34,11 @@ public class RotateBasedOnStartingSide : MonoBehaviour
         else
         {
             headsetEat.enabled = true;
+
+            if (startingPoint)
+            {
+                startingPoint.DoTeleport();
+            }
         }
     }
 
@@ -63,6 +69,11 @@ public class RotateBasedOnStartingSide : MonoBehaviour
         {
             sdkManager.transform.rotation = Quaternion.Euler(0, 180, 0);
             Debug.Log("Rotating play area!");
+        }
+
+        if (startingPoint)
+        {
+            startingPoint.DoTeleport();
         }
 
         afterCheck?.Invoke();

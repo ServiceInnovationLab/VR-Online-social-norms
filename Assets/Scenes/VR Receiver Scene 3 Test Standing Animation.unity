@@ -12111,13 +12111,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600646319}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -13.71, y: 6.34, z: -13.4}
+  m_LocalRotation: {x: 0, y: 0.46174863, z: 0, w: 0.8870109}
+  m_LocalPosition: {x: -12.77, y: 6.34, z: -13.38}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 165633976}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 55, z: 0}
 --- !u!114 &600646321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12133,6 +12133,8 @@ MonoBehaviour:
   manager: {fileID: 1713961743}
   teleport: {fileID: 1741552760}
   rotate: 1
+  rotationAbsolute: 1
+  autoTrigger: 0
   orientation: 6
   headsetEat: {fileID: 0}
 --- !u!135 &600646322
@@ -13101,7 +13103,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00009
+      value: 218.87851
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -16423,19 +16425,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156133368212626, guid: 6b97ddfa5d6f8b246af44ace27347bdc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4156133368212626, guid: 6b97ddfa5d6f8b246af44ace27347bdc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0021513465
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4156133368212626, guid: 6b97ddfa5d6f8b246af44ace27347bdc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4156133368212626, guid: 6b97ddfa5d6f8b246af44ace27347bdc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99999774
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4156133368212626, guid: 6b97ddfa5d6f8b246af44ace27347bdc, type: 3}
       propertyPath: m_RootOrder
@@ -16447,7 +16449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156133368212626, guid: 6b97ddfa5d6f8b246af44ace27347bdc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.24700001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4156133368212626, guid: 6b97ddfa5d6f8b246af44ace27347bdc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -20611,7 +20613,7 @@ PrefabInstance:
     - target: {fileID: 114277826376718650, guid: bf30eb16cc26b774e8aed73fb6c17a1f,
         type: 3}
       propertyPath: size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114277826376718650, guid: bf30eb16cc26b774e8aed73fb6c17a1f,
         type: 3}
@@ -33258,6 +33260,7 @@ GameObject:
   - component: {fileID: 1713961741}
   - component: {fileID: 1713961740}
   - component: {fileID: 1713961745}
+  - component: {fileID: 1713961746}
   m_Layer: 0
   m_Name: '[VRTK_SDKManager]'
   m_TagString: Untagged
@@ -33369,6 +33372,30 @@ MonoBehaviour:
   animateTouchpad: 0
   animateTrigger: 0
   showTriggers: 1
+--- !u!114 &1713961746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713961739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abedc8375ad10b4a95464226226edf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beforeCheck:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  afterCheck:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  sdkManager: {fileID: 1713961743}
+  startingPoint: {fileID: 600646321}
 --- !u!1001 &1715211720
 PrefabInstance:
   m_ObjectHideFlags: 0
