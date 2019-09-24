@@ -29,6 +29,8 @@ public class ScreenMessageFeedView : MonoBehaviour
     [Tooltip("Set to start the feed automatically when the object is enabled")]
     [SerializeField] bool startOnEnable = true;
 
+    [SerializeField] RectTransform scrollContainer;
+
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
     bool forceComplete;
@@ -183,6 +185,11 @@ public class ScreenMessageFeedView : MonoBehaviour
         position.y -= messageDisplay.rect.height;
         messageContainer.sizeDelta = new Vector2(0, -position.y);
 
+        if (scrollContainer)
+        {
+            scrollContainer.sizeDelta = messageContainer.sizeDelta;
+        }
+
         if (scrollRect && scrollToBottom)
         {
             scrollRect.verticalNormalizedPosition = 0;
@@ -236,6 +243,11 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         position.y -= transform.rect.height;
         messageContainer.sizeDelta = new Vector2(0, -position.y);
+
+        if (scrollContainer)
+        {
+            scrollContainer.sizeDelta = messageContainer.sizeDelta;
+        }
 
         if (scrollRect && scrollToBottom)
         {

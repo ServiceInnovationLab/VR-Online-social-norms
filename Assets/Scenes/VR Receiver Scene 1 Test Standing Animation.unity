@@ -1238,6 +1238,76 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &26243927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 26243928}
+  - component: {fileID: 26243929}
+  m_Layer: 5
+  m_Name: Twitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &26243928
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26243927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000087863205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1677147115}
+  - {fileID: 1892036095}
+  m_Father: {fileID: 1526844659}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &26243929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26243927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollToBottom: 1
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnNewMessage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  loop: 0
+  MessageFeedType: 3
+  timeBetweenMessages:
+    min: 1
+    max: 1.5
+  messagePrefab: {fileID: 1677147115}
+  messageContainer: {fileID: 26243928}
+  startOnEnable: 1
+  scrollContainer: {fileID: 1526844659}
 --- !u!1 &37135936
 GameObject:
   m_ObjectHideFlags: 0
@@ -10050,7 +10120,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1785732589}
+      - m_Target: {fileID: 26243929}
         m_MethodName: SendToBottom
         m_Mode: 2
         m_Arguments:
@@ -14225,7 +14295,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217
+      value: 217.00003
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -18653,7 +18723,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1785732589}
+      - m_Target: {fileID: 26243929}
         m_MethodName: SendFriendMessageToFeed
         m_Mode: 1
         m_Arguments:
@@ -25190,7 +25260,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1785732589}
+      - m_Target: {fileID: 26243929}
         m_MethodName: CompleteFeed
         m_Mode: 1
         m_Arguments:
@@ -28503,6 +28573,7 @@ MonoBehaviour:
   messagePrefab: {fileID: 133026314}
   messageContainer: {fileID: 866976605}
   startOnEnable: 1
+  scrollContainer: {fileID: 0}
 --- !u!114 &1325535054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32293,8 +32364,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1677147115}
-  - {fileID: 1892036095}
+  - {fileID: 26243928}
   m_Father: {fileID: 354101997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35818,8 +35888,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677147114}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000043931603}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 429389554}
@@ -35831,7 +35901,7 @@ RectTransform:
   - {fileID: 1757152113}
   - {fileID: 1841053354}
   - {fileID: 1563515027}
-  m_Father: {fileID: 1526844659}
+  m_Father: {fileID: 26243928}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -38758,7 +38828,6 @@ GameObject:
   - component: {fileID: 1785732592}
   - component: {fileID: 1785732591}
   - component: {fileID: 1785732590}
-  - component: {fileID: 1785732589}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Interface
@@ -38790,37 +38859,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.005, y: 0.109}
   m_SizeDelta: {x: 750, y: 1350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1785732589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785732587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollToBottom: 1
-  OnComplete:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnNewMessage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  loop: 0
-  MessageFeedType: 2
-  timeBetweenMessages:
-    min: 1
-    max: 1.5
-  messagePrefab: {fileID: 1677147115}
-  messageContainer: {fileID: 1526844659}
-  startOnEnable: 1
 --- !u!114 &1785732590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41794,8 +41832,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892036094}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000043931603}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1321035216}
@@ -41808,7 +41846,7 @@ RectTransform:
   - {fileID: 1858470135}
   - {fileID: 1881690489}
   - {fileID: 970412830}
-  m_Father: {fileID: 1526844659}
+  m_Father: {fileID: 26243928}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
