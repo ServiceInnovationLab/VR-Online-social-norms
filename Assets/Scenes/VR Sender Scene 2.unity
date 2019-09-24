@@ -4989,7 +4989,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 177941482}
         m_MethodName: DetectSitting
@@ -16124,6 +16124,7 @@ MonoBehaviour:
   manager: {fileID: 1753072038}
   teleport: {fileID: 513811894}
   rotate: 0
+  limitTo90: 0
   orientation: 6
   headsetEat: {fileID: 0}
 --- !u!135 &1143116816
@@ -33423,7 +33424,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00012
+      value: 217.00003
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}

@@ -19,6 +19,7 @@ public class VR_StartingPoint : MonoBehaviour
     [SerializeField] VRTK_SDKManager manager;
     [SerializeField] VRTK_BasicTeleport teleport;
     [SerializeField] bool rotate;
+    [SerializeField] bool limitTo90;
 
     [SerializeField, EnumFlag] DesiredPoint orientation = DesiredPoint.Back | DesiredPoint.Right;
 
@@ -47,6 +48,10 @@ public class VR_StartingPoint : MonoBehaviour
         if (rotate)
         {
             var rotationY = VectorUtils.AngleOffAroundAxis(transform.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
+            if (limitTo90)
+            {
+                rotationY -= rotationY % 90;
+            }
             rotation = Quaternion.Euler(0, rotationY, 0);
         }
 
