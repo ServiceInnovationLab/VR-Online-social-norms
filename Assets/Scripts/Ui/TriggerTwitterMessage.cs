@@ -20,7 +20,7 @@ public class TriggerTwitterMessage : MonoBehaviour
 
     void DoTrigger()
     {
-        notificationSender.ShowNotification("Twitter: New message", "Can you belive this?", 0);
+        notificationSender.ShowNotification("Twitter", "New message", "Tap to look", 0);
         notificationSender.GetComponent<Button>().enabled = true;
     }
 

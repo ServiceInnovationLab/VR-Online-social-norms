@@ -12,6 +12,8 @@ public class NotificationSender : MonoBehaviour
     [SerializeField] RectTransform background;
     [SerializeField] Text fromText;
     [SerializeField] Text messageText;
+    [SerializeField] Text applicationNameText;
+    [SerializeField] Image applicationIcon;
 
     Vector2 startPosition;
     Vector2 endPosition;
@@ -72,13 +74,17 @@ public class NotificationSender : MonoBehaviour
     /// <param name="from"></param>
     /// <param name="message"></param>
     /// <param name="duration"></param>
-    public void ShowNotification(string from, string message, float duration)
+    public void ShowNotification(string appName, string from, string message, float duration, Sprite icon = null)
     {
         currentDirection = 1;
         startTime = Time.time;
 
         fromText.text = from;
         messageText.text = message;
+        applicationIcon.sprite = icon;
+        applicationNameText.text = appName;
+
+
         ResetToStart(true);
 
         if (duration > 0)
