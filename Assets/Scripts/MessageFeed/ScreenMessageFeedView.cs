@@ -223,7 +223,7 @@ public class ScreenMessageFeedView : MonoBehaviour
                 if (!container)
                     continue;
 
-                container.sizeDelta += sizeDifference;
+                container.sizeDelta += sizeDifference - (currentTextHeight / 2 * Vector2.up);
             }
         }
     }
