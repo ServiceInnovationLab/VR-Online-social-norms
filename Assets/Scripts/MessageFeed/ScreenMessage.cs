@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+public enum MessageTimeFormat
+{
+    TimeSinceSend,
+    TimeSent
+}
+
 public class ScreenMessage : MonoBehaviour
 {
     public string from;
@@ -9,11 +15,15 @@ public class ScreenMessage : MonoBehaviour
     public Sprite profilePicture;
     public bool sent = true;
 
+    [SerializeField] MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
+    [SerializeField] bool showFromTag = true;
     [SerializeField] OnlineProfile profile;
     [SerializeField] Text messageText;
     [SerializeField] Image profilePictureImage;
     [SerializeField] Text fromTime;
     [SerializeField] Text fromPersonText;
+
+    [SerializeField] RectTransform textBackground;
 
     float time = 0;
 
@@ -32,6 +42,11 @@ public class ScreenMessage : MonoBehaviour
         get { return fromTime; }
     }
 
+    public RectTransform TextBackground
+    {
+        get { return textBackground; }
+    }
+
     private void Awake()
     {
         if (profile)
@@ -41,10 +56,31 @@ public class ScreenMessage : MonoBehaviour
             fromTag = profile.tag;
         }
 
-        fromPersonText.text = from;
-        messageText.text = message;
-        profilePictureImage.sprite = profilePicture;
-        fromTime.text = fromTag;
+        if (fromPersonText)
+        {
+            fromPersonText.text = from;
+        }
+
+        if (messageText)
+        {
+            messageText.text = message;
+        }
+
+        if (profilePictureImage)
+        {
+            profilePictureImage.sprite = profilePicture;
+        }
+
+        if (fromTime && showFromTag)
+        {
+            fromTime.text = fromTag;
+        }
+
+        if (fromTime && sent && timeFormat == MessageTimeFormat.TimeSent)
+        {
+            fromTime.text = "4 Aug, 2:38 PM";
+            enabled = false;
+        }
     }
 
     private void FixedUpdate()

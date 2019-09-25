@@ -13,7 +13,8 @@ public enum SocialMediaScenatioMessageFeedType
     Default,
     Sender,
     Receiver,
-    PileOn
+    PileOn,
+    Messenger
 }
 
 [CreateAssetMenu(menuName = "SocialMediaScenario")]
@@ -27,6 +28,8 @@ public class SocialMediaScenario : ScriptableObject
     public MessageFeed senderMessageFeed;
 
     public MessageFeed pileOnMessageFeed;
+
+    public MessageFeed messengerFeed;
 
 
     public OnlineProfile receiverProfile;
@@ -70,6 +73,10 @@ public class SocialMediaScenario : ScriptableObject
 
             case SocialMediaScenatioMessageFeedType.PileOn:
                 return pileOnMessageFeed;
+
+            case SocialMediaScenatioMessageFeedType.Messenger:
+                return messengerFeed;
+
             case SocialMediaScenatioMessageFeedType.Default:
                 return messageFeed;
         }

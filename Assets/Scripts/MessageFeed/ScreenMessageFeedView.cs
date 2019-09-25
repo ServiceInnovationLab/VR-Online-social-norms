@@ -31,6 +31,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     [SerializeField] RectTransform scrollContainer;
 
+    [SerializeField] bool adjustHeightToPrefab = false;
+
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
     bool forceComplete;
@@ -103,6 +105,11 @@ public class ScreenMessageFeedView : MonoBehaviour
         scrollRect = messageContainer.GetComponentInParent<ScrollRect>();
 
         messagePrefab.gameObject.SetActive(false);
+
+        if (adjustHeightToPrefab)
+        {
+            position.y = messagePrefab.anchoredPosition.y;
+        }
     }
 
     private void Start()
@@ -160,7 +167,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         message.message = theMessage.message;
 
-        IncreaseHeightToFitText(messageDisplay, message.MessageTextField, theMessage.message);
+        IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
 
         if (theMessage.profile?.picture != null)
         {
@@ -201,7 +208,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
-    private void IncreaseHeightToFitText(RectTransform container, Text textField, string newText)
+    private void IncreaseHeightToFitText(Text textField, string newText, params RectTransform[] containers)
     {
         var currentTextHeight = textField.rectTransform.sizeDelta.y;
         var perferredHeight = textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
@@ -210,7 +217,14 @@ public class ScreenMessageFeedView : MonoBehaviour
         {
             var sizeDifference = new Vector2(0, perferredHeight);
             textField.rectTransform.sizeDelta += sizeDifference;
-            container.sizeDelta += sizeDifference;
+
+            foreach (var container in containers)
+            {
+                if (!container)
+                    continue;
+
+                container.sizeDelta += sizeDifference;
+            }
         }
     }
 
