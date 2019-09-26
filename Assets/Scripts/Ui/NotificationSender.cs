@@ -70,6 +70,9 @@ public class NotificationSender : MonoBehaviour
     /// </summary>
     public void DismissNotification()
     {
+        if (!IsNotificationShowing)
+            return;
+
         currentMessage++;
         currentDirection = -1;
         startTime = Time.time;
