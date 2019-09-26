@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 [RequireComponent(typeof(NotificationSender))]
 public class SmsNotificationFeed : MonoBehaviour
 {
+    [SerializeField] UnityEvent onComplete;
     [SerializeField] Sprite appIcon;
     [SerializeField] float timeOnScreen;
     [SerializeField] FloatRange timeBetweenMessages;
@@ -28,9 +30,11 @@ public class SmsNotificationFeed : MonoBehaviour
         {
             yield return new WaitForSeconds(timeBetweenMessages.GetValue());
 
-            notificationSender.ShowNotification("Messenger", message.profile.username, message.message, timeOnScreen, appIcon);
+            notificationSender.ShowNotification("Messages", message.profile.username, message.message, timeOnScreen, appIcon);
 
             yield return new WaitForSeconds(timeOnScreen);
         }
+
+        onComplete?.Invoke();
     }
 }

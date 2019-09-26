@@ -21,6 +21,7 @@ public class TriggerTwitterMessage : MonoBehaviour
     void DoTrigger()
     {
         notificationSender.ShowNotification("Twitter", "New message", "Tap to look", 0);
+        GetComponentInParent<PeriodicHapticFeedback>().StartFeedback();
         notificationSender.GetComponent<Button>().enabled = true;
     }
 

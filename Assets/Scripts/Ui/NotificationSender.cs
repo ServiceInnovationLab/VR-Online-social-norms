@@ -14,12 +14,16 @@ public class NotificationSender : MonoBehaviour
     [SerializeField] Text messageText;
     [SerializeField] Text applicationNameText;
     [SerializeField] Image applicationIcon;
+    [SerializeField] Vector2 padding;
+    [SerializeField] RectTransform sentTime;
 
     Vector2 startPosition;
     Vector2 endPosition;
 
     float startTime;
     int currentDirection = 0;
+
+    int currentMessage;
 
     private void Awake()
     {
@@ -64,6 +68,7 @@ public class NotificationSender : MonoBehaviour
     /// </summary>
     public void DismissNotification()
     {
+        currentMessage++;
         currentDirection = -1;
         startTime = Time.time;
     }
@@ -76,6 +81,7 @@ public class NotificationSender : MonoBehaviour
     /// <param name="duration"></param>
     public void ShowNotification(string appName, string from, string message, float duration, Sprite icon = null)
     {
+        currentMessage++;
         currentDirection = 1;
         startTime = Time.time;
 
@@ -84,14 +90,35 @@ public class NotificationSender : MonoBehaviour
         applicationIcon.sprite = icon;
         applicationNameText.text = appName.ToUpper();
 
+        SetPositionBasedOnText(fromText, from, sentTime);
 
         ResetToStart(true);
 
         if (duration > 0)
         {
-            Invoke(nameof(DismissNotification), duration + animationTime);
+            StartCoroutine(DismissNotificationAfterTime(currentMessage, duration));
         }
 
         notificationReceived?.Invoke();
+    }
+
+    IEnumerator DismissNotificationAfterTime(int message, float duration)
+    {
+        yield return new WaitForSeconds(duration + animationTime);
+
+        if (currentMessage == message)
+        {
+            DismissNotification();
+        }
+    }
+
+    private void SetPositionBasedOnText(Text textField, string newText, params RectTransform[] toTheRightOf)
+    {
+        var position = new Vector2(textField.cachedTextGeneratorForLayout.GetPreferredWidth(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta)), 0);
+
+        foreach (var control in toTheRightOf)
+        {
+            control.anchoredPosition = textField.rectTransform.anchoredPosition + position + padding;
+        }
     }
 }
