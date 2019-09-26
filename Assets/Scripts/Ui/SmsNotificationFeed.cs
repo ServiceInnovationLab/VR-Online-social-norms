@@ -32,7 +32,7 @@ public class SmsNotificationFeed : MonoBehaviour
 
             notificationSender.ShowNotification("Messages", message.profile.username, message.message, timeOnScreen, appIcon);
 
-            yield return new WaitForSeconds(timeOnScreen);
+            yield return new WaitWhile(() => notificationSender.IsNotificationShowing);
         }
 
         onComplete?.Invoke();

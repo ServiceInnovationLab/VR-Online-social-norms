@@ -24,6 +24,8 @@ public class NotificationSender : MonoBehaviour
     int currentDirection = 0;
 
     int currentMessage;
+   
+    public bool IsNotificationShowing { get; private set; }
 
     private void Awake()
     {
@@ -71,6 +73,8 @@ public class NotificationSender : MonoBehaviour
         currentMessage++;
         currentDirection = -1;
         startTime = Time.time;
+
+        IsNotificationShowing = false;
     }
 
     /// <summary>
@@ -81,6 +85,7 @@ public class NotificationSender : MonoBehaviour
     /// <param name="duration"></param>
     public void ShowNotification(string appName, string from, string message, float duration, Sprite icon = null)
     {
+        IsNotificationShowing = true;
         currentMessage++;
         currentDirection = 1;
         startTime = Time.time;
