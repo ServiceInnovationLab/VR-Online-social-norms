@@ -17,6 +17,12 @@ public enum SocialMediaScenatioMessageFeedType
     Messenger
 }
 
+public enum SocialMediaScenarioSMStype
+{
+    Initial,
+    Support
+}
+
 [CreateAssetMenu(menuName = "SocialMediaScenario")]
 public class SocialMediaScenario : ScriptableObject
 {
@@ -32,6 +38,7 @@ public class SocialMediaScenario : ScriptableObject
     public MessageFeed messengerFeed;
 
     public MessageFeed smsMessageFeed;
+    public MessageFeed supportSmsMessageFeed;
 
     public OnlineProfile receiverProfile;
 
@@ -100,5 +107,19 @@ public class SocialMediaScenario : ScriptableObject
             default:
                 return null;
         }
+    }
+
+    public MessageFeed GetSMSMessageFeed(SocialMediaScenarioSMStype type)
+    {
+        switch (type)
+        {
+            case SocialMediaScenarioSMStype.Initial:
+                return smsMessageFeed;
+
+            case SocialMediaScenarioSMStype.Support:
+                return supportSmsMessageFeed;
+        }
+
+        return null;
     }
 }

@@ -197,9 +197,9 @@ public class ScreenMessageFeedView : MonoBehaviour
             scrollContainer.sizeDelta = messageContainer.sizeDelta;
         }
 
-        if (scrollRect && scrollToBottom)
+        if (scrollToBottom)
         {
-            scrollRect.verticalNormalizedPosition = 0;
+            ScrollToBottom();
         }
 
         if (triggerEvent)
@@ -263,9 +263,28 @@ public class ScreenMessageFeedView : MonoBehaviour
             scrollContainer.sizeDelta = messageContainer.sizeDelta;
         }
 
-        if (scrollRect && scrollToBottom)
+        if (scrollToBottom)
+        {
+            ScrollToBottom();
+        }
+    }
+
+    public void ScrollToBottom()
+    {
+        if (scrollRect)
         {
             scrollRect.verticalNormalizedPosition = 0;
+        }
+    }
+
+    public void FlashLastOne()
+    {
+        var last = transform.GetChild(transform.childCount - 1);
+        var highlight = last.GetComponent<HighlightImage>();
+
+        if (highlight)
+        {
+            highlight.enabled = true;
         }
     }
 

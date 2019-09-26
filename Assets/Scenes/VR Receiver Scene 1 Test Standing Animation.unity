@@ -5989,6 +5989,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  notificationDismissed:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   animationTime: 0.5
   animationDirection: {x: 0, y: -1}
   background: {fileID: 1701262867}
@@ -6110,6 +6115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fab8100e2895d044adcb6027e0ec1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smsFeed: 0
   onComplete:
     m_PersistentCalls:
       m_Calls:
@@ -6137,11 +6143,16 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  appIcon: {fileID: 21300000, guid: e1e000e103c45134aba134de4c2cf43c, type: 3}
+  appIcons:
+  - {fileID: 21300000, guid: e1e000e103c45134aba134de4c2cf43c, type: 3}
+  - {fileID: 21300000, guid: 61aa3a92e3a4574479323f3e6f8d9be6, type: 3}
   timeOnScreen: 10
   timeBetweenMessages:
     min: 4.1
     max: 5
+  appNames:
+  - Messages
+  - Messenger
 --- !u!1001 &206836122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14798,7 +14809,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 216.99998
+      value: 217.00002
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}

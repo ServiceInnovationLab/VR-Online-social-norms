@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class NotificationSender : MonoBehaviour
 {
     [SerializeField] UnityEvent notificationReceived;
+    [SerializeField] UnityEvent notificationDismissed;
 
     [SerializeField] float animationTime = 1.0f;
     [SerializeField] Vector2 animationDirection = new Vector2(-1, 0);
@@ -78,6 +79,8 @@ public class NotificationSender : MonoBehaviour
         startTime = Time.time;
 
         IsNotificationShowing = false;
+
+        notificationDismissed?.Invoke();
     }
 
     /// <summary>
