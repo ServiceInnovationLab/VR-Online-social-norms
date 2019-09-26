@@ -5,6 +5,7 @@ public class TriggerTwitterMessage : MonoBehaviour
 {
     [SerializeField] NotificationSender notificationSender;
     [SerializeField] float delay = 5;
+    [SerializeField] Sprite twitterIcon;
 
     bool triggered = false;
 
@@ -20,7 +21,7 @@ public class TriggerTwitterMessage : MonoBehaviour
 
     void DoTrigger()
     {
-        notificationSender.ShowNotification("Twitter", "New message", "Tap to look", 0);
+        notificationSender.ShowNotification("Twitter", "New message", "Tap to go to Twitter", 0, twitterIcon);
         GetComponentInParent<PeriodicHapticFeedback>().StartFeedback();
         notificationSender.GetComponent<Button>().enabled = true;
     }
