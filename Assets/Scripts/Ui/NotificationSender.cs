@@ -82,7 +82,7 @@ public class NotificationSender : MonoBehaviour
         fromText.text = from;
         messageText.text = message;
         applicationIcon.sprite = icon;
-        applicationNameText.text = appName;
+        applicationNameText.text = appName.ToUpper();
 
 
         ResetToStart(true);

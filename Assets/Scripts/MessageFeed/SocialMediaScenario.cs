@@ -31,6 +31,7 @@ public class SocialMediaScenario : ScriptableObject
 
     public MessageFeed messengerFeed;
 
+    public MessageFeed smsMessageFeed;
 
     public OnlineProfile receiverProfile;
 
