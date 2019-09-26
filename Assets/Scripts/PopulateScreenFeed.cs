@@ -5,6 +5,8 @@ public class PopulateScreenFeed : MonoBehaviour
 {
     [SerializeField] SocialMediaScenatioMessageFeedType messageFeedType = SocialMediaScenatioMessageFeedType.Default;
     [SerializeField] SocialMediaScenarioTextType[] messages;
+    [SerializeField] bool scrollToBottomAfter = false;
+    [SerializeField] bool startFeedAfter = false;
 
     private void Start()
     {
@@ -24,7 +26,12 @@ public class PopulateScreenFeed : MonoBehaviour
             }
         }
 
-        screenMessageFeed.scrollToBottom = false;
+        screenMessageFeed.scrollToBottom = scrollToBottomAfter;
+
+        if (startFeedAfter)
+        {
+            screenMessageFeed.StartFeed();
+        }
     }
 
 
