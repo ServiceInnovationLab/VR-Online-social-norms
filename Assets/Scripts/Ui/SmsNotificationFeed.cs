@@ -49,7 +49,7 @@ public class SmsNotificationFeed : MonoBehaviour
             {
                 int.TryParse(message.message.Substring(1, 1), out iconIndex);
 
-                messageText = messageText.Substring(2);
+                messageText = messageText.Substring(3);
             }
 
             iconIndex = Mathf.Clamp(iconIndex, 0, appIcons.Length);
