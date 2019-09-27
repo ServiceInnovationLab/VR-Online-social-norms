@@ -6143,13 +6143,13 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  appIcons:
-  - {fileID: 21300000, guid: e1e000e103c45134aba134de4c2cf43c, type: 3}
-  - {fileID: 21300000, guid: 61aa3a92e3a4574479323f3e6f8d9be6, type: 3}
   timeOnScreen: 10
   timeBetweenMessages:
     min: 4.1
     max: 5
+  appIcons:
+  - {fileID: 21300000, guid: e1e000e103c45134aba134de4c2cf43c, type: 3}
+  - {fileID: 21300000, guid: 61aa3a92e3a4574479323f3e6f8d9be6, type: 3}
   appNames:
   - Messages
   - Messenger
@@ -11731,6 +11731,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1049035219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &485091594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7323841131942704172, guid: aec3e795b8743844f8bc0ec17f81311e,
+    type: 3}
+  m_PrefabInstance: {fileID: 633977731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &485705757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14809,7 +14815,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00002
+      value: 223.04073
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -14978,12 +14984,6 @@ Transform:
 --- !u!1 &633977736 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3889287092898182241, guid: aec3e795b8743844f8bc0ec17f81311e,
-    type: 3}
-  m_PrefabInstance: {fileID: 633977731}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &633977737 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7368161242640528794, guid: aec3e795b8743844f8bc0ec17f81311e,
     type: 3}
   m_PrefabInstance: {fileID: 633977731}
   m_PrefabAsset: {fileID: 0}
@@ -26584,8 +26584,8 @@ MonoBehaviour:
   resizeFirst: 0
   doRotate: 0
   deleteTarget: 1
-  doTeleport: 0
-  target: {fileID: 633977737}
+  doTeleport: 1
+  target: {fileID: 1159749286}
   targetRotation: {fileID: 0}
   blinkDistance: 32.1
   blinkTransition: 2
@@ -26669,7 +26669,7 @@ MonoBehaviour:
         m_MethodName: DestroyObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1159749285}
+          m_ObjectArgument: {fileID: 485091594}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
