@@ -9,6 +9,18 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     MessageFeed messageFeed;
 
+    private MessageFeed MessageFeed
+    {
+        get
+        {
+
+            if (messageFeed == null)
+                messageFeed = SocialMediaScenarioPicker.Instance.CurrentScenario.GetMessageFeed(MessageFeedType);
+
+            return messageFeed;
+        }
+    }
+
     [SerializeField] UnityEvent OnComplete = new UnityEvent();
 
     [SerializeField] UnityEvent OnNewMessage = new UnityEvent();
@@ -32,6 +44,8 @@ public class ScreenMessageFeedView : MonoBehaviour
     [SerializeField] RectTransform scrollContainer;
 
     [SerializeField] bool adjustHeightToPrefab = false;
+
+    [SerializeField] int startingMessage = 0;
 
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
@@ -63,6 +77,17 @@ public class ScreenMessageFeedView : MonoBehaviour
             message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Sender),
             profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Sender)
         });
+    }
+
+    public void SendReplyMessageToFeed()
+    {
+        DisplayMessage(new Message()
+        {
+            message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Receiver),
+            profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Receiver)
+        });
+
+        ScrollToBottom();
     }
 
     public void SendFriendMessageToFeed()
@@ -105,11 +130,6 @@ public class ScreenMessageFeedView : MonoBehaviour
         scrollRect = messageContainer.GetComponentInParent<ScrollRect>();
 
         messagePrefab.gameObject.SetActive(false);
-
-        if (adjustHeightToPrefab)
-        {
-            position.y = messagePrefab.anchoredPosition.y;
-        }
     }
 
     private void Start()
@@ -119,6 +139,11 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     private void OnEnable()
     {
+        if (adjustHeightToPrefab)
+        {
+            position.y = messagePrefab.anchoredPosition.y;
+        }
+
         if (startOnEnable)
         {
             StartFeed();
@@ -132,7 +157,7 @@ public class ScreenMessageFeedView : MonoBehaviour
             yield return null;
         }
 
-        int lastMessageShown = 0;
+        int lastMessageShown = startingMessage;
 
         while (lastMessageShown < messageFeed.messages.Count || loop)
         {
@@ -208,10 +233,10 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
-    private void IncreaseHeightToFitText(Text textField, string newText, params RectTransform[] containers)
+    private float IncreaseHeightToFitText(Text textField, string newText, params RectTransform[] containers)
     {
         var currentTextHeight = textField.rectTransform.sizeDelta.y;
-        var perferredHeight = textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
+        var perferredHeight = textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.rect.size));
 
         if (perferredHeight > currentTextHeight)
         {
@@ -225,7 +250,11 @@ public class ScreenMessageFeedView : MonoBehaviour
 
                 container.sizeDelta += sizeDifference - (currentTextHeight / 2 * Vector2.up);
             }
+
+            return perferredHeight;
         }
+
+        return 0;
     }
 
     private void SetWidthBasedOnText(Text textField, string newText, params RectTransform[] toTheRightOf)
@@ -235,7 +264,10 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         var difference = new Vector2(perferredWidth - textField.rectTransform.sizeDelta.x, 0);
 
-        textField.rectTransform.sizeDelta += difference;
+        if (textField.rectTransform.anchorMin.x > 0)
+        {
+            textField.rectTransform.sizeDelta += difference;
+        }
 
         textField.rectTransform.anchoredPosition += difference / 2;
 
@@ -293,6 +325,56 @@ public class ScreenMessageFeedView : MonoBehaviour
         foreach (var message in feed.messages)
         {
             DisplayMessage(message, false);
+        }
+    }
+
+    public void PopulateFirstMessage(RectTransform messageDisplay)
+    {
+        var message = messageDisplay.GetComponent<ScreenMessage>();
+
+
+        message.enabled = false;
+
+        var theMessage = MessageFeed.messages[0];
+
+        message.message = theMessage.message;
+
+        float height = IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
+
+        if (theMessage.profile?.picture != null)
+        {
+            message.profilePicture = theMessage.profile.picture;
+        }
+
+        if (!string.IsNullOrEmpty(theMessage.profile?.username))
+        {
+            message.from = theMessage.profile.username;
+        }
+        SetWidthBasedOnText(message.UsernameTextField, message.from);
+
+        if (!string.IsNullOrEmpty(theMessage.profile?.tag))
+        {
+            message.fromTag = theMessage.profile.tag;
+        }
+
+
+        message.enabled = true;
+
+        messagePrefab.anchoredPosition -= new Vector2(0, height);
+    }
+
+    public void HighlightFirstMessage()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var last = transform.GetChild(i);
+            var highlight = last.GetComponent<HighlightImage>();
+
+            if (highlight && last.gameObject.activeInHierarchy)
+            {
+                highlight.enabled = true;
+                return;
+            }
         }
     }
 }

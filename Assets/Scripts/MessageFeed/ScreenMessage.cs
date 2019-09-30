@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public enum MessageTimeFormat
 {
     TimeSinceSend,
-    TimeSent
+    TimeSent,
+    None
 }
 
 public class ScreenMessage : MonoBehaviour
@@ -15,13 +16,13 @@ public class ScreenMessage : MonoBehaviour
     public Sprite profilePicture;
     public bool sent = true;
 
-    [SerializeField] MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
-    [SerializeField] bool showFromTag = true;
-    [SerializeField] OnlineProfile profile;
-    [SerializeField] Text messageText;
-    [SerializeField] Image profilePictureImage;
-    [SerializeField] Text fromTime;
-    [SerializeField] Text fromPersonText;
+    [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
+    [SerializeField] protected bool showFromTag = true;
+    [SerializeField] protected OnlineProfile profile;
+    [SerializeField] protected Text messageText;
+    [SerializeField] protected Image profilePictureImage;
+    [SerializeField] protected Text fromTime;
+    [SerializeField] protected Text fromPersonText;
 
     [SerializeField] RectTransform textBackground;
 
@@ -47,7 +48,7 @@ public class ScreenMessage : MonoBehaviour
         get { return textBackground; }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (profile)
         {
@@ -74,6 +75,11 @@ public class ScreenMessage : MonoBehaviour
         if (fromTime && showFromTag)
         {
             fromTime.text = fromTag;
+
+            if (timeFormat == MessageTimeFormat.None && sent)
+            {
+                enabled = false;
+            }
         }
 
         if (fromTime && sent && timeFormat == MessageTimeFormat.TimeSent)
@@ -81,6 +87,11 @@ public class ScreenMessage : MonoBehaviour
             fromTime.text = "4 Aug, 2:38 PM";
             enabled = false;
         }
+    }
+
+    private void OnEnable()
+    {
+        Awake();
     }
 
     private void FixedUpdate()

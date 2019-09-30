@@ -10,7 +10,7 @@ public class ClickActiveButton : MonoBehaviour
     {
         foreach (var button in buttons)
         {
-            if (!button.gameObject.activeInHierarchy || !button.enabled)
+            if (!button || !button.gameObject.activeInHierarchy || !button.enabled)
                 continue;
 
             button.onClick?.Invoke();
