@@ -25,13 +25,22 @@ public class NotificationSender : MonoBehaviour
     int currentDirection = 0;
 
     int currentMessage;
-   
+
+    Vector2 initialSize;
+    Vector2 initalTextSize;
+    RectTransform rectTansform;
+
     public bool IsNotificationShowing { get; private set; }
 
     private void Awake()
     {
         endPosition = background.anchoredPosition;
         startPosition = endPosition + Vector2.Scale(-animationDirection, background.sizeDelta);
+
+        rectTansform = (RectTransform)transform;
+
+        initialSize = rectTansform.sizeDelta;
+        initalTextSize = messageText.rectTransform.sizeDelta;
 
         ResetToStart();
     }
@@ -40,6 +49,10 @@ public class NotificationSender : MonoBehaviour
     {
         background.gameObject.SetActive(active);
         background.anchoredPosition = startPosition;
+
+        rectTansform.sizeDelta = initialSize;
+        background.sizeDelta = initialSize;
+        messageText.rectTransform.sizeDelta = initalTextSize;
     }
 
     void Update()
@@ -63,6 +76,11 @@ public class NotificationSender : MonoBehaviour
         if (animationProgress >= 1)
         {
             currentDirection = 0;
+
+            if (!IsNotificationShowing)
+            {
+                ResetToStart();
+            }
         }
     }
 
@@ -101,9 +119,10 @@ public class NotificationSender : MonoBehaviour
         applicationIcon.sprite = icon;
         applicationNameText.text = appName.ToUpper();
 
-        SetPositionBasedOnText(fromText, from, sentTime);
-
         ResetToStart(true);
+
+        SetPositionBasedOnText(fromText, from, sentTime);
+        FitMessage(messageText, message, background, rectTansform);
 
         if (duration > 0)
         {
@@ -130,6 +149,23 @@ public class NotificationSender : MonoBehaviour
         foreach (var control in toTheRightOf)
         {
             control.anchoredPosition = textField.rectTransform.anchoredPosition + position + padding;
+        }
+    }
+
+    private void FitMessage(Text textField, string newText, params RectTransform[] alsoIncrease)
+    {
+        var newHeight = textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
+
+        if (newHeight > textField.rectTransform.sizeDelta.y)
+        {
+            var sizeDifference = new Vector2(0, newHeight - textField.rectTransform.sizeDelta.y);
+
+            textField.rectTransform.sizeDelta += sizeDifference;
+
+            foreach (var rect in alsoIncrease)
+            {
+                rect.sizeDelta += sizeDifference;
+            }
         }
     }
 }
