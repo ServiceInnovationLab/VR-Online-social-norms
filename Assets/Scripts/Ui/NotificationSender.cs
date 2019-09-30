@@ -28,6 +28,7 @@ public class NotificationSender : MonoBehaviour
 
     Vector2 initialSize;
     Vector2 initalTextSize;
+    Vector2 initialstartPosition;
     RectTransform rectTansform;
 
     public bool IsNotificationShowing { get; private set; }
@@ -35,7 +36,7 @@ public class NotificationSender : MonoBehaviour
     private void Awake()
     {
         endPosition = background.anchoredPosition;
-        startPosition = endPosition + Vector2.Scale(-animationDirection, background.sizeDelta);
+        initialstartPosition = endPosition + Vector2.Scale(-animationDirection, background.sizeDelta);
 
         rectTansform = (RectTransform)transform;
 
@@ -49,6 +50,7 @@ public class NotificationSender : MonoBehaviour
     {
         background.gameObject.SetActive(active);
         background.anchoredPosition = startPosition;
+        startPosition = initialstartPosition;
 
         rectTansform.sizeDelta = initialSize;
         background.sizeDelta = initialSize;
@@ -166,6 +168,8 @@ public class NotificationSender : MonoBehaviour
             {
                 rect.sizeDelta += sizeDifference;
             }
+
+            startPosition += Vector2.Scale(-animationDirection, sizeDifference);
         }
     }
 }
