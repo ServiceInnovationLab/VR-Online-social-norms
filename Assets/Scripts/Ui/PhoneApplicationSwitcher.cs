@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class PhoneApplicationSwitcher : MonoBehaviour
 {
-
+    [SerializeField] UnityEvent onApplicationSwitched;
     [SerializeField] Transform[] app1;
     [SerializeField] Transform[] app2;
 
@@ -31,6 +32,8 @@ public class PhoneApplicationSwitcher : MonoBehaviour
         {
             transform.gameObject.SetActive(true);
         }
+
+        onApplicationSwitched?.Invoke();
     }
 
 }
