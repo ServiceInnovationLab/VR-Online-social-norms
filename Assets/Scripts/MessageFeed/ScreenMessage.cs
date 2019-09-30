@@ -14,6 +14,7 @@ public class ScreenMessage : MonoBehaviour
     public string fromTag;
     public string message;
     public Sprite profilePicture;
+    public Sprite image;
     public bool sent = true;
 
     [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
@@ -23,6 +24,7 @@ public class ScreenMessage : MonoBehaviour
     [SerializeField] protected Image profilePictureImage;
     [SerializeField] protected Text fromTime;
     [SerializeField] protected Text fromPersonText;
+    [SerializeField] protected Image imageDisplay;
 
     [SerializeField] RectTransform textBackground;
 
@@ -86,6 +88,19 @@ public class ScreenMessage : MonoBehaviour
         {
             fromTime.text = "4 Aug, 2:38 PM";
             enabled = false;
+        }
+
+        if (imageDisplay)
+        {
+            if (image)
+            {
+                imageDisplay.sprite = image;
+            }
+            else
+            {
+                ((RectTransform)transform).sizeDelta -= new Vector2(0, imageDisplay.rectTransform.rect.height);
+                imageDisplay.gameObject.SetActive(false);
+            }
         }
     }
 

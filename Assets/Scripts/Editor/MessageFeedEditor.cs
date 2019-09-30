@@ -69,7 +69,7 @@ public class MessageFeedEditor : Editor
             {
                 feed.messages[i].message = EditorGUILayout.TextArea(feed.messages[i].message);
 
-                feed.messages[i].profile = (OnlineProfile)EditorGUILayout.ObjectField(feed.messages[i].profile, typeof(OnlineProfile), false);
+                feed.messages[i].image = (Sprite)EditorGUILayout.ObjectField(feed.messages[i].image, typeof(Sprite), false);
 
                 int currentIndex = allProfiles.IndexOf(feed.messages[i].profile);
 

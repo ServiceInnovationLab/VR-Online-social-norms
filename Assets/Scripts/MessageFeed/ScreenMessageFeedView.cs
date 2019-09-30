@@ -210,6 +210,8 @@ public class ScreenMessageFeedView : MonoBehaviour
             message.fromTag = theMessage.profile.tag;
         }
 
+        message.image = theMessage.image;
+
         messageDisplay.gameObject.SetActive(true);
 
         messageDisplay.anchoredPosition = position;
@@ -357,6 +359,7 @@ public class ScreenMessageFeedView : MonoBehaviour
             message.fromTag = theMessage.profile.tag;
         }
 
+        message.image = theMessage.image;
 
         message.enabled = true;
 
