@@ -47,9 +47,13 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     [SerializeField] int startingMessage = 0;
 
+    [SerializeField] bool randomiseOrder = false;
+
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
     bool forceComplete;
+
+    int[] messageOrder;
 
     public void SendMessageToFeed(TextObject text)
     {
@@ -157,11 +161,28 @@ public class ScreenMessageFeedView : MonoBehaviour
             yield return null;
         }
 
+        if (randomiseOrder)
+        {
+            messageOrder = new int[messageFeed.messages.Count];
+            for (int i = 0; i < messageOrder.Length; i++)
+            {
+                messageOrder[i] = i;
+            }
+            RandomiseItems();
+        }
+
         int lastMessageShown = startingMessage;
 
         while (lastMessageShown < messageFeed.messages.Count || loop)
         {
-            DisplayMessage(messageFeed.messages[lastMessageShown]);
+            int index = lastMessageShown;
+
+            if (randomiseOrder)
+            {
+                index = messageOrder[index];
+            }
+
+            DisplayMessage(messageFeed.messages[index]);
             lastMessageShown++;
 
             if (!forceComplete)
@@ -172,10 +193,27 @@ public class ScreenMessageFeedView : MonoBehaviour
             if (loop && messageFeed.messages.Count <= lastMessageShown)
             {
                 lastMessageShown = 0;
+
+                if (randomiseOrder)
+                {
+                    RandomiseItems();
+                }
             }
         }
 
         OnComplete?.Invoke();
+    }
+
+    private void RandomiseItems()
+    {
+        for (var i = 0; i < messageOrder.Length - 1; i++)
+        {
+            var temp = messageOrder[i];
+            int newIndex = Random.Range(i, messageOrder.Length);
+
+            messageOrder[i] = messageOrder[newIndex];
+            messageOrder[newIndex] = temp;
+        }
     }
 
     public void DisplayMessage(Message theMessage, bool triggerEvent = true)
