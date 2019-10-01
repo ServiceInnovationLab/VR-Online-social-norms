@@ -10089,6 +10089,7 @@ MonoBehaviour:
   profilePicture: {fileID: 21300000, guid: b538375d61bd8224d8843557545d1219, type: 3}
   image: {fileID: 0}
   sent: 1
+  moveFromTime: 1
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -18467,8 +18468,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   unhighlightOnDisable: 1
-  emissionDarken: 0
-  customMaterial: {fileID: 0}
+  emissionDarken: 60
+  customMaterial: {fileID: 2100000, guid: e7d0a6ec4a9e83940a5fd1bda76e9129, type: 2}
 --- !u!1 &1299031426
 GameObject:
   m_ObjectHideFlags: 0
@@ -33509,7 +33510,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 216.99998
+      value: 217.00063
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
