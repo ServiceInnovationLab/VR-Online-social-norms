@@ -16,6 +16,7 @@ public class ScreenMessage : MonoBehaviour
     public Sprite profilePicture;
     public Sprite image;
     public bool sent = true;
+    public bool moveFromTime = true;
 
     [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
     [SerializeField] protected bool showFromTag = true;

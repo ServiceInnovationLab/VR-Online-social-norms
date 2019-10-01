@@ -203,7 +203,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         {
             message.from = theMessage.profile.username;
         }
-        SetWidthBasedOnText(message.UsernameTextField, message.from, message.TagAndTimeTextField.rectTransform);
+        SetWidthBasedOnText(message.UsernameTextField, message.from, message.moveFromTime ? message.TagAndTimeTextField.rectTransform : null);
 
         if (!string.IsNullOrEmpty(theMessage.profile?.tag))
         {
@@ -275,11 +275,14 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         if (difference.x > 0)
         {
-            difference += difference / 2;
+            //difference += difference / 2;
         }
 
         foreach (var control in toTheRightOf)
         {
+            if (!control)
+                return;
+
             control.anchoredPosition += difference;
         }
     }
