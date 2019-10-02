@@ -17,6 +17,7 @@ public class ScreenMessage : MonoBehaviour
     public Sprite image;
     public bool sent = true;
     public bool moveFromTime = true;
+    public bool highlight;
 
     [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
     [SerializeField] protected bool showFromTag = true;
@@ -29,6 +30,8 @@ public class ScreenMessage : MonoBehaviour
     [SerializeField] protected float moveLeftIfNoImage = 0;
     [SerializeField] protected bool imageAffectsHeight = true;
     [SerializeField] protected bool limitImageAdjustment = false;
+    [SerializeField] protected float highlightAlpha = 0.2f;
+    [SerializeField] protected Image highlightImage;
 
     [SerializeField] RectTransform textBackground;
 
@@ -139,6 +142,21 @@ public class ScreenMessage : MonoBehaviour
                 {
                     rectTransform.SetLeft(moveLeftIfNoImage);
                 }
+            }
+        }
+
+        if (highlight)
+        {
+            if (!highlightImage)
+            {
+                highlightImage = GetComponent<Image>();
+            }
+
+            if (highlightImage)
+            {
+                var newColour = highlightImage.color;
+                newColour.a = highlightAlpha;
+                highlightImage.color = newColour;
             }
         }
     }

@@ -6,4 +6,5 @@ public class Message
     public string message;
     public OnlineProfile profile;
     public Sprite image;
+    public bool highlight;
 }

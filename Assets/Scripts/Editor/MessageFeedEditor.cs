@@ -80,6 +80,11 @@ public class MessageFeedEditor : Editor
                     feed.messages[i].profile = allProfiles[newIndex];
                 }
 
+                GUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Highlight: ");
+                feed.messages[i].highlight = EditorGUILayout.Toggle(feed.messages[i].highlight);
+                GUILayout.EndHorizontal();
+
                 EditorGUILayout.Separator();
 
                 GUILayout.BeginHorizontal();
