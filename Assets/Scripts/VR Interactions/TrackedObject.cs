@@ -116,8 +116,16 @@ public class TrackedObject : MonoBehaviour
                 {
                     yield return null;
                 }
-                hideObjectIfTracked?.SetActive(false);
-                hideIfNotTracked?.SetActive(true);
+
+                if (hideObjectIfTracked)
+                {
+                    hideObjectIfTracked.SetActive(false);
+                }
+
+                if (hideIfNotTracked)
+                {
+                    hideIfNotTracked.SetActive(true);
+                }
                 isTracked = true;
 
                 onBeginTracking?.Invoke();
