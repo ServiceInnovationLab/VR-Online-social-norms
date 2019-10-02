@@ -115,15 +115,18 @@ public class ScreenMessage : MonoBehaviour
                 {
                     var heightAdjustment = imageDisplay.rectTransform.rect.height;
 
-                    float textHeight = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
-
-                    if (limitImageAdjustment && rectTransform.rect.height - heightAdjustment < textHeight)
+                    if (limitImageAdjustment && textBackground)
                     {
-                        heightAdjustment = rectTransform.rect.height - textHeight - 80;
+                        float textHeight = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
 
-                        if (heightAdjustment < 0)
+                        if (rectTransform.rect.height - heightAdjustment < textHeight)
                         {
-                            heightAdjustment = 0;
+                            heightAdjustment = rectTransform.rect.height - textHeight - 80;
+
+                            if (heightAdjustment < 0)
+                            {
+                                heightAdjustment = 0;
+                            }
                         }
                     }
 
