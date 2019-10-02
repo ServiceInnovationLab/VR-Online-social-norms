@@ -186,6 +186,12 @@ public class BasicFunctions : ScriptableObject
         }
     }
 
+    public void AllowUse(VRTK_InteractableObject interactableObject)
+    {
+        interactableObject.isUsable = true;
+    }
+
+
     public void AllowDropping(VRTK_InteractableObject interactableObject)
     {
         interactableObject.validDrop = VRTK_InteractableObject.ValidDropTypes.DropAnywhere;

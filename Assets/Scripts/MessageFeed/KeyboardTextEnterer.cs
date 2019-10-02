@@ -30,8 +30,9 @@ public class KeyboardTextEnterer : TextEnterer
 
     private void Keyboard_Untouched(object sender, InteractableObjectEventArgs e)
     {
-        if ( (!isTypingCompleted && typeByWord)
+        if ( ((!isTypingCompleted && typeByWord)
                 || (!typeByWord && !started))
+                && keyboard.isUsable)
         {
             flash.enabled = true;
         }
