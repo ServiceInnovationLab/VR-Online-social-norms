@@ -119,7 +119,7 @@ public class ScreenMessage : MonoBehaviour
 
                     if (limitImageAdjustment && rectTransform.rect.height - heightAdjustment < textHeight)
                     {
-                        heightAdjustment = rectTransform.rect.height - textHeight - 25;
+                        heightAdjustment = rectTransform.rect.height - textHeight - 80;
 
                         if (heightAdjustment < 0)
                         {
