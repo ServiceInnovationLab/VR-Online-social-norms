@@ -47,6 +47,8 @@ public class PerspectiveChanger : MonoBehaviour
 
     [SerializeField, HideInInspector] Collider[] excludeColliders;
 
+    bool teleported;
+
 
     private void Awake()
     {
@@ -72,6 +74,11 @@ public class PerspectiveChanger : MonoBehaviour
 
     public void DoTeleport()
     {
+        if (teleported)
+            return;
+
+        teleported = true;
+
         if (!targetRotation)
         {
             targetRotation = target;

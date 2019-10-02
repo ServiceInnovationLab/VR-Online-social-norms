@@ -98,12 +98,12 @@ public class PeriodicHapticFeedback : MonoBehaviour
         }
         else
         {
-            if (controller.HasFlag(VR_Controller.Left))
+            if (controller.HasFlag(VR_Controller.Left) && VRTK_ControllerReference.IsValid(leftController))
             {
                 VRTK_ControllerHaptics.TriggerHapticPulse(leftController, stength, duration, pulseInterval);
             }
 
-            if (controller.HasFlag(VR_Controller.Right))
+            if (controller.HasFlag(VR_Controller.Right) && VRTK_ControllerReference.IsValid(rightController))
             {
                 VRTK_ControllerHaptics.TriggerHapticPulse(rightController, stength, duration, pulseInterval);
             }
