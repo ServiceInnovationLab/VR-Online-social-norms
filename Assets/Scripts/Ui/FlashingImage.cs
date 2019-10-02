@@ -12,15 +12,12 @@ public class FlashingImage : MonoBehaviour
 
     Color toColor;
     Color fromColor;
-    float animateTime;
     float time;
 
     private void Awake()
     {
         image = GetComponent<Image>();
         originalColour = image.color;
-
-        animateTime = flashTime / 4.0f;
 
         toColor = flashColour;
         fromColor = originalColour;
@@ -47,7 +44,7 @@ public class FlashingImage : MonoBehaviour
         else
         {
             float remaningTime = time - flashTime;
-            image.color = Color.Lerp(fromColor, toColor, remaningTime / animateTime);
+            image.color = Color.Lerp(fromColor, toColor, time / flashTime);
         }
     }
 }
