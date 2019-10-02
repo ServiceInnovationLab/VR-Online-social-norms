@@ -14,7 +14,8 @@ public enum SocialMediaScenatioMessageFeedType
     Sender,
     Receiver,
     PileOn,
-    Messenger
+    Messenger,
+    FourChan
 }
 
 public enum SocialMediaScenarioSMStype
@@ -38,7 +39,10 @@ public class SocialMediaScenario : ScriptableObject
     public MessageFeed messengerFeed;
 
     public MessageFeed smsMessageFeed;
+
     public MessageFeed supportSmsMessageFeed;
+
+    public MessageFeed fourChan;
 
     public OnlineProfile receiverProfile;
 
@@ -85,8 +89,8 @@ public class SocialMediaScenario : ScriptableObject
             case SocialMediaScenatioMessageFeedType.Messenger:
                 return messengerFeed;
 
-            case SocialMediaScenatioMessageFeedType.Default:
-                return messageFeed;
+            case SocialMediaScenatioMessageFeedType.FourChan:
+                return fourChan;
         }
 
         return null;

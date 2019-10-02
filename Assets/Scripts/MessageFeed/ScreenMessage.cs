@@ -26,10 +26,14 @@ public class ScreenMessage : MonoBehaviour
     [SerializeField] protected Text fromTime;
     [SerializeField] protected Text fromPersonText;
     [SerializeField] protected Image imageDisplay;
+    [SerializeField] protected float moveLeftIfNoImage = 0;
+    [SerializeField] protected bool imageAffectsHeight = true;
+    [SerializeField] protected bool limitImageAdjustment = false;
 
     [SerializeField] RectTransform textBackground;
 
     float time = 0;
+    RectTransform rectTransform;
 
     public Text MessageTextField
     {
@@ -53,6 +57,8 @@ public class ScreenMessage : MonoBehaviour
 
     protected virtual void Awake()
     {
+        rectTransform = ((RectTransform)transform);
+
         if (profile)
         {
             from = profile.username;
@@ -91,6 +97,12 @@ public class ScreenMessage : MonoBehaviour
             enabled = false;
         }
 
+
+        if (!fromTime)
+        {
+            enabled = false;
+        }
+
         if (imageDisplay)
         {
             if (image)
@@ -99,8 +111,31 @@ public class ScreenMessage : MonoBehaviour
             }
             else
             {
-                ((RectTransform)transform).sizeDelta -= new Vector2(0, imageDisplay.rectTransform.rect.height);
+                if (imageAffectsHeight)
+                {
+                    var heightAdjustment = imageDisplay.rectTransform.rect.height;
+
+                    float textHeight = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
+
+                    if (limitImageAdjustment && rectTransform.rect.height - heightAdjustment < textHeight)
+                    {
+                        heightAdjustment = rectTransform.rect.height - textHeight - 25;
+
+                        if (heightAdjustment < 0)
+                        {
+                            heightAdjustment = 0;
+                        }
+                    }
+
+                    rectTransform.sizeDelta -= new Vector2(0, heightAdjustment);
+                }
+
                 imageDisplay.gameObject.SetActive(false);
+
+                if (!Mathf.Approximately(moveLeftIfNoImage, 0))
+                {
+                    rectTransform.SetLeft(moveLeftIfNoImage);
+                }
             }
         }
     }

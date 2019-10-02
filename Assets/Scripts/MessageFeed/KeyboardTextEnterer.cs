@@ -7,6 +7,7 @@ public class KeyboardTextEnterer : TextEnterer
     [SerializeField] bool typeByWord = true;
     [SerializeField] int wordsPerClick = 3;
     [SerializeField] VRTK_InteractableObject keyboard;
+    [SerializeField] float delay = 1.0f;
 
     string[] words;
     int currentWord = 0;
@@ -45,10 +46,12 @@ public class KeyboardTextEnterer : TextEnterer
 
     protected override IEnumerator TypeText()
     {
+        yield return new WaitForSeconds(delay);
+
         if (!typeByWord)
         {
             // Quick hack at the moment... this will disable the highlighting
-            keyboard.GetComponent<TwoUseObject>()?.AllowSecondUse();
+            //keyboard.GetComponent<TwoUseObject>()?.AllowSecondUse();
 
             yield return base.TypeText();
             yield break;

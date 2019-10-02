@@ -19,8 +19,12 @@ public class TextEnterer : MonoBehaviour
 
     public void SendText()
     {
-        feedView.StopFeed();
-        feedView.SendMessageToFeed(input);
+        if (feedView)
+        {
+            feedView.StopFeed();
+            feedView.SendMessageToFeed(input);
+        }
+
         onSend?.Invoke();
     }
 
@@ -41,7 +45,10 @@ public class TextEnterer : MonoBehaviour
 
     protected virtual void Awake()
     {
-        sendButton.interactable = false;
+        if (sendButton)
+        {
+            sendButton.interactable = false;
+        }
 
         if (!feedView)
         {

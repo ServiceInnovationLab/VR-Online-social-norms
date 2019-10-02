@@ -299,6 +299,9 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     private void SetWidthBasedOnText(Text textField, string newText, params RectTransform[] toTheRightOf)
     {
+        if (!textField)
+            return;
+
         // Based on being top, centre pivot
         var perferredWidth = textField.cachedTextGeneratorForLayout.GetPreferredWidth(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
 
