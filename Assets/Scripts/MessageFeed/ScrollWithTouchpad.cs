@@ -35,6 +35,7 @@ public class ScrollWithTouchpad : MonoBehaviour
     float lastDir = 0;
 
     VRTK_ControllerEvents controllerEvents;
+    DisableTeleportOnTouch disableTeleportOnTouch;
 
     private void Awake()
     {
@@ -56,6 +57,8 @@ public class ScrollWithTouchpad : MonoBehaviour
 
         canTrigger = allowTrigger;
         invertMultiplier = invert ? -1 : 1;
+
+        disableTeleportOnTouch = FindObjectOfType<DisableTeleportOnTouch>();
     }
 
     private void InteractableObjectUngrabbed(object sender, InteractableObjectEventArgs e)
@@ -65,9 +68,16 @@ public class ScrollWithTouchpad : MonoBehaviour
             return;
         }
 
-        foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
+        if (disableTeleportOnTouch)
         {
-            teleporter.enabled = true;
+            disableTeleportOnTouch.RemoveDisabler(controllerEvents, gameObject);
+        }
+        else
+        {
+            foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
+            {
+                teleporter.enabled = true;
+            }
         }
 
         controllerEvents.TouchpadPressed -= ControllerEvents_TriggerClicked;
@@ -79,9 +89,16 @@ public class ScrollWithTouchpad : MonoBehaviour
     {
         controllerEvents = e.interactingObject.GetComponent<VRTK_ControllerEvents>();
 
-        foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
+        if (disableTeleportOnTouch)
         {
-            teleporter.enabled = false;
+            disableTeleportOnTouch.AddDisabler(controllerEvents, gameObject);
+        }
+        else
+        {
+            foreach (var teleporter in controllerEvents.GetComponentsInChildren<VRTK_Pointer>())
+            {
+                teleporter.enabled = false;
+            }
         }
 
         controllerEvents.TouchpadPressed += ControllerEvents_TriggerClicked;
