@@ -25,6 +25,8 @@ public class YoutubeVideoPlayer : MonoBehaviour
         var youTube = YouTube.Default;
         var videos = await youTube.GetAllVideosAsync(url);
 
+        var s = videos.Where(x => x.Format == VideoFormat.Mp4 && x.AudioFormat != AudioFormat.Unknown).OrderByDescending(x => x.Resolution).ToArray();
+
         var video = videos.Where(x => x.Format == VideoFormat.Mp4 && x.AudioFormat != AudioFormat.Unknown).OrderByDescending(x => x.Resolution).FirstOrDefault();
         if (video != null)
         {
