@@ -8679,14 +8679,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenMessages:
     min: 2
-    max: 4
+    max: 5
   images:
   - {fileID: 21300000, guid: 1fae02156a53b6b4496c3a93d6f27998, type: 3}
+  - {fileID: 21300000, guid: c96afce9ac9a95c49be3e3b5fd869b90, type: 3}
   stackChildren: {fileID: 560404426}
   view: {fileID: 0}
   prefab: {fileID: 1624159516}
-  placeOnTop: 1
-  initialDleay: 2
+  placeOnTop: 0
+  initialDleay: 6
+  rect: {fileID: 918645178}
+  rectDetector: {fileID: 918645179}
+  scrollToBottom: 1
 --- !u!1 &561391422
 GameObject:
   m_ObjectHideFlags: 0
@@ -24278,6 +24282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollToBottom: 1
+  stopScrollingAfterHighlighed: 1
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -24285,18 +24290,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   OnComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1165902275}
-        m_MethodName: ScrollToHighlightedMessage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnNewMessage:
@@ -30010,7 +30004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00034546407, y: 0.9895047}
+  m_AnchoredPosition: {x: 0.00034546407, y: 0.0003979474}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1590941110
@@ -39657,7 +39651,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1493265104}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9947024
+  m_Size: 0.9954508
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -43844,7 +43838,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.02184
+      value: 217.00002
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}

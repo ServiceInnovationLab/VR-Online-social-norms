@@ -8,13 +8,14 @@ public class ScreenMessageFeedView : MonoBehaviour
 {
     public bool scrollToBottom = true;
 
+    public bool stopScrollingAfterHighlighed = false;
+
     MessageFeed messageFeed;
 
     private MessageFeed MessageFeed
     {
         get
         {
-
             if (messageFeed == null)
                 messageFeed = SocialMediaScenarioPicker.Instance.CurrentScenario.GetMessageFeed(MessageFeedType);
 
@@ -132,7 +133,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void CompleteFeed()
     {
-        forceComplete = true;
+        forceComplete = true && stopScrollingAfterHighlighed;
     }
 
     public void StopFeed()
@@ -201,6 +202,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         int lastMessageShown = startingMessage;
 
+        bool stopScrolling = false;
+
         while (lastMessageShown < messageFeed.messages.Count || loop)
         {
             int index = lastMessageShown;
@@ -212,6 +215,16 @@ public class ScreenMessageFeedView : MonoBehaviour
 
             DisplayMessage(messageFeed.messages[index]);
             lastMessageShown++;
+
+            if (stopScrolling)
+            {
+                scrollToBottom = false;
+            }
+
+            if (stopScrollingAfterHighlighed && messageFeed.messages[index].highlight)
+            {
+                stopScrolling = true;
+            }
 
             if (!forceComplete)
             {

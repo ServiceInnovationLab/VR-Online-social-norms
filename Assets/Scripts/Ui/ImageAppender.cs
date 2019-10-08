@@ -18,8 +18,19 @@ public class ImageAppender : MonoBehaviour
 
     public float initialDleay;
 
+    public ScrollRect rect;
+
+    public ScrollRectDetector rectDetector;
+    public bool scrollToBottom;
+
+    float lastScrollTime = 0;
+
     private void OnEnable()
     {
+       rect.onValueChanged.AddListener((v) =>
+       {
+           lastScrollTime = Time.time;
+       });
         StartCoroutine(DisplayMessages());
     }
 
@@ -61,6 +72,16 @@ public class ImageAppender : MonoBehaviour
             if (view)
             {
 
+            }
+
+            if (scrollToBottom && rect && (Time.time - lastScrollTime > timeBetweenMessages.min * 0.75f))
+            {
+                rect.verticalNormalizedPosition = placeOnTop ? 1 : 0;
+
+                if (rectDetector)
+                {
+                    rectDetector.Restart();
+                }
             }
 
             lastMessageShown++;
