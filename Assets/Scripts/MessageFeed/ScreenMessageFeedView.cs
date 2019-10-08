@@ -519,6 +519,13 @@ public class ScreenMessageFeedView : MonoBehaviour
                 );
 
                 scrollRect.content.localPosition = result;
+
+                if (detector)
+                {
+                    detector.Restart();
+                }
+
+                break;
             }
         }
     }
