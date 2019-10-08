@@ -56,6 +56,8 @@ public class SocialMediaScenario : ScriptableObject
 
     public string friendMessage;
 
+    public Sprite friendMessageSprite;
+
     public string GetText(SocialMediaScenarioTextType type)
     {
         switch (type)

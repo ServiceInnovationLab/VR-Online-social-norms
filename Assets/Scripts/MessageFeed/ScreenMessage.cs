@@ -19,7 +19,6 @@ public class ScreenMessage : MonoBehaviour
     public bool moveFromTime = true;
     public bool highlight;
     public bool flash;
-    public bool forceImage;
 
     [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
     [SerializeField] protected bool showFromTag = true;
@@ -115,7 +114,7 @@ public class ScreenMessage : MonoBehaviour
             {
                 imageDisplay.sprite = image;
             }
-            else if (!forceImage)
+            else
             {
                 if (imageAffectsHeight)
                 {
