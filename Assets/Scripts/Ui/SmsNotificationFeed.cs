@@ -10,6 +10,7 @@ public class SmsNotificationFeed : MonoBehaviour
     [SerializeField] float timeOnScreen;
     [SerializeField] FloatRange timeBetweenMessages;
     [SerializeField] Sprite[] appIcons;
+    [SerializeField] float initialDelay;
     [SerializeField] string[] appNames = new string[] { "Messages", "Messenger" };
 
     NotificationSender notificationSender;
@@ -37,6 +38,8 @@ public class SmsNotificationFeed : MonoBehaviour
     IEnumerator DoShowMessages()
     {
         var messageFeed = SocialMediaScenarioPicker.Instance.CurrentScenario.GetSMSMessageFeed(smsFeed);
+
+        yield return new WaitForSeconds(initialDelay);
 
         foreach (var message in messageFeed.messages)
         {

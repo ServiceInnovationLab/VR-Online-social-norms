@@ -52,6 +52,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
     bool forceComplete;
+    ScrollRectDetector detector;
 
     int[] messageOrder;
 
@@ -133,6 +134,10 @@ public class ScreenMessageFeedView : MonoBehaviour
     void Awake()
     {
         scrollRect = messageContainer.GetComponentInParent<ScrollRect>();
+        if (scrollRect)
+        {
+            detector = scrollRect.GetComponent<ScrollRectDetector>();
+        }
 
         messagePrefab.gameObject.SetActive(false);
     }
@@ -354,6 +359,11 @@ public class ScreenMessageFeedView : MonoBehaviour
         if (scrollRect)
         {
             scrollRect.verticalNormalizedPosition = 0;
+        }
+
+        if (detector)
+        {
+            detector.Restart();
         }
     }
 

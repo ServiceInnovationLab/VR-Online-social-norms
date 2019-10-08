@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class StackChildren : MonoBehaviour
 {
+    [SerializeField] bool scrollToBottom = true;
+
     RectTransform rectTransform;
     ScrollRect scrollRect;
 
@@ -37,7 +39,7 @@ public class StackChildren : MonoBehaviour
 
         rectTransform.sizeDelta = new Vector2(0, -height);
 
-        if (scrollRect)
+        if (scrollRect && scrollToBottom)
         {
             scrollRect.verticalNormalizedPosition = 0;
         }
