@@ -7,6 +7,8 @@ public class ScrollRectDetector : MonoBehaviour
     [SerializeField] UnityEvent onScrolled;
     [SerializeField] float desiredAmount = 300;
 
+    [SerializeField] ScrollRectLastItemClick lastItemClick;
+
     ScrollRect rect;
     Vector2 startingPosition;
 
@@ -20,6 +22,16 @@ public class ScrollRectDetector : MonoBehaviour
     private void OnEnable()
     {
         Restart();
+
+        if (lastItemClick)
+        {
+            lastItemClick.onClicked.AddListener(() =>
+           {
+               enabled = false;
+               ScrollingDone = true;
+               onScrolled?.Invoke();
+           });
+        }
     }
 
     public void Restart()
@@ -35,6 +47,16 @@ public class ScrollRectDetector : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (lastItemClick)
+        {
+            if (lastItemClick.enabled)
+            {
+                lastItemClick.Check();
+            }
+
+            return;
+        }
+
         if (Mathf.Abs(rect.content.anchoredPosition.y - startingPosition.y) > desiredAmount)
         {
             ScrollingDone = true;

@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections;
 
 public class ImageAppender : MonoBehaviour
 {
+    public Color colour;
+
+    public UnityEvent onComplete;
+
     public FloatRange timeBetweenMessages;
 
     public Sprite[] images;
@@ -85,7 +90,14 @@ public class ImageAppender : MonoBehaviour
             }
 
             lastMessageShown++;
+
+            if (lastMessageShown >= images.Length)
+            {
+                item.GetComponent<HighlightImage>().enabled = false;
+                item.GetComponent<Image>().color = colour;
+            }
         }
 
+        onComplete?.Invoke();
     }
 }
