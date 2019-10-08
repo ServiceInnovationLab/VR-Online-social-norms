@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public enum MessageTimeFormat
 {
@@ -23,10 +24,8 @@ public class ScreenMessage : MonoBehaviour
     [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
     [SerializeField] protected bool showFromTag = true;
     [SerializeField] protected OnlineProfile profile;
-    [SerializeField] protected Text messageText;
+    
     [SerializeField] protected Image profilePictureImage;
-    [SerializeField] protected Text fromTime;
-    [SerializeField] protected Text fromPersonText;
     [SerializeField] protected Image imageDisplay;
     [SerializeField] protected float moveLeftIfNoImage = 0;
     [SerializeField] protected bool imageAffectsHeight = true;
@@ -34,8 +33,13 @@ public class ScreenMessage : MonoBehaviour
     [SerializeField] protected float highlightAlpha = 0.2f;
     [SerializeField] protected Image highlightImage;
     [SerializeField] bool textCentered = false;
-
     [SerializeField] protected RectTransform textBackground;
+
+    [SerializeField] protected Text messageText;
+    [SerializeField] protected Text fromTime;
+    [SerializeField] protected Text fromPersonText;
+
+    [SerializeField] protected TextMeshProUGUI messageTextPro;
 
     float time = 0;
     protected RectTransform rectTransform;
@@ -43,6 +47,11 @@ public class ScreenMessage : MonoBehaviour
     public Text MessageTextField
     {
         get { return messageText; }
+    }
+
+    public TextMeshProUGUI MessageTextFieldPro
+    {
+        get { return messageTextPro; }
     }
 
     public Text UsernameTextField
@@ -79,6 +88,11 @@ public class ScreenMessage : MonoBehaviour
         if (messageText)
         {
             messageText.text = message;
+        }
+
+        if (messageTextPro)
+        {
+            messageTextPro.text = message;
         }
 
         if (profilePictureImage)

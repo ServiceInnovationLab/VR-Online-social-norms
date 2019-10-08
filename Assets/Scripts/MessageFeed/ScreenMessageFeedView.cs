@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class ScreenMessageFeedView : MonoBehaviour
 {
@@ -254,7 +255,14 @@ public class ScreenMessageFeedView : MonoBehaviour
         message.highlight = theMessage.highlight;
         message.flash = theMessage.flash;
 
-        IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
+        if (message.MessageTextField)
+        {
+            IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
+        }
+        else if (message.MessageTextFieldPro)
+        {
+            IncreaseHeightToFitText(message.MessageTextFieldPro, theMessage.message, messageDisplay, message.TextBackground);
+        }
 
         if (theMessage.profile?.picture != null)
         {
@@ -313,6 +321,30 @@ public class ScreenMessageFeedView : MonoBehaviour
                     continue;
 
                 container.sizeDelta += sizeDifference - (currentTextHeight / 2 * Vector2.up);
+            }
+
+            return perferredHeight;
+        }
+
+        return 0;
+    }
+
+    private float IncreaseHeightToFitText(TextMeshProUGUI textField, string newText, params RectTransform[] containers)
+    {
+        var currentTextHeight = textField.rectTransform.sizeDelta.y;
+        var perferredHeight = textField.GetPreferredValues(newText, textField.rectTransform.rect.width, 0).y; //textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.rect.size));
+
+        if (perferredHeight > currentTextHeight)
+        {
+            var sizeDifference = new Vector2(0, perferredHeight - currentTextHeight);
+            textField.rectTransform.sizeDelta += sizeDifference;
+
+            foreach (var container in containers)
+            {
+                if (!container)
+                    continue;
+
+                container.sizeDelta += sizeDifference;
             }
 
             return perferredHeight;
@@ -409,7 +441,16 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         message.message = theMessage.message;
 
-        float height = IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
+        float height = 0;
+
+        if (message.MessageTextField)
+        {
+            height = IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
+        }
+        else if (message.MessageTextFieldPro)
+        {
+            height = IncreaseHeightToFitText(message.MessageTextFieldPro, theMessage.message, messageDisplay, message.TextBackground);
+        }
 
         if (theMessage.profile?.picture != null)
         {
