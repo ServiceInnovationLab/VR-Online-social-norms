@@ -21,9 +21,13 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
+    [SerializeField] UnityEvent OnEnabled = new UnityEvent();
+
     [SerializeField] UnityEvent OnComplete = new UnityEvent();
 
     [SerializeField] UnityEvent OnNewMessage = new UnityEvent();
+
+    [SerializeField] bool showAll = false;
 
     [SerializeField] bool loop = false;
 
@@ -48,6 +52,8 @@ public class ScreenMessageFeedView : MonoBehaviour
     [SerializeField] int startingMessage = 0;
 
     [SerializeField] bool randomiseOrder = false;
+
+    [SerializeField] int enableDelay = 0;
 
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
@@ -149,6 +155,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     private void OnEnable()
     {
+        Invoke(nameof(RaiseOnEnable), 0.02f);
+
         if (adjustHeightToPrefab)
         {
             position.y = messagePrefab.anchoredPosition.y;
@@ -159,6 +167,12 @@ public class ScreenMessageFeedView : MonoBehaviour
             StartFeed();
         }
     }
+
+    void RaiseOnEnable()
+    {
+        OnEnabled?.Invoke();
+    }
+
 
     IEnumerator DisplayMessages()
     {
@@ -420,6 +434,17 @@ public class ScreenMessageFeedView : MonoBehaviour
         message.enabled = true;
 
         messagePrefab.anchoredPosition -= new Vector2(0, height);
+
+        if (showAll)
+        {
+            if (adjustHeightToPrefab)
+            {
+                position.y = messagePrefab.anchoredPosition.y;
+            }
+
+            forceComplete = true;
+            StartFeed();
+        }
     }
 
     public void HighlightFirstMessage()

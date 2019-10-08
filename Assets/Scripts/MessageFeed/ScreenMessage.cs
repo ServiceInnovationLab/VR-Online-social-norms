@@ -32,11 +32,12 @@ public class ScreenMessage : MonoBehaviour
     [SerializeField] protected bool limitImageAdjustment = false;
     [SerializeField] protected float highlightAlpha = 0.2f;
     [SerializeField] protected Image highlightImage;
+    [SerializeField] bool textCentered = false;
 
-    [SerializeField] RectTransform textBackground;
+    [SerializeField] protected RectTransform textBackground;
 
     float time = 0;
-    RectTransform rectTransform;
+    protected RectTransform rectTransform;
 
     public Text MessageTextField
     {
@@ -134,6 +135,11 @@ public class ScreenMessage : MonoBehaviour
                     }
 
                     rectTransform.sizeDelta -= new Vector2(0, heightAdjustment);
+
+                    if (textCentered)
+                    {
+                        messageText.rectTransform.anchoredPosition -= new Vector2(0, heightAdjustment);
+                    }
                 }
 
                 imageDisplay.gameObject.SetActive(false);
@@ -166,7 +172,7 @@ public class ScreenMessage : MonoBehaviour
         Awake();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!sent)
             return;

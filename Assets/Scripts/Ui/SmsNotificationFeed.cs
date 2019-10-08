@@ -30,7 +30,7 @@ public class SmsNotificationFeed : MonoBehaviour
     {
         if (started)
             return;
-
+        
         started = true;
         StartCoroutine(DoShowMessages());
     }
