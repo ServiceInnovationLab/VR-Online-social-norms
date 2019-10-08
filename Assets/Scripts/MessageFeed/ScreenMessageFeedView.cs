@@ -338,11 +338,6 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         textField.rectTransform.anchoredPosition += difference / 2;
 
-        if (difference.x > 0)
-        {
-            //difference += difference / 2;
-        }
-
         foreach (var control in toTheRightOf)
         {
             if (!control)
@@ -461,6 +456,28 @@ public class ScreenMessageFeedView : MonoBehaviour
             {
                 highlight.enabled = true;
                 return;
+            }
+        }
+    }
+
+    public void ScrollToHighlightedMessage()
+    {
+        for (int i = 0; i < messageContainer.transform.childCount; i++)
+        {
+            var child = messageContainer.transform.GetChild(i);
+            var message = child.GetComponent<ScreenMessage>();
+
+            if (message && message.highlight)
+            {
+                Canvas.ForceUpdateCanvases();
+                Vector2 viewportLocalPosition = scrollRect.viewport.localPosition;
+                Vector2 childLocalPosition = child.localPosition;
+                Vector2 result = new Vector2(
+                    0 - (viewportLocalPosition.x + childLocalPosition.x),
+                    0 - (viewportLocalPosition.y + childLocalPosition.y)
+                );
+
+                scrollRect.content.localPosition = result;
             }
         }
     }
