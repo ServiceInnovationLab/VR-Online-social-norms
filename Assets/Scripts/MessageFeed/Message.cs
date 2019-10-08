@@ -8,4 +8,5 @@ public class Message
     public Sprite image;
     public bool highlight;
     public bool flash;
+    public bool forceImage;
 }
