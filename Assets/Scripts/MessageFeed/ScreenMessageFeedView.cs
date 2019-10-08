@@ -63,6 +63,11 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     int[] messageOrder;
 
+    public Vector2 GetPosition()
+    {
+        return position;
+    }
+
     public void SendMessageToFeed(TextObject text)
     {
         SendMessageToFeed(text.text);

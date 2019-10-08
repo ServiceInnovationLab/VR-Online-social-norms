@@ -24,6 +24,9 @@ public class StackChildren : MonoBehaviour
 
     public void Resize()
     {
+        if (!rectTransform)
+            return;
+
         float height = 0;
 
         foreach (var child in rectTransform)
