@@ -7,4 +7,5 @@ public class Message
     public OnlineProfile profile;
     public Sprite image;
     public bool highlight;
+    public bool flash;
 }

@@ -18,6 +18,7 @@ public class ScreenMessage : MonoBehaviour
     public bool sent = true;
     public bool moveFromTime = true;
     public bool highlight;
+    public bool flash;
 
     [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
     [SerializeField] protected bool showFromTag = true;
@@ -163,6 +164,15 @@ public class ScreenMessage : MonoBehaviour
                 var newColour = highlightImage.color;
                 newColour.a = highlightAlpha;
                 highlightImage.color = newColour;
+            }
+        }
+
+        if (flash)
+        {
+            var script = GetComponent<FlashingImage>();
+            if (script)
+            {
+                script.enabled = true;
             }
         }
     }

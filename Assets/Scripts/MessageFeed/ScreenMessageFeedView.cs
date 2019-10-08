@@ -107,7 +107,8 @@ public class ScreenMessageFeedView : MonoBehaviour
         DisplayMessage(new Message()
         {
             message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend),
-            profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Friend)
+            profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Friend),
+            flash = true
         });
     }
 
@@ -250,6 +251,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         message.message = theMessage.message;
         message.highlight = theMessage.highlight;
+        message.flash = theMessage.flash;
 
         IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
 
