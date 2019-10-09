@@ -20,6 +20,7 @@ public class ScreenMessage : MonoBehaviour
     public bool moveFromTime = true;
     public bool highlight;
     public bool flash;
+    public AnimatedImage animatedImage;
 
     [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
     [SerializeField] protected bool showFromTag = true;
@@ -34,6 +35,7 @@ public class ScreenMessage : MonoBehaviour
     [SerializeField] protected Image highlightImage;
     [SerializeField] bool textCentered = false;
     [SerializeField] protected RectTransform textBackground;
+    [SerializeField] AnimatedImageDisplay animatedImageDisplay;
 
     [SerializeField] protected Text messageText;
     [SerializeField] protected Text fromTime;
@@ -78,6 +80,12 @@ public class ScreenMessage : MonoBehaviour
             from = profile.username;
             profilePicture = profile.picture;
             fromTag = profile.tag;
+        }
+
+        if (animatedImageDisplay && animatedImage)
+        {
+            animatedImageDisplay.animatedImage = animatedImage;
+            animatedImageDisplay.enabled = true;
         }
 
         if (fromPersonText)
@@ -128,7 +136,7 @@ public class ScreenMessage : MonoBehaviour
             {
                 imageDisplay.sprite = image;
             }
-            else
+            else if (!(animatedImageDisplay && animatedImage))
             {
                 if (imageAffectsHeight)
                 {

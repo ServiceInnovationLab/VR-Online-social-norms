@@ -276,6 +276,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         message.message = theMessage.message;
         message.highlight = theMessage.highlight;
         message.flash = theMessage.flash;
+        message.animatedImage = theMessage.animatedImage;
 
         if (message.MessageTextField)
         {

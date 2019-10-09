@@ -1488,6 +1488,7 @@ MonoBehaviour:
   moveFromTime: 0
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 1
   showFromTag: 0
   profile: {fileID: 0}
@@ -1500,6 +1501,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 753561943}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1289233893}
   fromTime: {fileID: 1856160598}
   fromPersonText: {fileID: 1104162841}
@@ -16435,7 +16437,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00047
+      value: 217.00002
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -20497,6 +20499,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -20509,6 +20512,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1805489565}
   fromTime: {fileID: 1818292072}
   fromPersonText: {fileID: 144056537}
@@ -22625,6 +22629,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -22637,6 +22642,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1559518374}
   fromTime: {fileID: 358351950}
   fromPersonText: {fileID: 980915875}
@@ -24269,6 +24275,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -24281,6 +24288,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 592942191}
   fromTime: {fileID: 1037030058}
   fromPersonText: {fileID: 946592449}
@@ -34952,6 +34960,7 @@ GameObject:
   - component: {fileID: 1407385627}
   - component: {fileID: 1407385626}
   - component: {fileID: 1407385630}
+  - component: {fileID: 1407385631}
   m_Layer: 5
   m_Name: MessageDisplay
   m_TagString: Untagged
@@ -35025,6 +35034,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -35037,6 +35047,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 1407385631}
   messageText: {fileID: 0}
   fromTime: {fileID: 1474211973}
   fromPersonText: {fileID: 1226293063}
@@ -35092,6 +35103,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashColour: {r: 0, g: 0.8113208, b: 0.01128571, a: 0}
   flashTime: 1
+--- !u!114 &1407385631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407385624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e8b089026bb554c835ad6cedcf7877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatedImage: {fileID: 0}
+  image: {fileID: 874040215}
 --- !u!4 &1409744384 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 66cfe382bd2863f4ab72a7c012c322c9,
@@ -35230,6 +35255,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
@@ -35242,6 +35268,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1810559029}
   fromTime: {fileID: 1193920484}
   fromPersonText: {fileID: 2039832057}
@@ -41803,6 +41830,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -41815,6 +41843,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 2053444190}
   fromTime: {fileID: 197898247}
   fromPersonText: {fileID: 1075803585}
@@ -48388,6 +48417,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
@@ -48400,6 +48430,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1051069408}
   fromTime: {fileID: 466437107}
   fromPersonText: {fileID: 608214939}
@@ -49263,6 +49294,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -49275,6 +49307,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 0}
   fromTime: {fileID: 1504718943}
   fromPersonText: {fileID: 432475197}

@@ -71,6 +71,8 @@ public class MessageFeedEditor : Editor
 
                 feed.messages[i].image = (Sprite)EditorGUILayout.ObjectField(feed.messages[i].image, typeof(Sprite), false);
 
+                feed.messages[i].animatedImage = (AnimatedImage)EditorGUILayout.ObjectField(feed.messages[i].animatedImage, typeof(AnimatedImage), false);
+
                 int currentIndex = allProfiles.IndexOf(feed.messages[i].profile);
 
                 var newIndex = EditorGUILayout.Popup(currentIndex, profileNames);
