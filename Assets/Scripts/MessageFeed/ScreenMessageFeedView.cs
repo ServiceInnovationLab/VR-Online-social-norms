@@ -173,6 +173,10 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         if (startOnEnable)
         {
+            if (scrollRect)
+            {
+                scrollRect.verticalNormalizedPosition = 1;
+            }
             StartFeed();
         }
     }
