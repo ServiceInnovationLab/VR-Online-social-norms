@@ -15,8 +15,6 @@ public class ImageAppender : MonoBehaviour
 
     public StackChildren stackChildren;
 
-    public ScreenMessageFeedView view;
-
     public Image prefab;
 
     public bool placeOnTop;
@@ -36,29 +34,28 @@ public class ImageAppender : MonoBehaviour
        {
            lastScrollTime = Time.time;
        });
-        StartCoroutine(DisplayMessages());
+      StartCoroutine(DisplayMessages());
     }
 
     IEnumerator DisplayMessages()
     {
-        yield return new WaitForSeconds(initialDleay);
+        if (initialDleay > 0)
+        {
+            yield return new WaitForSeconds(initialDleay);
+        }
 
         int lastMessageShown = 0;
 
-        Vector2 position = Vector2.zero;
-
-        if (view)
-        {
-            position = view.GetPosition();
-        }
-
         while (lastMessageShown < images.Length)
         {
-            yield return new WaitForSeconds(timeBetweenMessages.GetValue());
+            if (timeBetweenMessages.max > 0)
+            {
+                yield return new WaitForSeconds(timeBetweenMessages.GetValue());
+            }
 
             int index = lastMessageShown;
 
-            var item = stackChildren ? Instantiate(prefab, stackChildren.transform) : Instantiate(prefab, view.transform);
+            var item = Instantiate(prefab, stackChildren.transform);
             item.gameObject.SetActive(true);
             item.transform.GetChild(0).GetComponent<Image>().sprite = images[index];
 
@@ -72,11 +69,6 @@ public class ImageAppender : MonoBehaviour
             if (stackChildren)
             {
                 stackChildren.Resize();
-            }
-
-            if (view)
-            {
-
             }
 
             if (scrollToBottom && rect && (Time.time - lastScrollTime > timeBetweenMessages.min * 0.75f))

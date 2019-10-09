@@ -350,7 +350,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     private float IncreaseHeightToFitText(TextMeshProUGUI textField, string newText, params RectTransform[] containers)
     {
         var currentTextHeight = textField.rectTransform.sizeDelta.y;
-        var perferredHeight = textField.GetPreferredValues(newText, textField.rectTransform.rect.width, 0).y; //textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.rect.size));
+        var perferredHeight = textField.GetPreferredValues(newText, textField.rectTransform.rect.width, 0).y;
 
         if (perferredHeight > currentTextHeight)
         {

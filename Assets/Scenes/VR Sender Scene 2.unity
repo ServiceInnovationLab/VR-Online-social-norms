@@ -8672,7 +8672,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560404424}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7aaf2b573834dd4e87aec7d47294657, type: 3}
   m_Name: 
@@ -8695,9 +8695,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   timeBetweenMessages:
-    min: 1
-    max: 1
+    min: 0
+    max: 0
   images:
+  - {fileID: 21300000, guid: a69f3c51086c34f4ca302c9ce8f779d3, type: 3}
+  - {fileID: 21300000, guid: 3ef07be1989cc254e83622e80c6eeeab, type: 3}
   - {fileID: 21300000, guid: 1fae02156a53b6b4496c3a93d6f27998, type: 3}
   - {fileID: 21300000, guid: c96afce9ac9a95c49be3e3b5fd869b90, type: 3}
   - {fileID: 21300000, guid: c72fa4999081399428cc6adfcb2daf49, type: 3}
@@ -8705,7 +8707,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4e5a79c8d6042ee4094715568647d2ee, type: 3}
   - {fileID: 21300000, guid: 431267f2163eca641b28994f669dbcad, type: 3}
   stackChildren: {fileID: 560404426}
-  view: {fileID: 0}
   prefab: {fileID: 1624159516}
   placeOnTop: 0
   initialDleay: 0
@@ -24475,7 +24476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1172558577
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43881,7 +43882,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217
+      value: 217.0678
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
