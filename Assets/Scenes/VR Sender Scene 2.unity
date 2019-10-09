@@ -3224,7 +3224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010754f19385bcd41a5cf6b66519e790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColour: {r: 0.0546875, g: 0.7, b: 0, a: 1}
+  flashColour: {r: 0.06685392, g: 0.85, b: 0, a: 1}
   flashTime: 1
 --- !u!114 &249701100
 MonoBehaviour:
@@ -8695,8 +8695,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   timeBetweenMessages:
-    min: 3
-    max: 5
+    min: 1
+    max: 1
   images:
   - {fileID: 21300000, guid: 1fae02156a53b6b4496c3a93d6f27998, type: 3}
   - {fileID: 21300000, guid: c96afce9ac9a95c49be3e3b5fd869b90, type: 3}
@@ -8708,10 +8708,10 @@ MonoBehaviour:
   view: {fileID: 0}
   prefab: {fileID: 1624159516}
   placeOnTop: 0
-  initialDleay: 10
+  initialDleay: 0
   rect: {fileID: 918645178}
   rectDetector: {fileID: 918645179}
-  scrollToBottom: 1
+  scrollToBottom: 0
 --- !u!1 &561391422
 GameObject:
   m_ObjectHideFlags: 0
@@ -9073,7 +9073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010754f19385bcd41a5cf6b66519e790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColour: {r: 0.0546875, g: 0.7, b: 0, a: 1}
+  flashColour: {r: 0.06685392, g: 0.85, b: 0, a: 1}
   flashTime: 1
 --- !u!114 &582768611
 MonoBehaviour:
@@ -10748,7 +10748,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  desiredAmount: 600
+  desiredAmount: 900
   lastItemClick: {fileID: 0}
 --- !u!1 &703901094
 GameObject:
@@ -43881,7 +43881,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.0003
+      value: 217.0007
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}

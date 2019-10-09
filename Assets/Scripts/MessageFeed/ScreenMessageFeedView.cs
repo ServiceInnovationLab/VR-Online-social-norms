@@ -133,7 +133,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void CompleteFeed()
     {
-        forceComplete = true && stopScrollingAfterHighlighed;
+        forceComplete = true;// && stopScrollingAfterHighlighed;
     }
 
     public void StopFeed()
