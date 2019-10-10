@@ -12,6 +12,11 @@ public class ScrollRectLastItemClick : MonoBehaviour
 
     public RectTransform container;
 
+    private void OnEnable()
+    {
+        
+    }
+
 
     public void Check()
     {

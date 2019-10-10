@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections;
 
 public class ImageAppender : MonoBehaviour
 {
+    public Color colour;
+
+    public UnityEvent onComplete;
+
     public FloatRange timeBetweenMessages;
 
     public Sprite[] images;
 
     public StackChildren stackChildren;
-
-    public ScreenMessageFeedView view;
 
     public Image prefab;
 
@@ -31,29 +34,28 @@ public class ImageAppender : MonoBehaviour
        {
            lastScrollTime = Time.time;
        });
-        StartCoroutine(DisplayMessages());
+      StartCoroutine(DisplayMessages());
     }
 
     IEnumerator DisplayMessages()
     {
-        yield return new WaitForSeconds(initialDleay);
+        if (initialDleay > 0)
+        {
+            yield return new WaitForSeconds(initialDleay);
+        }
 
         int lastMessageShown = 0;
 
-        Vector2 position = Vector2.zero;
-
-        if (view)
-        {
-            position = view.GetPosition();
-        }
-
         while (lastMessageShown < images.Length)
         {
-            yield return new WaitForSeconds(timeBetweenMessages.GetValue());
+            if (timeBetweenMessages.max > 0)
+            {
+                yield return new WaitForSeconds(timeBetweenMessages.GetValue());
+            }
 
             int index = lastMessageShown;
 
-            var item = stackChildren ? Instantiate(prefab, stackChildren.transform) : Instantiate(prefab, view.transform);
+            var item = Instantiate(prefab, stackChildren.transform);
             item.gameObject.SetActive(true);
             item.transform.GetChild(0).GetComponent<Image>().sprite = images[index];
 
@@ -69,11 +71,6 @@ public class ImageAppender : MonoBehaviour
                 stackChildren.Resize();
             }
 
-            if (view)
-            {
-
-            }
-
             if (scrollToBottom && rect && (Time.time - lastScrollTime > timeBetweenMessages.min * 0.75f))
             {
                 rect.verticalNormalizedPosition = placeOnTop ? 1 : 0;
@@ -85,7 +82,14 @@ public class ImageAppender : MonoBehaviour
             }
 
             lastMessageShown++;
+
+            if (lastMessageShown >= images.Length)
+            {
+                item.GetComponent<HighlightImage>().enabled = false;
+                item.GetComponent<Image>().color = colour;
+            }
         }
 
+        onComplete?.Invoke();
     }
 }

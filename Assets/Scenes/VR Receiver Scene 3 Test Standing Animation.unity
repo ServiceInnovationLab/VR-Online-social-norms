@@ -15702,6 +15702,11 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 218.19873
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 217.0003
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
@@ -18611,10 +18616,15 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
+  messageText: {fileID: 1293048704}
   profilePictureImage: {fileID: 515681816}
+  fromTime: {fileID: 1176997589}
+  fromPersonText: {fileID: 1763115711}
+  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
@@ -18623,10 +18633,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
-  messageText: {fileID: 1293048704}
-  fromTime: {fileID: 1176997589}
-  fromPersonText: {fileID: 1763115711}
-  messageTextPro: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
 --- !u!114 &758805069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20650,6 +20657,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &836534538 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 6438024, guid: f30b04b488e907b4a88bf0e13b603528,
+    type: 3}
+  m_PrefabInstance: {fileID: 836534523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &836534533 stripped
 MeshCollider:
   m_CorrespondingSourceObject: {fileID: 6438024, guid: f30b04b488e907b4a88bf0e13b603528,
@@ -26481,10 +26494,15 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
+  messageText: {fileID: 1434787832}
   profilePictureImage: {fileID: 1771740359}
+  fromTime: {fileID: 972681587}
+  fromPersonText: {fileID: 278101181}
+  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 2060317209}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
@@ -26493,10 +26511,7 @@ MonoBehaviour:
   highlightImage: {fileID: 462278999}
   textCentered: 0
   textBackground: {fileID: 0}
-  messageText: {fileID: 1434787832}
-  fromTime: {fileID: 972681587}
-  fromPersonText: {fileID: 278101181}
-  messageTextPro: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
 --- !u!114 &1068862406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28692,6 +28707,7 @@ MonoBehaviour:
   teleporter: {fileID: 1741552760}
   excludeColliders:
   - {fileID: 538740185}
+  - {fileID: 836534538}
   - {fileID: 836534533}
   - {fileID: 601882652}
   - {fileID: 1159749289}
@@ -32451,10 +32467,15 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
+  messageText: {fileID: 1896397611}
   profilePictureImage: {fileID: 1403463082}
+  fromTime: {fileID: 1475180615}
+  fromPersonText: {fileID: 1446413968}
+  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
@@ -32463,10 +32484,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
-  messageText: {fileID: 1896397611}
-  fromTime: {fileID: 1475180615}
-  fromPersonText: {fileID: 1446413968}
-  messageTextPro: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
 --- !u!114 &1319831038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33496,10 +33514,15 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 1
   showFromTag: 0
   profile: {fileID: 0}
+  messageText: {fileID: 1330988392}
   profilePictureImage: {fileID: 474790118}
+  fromTime: {fileID: 398845548}
+  fromPersonText: {fileID: 954516803}
+  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
@@ -33508,10 +33531,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 1922161062}
-  messageText: {fileID: 1330988392}
-  fromTime: {fileID: 398845548}
-  fromPersonText: {fileID: 954516803}
-  messageTextPro: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
 --- !u!1 &1369338272
 GameObject:
   m_ObjectHideFlags: 0
@@ -38061,10 +38081,15 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
+  messageText: {fileID: 1451774333}
   profilePictureImage: {fileID: 1951460956}
+  fromTime: {fileID: 414680325}
+  fromPersonText: {fileID: 1518165774}
+  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
@@ -38073,10 +38098,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
-  messageText: {fileID: 1451774333}
-  fromTime: {fileID: 414680325}
-  fromPersonText: {fileID: 1518165774}
-  messageTextPro: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
 --- !u!114 &1551243295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48122,7 +48144,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Messages
+  m_Text: Tweet
 --- !u!222 &1935089193
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -48721,10 +48743,15 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
+  messageText: {fileID: 533431838}
   profilePictureImage: {fileID: 168181448}
+  fromTime: {fileID: 825480832}
+  fromPersonText: {fileID: 210776316}
+  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
@@ -48733,10 +48760,7 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
-  messageText: {fileID: 533431838}
-  fromTime: {fileID: 825480832}
-  fromPersonText: {fileID: 210776316}
-  messageTextPro: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
 --- !u!114 &1953258576
 MonoBehaviour:
   m_ObjectHideFlags: 0

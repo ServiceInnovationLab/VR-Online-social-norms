@@ -1488,6 +1488,7 @@ MonoBehaviour:
   moveFromTime: 0
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 1
   showFromTag: 0
   profile: {fileID: 0}
@@ -1500,10 +1501,13 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 753561943}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1289233893}
   fromTime: {fileID: 1856160598}
   fromPersonText: {fileID: 1104162841}
   messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!1 &33022932
 GameObject:
   m_ObjectHideFlags: 0
@@ -6447,7 +6451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &200708635
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16439,6 +16443,11 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 217.04178
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 217.00015
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
@@ -20507,6 +20516,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -20519,10 +20529,13 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1805489565}
   fromTime: {fileID: 1818292072}
   fromPersonText: {fileID: 144056537}
   messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &803574099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21883,7 +21896,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -0.00017166138, y: 68}
-  m_SizeDelta: {x: 700, y: 350}
+  m_SizeDelta: {x: 600, y: 350}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &874040215
 MonoBehaviour:
@@ -21906,10 +21919,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: b0ad7ed2d64594549a2538e89d54b4d3, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
+  m_Type: 3
+  m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -22635,6 +22648,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -22647,10 +22661,13 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1559518374}
   fromTime: {fileID: 358351950}
   fromPersonText: {fileID: 980915875}
   messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!1 &921885861
 GameObject:
   m_ObjectHideFlags: 0
@@ -24279,6 +24296,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -24291,10 +24309,13 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 592942191}
   fromTime: {fileID: 1037030058}
   fromPersonText: {fileID: 946592449}
   messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &981148053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27862,7 +27883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1093282957
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34962,6 +34983,7 @@ GameObject:
   - component: {fileID: 1407385627}
   - component: {fileID: 1407385626}
   - component: {fileID: 1407385630}
+  - component: {fileID: 1407385631}
   m_Layer: 5
   m_Name: MessageDisplay
   m_TagString: Untagged
@@ -35035,6 +35057,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -35047,10 +35070,13 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
-  messageText: {fileID: 200708636}
+  animatedImageDisplay: {fileID: 1407385631}
+  messageText: {fileID: 0}
   fromTime: {fileID: 1474211973}
   fromPersonText: {fileID: 1226293063}
-  messageTextPro: {fileID: 0}
+  messageTextPro: {fileID: 1644039617}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &1407385628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35102,6 +35128,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashColour: {r: 0, g: 0.8113208, b: 0.01128571, a: 0}
   flashTime: 1
+--- !u!114 &1407385631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407385624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e8b089026bb554c835ad6cedcf7877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatedImage: {fileID: 0}
+  image: {fileID: 874040215}
 --- !u!4 &1409744384 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 66cfe382bd2863f4ab72a7c012c322c9,
@@ -35240,6 +35280,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
@@ -35252,10 +35293,13 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1810559029}
   fromTime: {fileID: 1193920484}
   fromPersonText: {fileID: 2039832057}
   messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &1417522915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40794,7 +40838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1644039616
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40958,7 +41002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1657372319
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41813,6 +41857,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -41825,10 +41870,13 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 2053444190}
   fromTime: {fileID: 197898247}
   fromPersonText: {fileID: 1075803585}
   messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &1677147117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48398,6 +48446,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
@@ -48410,10 +48459,13 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
+  animatedImageDisplay: {fileID: 0}
   messageText: {fileID: 1051069408}
   fromTime: {fileID: 466437107}
   fromPersonText: {fileID: 608214939}
   messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!1 &1892932656
 GameObject:
   m_ObjectHideFlags: 0
@@ -49273,6 +49325,7 @@ MonoBehaviour:
   moveFromTime: 1
   highlight: 0
   flash: 0
+  animatedImage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -49285,10 +49338,13 @@ MonoBehaviour:
   highlightImage: {fileID: 0}
   textCentered: 0
   textBackground: {fileID: 0}
-  messageText: {fileID: 1093282958}
+  animatedImageDisplay: {fileID: 0}
+  messageText: {fileID: 0}
   fromTime: {fileID: 1504718943}
   fromPersonText: {fileID: 432475197}
-  messageTextPro: {fileID: 0}
+  messageTextPro: {fileID: 1657372320}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!1001 &1920836844
 PrefabInstance:
   m_ObjectHideFlags: 0

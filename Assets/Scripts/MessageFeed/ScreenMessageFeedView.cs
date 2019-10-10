@@ -133,7 +133,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void CompleteFeed()
     {
-        forceComplete = true && stopScrollingAfterHighlighed;
+        forceComplete = true;// && stopScrollingAfterHighlighed;
     }
 
     public void StopFeed()
@@ -173,6 +173,10 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         if (startOnEnable)
         {
+            if (scrollRect)
+            {
+                scrollRect.verticalNormalizedPosition = 1;
+            }
             StartFeed();
         }
     }
@@ -272,6 +276,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         message.message = theMessage.message;
         message.highlight = theMessage.highlight;
         message.flash = theMessage.flash;
+        message.animatedImage = theMessage.animatedImage;
 
         if (message.MessageTextField)
         {
@@ -350,7 +355,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     private float IncreaseHeightToFitText(TextMeshProUGUI textField, string newText, params RectTransform[] containers)
     {
         var currentTextHeight = textField.rectTransform.sizeDelta.y;
-        var perferredHeight = textField.GetPreferredValues(newText, textField.rectTransform.rect.width, 0).y; //textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.rect.size));
+        var perferredHeight = textField.GetPreferredValues(newText, textField.rectTransform.rect.width, 0).y;
 
         if (perferredHeight > currentTextHeight)
         {
