@@ -43,6 +43,9 @@ public class ScreenMessage : MonoBehaviour
 
     [SerializeField] protected TextMeshProUGUI messageTextPro;
 
+    [SerializeField] bool resizeBasedOnImage;
+    [SerializeField] bool resizeBasedOnAnimatedImage;
+
     float time = 0;
     protected RectTransform rectTransform;
 
@@ -80,12 +83,6 @@ public class ScreenMessage : MonoBehaviour
             from = profile.username;
             profilePicture = profile.picture;
             fromTag = profile.tag;
-        }
-
-        if (animatedImageDisplay && animatedImage)
-        {
-            animatedImageDisplay.animatedImage = animatedImage;
-            animatedImageDisplay.enabled = true;
         }
 
         if (fromPersonText)
@@ -132,44 +129,63 @@ public class ScreenMessage : MonoBehaviour
 
         if (imageDisplay)
         {
+            var heightAdjustment = 0f;
+
             if (image)
             {
                 imageDisplay.sprite = image;
-            }
-            else if (!(animatedImageDisplay && animatedImage))
-            {
-                if (imageAffectsHeight)
+
+                if (resizeBasedOnImage)
                 {
-                    var heightAdjustment = imageDisplay.rectTransform.rect.height;
-
-                    if (limitImageAdjustment && textBackground)
-                    {
-                        float textHeight = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
-
-                        if (rectTransform.rect.height - heightAdjustment < textHeight)
-                        {
-                            heightAdjustment = rectTransform.rect.height - textHeight - 80;
-
-                            if (heightAdjustment < 0)
-                            {
-                                heightAdjustment = 0;
-                            }
-                        }
-                    }
-
-                    rectTransform.sizeDelta -= new Vector2(0, heightAdjustment);
-
-                    if (textCentered)
-                    {
-                        messageText.rectTransform.anchoredPosition -= new Vector2(0, heightAdjustment);
-                    }
+                    heightAdjustment = imageDisplay.rectTransform.rect.height - image.rect.height;
+                    imageDisplay.rectTransform.sizeDelta = new Vector2(imageDisplay.rectTransform.sizeDelta.x, image.rect.height);
                 }
+            }
+            else if (animatedImageDisplay && animatedImage)
+            {
+                animatedImageDisplay.animatedImage = animatedImage;
+                animatedImageDisplay.enabled = true;
+
+                if (resizeBasedOnAnimatedImage)
+                {
+                    imageDisplay.rectTransform.sizeDelta = new Vector2(imageDisplay.rectTransform.sizeDelta.x, animatedImage.images[0].rect.height);
+                    heightAdjustment = imageDisplay.rectTransform.rect.height - animatedImage.images[0].rect.height;
+                }
+            }
+            else
+            {
+                heightAdjustment = imageDisplay.rectTransform.rect.height;
 
                 imageDisplay.gameObject.SetActive(false);
 
                 if (!Mathf.Approximately(moveLeftIfNoImage, 0))
                 {
                     rectTransform.SetLeft(moveLeftIfNoImage);
+                }
+            }
+
+            if (imageAffectsHeight)
+            {
+                if (limitImageAdjustment && textBackground)
+                {
+                    float textHeight = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
+
+                    if (rectTransform.rect.height - heightAdjustment < textHeight)
+                    {
+                        heightAdjustment = rectTransform.rect.height - textHeight - 80;
+
+                        if (heightAdjustment < 0)
+                        {
+                            heightAdjustment = 0;
+                        }
+                    }
+                }
+
+                rectTransform.sizeDelta -= new Vector2(0, heightAdjustment);
+
+                if (textCentered)
+                {
+                    messageText.rectTransform.anchoredPosition -= new Vector2(0, heightAdjustment);
                 }
             }
         }
