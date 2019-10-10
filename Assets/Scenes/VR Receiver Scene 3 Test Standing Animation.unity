@@ -4783,7 +4783,7 @@ Transform:
   - {fileID: 990497120}
   - {fileID: 836534524}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &165633977
 MonoBehaviour:
@@ -6675,7 +6675,7 @@ Transform:
   - {fileID: 847042291}
   - {fileID: 1917678129}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &234071300
 MonoBehaviour:
@@ -9895,7 +9895,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &390388697
 PrefabInstance:
@@ -12428,6 +12428,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollToBottom: 1
+  stopScrollingAfterHighlighed: 0
+  OnEnabled:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -12438,6 +12444,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  showAll: 0
   loop: 0
   MessageFeedType: 5
   timeBetweenMessages:
@@ -12450,6 +12457,7 @@ MonoBehaviour:
   adjustHeightToPrefab: 1
   startingMessage: 0
   randomiseOrder: 0
+  enableDelay: 0
 --- !u!1 &514993547
 GameObject:
   m_ObjectHideFlags: 0
@@ -15694,7 +15702,7 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00075
+      value: 217.0003
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -18602,20 +18610,23 @@ MonoBehaviour:
   sent: 0
   moveFromTime: 1
   highlight: 0
+  flash: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
-  messageText: {fileID: 1293048704}
   profilePictureImage: {fileID: 515681816}
-  fromTime: {fileID: 1176997589}
-  fromPersonText: {fileID: 1763115711}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
   highlightImage: {fileID: 0}
+  textCentered: 0
   textBackground: {fileID: 0}
+  messageText: {fileID: 1293048704}
+  fromTime: {fileID: 1176997589}
+  fromPersonText: {fileID: 1763115711}
+  messageTextPro: {fileID: 0}
 --- !u!114 &758805069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18734,7 +18745,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &765379325
 GameObject:
@@ -19007,6 +19018,7 @@ MonoBehaviour:
   appIcons:
   - {fileID: 21300000, guid: e1e000e103c45134aba134de4c2cf43c, type: 3}
   - {fileID: 21300000, guid: 61aa3a92e3a4574479323f3e6f8d9be6, type: 3}
+  initialDelay: 0
   appNames:
   - Messages
   - Messenger
@@ -20638,6 +20650,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &836534533 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 6438024, guid: f30b04b488e907b4a88bf0e13b603528,
+    type: 3}
+  m_PrefabInstance: {fileID: 836534523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &839613158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22086,6 +22104,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918100251}
   m_Mesh: {fileID: 4300000, guid: 71259e1d6274ff34b983df6c17ae8c4c, type: 3}
+--- !u!1001 &925536688
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6030440868242075651, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_Name
+      value: cat stuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.469246
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7cc7905eed0320a4a9667fd2d67d84e8, type: 3}
 --- !u!1001 &926214240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26227,7 +26314,7 @@ Transform:
   - {fileID: 572058598}
   - {fileID: 1111756405}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064718768
 GameObject:
@@ -26393,20 +26480,23 @@ MonoBehaviour:
   sent: 1
   moveFromTime: 1
   highlight: 0
+  flash: 0
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
-  messageText: {fileID: 1434787832}
   profilePictureImage: {fileID: 1771740359}
-  fromTime: {fileID: 972681587}
-  fromPersonText: {fileID: 278101181}
   imageDisplay: {fileID: 2060317209}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.6
   highlightImage: {fileID: 462278999}
+  textCentered: 0
   textBackground: {fileID: 0}
+  messageText: {fileID: 1434787832}
+  fromTime: {fileID: 972681587}
+  fromPersonText: {fileID: 278101181}
+  messageTextPro: {fileID: 0}
 --- !u!114 &1068862406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28602,6 +28692,7 @@ MonoBehaviour:
   teleporter: {fileID: 1741552760}
   excludeColliders:
   - {fileID: 538740185}
+  - {fileID: 836534533}
   - {fileID: 601882652}
   - {fileID: 1159749289}
   - {fileID: 2125070467}
@@ -29476,7 +29567,7 @@ Transform:
   m_Children:
   - {fileID: 1509687618}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1179596717
 MonoBehaviour:
@@ -29631,7 +29722,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1182617979 stripped
 GameObject:
@@ -31425,7 +31516,7 @@ Transform:
   - {fileID: 668164982}
   - {fileID: 312551037}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1251189147
 PrefabInstance:
@@ -32359,20 +32450,23 @@ MonoBehaviour:
   sent: 1
   moveFromTime: 1
   highlight: 0
+  flash: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
-  messageText: {fileID: 1896397611}
   profilePictureImage: {fileID: 1403463082}
-  fromTime: {fileID: 1475180615}
-  fromPersonText: {fileID: 1446413968}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
   highlightImage: {fileID: 0}
+  textCentered: 0
   textBackground: {fileID: 0}
+  messageText: {fileID: 1896397611}
+  fromTime: {fileID: 1475180615}
+  fromPersonText: {fileID: 1446413968}
+  messageTextPro: {fileID: 0}
 --- !u!114 &1319831038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33401,20 +33495,23 @@ MonoBehaviour:
   sent: 1
   moveFromTime: 1
   highlight: 0
+  flash: 0
   timeFormat: 1
   showFromTag: 0
   profile: {fileID: 0}
-  messageText: {fileID: 1330988392}
   profilePictureImage: {fileID: 474790118}
-  fromTime: {fileID: 398845548}
-  fromPersonText: {fileID: 954516803}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
   highlightImage: {fileID: 0}
+  textCentered: 0
   textBackground: {fileID: 1922161062}
+  messageText: {fileID: 1330988392}
+  fromTime: {fileID: 398845548}
+  fromPersonText: {fileID: 954516803}
+  messageTextPro: {fileID: 0}
 --- !u!1 &1369338272
 GameObject:
   m_ObjectHideFlags: 0
@@ -35370,6 +35467,7 @@ MonoBehaviour:
   appIcons:
   - {fileID: 21300000, guid: e1e000e103c45134aba134de4c2cf43c, type: 3}
   - {fileID: 21300000, guid: 61aa3a92e3a4574479323f3e6f8d9be6, type: 3}
+  initialDelay: 0
   appNames:
   - Messages
   - Messenger
@@ -37265,6 +37363,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollToBottom: 0
+  stopScrollingAfterHighlighed: 0
+  OnEnabled:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -37286,6 +37390,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  showAll: 0
   loop: 1
   MessageFeedType: 4
   timeBetweenMessages:
@@ -37298,6 +37403,7 @@ MonoBehaviour:
   adjustHeightToPrefab: 0
   startingMessage: 0
   randomiseOrder: 1
+  enableDelay: 0
 --- !u!1001 &1527341967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37954,20 +38060,23 @@ MonoBehaviour:
   sent: 1
   moveFromTime: 1
   highlight: 0
+  flash: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
-  messageText: {fileID: 1451774333}
   profilePictureImage: {fileID: 1951460956}
-  fromTime: {fileID: 414680325}
-  fromPersonText: {fileID: 1518165774}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
   highlightImage: {fileID: 0}
+  textCentered: 0
   textBackground: {fileID: 0}
+  messageText: {fileID: 1451774333}
+  fromTime: {fileID: 414680325}
+  fromPersonText: {fileID: 1518165774}
+  messageTextPro: {fileID: 0}
 --- !u!114 &1551243295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38936,6 +39045,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577336028}
   m_CullTransparentMesh: 0
+--- !u!1001 &1580344522
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7633366343039438855, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_Name
+      value: bashiir degree
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8db7364037b519d4f9a97224719ed225, type: 3}
 --- !u!1001 &1591455405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41601,7 +41779,7 @@ Transform:
   - {fileID: 205263616}
   - {fileID: 256830856}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1713961745
 MonoBehaviour:
@@ -43109,6 +43287,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollToBottom: 1
+  stopScrollingAfterHighlighed: 0
+  OnEnabled:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -43130,6 +43314,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  showAll: 0
   loop: 1
   MessageFeedType: 4
   timeBetweenMessages:
@@ -43142,6 +43327,7 @@ MonoBehaviour:
   adjustHeightToPrefab: 0
   startingMessage: 0
   randomiseOrder: 0
+  enableDelay: 0
 --- !u!1 &1771740357
 GameObject:
   m_ObjectHideFlags: 0
@@ -48358,6 +48544,80 @@ Transform:
   m_Father: {fileID: 165633976}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!1001 &1952147767
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8077552032667103195, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_Name
+      value: toys
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510690808282891484, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083951462662089716, guid: 1ac9d92ddb8dc614cb029aabfdabe424,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.035
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1ac9d92ddb8dc614cb029aabfdabe424, type: 3}
 --- !u!1 &1953258573
 GameObject:
   m_ObjectHideFlags: 0
@@ -48460,20 +48720,23 @@ MonoBehaviour:
   sent: 0
   moveFromTime: 1
   highlight: 0
+  flash: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
-  messageText: {fileID: 533431838}
   profilePictureImage: {fileID: 168181448}
-  fromTime: {fileID: 825480832}
-  fromPersonText: {fileID: 210776316}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
   highlightImage: {fileID: 0}
+  textCentered: 0
   textBackground: {fileID: 0}
+  messageText: {fileID: 533431838}
+  fromTime: {fileID: 825480832}
+  fromPersonText: {fileID: 210776316}
+  messageTextPro: {fileID: 0}
 --- !u!114 &1953258576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49457,6 +49720,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollToBottom: 1
+  stopScrollingAfterHighlighed: 0
+  OnEnabled:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -49467,6 +49736,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  showAll: 0
   loop: 1
   MessageFeedType: 4
   timeBetweenMessages:
@@ -49479,6 +49749,7 @@ MonoBehaviour:
   adjustHeightToPrefab: 0
   startingMessage: 0
   randomiseOrder: 0
+  enableDelay: 0
 --- !u!114 &2016958203
 MonoBehaviour:
   m_ObjectHideFlags: 0
