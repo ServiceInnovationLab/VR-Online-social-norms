@@ -67,25 +67,8 @@ public class MessageFeedEditor : Editor
 
             if (fadeStatus[i])
             {
-                feed.messages[i].message = EditorGUILayout.TextArea(feed.messages[i].message);
-
-                feed.messages[i].image = (Sprite)EditorGUILayout.ObjectField(feed.messages[i].image, typeof(Sprite), false);
-
-                feed.messages[i].animatedImage = (AnimatedImage)EditorGUILayout.ObjectField(feed.messages[i].animatedImage, typeof(AnimatedImage), false);
-
-                int currentIndex = allProfiles.IndexOf(feed.messages[i].profile);
-
-                var newIndex = EditorGUILayout.Popup(currentIndex, profileNames);
-
-                if (currentIndex != newIndex)
-                {
-                    feed.messages[i].profile = allProfiles[newIndex];
-                }
-
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField("Highlight: ");
-                feed.messages[i].highlight = EditorGUILayout.Toggle(feed.messages[i].highlight);
-                GUILayout.EndHorizontal();
+                var message = feed.messages[i];
+                EditMessage(ref message);
 
                 EditorGUILayout.Separator();
 
@@ -155,6 +138,48 @@ public class MessageFeedEditor : Editor
         }
 
         EditorUtility.SetDirty(feed);
+    }
+
+    private void EditMessage(ref Message message)
+    {
+        EditorGUILayout.LabelField("Message: ");
+        message.message = EditorGUILayout.TextArea(message.message, new GUIStyle(EditorStyles.textArea) { wordWrap = true });
+
+        if (!message.animatedImage)
+        {
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Image: ");
+            message.image = (Sprite)EditorGUILayout.ObjectField(message.image, typeof(Sprite), false);
+            GUILayout.EndHorizontal();
+        }
+
+        if (!message.image)
+        {
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Animated Image: ");
+            message.animatedImage = (AnimatedImage)EditorGUILayout.ObjectField(message.animatedImage, typeof(AnimatedImage), false);
+            GUILayout.EndHorizontal();
+        }
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Sent Profile: ");
+
+        int currentIndex = allProfiles.IndexOf(message.profile);
+
+        var newIndex = EditorGUILayout.Popup(currentIndex, profileNames);
+
+        if (currentIndex != newIndex)
+        {
+            message.profile = allProfiles[newIndex];
+        }
+
+        GUILayout.EndHorizontal();
+
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Highlight: ");
+        message.highlight = EditorGUILayout.Toggle(message.highlight);
+        GUILayout.EndHorizontal();
     }
 
     private void InsertMessage(List<Message> messages, int index)
