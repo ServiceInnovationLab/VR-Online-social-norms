@@ -76,7 +76,7 @@ public class ScreenMessage : MonoBehaviour
 
     protected virtual void Awake()
     {
-        rectTransform = ((RectTransform)transform);
+        rectTransform = (RectTransform)transform;
 
         if (profile)
         {
@@ -127,6 +127,40 @@ public class ScreenMessage : MonoBehaviour
             enabled = false;
         }
 
+        SetImage();
+
+        if (highlight)
+        {
+            if (!highlightImage)
+            {
+                highlightImage = GetComponent<Image>();
+            }
+
+            if (highlightImage)
+            {
+                var newColour = highlightImage.color;
+                newColour.a = highlightAlpha;
+                highlightImage.color = newColour;
+            }
+        }
+
+        if (flash)
+        {
+            var script = GetComponent<FlashingImage>();
+            if (script)
+            {
+                script.enabled = true;
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        Awake();
+    }
+
+    protected void SetImage()
+    {
         if (imageDisplay)
         {
             var heightAdjustment = 0f;
@@ -189,35 +223,6 @@ public class ScreenMessage : MonoBehaviour
                 }
             }
         }
-
-        if (highlight)
-        {
-            if (!highlightImage)
-            {
-                highlightImage = GetComponent<Image>();
-            }
-
-            if (highlightImage)
-            {
-                var newColour = highlightImage.color;
-                newColour.a = highlightAlpha;
-                highlightImage.color = newColour;
-            }
-        }
-
-        if (flash)
-        {
-            var script = GetComponent<FlashingImage>();
-            if (script)
-            {
-                script.enabled = true;
-            }
-        }
-    }
-
-    private void OnEnable()
-    {
-        Awake();
     }
 
     protected virtual void FixedUpdate()
