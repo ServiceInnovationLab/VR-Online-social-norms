@@ -63,6 +63,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     ScrollRectDetector detector;
 
     int[] messageOrder;
+    bool needsToWaitAFrame;
 
     public Vector2 GetPosition()
     {
@@ -78,7 +79,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     {
         if (!string.IsNullOrWhiteSpace(text))
         {
-            DisplayMessage(new Message() { message = text });
+           StartCoroutine(DisplayMessage(new Message() { message = text }));
         }
     }
 
@@ -90,34 +91,35 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void SendSenderMessageToFeed()
     {
-        DisplayMessage(new Message()
+        StartCoroutine(DisplayMessage(new Message()
         {
             message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Sender),
             profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Sender),
             highlight = true
-        });
+        }));
     }
 
     public void SendReplyMessageToFeed()
     {
-        DisplayMessage(new Message()
+        scrollToBottom = true;
+        StartCoroutine(DisplayMessage(new Message()
         {
             message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Receiver),
             profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Receiver)
-        });
+        }));
 
         ScrollToBottom();
     }
 
     public void SendFriendMessageToFeed()
     {
-        DisplayMessage(new Message()
+        StartCoroutine(DisplayMessage(new Message()
         {
             message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend),
             profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Friend),
             flash = true,
             image = SocialMediaScenarioPicker.Instance.CurrentScenario.friendMessageSprite
-        });
+        }));
     }
 
     public void SendFriendAndReplyMessage()
@@ -155,6 +157,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
 
         messagePrefab.gameObject.SetActive(false);
+        needsToWaitAFrame = messagePrefab.GetComponent<ScreenMessage>().NeedsAFrame;
     }
 
     private void Start()
@@ -217,7 +220,7 @@ public class ScreenMessageFeedView : MonoBehaviour
                 index = messageOrder[index];
             }
 
-            DisplayMessage(messageFeed.messages[index]);
+            yield return DisplayMessage(messageFeed.messages[index]);
             lastMessageShown++;
 
             if (stopScrolling)
@@ -261,7 +264,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
-    public void DisplayMessage(Message theMessage, bool triggerEvent = true)
+    public IEnumerator DisplayMessage(Message theMessage, bool triggerEvent = true)
     {
         var messageDisplay = Instantiate(messagePrefab, messageContainer);
 
@@ -270,7 +273,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         if (!message)
         {
             Debug.LogError("No message!");
-            return;
+            yield break;
         }
 
         message.message = theMessage.message;
@@ -278,14 +281,12 @@ public class ScreenMessageFeedView : MonoBehaviour
         message.flash = theMessage.flash;
         message.animatedImage = theMessage.animatedImage;
 
-        if (message.MessageTextField)
+        if (!string.IsNullOrEmpty(theMessage.profile?.tag))
         {
-            IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
+            message.fromTag = theMessage.profile.tag;
         }
-        else if (message.MessageTextFieldPro)
-        {
-            IncreaseHeightToFitText(message.MessageTextFieldPro, theMessage.message, messageDisplay, message.TextBackground);
-        }
+
+        message.image = theMessage.image;
 
         if (theMessage.profile?.picture != null)
         {
@@ -296,16 +297,26 @@ public class ScreenMessageFeedView : MonoBehaviour
         {
             message.from = theMessage.profile.username;
         }
-        SetWidthBasedOnText(message.UsernameTextField, message.from, message.moveFromTime ? message.TagAndTimeTextField.rectTransform : null);
 
-        if (!string.IsNullOrEmpty(theMessage.profile?.tag))
+        message.SetSizes();
+        messageDisplay.gameObject.SetActive(true);
+
+        if (needsToWaitAFrame)
         {
-            message.fromTag = theMessage.profile.tag;
+            yield return new WaitForEndOfFrame();
         }
 
-        message.image = theMessage.image;
+        if (message.MessageTextField)
+        {
+            IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
+        }
+        else if (message.MessageTextFieldPro)
+        {
+            IncreaseHeightToFitText(message.MessageTextFieldPro, theMessage.message, messageDisplay, message.TextBackground);
+        }
 
-        messageDisplay.gameObject.SetActive(true);
+       
+        SetWidthBasedOnText(message.UsernameTextField, message.from, message.moveFromTime ? message.TagAndTimeTextField.rectTransform : null);
 
         messageDisplay.anchoredPosition = position;
 
@@ -447,9 +458,14 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void Populate(int timeOffset, MessageFeed feed)
     {
+        StartCoroutine(DoPopulate(feed));
+    }
+
+    private IEnumerator DoPopulate(MessageFeed feed)
+    {
         foreach (var message in feed.messages)
         {
-            DisplayMessage(message, false);
+            yield return DisplayMessage(message, false);
         }
     }
 

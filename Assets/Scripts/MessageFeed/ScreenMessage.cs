@@ -29,6 +29,7 @@ public class ScreenMessage : MonoBehaviour
     [SerializeField] protected Image profilePictureImage;
     [SerializeField] protected Image imageDisplay;
     [SerializeField] protected float moveLeftIfNoImage = 0;
+    [SerializeField] protected float increaseWidthIfNoImage;
     [SerializeField] protected bool imageAffectsHeight = true;
     [SerializeField] protected bool limitImageAdjustment = false;
     [SerializeField] protected float highlightAlpha = 0.2f;
@@ -73,6 +74,8 @@ public class ScreenMessage : MonoBehaviour
     {
         get { return textBackground; }
     }
+
+    public bool NeedsAFrame { get { return !Mathf.Approximately(increaseWidthIfNoImage, 0); } }
 
     protected virtual void Awake()
     {
@@ -159,6 +162,11 @@ public class ScreenMessage : MonoBehaviour
         Awake();
     }
 
+    public void SetSizes()
+    {
+       // Awake();
+    }
+
     protected void SetImage()
     {
         if (imageDisplay)
@@ -195,6 +203,12 @@ public class ScreenMessage : MonoBehaviour
                 if (!Mathf.Approximately(moveLeftIfNoImage, 0))
                 {
                     rectTransform.SetLeft(moveLeftIfNoImage);
+                }
+
+                if (!Mathf.Approximately(increaseWidthIfNoImage, 0))
+                {
+                    rectTransform.sizeDelta += new Vector2(increaseWidthIfNoImage, 0);
+                    textBackground.sizeDelta += new Vector2(increaseWidthIfNoImage, 0);
                 }
             }
 
