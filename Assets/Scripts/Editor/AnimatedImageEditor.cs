@@ -78,6 +78,7 @@ public class AnimatedImageEditor : Editor
                 int i = 0;
                 foreach (var image in data.Images)
                 {
+                    EditorUtility.DisplayProgressBar("Importing frames", "", (float)i / data.Images.Count);
                     var path = Path.Combine(newFolder, targetObject.name + "-" + (i) + ".png");
                     image.Image.Save(path);
                     AssetDatabase.ImportAsset(path);
@@ -88,8 +89,9 @@ public class AnimatedImageEditor : Editor
 
                     targetObject.images[i++] = AssetDatabase.LoadAssetAtPath<Sprite>(path);
                 }
+                EditorUtility.ClearProgressBar();
 
-                targetObject.frameTime = data.Images[0].Duration;
+                targetObject.frameTime = data.Images[0].Duration / 100.0f;
 
                 EditorUtility.SetDirty(targetObject);
             }
