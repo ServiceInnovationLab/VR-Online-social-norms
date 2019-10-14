@@ -5,7 +5,6 @@ using System.Collections;
 
 public class ScrollRectLastItemClick : MonoBehaviour
 {
-
     public UnityEvent onClicked;
 
     public ScrollRect rect;
@@ -22,7 +21,9 @@ public class ScrollRectLastItemClick : MonoBehaviour
     {
         var position = rect.content.anchoredPosition.y + ((RectTransform)rect.transform).rect.height;
 
-        var lastPos = ((RectTransform)container.GetChild(container.childCount - 1)).anchoredPosition.y;
+        var lastChild = (RectTransform)container.GetChild(container.childCount - 1);
+
+        var lastPos = lastChild.anchoredPosition.y + lastChild.rect.center.y;
 
         if (Mathf.Abs(position) > Mathf.Abs(lastPos))
         {

@@ -9,4 +9,5 @@ public class Message
     public AnimatedImage animatedImage;
     public bool highlight;
     public bool flash;
+    public bool pauseHere;
 }

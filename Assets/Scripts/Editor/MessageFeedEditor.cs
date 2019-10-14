@@ -180,6 +180,11 @@ public class MessageFeedEditor : Editor
         EditorGUILayout.LabelField("Highlight: ");
         message.highlight = EditorGUILayout.Toggle(message.highlight);
         GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Pause here: ");
+        message.pauseHere = EditorGUILayout.Toggle(message.pauseHere);
+        GUILayout.EndHorizontal();
     }
 
     private void InsertMessage(List<Message> messages, int index)

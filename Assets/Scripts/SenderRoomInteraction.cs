@@ -11,6 +11,8 @@ public class SenderRoomInteraction : MonoBehaviour
     public ScrollRectDetector[] requiredScrolls;
     public FlashingImage[] images;
 
+    public StartAfterScrolled scrollChecker;
+
     [SerializeField] float timeBeforeActivatingNext = 1.0f;
 
     public void OnPovSwitch()
@@ -82,12 +84,14 @@ public class SenderRoomInteraction : MonoBehaviour
             // All are complete if we still get here!
             if (activate)
             {
-                OnCompleted?.Invoke();
-                yield break;
+                break;
             }
 
             activate = true;
         }
+
+        yield return new WaitUntil(() => scrollChecker.view1.IsDone && scrollChecker.view2.IsDone);
+        OnCompleted?.Invoke();
     }
 
 }

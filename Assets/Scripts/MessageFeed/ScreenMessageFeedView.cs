@@ -6,6 +6,8 @@ using TMPro;
 
 public class ScreenMessageFeedView : MonoBehaviour
 {
+    public float timeScaleAfterPause = 1.0f;
+
     public bool scrollToBottom = true;
 
     public bool stopScrollingAfterHighlighed = false;
@@ -59,6 +61,10 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     [SerializeField] bool skipResizeIfEnoughSpace = false;
 
+    [SerializeField] UnityEvent onPaused;
+
+    public bool IsDone { get; private set; }
+
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
     bool forceComplete;
@@ -66,6 +72,15 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     int[] messageOrder;
     bool needsToWaitAFrame;
+
+    bool paused;
+
+    float timeScale = 1.0f;
+
+    public void Continue()
+    {
+        paused = false;
+    }
 
     public Vector2 GetPosition()
     {
@@ -228,6 +243,7 @@ public class ScreenMessageFeedView : MonoBehaviour
             if (stopScrolling)
             {
                 scrollToBottom = false;
+                stopScrolling = false;
                 ScrollToHighlightedMessage();
             }
 
@@ -236,9 +252,25 @@ public class ScreenMessageFeedView : MonoBehaviour
                 stopScrolling = true;
             }
 
-            if (!forceComplete)
+            if (messageFeed.messages[index].pauseHere)
             {
-                yield return new WaitForSeconds(timeBetweenMessages.GetValue());
+                paused = true;
+                forceComplete = false;
+                onPaused?.Invoke();
+                timeScale = timeScaleAfterPause;
+
+                yield return new WaitUntil(() => !paused);
+            }
+
+            float timeToWait = timeBetweenMessages.GetValue() * timeScale / 10;
+
+            // Split it up into groups of 10, in case force complete is set so it doesn't have to wait the whole time
+            for (int i = 0; i < 10; i++)
+            {
+                if (!forceComplete)
+                {
+                    yield return new WaitForSeconds(timeToWait);
+                }
             }
 
             if (loop && messageFeed.messages.Count <= lastMessageShown)
@@ -252,6 +284,7 @@ public class ScreenMessageFeedView : MonoBehaviour
             }
         }
 
+        IsDone = true;
         OnComplete?.Invoke();
     }
 

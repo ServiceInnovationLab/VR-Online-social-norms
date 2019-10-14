@@ -9,6 +9,8 @@ public class ImageAppender : MonoBehaviour
 
     public UnityEvent onComplete;
 
+    public UnityEvent onPause;
+
     public FloatRange timeBetweenMessages;
 
     public Sprite[] images;
@@ -25,6 +27,19 @@ public class ImageAppender : MonoBehaviour
 
     public ScrollRectDetector rectDetector;
     public bool scrollToBottom;
+
+    public bool forceUpToPause;
+
+    public int pauseAfter;
+
+    bool isPaused;
+
+    public bool IsDone { get; private set; }
+
+    public void Continue()
+    {
+        isPaused = false;
+    }
 
     float lastScrollTime = 0;
 
@@ -48,7 +63,7 @@ public class ImageAppender : MonoBehaviour
 
         while (lastMessageShown < images.Length)
         {
-            if (timeBetweenMessages.max > 0)
+            if (timeBetweenMessages.max > 0 && !forceUpToPause)
             {
                 yield return new WaitForSeconds(timeBetweenMessages.GetValue());
             }
@@ -71,7 +86,7 @@ public class ImageAppender : MonoBehaviour
                 stackChildren.Resize();
             }
 
-            if (scrollToBottom && rect && (Time.time - lastScrollTime > timeBetweenMessages.min * 0.75f))
+            if (scrollToBottom && rect)// && (Time.time - lastScrollTime > timeBetweenMessages.min * 0.75f))
             {
                 rect.verticalNormalizedPosition = placeOnTop ? 1 : 0;
 
@@ -79,6 +94,15 @@ public class ImageAppender : MonoBehaviour
                 {
                     rectDetector.Restart();
                 }
+            }
+
+            if (pauseAfter == lastMessageShown)
+            {
+                isPaused = true;
+                forceUpToPause = false;
+                onPause?.Invoke();
+
+                yield return new WaitWhile(() => isPaused);
             }
 
             lastMessageShown++;
@@ -90,6 +114,7 @@ public class ImageAppender : MonoBehaviour
             }
         }
 
+        IsDone = true;
         onComplete?.Invoke();
     }
 }
