@@ -1284,6 +1284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScaleAfterPause: 1
   scrollToBottom: 0
   stopScrollingAfterHighlighed: 0
   OnEnabled:
@@ -1316,6 +1317,11 @@ MonoBehaviour:
   randomiseOrder: 0
   enableDelay: 0
   skipResizeIfEnoughSpace: 0
+  onPaused:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &27832130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4406,6 +4412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScaleAfterPause: 1
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
   OnEnabled:
@@ -4438,6 +4445,11 @@ MonoBehaviour:
   randomiseOrder: 0
   enableDelay: 0
   skipResizeIfEnoughSpace: 0
+  onPaused:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!4 &111631836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 408844, guid: cad78765caccb034584e2d71888df418,
@@ -7342,7 +7354,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1785732588}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9222,6 +9234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScaleAfterPause: 1
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
   OnEnabled:
@@ -9254,6 +9267,11 @@ MonoBehaviour:
   randomiseOrder: 0
   enableDelay: 0
   skipResizeIfEnoughSpace: 0
+  onPaused:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &291362636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11841,6 +11859,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1077737055}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!224 &435861365
@@ -11856,7 +11885,7 @@ RectTransform:
   m_Children:
   - {fileID: 1301718943}
   m_Father: {fileID: 1785732588}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -16447,12 +16476,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 218.51524
+      value: 217.00038
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 218.51524
+      value: 217.00038
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -27835,6 +27864,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1270f67ead2acf45981f7aaaee5f64c, type: 3}
+--- !u!1 &1077737055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1077737058}
+  - component: {fileID: 1077737057}
+  - component: {fileID: 1077737056}
+  m_Layer: 5
+  m_Name: PopupHider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1077737056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077737055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0.81960785}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1077737057
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077737055}
+  m_CullTransparentMesh: 0
+--- !u!224 &1077737058
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077737055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1785732588}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.00036621094, y: 17}
+  m_SizeDelta: {x: 0, y: 34}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1082852109 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3889565396514458635, guid: 7677e4eca1092404c836595b7aebb684,
@@ -29014,7 +29117,7 @@ RectTransform:
   m_Children:
   - {fileID: 2066018090}
   m_Father: {fileID: 1785732588}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -39036,7 +39139,7 @@ RectTransform:
   m_Children:
   - {fileID: 1476210404}
   m_Father: {fileID: 1785732588}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -39147,6 +39250,17 @@ MonoBehaviour:
       - m_Target: {fileID: 26243929}
         m_MethodName: SendReplyMessageToFeed
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1077737055}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -44259,6 +44373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScaleAfterPause: 1
   scrollToBottom: 0
   stopScrollingAfterHighlighed: 0
   OnEnabled:
@@ -44313,6 +44428,11 @@ MonoBehaviour:
   randomiseOrder: 0
   enableDelay: 1
   skipResizeIfEnoughSpace: 0
+  onPaused:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1748773509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45449,6 +45569,7 @@ RectTransform:
   - {fileID: 1245722788}
   - {fileID: 205502106}
   - {fileID: 679912877}
+  - {fileID: 1077737058}
   - {fileID: 1118147735}
   - {fileID: 435861365}
   - {fileID: 1551512188}
