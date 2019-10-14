@@ -57,6 +57,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     [SerializeField] int enableDelay = 0;
 
+    [SerializeField] bool skipResizeIfEnoughSpace = false;
+
     ScrollRect scrollRect;
     Vector2 position = Vector2.zero;
     bool forceComplete;
@@ -226,6 +228,7 @@ public class ScreenMessageFeedView : MonoBehaviour
             if (stopScrolling)
             {
                 scrollToBottom = false;
+                ScrollToHighlightedMessage();
             }
 
             if (stopScrollingAfterHighlighed && messageFeed.messages[index].highlight)
@@ -308,7 +311,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         if (message.MessageTextField)
         {
-            IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
+            IncreaseHeightToFitText(messageDisplay, message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
         }
         else if (message.MessageTextFieldPro)
         {
@@ -339,7 +342,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
-    private float IncreaseHeightToFitText(Text textField, string newText, params RectTransform[] containers)
+    private float IncreaseHeightToFitText(RectTransform screenMessage, Text textField, string newText, params RectTransform[] containers)
     {
         var currentTextHeight = textField.rectTransform.sizeDelta.y;
         var perferredHeight = textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.rect.size));
@@ -347,12 +350,21 @@ public class ScreenMessageFeedView : MonoBehaviour
         if (perferredHeight > currentTextHeight)
         {
             var sizeDifference = new Vector2(0, perferredHeight);
+
+            bool needsToResizeContainer = !skipResizeIfEnoughSpace || textField.rectTransform.sizeDelta.y + sizeDifference.y + Mathf.Abs(textField.rectTransform.anchoredPosition.y) * 1.5f >= screenMessage.rect.height;
+
             textField.rectTransform.sizeDelta += sizeDifference;
 
             foreach (var container in containers)
             {
                 if (!container)
                     continue;
+
+                if (!needsToResizeContainer && container == screenMessage)
+                {
+                    perferredHeight = 0;
+                    continue;
+                }
 
                 container.sizeDelta += sizeDifference - (currentTextHeight / 2 * Vector2.up);
             }
@@ -484,7 +496,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         if (message.MessageTextField)
         {
-            height = IncreaseHeightToFitText(message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
+            height = IncreaseHeightToFitText(messageDisplay, message.MessageTextField, theMessage.message, messageDisplay, message.TextBackground);
         }
         else if (message.MessageTextFieldPro)
         {

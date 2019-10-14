@@ -212,13 +212,13 @@ public class ScreenMessage : MonoBehaviour
                 }
             }
 
-            if (imageAffectsHeight)
+            if (imageAffectsHeight && !Mathf.Approximately(heightAdjustment, 0))
             {
                 if (limitImageAdjustment && textBackground)
                 {
                     float textHeight = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
 
-                    if (rectTransform.rect.height - heightAdjustment < textHeight)
+                    if (rectTransform.rect.height - heightAdjustment < textHeight + 50)
                     {
                         heightAdjustment = rectTransform.rect.height - textHeight - 80;
 
