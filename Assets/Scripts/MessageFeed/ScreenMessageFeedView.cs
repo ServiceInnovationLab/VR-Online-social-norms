@@ -566,7 +566,7 @@ public class ScreenMessageFeedView : MonoBehaviour
                 Vector2 childLocalPosition = child.localPosition;
                 Vector2 result = new Vector2(
                     0 - (viewportLocalPosition.x + childLocalPosition.x),
-                    0 - (viewportLocalPosition.y + childLocalPosition.y)
+                    0 - (viewportLocalPosition.y + childLocalPosition.y) + 150
                 );
 
                 scrollRect.content.localPosition = result;
