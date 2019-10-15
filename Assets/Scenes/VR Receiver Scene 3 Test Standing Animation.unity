@@ -12427,6 +12427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScaleAfterPause: 1
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
   OnEnabled:
@@ -12458,6 +12459,12 @@ MonoBehaviour:
   startingMessage: 0
   randomiseOrder: 0
   enableDelay: 0
+  skipResizeIfEnoughSpace: 0
+  onPaused:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &514993547
 GameObject:
   m_ObjectHideFlags: 0
@@ -15702,12 +15709,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 218.19873
+      value: 217
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.0003
+      value: 217
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -18620,13 +18627,10 @@ MonoBehaviour:
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
-  messageText: {fileID: 1293048704}
   profilePictureImage: {fileID: 515681816}
-  fromTime: {fileID: 1176997589}
-  fromPersonText: {fileID: 1763115711}
-  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
+  increaseWidthIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
@@ -18634,6 +18638,12 @@ MonoBehaviour:
   textCentered: 0
   textBackground: {fileID: 0}
   animatedImageDisplay: {fileID: 0}
+  messageText: {fileID: 1293048704}
+  fromTime: {fileID: 1176997589}
+  fromPersonText: {fileID: 1763115711}
+  messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &758805069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18840,7 +18850,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 3d6cd5d054f6ee844981e76ca3144e78,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3d6cd5d054f6ee844981e76ca3144e78,
         type: 3}
@@ -20657,12 +20667,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &836534538 stripped
-MeshCollider:
-  m_CorrespondingSourceObject: {fileID: 6438024, guid: f30b04b488e907b4a88bf0e13b603528,
-    type: 3}
-  m_PrefabInstance: {fileID: 836534523}
-  m_PrefabAsset: {fileID: 0}
 --- !u!64 &836534533 stripped
 MeshCollider:
   m_CorrespondingSourceObject: {fileID: 6438024, guid: f30b04b488e907b4a88bf0e13b603528,
@@ -21515,7 +21519,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: aec3e795b8743844f8bc0ec17f81311e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: aec3e795b8743844f8bc0ec17f81311e,
         type: 3}
@@ -22167,7 +22171,7 @@ PrefabInstance:
     - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 390670180479237984, guid: 7cc7905eed0320a4a9667fd2d67d84e8,
         type: 3}
@@ -26427,7 +26431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1068862403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26498,13 +26502,10 @@ MonoBehaviour:
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
-  messageText: {fileID: 1434787832}
   profilePictureImage: {fileID: 1771740359}
-  fromTime: {fileID: 972681587}
-  fromPersonText: {fileID: 278101181}
-  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 2060317209}
   moveLeftIfNoImage: 0
+  increaseWidthIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.6
@@ -26512,6 +26513,12 @@ MonoBehaviour:
   textCentered: 0
   textBackground: {fileID: 0}
   animatedImageDisplay: {fileID: 0}
+  messageText: {fileID: 1434787832}
+  fromTime: {fileID: 972681587}
+  fromPersonText: {fileID: 278101181}
+  messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 1
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &1068862406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28334,7 +28341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9d2b245800c69ab489a9000e99746a40, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9d2b245800c69ab489a9000e99746a40, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -28707,7 +28714,6 @@ MonoBehaviour:
   teleporter: {fileID: 1741552760}
   excludeColliders:
   - {fileID: 538740185}
-  - {fileID: 836534538}
   - {fileID: 836534533}
   - {fileID: 601882652}
   - {fileID: 1159749289}
@@ -29738,7 +29744,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1182617979 stripped
 GameObject:
@@ -32471,13 +32477,10 @@ MonoBehaviour:
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
-  messageText: {fileID: 1896397611}
   profilePictureImage: {fileID: 1403463082}
-  fromTime: {fileID: 1475180615}
-  fromPersonText: {fileID: 1446413968}
-  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
+  increaseWidthIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
@@ -32485,6 +32488,12 @@ MonoBehaviour:
   textCentered: 0
   textBackground: {fileID: 0}
   animatedImageDisplay: {fileID: 0}
+  messageText: {fileID: 1896397611}
+  fromTime: {fileID: 1475180615}
+  fromPersonText: {fileID: 1446413968}
+  messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &1319831038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33518,13 +33527,10 @@ MonoBehaviour:
   timeFormat: 1
   showFromTag: 0
   profile: {fileID: 0}
-  messageText: {fileID: 1330988392}
   profilePictureImage: {fileID: 474790118}
-  fromTime: {fileID: 398845548}
-  fromPersonText: {fileID: 954516803}
-  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
+  increaseWidthIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
@@ -33532,6 +33538,12 @@ MonoBehaviour:
   textCentered: 0
   textBackground: {fileID: 1922161062}
   animatedImageDisplay: {fileID: 0}
+  messageText: {fileID: 1330988392}
+  fromTime: {fileID: 398845548}
+  fromPersonText: {fileID: 954516803}
+  messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!1 &1369338272
 GameObject:
   m_ObjectHideFlags: 0
@@ -37382,6 +37394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScaleAfterPause: 1
   scrollToBottom: 0
   stopScrollingAfterHighlighed: 0
   OnEnabled:
@@ -37424,6 +37437,12 @@ MonoBehaviour:
   startingMessage: 0
   randomiseOrder: 1
   enableDelay: 0
+  skipResizeIfEnoughSpace: 0
+  onPaused:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1527341967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38085,13 +38104,10 @@ MonoBehaviour:
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
-  messageText: {fileID: 1451774333}
   profilePictureImage: {fileID: 1951460956}
-  fromTime: {fileID: 414680325}
-  fromPersonText: {fileID: 1518165774}
-  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
+  increaseWidthIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
@@ -38099,6 +38115,12 @@ MonoBehaviour:
   textCentered: 0
   textBackground: {fileID: 0}
   animatedImageDisplay: {fileID: 0}
+  messageText: {fileID: 1451774333}
+  fromTime: {fileID: 414680325}
+  fromPersonText: {fileID: 1518165774}
+  messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &1551243295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39117,7 +39139,7 @@ PrefabInstance:
     - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7631167724414117277, guid: 8db7364037b519d4f9a97224719ed225,
         type: 3}
@@ -42566,7 +42588,7 @@ PrefabInstance:
     - target: {fileID: 9218986917395939792, guid: 8a3d621b0213b65499436695fbeeb742,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9218986917395939792, guid: 8a3d621b0213b65499436695fbeeb742,
         type: 3}
@@ -43308,6 +43330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScaleAfterPause: 1
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
   OnEnabled:
@@ -43350,6 +43373,12 @@ MonoBehaviour:
   startingMessage: 0
   randomiseOrder: 0
   enableDelay: 0
+  skipResizeIfEnoughSpace: 0
+  onPaused:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1771740357
 GameObject:
   m_ObjectHideFlags: 0
@@ -48747,13 +48776,10 @@ MonoBehaviour:
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
-  messageText: {fileID: 533431838}
   profilePictureImage: {fileID: 168181448}
-  fromTime: {fileID: 825480832}
-  fromPersonText: {fileID: 210776316}
-  messageTextPro: {fileID: 0}
   imageDisplay: {fileID: 0}
   moveLeftIfNoImage: 0
+  increaseWidthIfNoImage: 0
   imageAffectsHeight: 1
   limitImageAdjustment: 0
   highlightAlpha: 0.2
@@ -48761,6 +48787,12 @@ MonoBehaviour:
   textCentered: 0
   textBackground: {fileID: 0}
   animatedImageDisplay: {fileID: 0}
+  messageText: {fileID: 533431838}
+  fromTime: {fileID: 825480832}
+  fromPersonText: {fileID: 210776316}
+  messageTextPro: {fileID: 0}
+  resizeBasedOnImage: 0
+  resizeBasedOnAnimatedImage: 0
 --- !u!114 &1953258576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49743,6 +49775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScaleAfterPause: 1
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
   OnEnabled:
@@ -49774,6 +49807,12 @@ MonoBehaviour:
   startingMessage: 0
   randomiseOrder: 0
   enableDelay: 0
+  skipResizeIfEnoughSpace: 0
+  onPaused:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &2016958203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50666,11 +50705,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: bd5b631f2217e7641b8f60a89d6c18e0, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0

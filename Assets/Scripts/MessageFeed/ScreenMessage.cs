@@ -180,7 +180,15 @@ public class ScreenMessage : MonoBehaviour
                 if (resizeBasedOnImage)
                 {
                     heightAdjustment = imageDisplay.rectTransform.rect.height - image.rect.height;
-                    imageDisplay.rectTransform.sizeDelta = new Vector2(imageDisplay.rectTransform.sizeDelta.x, image.rect.height);
+
+                    if (heightAdjustment > 0)
+                    {
+                        imageDisplay.rectTransform.sizeDelta = new Vector2(imageDisplay.rectTransform.sizeDelta.x, image.rect.height);
+                    }
+                    else
+                    {
+                        heightAdjustment = 0;
+                    }
                 }
             }
             else if (animatedImageDisplay && animatedImage)
