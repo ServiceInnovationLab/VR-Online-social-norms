@@ -568,6 +568,23 @@ public class ScreenMessageFeedView : MonoBehaviour
             forceComplete = true;
             StartFeed();
         }
+        else
+        {
+            OnEnabled.AddListener(() =>
+            {
+                messageContainer.sizeDelta = new Vector2(0, -position.y);
+
+                if (scrollContainer)
+                {
+                    scrollContainer.sizeDelta = messageContainer.sizeDelta;
+                }
+
+                if (scrollRect)
+                {
+                    scrollRect.verticalNormalizedPosition = 1;
+                }
+            });
+        }
     }
 
     public void HighlightFirstMessage()
