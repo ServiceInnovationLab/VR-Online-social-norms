@@ -21,7 +21,7 @@ public class StartAfterScrolled : MonoBehaviour
 
                     if (count >= checkers.Length)
                     {
-                        //view1.scrollToBottom = true;
+                        view1.scrollToBottom = true;
                         //view2.scrollToBottom = true;
 
                         view1.Continue();
