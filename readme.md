@@ -1,4 +1,4 @@
-# VR Empathy Prototype
+# VR Digital Social Norms Prototype
 
 ## Overview
 
