@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
-public class FlashingImage : MonoBehaviour
+[RequireComponent(typeof(Text))]
+public class FlashingText : MonoBehaviour
 {
     [SerializeField] Color flashColour;
     [SerializeField] float flashTime = 2.0f;
 
     Color originalColour;
-    Image image;
+    Text text;
 
     Color toColor;
     Color fromColor;
@@ -16,8 +16,8 @@ public class FlashingImage : MonoBehaviour
 
     private void Awake()
     {
-        image = GetComponent<Image>();
-        originalColour = image.color;
+        text = GetComponent<Text>();
+        originalColour = text.color;
 
         toColor = flashColour;
         fromColor = originalColour;
@@ -25,7 +25,7 @@ public class FlashingImage : MonoBehaviour
 
     private void OnDisable()
     {
-        image.color = originalColour;
+        text.color = originalColour;
     }
 
     void Update()
@@ -34,16 +34,16 @@ public class FlashingImage : MonoBehaviour
 
         if (time >= flashTime)
         {
-            image.color = toColor;
+            text.color = toColor;
 
             toColor = fromColor;
-            fromColor = image.color;
+            fromColor = text.color;
             time = 0;
         }
         else
         {
-            float remaningTime = time - flashTime;
-            image.color = Color.Lerp(fromColor, toColor, time / flashTime);
+            float t = time / flashTime;
+            text.color = Color.Lerp(fromColor, toColor, t * t);
         }
     }
 }
