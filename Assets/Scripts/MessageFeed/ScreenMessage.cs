@@ -20,6 +20,7 @@ public class ScreenMessage : MonoBehaviour
     public bool moveFromTime = true;
     public bool highlight;
     public bool flash;
+    public string retweetedBy;
     public AnimatedImage animatedImage;
     public ScreenMessage subMessage;
 
@@ -37,16 +38,19 @@ public class ScreenMessage : MonoBehaviour
     [SerializeField] protected Image highlightImage;
     [SerializeField] bool textCentered = false;
     [SerializeField] protected RectTransform textBackground;
-    [SerializeField] AnimatedImageDisplay animatedImageDisplay;
+    [SerializeField] protected AnimatedImageDisplay animatedImageDisplay;
 
     [SerializeField] protected Text messageText;
     [SerializeField] protected Text fromTime;
     [SerializeField] protected Text fromPersonText;
 
     [SerializeField] protected TextMeshProUGUI messageTextPro;
+    [SerializeField] protected TextMeshProUGUI fromTimePro;
 
-    [SerializeField] bool resizeBasedOnImage;
-    [SerializeField] bool resizeBasedOnAnimatedImage;
+    [SerializeField] protected bool resizeBasedOnImage;
+    [SerializeField] protected bool resizeBasedOnAnimatedImage;
+
+    [SerializeField] RectTransform retweeted;
 
     float time = 0;
     protected RectTransform rectTransform;
@@ -66,9 +70,22 @@ public class ScreenMessage : MonoBehaviour
         get { return fromPersonText; }
     }
 
-    public Text TagAndTimeTextField
+    public RectTransform TagAndTimeTextField
     {
-        get { return fromTime; }
+        get
+        {
+            if (fromTime)
+            {
+                return fromTime.rectTransform;
+            }
+
+            if (fromTimePro)
+            {
+                return fromTimePro.rectTransform;
+            }
+
+            return null;
+        }
     }
 
     public RectTransform TextBackground
@@ -104,6 +121,18 @@ public class ScreenMessage : MonoBehaviour
             messageTextPro.text = message;
         }
 
+        if (retweeted)
+        {
+            if (string.IsNullOrWhiteSpace(retweetedBy))
+            {
+                retweeted.gameObject.SetActive(false);
+            }
+            else
+            {
+                retweeted.GetComponentInChildren<Text>().text = retweetedBy;
+            }
+        }
+
         if (profilePictureImage)
         {
             profilePictureImage.sprite = profilePicture;
@@ -112,16 +141,19 @@ public class ScreenMessage : MonoBehaviour
         if (fromTime && showFromTag)
         {
             fromTime.text = fromTag;
-
-            if (timeFormat == MessageTimeFormat.None && sent)
-            {
-                enabled = false;
-            }
+        }
+        else if (fromTimePro && showFromTag)
+        {
+            fromTimePro.text = fromTag;
         }
 
         if (fromTime && sent && timeFormat == MessageTimeFormat.TimeSent)
         {
             fromTime.text = "4 Aug, 2:38 PM";
+        }
+
+        if ( (timeFormat == MessageTimeFormat.None || timeFormat == MessageTimeFormat.TimeSent) && sent)
+        {
             enabled = false;
         }
 

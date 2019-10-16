@@ -10,4 +10,6 @@ public class Message
     public bool highlight;
     public bool flash;
     public bool pauseHere;
+    public string retweetedBy;
+    public bool senderSubMessage;
 }

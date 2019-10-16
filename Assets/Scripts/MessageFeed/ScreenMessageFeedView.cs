@@ -8,6 +8,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 {
     public float timeScaleAfterPause = 1.0f;
 
+    public Color lastItemHighlight;
+
     public bool scrollToBottom = true;
 
     public bool stopScrollingAfterHighlighed = false;
@@ -320,6 +322,16 @@ public class ScreenMessageFeedView : MonoBehaviour
         message.highlight = theMessage.highlight;
         message.flash = theMessage.flash;
         message.animatedImage = theMessage.animatedImage;
+        message.retweetedBy = theMessage.retweetedBy;
+
+        if (theMessage.senderSubMessage)
+        {
+            subMessage = new Message()
+            {
+                message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Receiver),
+                profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Receiver),
+            };
+        }
 
         if (!string.IsNullOrEmpty(theMessage.profile?.tag))
         {
@@ -355,7 +367,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
 
        
-        SetWidthBasedOnText(message.UsernameTextField, message.from, message.moveFromTime ? message.TagAndTimeTextField.rectTransform : null);
+        SetWidthBasedOnText(message.UsernameTextField, message.from, message.moveFromTime ? message.TagAndTimeTextField : null);
 
 
         // Sub Message
@@ -379,7 +391,7 @@ public class ScreenMessageFeedView : MonoBehaviour
                 IncreaseHeightToFitText(message.subMessage.MessageTextFieldPro, subMessage.message, subMessageRect, message.subMessage.TextBackground, messageDisplay);
             }
 
-            SetWidthBasedOnText(message.subMessage.UsernameTextField, message.subMessage.from, message.subMessage.moveFromTime ? message.subMessage.TagAndTimeTextField.rectTransform : null);
+            SetWidthBasedOnText(message.subMessage.UsernameTextField, message.subMessage.from, message.subMessage.moveFromTime ? message.subMessage.TagAndTimeTextField : null);
 
             subMessageRect.gameObject.SetActive(true);
         }
@@ -632,6 +644,22 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
+    public void HighlightLastMessage()
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            var last = transform.GetChild(i);
+            var highlight = last.GetComponent<HighlightImage>();
+
+            if (highlight && last.gameObject.activeInHierarchy)
+            {
+                highlight.enabled = false;
+                highlight.GetComponent<Image>().color = lastItemHighlight;
+                return;
+            }
+        }
+    }
+
     public void ScrollToHighlightedMessage()
     {
         for (int i = 0; i < messageContainer.transform.childCount; i++)
@@ -660,4 +688,5 @@ public class ScreenMessageFeedView : MonoBehaviour
             }
         }
     }
+
 }

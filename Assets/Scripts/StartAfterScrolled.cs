@@ -4,6 +4,7 @@ public class StartAfterScrolled : MonoBehaviour
 {
     public ScreenMessageFeedView view1;
     public ImageAppender view2;
+    public ScreenMessageFeedView view3;
 
     public ScrollRectLastItemClick[] checkers;
     int count;
@@ -25,7 +26,16 @@ public class StartAfterScrolled : MonoBehaviour
                         //view2.scrollToBottom = true;
 
                         view1.Continue();
-                        view2.Continue();
+
+                        if (view2)
+                        {
+                            view2.Continue();
+                        }
+
+                        if (view3)
+                        {
+                            view3.Continue();
+                        }
                     }
                 }
             });

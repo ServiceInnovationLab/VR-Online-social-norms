@@ -145,6 +145,9 @@ public class MessageFeedEditor : Editor
         EditorGUILayout.LabelField("Message: ");
         message.message = EditorGUILayout.TextArea(message.message, new GUIStyle(EditorStyles.textArea) { wordWrap = true });
 
+        EditorGUILayout.LabelField("Retweeted by: ");
+        message.retweetedBy = EditorGUILayout.TextArea(message.retweetedBy);
+
         if (!message.animatedImage)
         {
             GUILayout.BeginHorizontal();
@@ -184,6 +187,11 @@ public class MessageFeedEditor : Editor
         GUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Pause here: ");
         message.pauseHere = EditorGUILayout.Toggle(message.pauseHere);
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Sender submessage: ");
+        message.senderSubMessage = EditorGUILayout.Toggle(message.senderSubMessage);
         GUILayout.EndHorizontal();
     }
 
