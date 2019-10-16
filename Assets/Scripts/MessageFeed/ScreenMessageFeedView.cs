@@ -130,13 +130,17 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void SendFriendMessageToFeed()
     {
-        StartCoroutine(DisplayMessage(new Message()
-        {
-            message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend),
-            profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Friend),
-            flash = true
-        }, true, SocialMediaScenarioPicker.Instance.CurrentScenario.receiverMessageFeed.messages[0]
-        ));
+        StartCoroutine(
+            DisplayMessage(new Message()
+            {
+                message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend),
+                profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Friend),
+                flash = true
+            },
+            true,
+            SocialMediaScenarioPicker.Instance.CurrentScenario.receiverMessageFeed.messages[0]
+            )
+        );
     }
 
     public void SendFriendAndReplyMessage()
@@ -152,7 +156,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     public void CompleteFeed()
     {
-        forceComplete = true;// && stopScrollingAfterHighlighed;
+        forceComplete = true;
     }
 
     public void StopFeed()
@@ -334,7 +338,6 @@ public class ScreenMessageFeedView : MonoBehaviour
             message.from = theMessage.profile.username;
         }
 
-        message.SetSizes();
         messageDisplay.gameObject.SetActive(true);
 
         if (needsToWaitAFrame)

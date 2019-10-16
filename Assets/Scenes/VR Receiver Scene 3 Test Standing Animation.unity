@@ -15720,12 +15720,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.4053
+      value: 217.31493
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.4053
+      value: 217.31493
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -18635,6 +18635,7 @@ MonoBehaviour:
   highlight: 0
   flash: 0
   animatedImage: {fileID: 0}
+  subMessage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -26510,6 +26511,7 @@ MonoBehaviour:
   highlight: 0
   flash: 0
   animatedImage: {fileID: 0}
+  subMessage: {fileID: 0}
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -32346,6 +32348,7 @@ GameObject:
   - component: {fileID: 1308856656}
   - component: {fileID: 1308856658}
   - component: {fileID: 1308856657}
+  - component: {fileID: 1308856659}
   m_Layer: 5
   m_Name: Notification
   m_TagString: Untagged
@@ -32415,6 +32418,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308856655}
   m_CullTransparentMesh: 0
+--- !u!114 &1308856659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308856655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010754f19385bcd41a5cf6b66519e790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColour: {r: 0, g: 0.5019608, b: 0, a: 1}
+  flashTime: 1
 --- !u!1 &1319831035
 GameObject:
   m_ObjectHideFlags: 0
@@ -32485,6 +32502,7 @@ MonoBehaviour:
   highlight: 0
   flash: 0
   animatedImage: {fileID: 0}
+  subMessage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -33535,6 +33553,7 @@ MonoBehaviour:
   highlight: 0
   flash: 0
   animatedImage: {fileID: 0}
+  subMessage: {fileID: 0}
   timeFormat: 1
   showFromTag: 0
   profile: {fileID: 0}
@@ -34266,7 +34285,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398045931}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 909bc3706898e1c4fb25ec90bfc00551, type: 3}
   m_Name: 
@@ -38127,6 +38146,7 @@ MonoBehaviour:
   highlight: 0
   flash: 0
   animatedImage: {fileID: 0}
+  subMessage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -48799,6 +48819,7 @@ MonoBehaviour:
   highlight: 0
   flash: 0
   animatedImage: {fileID: 0}
+  subMessage: {fileID: 0}
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}

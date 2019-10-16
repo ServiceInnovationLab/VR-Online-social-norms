@@ -163,11 +163,6 @@ public class ScreenMessage : MonoBehaviour
         Awake();
     }
 
-    public void SetSizes()
-    {
-       // Awake();
-    }
-
     protected void SetImage()
     {
         if (imageDisplay)
