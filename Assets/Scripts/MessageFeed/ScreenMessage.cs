@@ -21,6 +21,7 @@ public class ScreenMessage : MonoBehaviour
     public bool highlight;
     public bool flash;
     public AnimatedImage animatedImage;
+    public ScreenMessage subMessage;
 
     [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
     [SerializeField] protected bool showFromTag = true;

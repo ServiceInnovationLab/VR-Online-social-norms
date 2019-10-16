@@ -28,4 +28,20 @@ public static class VectorExtensions
     {
         return new Vector3(Mathf.Abs(vector.x), Mathf.Abs(vector.y), Mathf.Abs(vector.z));
     }
+
+    /// <summary>
+    /// Returns the vector with just the Y component set
+    /// </summary>
+    public static Vector2 Y(this Vector2 vector)
+    {
+        return new Vector2(0, vector.y);
+    }
+
+    /// <summary>
+    /// Returns the vector with just the Y component set with an offset
+    /// </summary>
+    public static Vector2 Y(this Vector2 vector, float offset)
+    {
+        return new Vector2(0, vector.y + offset);
+    }
 }

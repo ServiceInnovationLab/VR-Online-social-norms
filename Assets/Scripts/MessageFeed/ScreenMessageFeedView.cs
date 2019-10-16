@@ -134,9 +134,9 @@ public class ScreenMessageFeedView : MonoBehaviour
         {
             message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend),
             profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Friend),
-            flash = true,
-            image = SocialMediaScenarioPicker.Instance.CurrentScenario.friendMessageSprite
-        }));
+            flash = true
+        }, true, SocialMediaScenarioPicker.Instance.CurrentScenario.receiverMessageFeed.messages[0]
+        ));
     }
 
     public void SendFriendAndReplyMessage()
@@ -300,7 +300,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
-    public IEnumerator DisplayMessage(Message theMessage, bool triggerEvent = true)
+    public IEnumerator DisplayMessage(Message theMessage, bool triggerEvent = true, Message subMessage = null)
     {
         var messageDisplay = Instantiate(messagePrefab, messageContainer);
 
@@ -353,6 +353,33 @@ public class ScreenMessageFeedView : MonoBehaviour
 
        
         SetWidthBasedOnText(message.UsernameTextField, message.from, message.moveFromTime ? message.TagAndTimeTextField.rectTransform : null);
+
+
+        // Sub Message
+        if (subMessage != null && message.subMessage)
+        {
+            message.subMessage.message = subMessage.message;
+            message.subMessage.profilePicture = subMessage.profile.picture;
+            message.subMessage.message = subMessage.message;
+            message.subMessage.from = subMessage.profile.username;
+            message.subMessage.fromTag = subMessage.profile.tag;
+
+            RectTransform subMessageRect = message.subMessage.transform as RectTransform;
+            messageDisplay.sizeDelta += subMessageRect.sizeDelta.Y(+20);
+
+            if (message.subMessage.MessageTextField)
+            {
+                IncreaseHeightToFitText(messageDisplay, message.subMessage.MessageTextField, subMessage.message, subMessageRect, message.TextBackground, messageDisplay);
+            }
+            else if (message.subMessage.MessageTextFieldPro)
+            {
+                IncreaseHeightToFitText(message.subMessage.MessageTextFieldPro, subMessage.message, subMessageRect, message.subMessage.TextBackground, messageDisplay);
+            }
+
+            SetWidthBasedOnText(message.subMessage.UsernameTextField, message.subMessage.from, message.subMessage.moveFromTime ? message.subMessage.TagAndTimeTextField.rectTransform : null);
+
+            subMessageRect.gameObject.SetActive(true);
+        }
 
         messageDisplay.anchoredPosition = position;
 
