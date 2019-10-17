@@ -153,6 +153,8 @@ public class VR_StartingPoint : MonoBehaviour
         if (e.currentSetup == null)
             return;
 
+        manager.LoadedSetupChanged -= LoadedSetupChanged;
+
         var headsetPose = e.currentSetup.actualHeadset.GetComponent<SteamVR_Behaviour_Pose>();
 
         if (headsetPose)

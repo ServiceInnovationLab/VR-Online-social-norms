@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using System.Collections;
 
 public class ScrollRectLastItemClick : MonoBehaviour
 {
@@ -16,8 +15,7 @@ public class ScrollRectLastItemClick : MonoBehaviour
         
     }
 
-
-    public void Check()
+    public bool IsLastItemShowing()
     {
         var position = rect.content.anchoredPosition.y + ((RectTransform)rect.transform).rect.height;
 
@@ -26,6 +24,17 @@ public class ScrollRectLastItemClick : MonoBehaviour
         var lastPos = lastChild.anchoredPosition.y + lastChild.rect.center.y;
 
         if (Mathf.Abs(position) > Mathf.Abs(lastPos))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public void Check()
+    {
+        if (IsLastItemShowing())
         {
             onClicked?.Invoke();
         }
