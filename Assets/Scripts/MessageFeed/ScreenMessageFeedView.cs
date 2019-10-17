@@ -9,6 +9,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     public float timeScaleAfterPause = 1.0f;
 
     public Color lastItemHighlight;
+    public bool highlightLastItem = false;
 
     public bool scrollToBottom = true;
 
@@ -266,6 +267,11 @@ public class ScreenMessageFeedView : MonoBehaviour
                 timeScale = timeScaleAfterPause;
 
                 yield return new WaitUntil(() => !paused);
+            }
+
+            if (highlightLastItem && lastMessageShown == messageFeed.messages.Count)
+            {
+                HighlightLastMessage();
             }
 
             float timeToWait = timeBetweenMessages.GetValue() * timeScale / 10;
