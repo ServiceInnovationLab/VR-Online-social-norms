@@ -195,7 +195,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke(nameof(RaiseOnEnable), 0.02f);
+        //Invoke(nameof(RaiseOnEnable), 0.02f);
+        StartCoroutine(RaiseOnEnable());
 
         if (adjustHeightToPrefab)
         {
@@ -212,8 +213,10 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
-    void RaiseOnEnable()
+    IEnumerator RaiseOnEnable()
     {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForFixedUpdate();
         OnEnabled?.Invoke();
     }
 
