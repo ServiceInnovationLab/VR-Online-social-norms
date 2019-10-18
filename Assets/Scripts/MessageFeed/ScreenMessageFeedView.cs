@@ -8,6 +8,8 @@ public class ScreenMessageFeedView : MonoBehaviour
 {
     public float timeScaleAfterPause = 1.0f;
 
+    public float afterPauseDelay = 2.0f;
+
     public Color lastItemHighlight;
     public bool highlightLastItem = false;
 
@@ -16,6 +18,8 @@ public class ScreenMessageFeedView : MonoBehaviour
     public bool stopScrollingAfterHighlighed = false;
 
     MessageFeed messageFeed;
+
+    public float headerHeight = 0;
 
     private MessageFeed MessageFeed
     {
@@ -99,7 +103,7 @@ public class ScreenMessageFeedView : MonoBehaviour
     {
         if (!string.IsNullOrWhiteSpace(text))
         {
-           StartCoroutine(DisplayMessage(new Message() { message = text }));
+            StartCoroutine(DisplayMessage(new Message() { message = text }));
         }
     }
 
@@ -262,11 +266,12 @@ public class ScreenMessageFeedView : MonoBehaviour
             if (messageFeed.messages[index].pauseHere)
             {
                 paused = true;
-                forceComplete = false;
+                //forceComplete = false;
                 onPaused?.Invoke();
                 timeScale = timeScaleAfterPause;
 
                 yield return new WaitUntil(() => !paused);
+                yield return new WaitForSeconds(afterPauseDelay);
             }
 
             if (highlightLastItem && lastMessageShown == messageFeed.messages.Count)
@@ -372,7 +377,7 @@ public class ScreenMessageFeedView : MonoBehaviour
             IncreaseHeightToFitText(message.MessageTextFieldPro, theMessage.message, messageDisplay, message.TextBackground);
         }
 
-       
+
         SetWidthBasedOnText(message.UsernameTextField, message.from, message.moveFromTime ? message.TagAndTimeTextField : null);
 
 
@@ -692,6 +697,85 @@ public class ScreenMessageFeedView : MonoBehaviour
 
                 break;
             }
+        }
+    }
+
+    public void ScrollToFirstUnpausedMessage()
+    {
+        int index = 0;
+
+        foreach (var message in MessageFeed.messages)
+        {
+            index++;
+            if (message.pauseHere)
+            {
+                break;
+            }
+        }
+
+        int z = 0;
+
+        for (int i = 0; i < messageContainer.transform.childCount; i++)
+        {
+            var child1 = messageContainer.transform.GetChild(i);
+            var message = child1.GetComponent<ScreenMessage>();
+
+            if (message && message.gameObject.activeInHierarchy)
+            {
+                if (z++ == index)
+                {
+                    index = i;
+                    break;
+                }
+            }
+        }
+
+        var child = messageContainer.transform.GetChild(index);
+        var screenMessage = child.GetComponent<ScreenMessage>();
+
+        var rectChild = (RectTransform)child;
+
+        if (screenMessage)
+        {
+            Canvas.ForceUpdateCanvases();
+            Vector2 viewportLocalPosition = scrollRect.viewport.localPosition;
+            Vector2 childLocalPosition = child.localPosition;
+            Vector2 result = new Vector2(
+                0 - (viewportLocalPosition.x + childLocalPosition.x),
+                0 - (viewportLocalPosition.y + childLocalPosition.y) + (((RectTransform)scrollRect.transform).rect.height - rectChild.rect.height) - headerHeight
+            );
+
+            //scrollRect.content.localPosition = result;
+            StartCoroutine(SmoothScroll(result));
+
+            if (detector)
+            {
+                detector.Restart();
+            }
+
+            FindObjectOfType<StartAfterScrolled>().SecondGo();
+        }
+    }
+
+    IEnumerator SmoothScroll(Vector2 toPos)
+    {
+        Vector2 fromPos = scrollRect.content.localPosition;
+
+        float time = Time.time;
+
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+
+            float diff = (Time.time - time) / 1;
+
+            if (diff > 1)
+            {
+                scrollRect.content.localPosition = toPos;
+                break;
+            }
+
+            scrollRect.content.localPosition = Vector2.Lerp(fromPos, toPos, diff);
         }
     }
 

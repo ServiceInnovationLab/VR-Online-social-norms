@@ -9,6 +9,16 @@ public class StartAfterScrolled : MonoBehaviour
     public ScrollRectLastItemClick[] checkers;
     int count;
 
+    bool first = false;
+
+    public void SecondGo()
+    {
+        checkers[0].enabled = true;
+        count--;
+
+        first = true;
+    }
+
     private void Awake()
     {
         foreach (var checker in checkers)
@@ -22,19 +32,23 @@ public class StartAfterScrolled : MonoBehaviour
 
                     if (count >= checkers.Length)
                     {
-                        view1.scrollToBottom = true;
-                        //view2.scrollToBottom = true;
-
-                        view1.Continue();
-
-                        if (view2)
+                        if (!first)
                         {
-                            view2.Continue();
+                           
+                            view1.Continue();
                         }
-
-                        if (view3)
+                        else
                         {
-                            view3.Continue();
+                            if (view2)
+                            {
+                                view2.Continue();
+                            }
+
+                            if (view3)
+                            {
+                                view3.CompleteFeed();
+                                view3.Continue();
+                            }
                         }
                     }
                 }

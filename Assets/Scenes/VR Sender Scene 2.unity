@@ -9393,10 +9393,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
+  afterPauseDelay: 2
   lastItemHighlight: {r: 1, g: 0.7529412, b: 0.07058824, a: 0.5019608}
   highlightLastItem: 1
   scrollToBottom: 0
   stopScrollingAfterHighlighed: 0
+  headerHeight: -200
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -9419,6 +9421,17 @@ MonoBehaviour:
       - m_Target: {fileID: 918645180}
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 560404428}
+        m_MethodName: ScrollToFirstUnpausedMessage
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -25692,11 +25705,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScaleAfterPause: 2
+  timeScaleAfterPause: 0.5
+  afterPauseDelay: 2
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 1
+  headerHeight: 271
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -25704,7 +25719,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   OnComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1165902275}
+        m_MethodName: ScrollToFirstUnpausedMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnNewMessage:
@@ -46364,12 +46390,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.03923
+      value: 217.03816
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.03923
+      value: 217.03816
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
