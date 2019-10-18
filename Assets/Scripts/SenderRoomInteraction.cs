@@ -15,6 +15,8 @@ public class SenderRoomInteraction : MonoBehaviour
 
     [SerializeField] float timeBeforeActivatingNext = 1.0f;
 
+    [SerializeField] float activateDelay = 3.0f;
+
     public void OnPovSwitch()
     {
         OnEnterPov?.Invoke();
@@ -91,6 +93,11 @@ public class SenderRoomInteraction : MonoBehaviour
         }
 
         yield return new WaitUntil(() => scrollChecker.view1.IsDone && (scrollChecker.view2.IsDone || scrollChecker.view3.IsDone));
+
+        yield return new WaitUntil(() => requiredScrolls[1].lastItemClick.IsLastItemShowing());
+
+        yield return new WaitForSeconds(activateDelay);
+
         OnCompleted?.Invoke();
     }
 

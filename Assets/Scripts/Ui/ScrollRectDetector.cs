@@ -7,7 +7,7 @@ public class ScrollRectDetector : MonoBehaviour
     [SerializeField] UnityEvent onScrolled;
     [SerializeField] float desiredAmount = 300;
 
-    [SerializeField] ScrollRectLastItemClick lastItemClick;
+    public ScrollRectLastItemClick lastItemClick;
 
     ScrollRect rect;
     Vector2 startingPosition;
