@@ -260,6 +260,11 @@ public class ScreenMessageFeedView : MonoBehaviour
             if (subMessageStart >= 0)
             {
                 subMessage = LinkedViewForSubMessages.messageFeed.messages[subMessageStart++];
+                if (subMessage.highlight)
+                {
+                    subMessage = null;
+                    subMessageStart = -1;
+                }
             }
 
             yield return DisplayMessage(messageFeed.messages[index], true, subMessage);
