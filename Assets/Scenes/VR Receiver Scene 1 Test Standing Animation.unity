@@ -1285,10 +1285,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
+  afterPauseDelay: 2
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 0
   stopScrollingAfterHighlighed: 0
+  headerHeight: 0
+  LinkedViewForSubMessages: {fileID: 0}
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -1500,6 +1503,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 1
   showFromTag: 0
   profile: {fileID: 0}
@@ -1519,6 +1523,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 1104162841}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -3279,7 +3284,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1775077354}
   m_HandleRect: {fileID: 1775077353}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4419,10 +4424,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
+  afterPauseDelay: 2
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
+  headerHeight: 0
+  LinkedViewForSubMessages: {fileID: 0}
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -9130,10 +9138,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
+  afterPauseDelay: 2
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
+  headerHeight: 0
+  LinkedViewForSubMessages: {fileID: 0}
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -16373,12 +16384,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 216.99998
+      value: 218.1118
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 216.99998
+      value: 218.1118
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -20528,6 +20539,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -20547,6 +20559,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 144056537}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -22665,6 +22678,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -22684,6 +22698,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 980915875}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -24392,6 +24407,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -24411,6 +24427,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 946592449}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -28919,7 +28936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0017865998}
+  m_AnchoredPosition: {x: 0, y: -0.0023887008}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1115500863
@@ -33526,6 +33543,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -33545,6 +33563,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 640229385}
   messageTextPro: {fileID: 1025646230}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -35669,6 +35688,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 1285077408}
+  bottomPadding: 0
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -35688,6 +35708,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 1226293063}
   messageTextPro: {fileID: 1644039617}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -35897,6 +35918,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
@@ -35916,6 +35938,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 2039832057}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -41607,7 +41630,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 2
+  m_overflowMode: 3
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
@@ -41771,7 +41794,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 2
+  m_overflowMode: 3
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
@@ -42545,6 +42568,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -42564,6 +42588,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 1075803585}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -44398,10 +44423,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
+  afterPauseDelay: 2
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 0
   stopScrollingAfterHighlighed: 0
+  headerHeight: 0
+  LinkedViewForSubMessages: {fileID: 0}
   OnEnabled:
     m_PersistentCalls:
       m_Calls:
@@ -49244,6 +49272,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
@@ -49263,6 +49292,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 608214939}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -50128,6 +50158,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -50147,6 +50178,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 432475197}
   messageTextPro: {fileID: 1657372320}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
