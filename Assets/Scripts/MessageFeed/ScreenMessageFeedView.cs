@@ -32,6 +32,8 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
+    [SerializeField] ScreenMessageFeedView LinkedViewForSubMessages;
+
     [SerializeField] UnityEvent OnEnabled = new UnityEvent();
 
     [SerializeField] UnityEvent OnComplete = new UnityEvent();
@@ -242,6 +244,9 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         bool stopScrolling = false;
 
+        int subMessageStart = -1;
+        
+
         while (lastMessageShown < messageFeed.messages.Count || loop)
         {
             int index = lastMessageShown;
@@ -251,7 +256,13 @@ public class ScreenMessageFeedView : MonoBehaviour
                 index = messageOrder[index];
             }
 
-            yield return DisplayMessage(messageFeed.messages[index]);
+            Message subMessage = null;
+            if (subMessageStart >= 0)
+            {
+                subMessage = LinkedViewForSubMessages.messageFeed.messages[subMessageStart++];
+            }
+
+            yield return DisplayMessage(messageFeed.messages[index], true, subMessage);
             lastMessageShown++;
 
             if (stopScrolling)
@@ -272,6 +283,17 @@ public class ScreenMessageFeedView : MonoBehaviour
                 //forceComplete = false;
                 onPaused?.Invoke();
                 timeScale = timeScaleAfterPause;
+
+                if (LinkedViewForSubMessages)
+                {
+                    subMessageStart = 0;
+                    foreach (var message in LinkedViewForSubMessages.messageFeed.messages)
+                    {
+                        subMessageStart++;
+                        if (message.pauseHere)
+                            break;
+                    }
+                }
 
                 yield return new WaitUntil(() => !paused);
                 yield return new WaitForSeconds(afterPauseDelay);
@@ -364,6 +386,11 @@ public class ScreenMessageFeedView : MonoBehaviour
             message.from = theMessage.profile.username;
         }
 
+        if (subMessage == null)
+        {
+            message.subMessage = null;
+        }
+
         messageDisplay.gameObject.SetActive(true);
 
         if (needsToWaitAFrame)
@@ -381,7 +408,9 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
 
 
-        SetWidthBasedOnText(message.UsernameTextField, message.from, message.moveFromTime ? message.TagAndTimeTextField : null);
+        SetWidthBasedOnUsername(message, message.from, message.moveFromTime ? message.TagAndTimeTextField : null);
+
+        message.SetImage();
 
 
         // Sub Message
@@ -392,6 +421,7 @@ public class ScreenMessageFeedView : MonoBehaviour
             message.subMessage.message = subMessage.message;
             message.subMessage.from = subMessage.profile.username;
             message.subMessage.fromTag = subMessage.profile.tag;
+            message.subMessage.image = subMessage.image;
 
             RectTransform subMessageRect = message.subMessage.transform as RectTransform;
             messageDisplay.sizeDelta += subMessageRect.sizeDelta.Y(+20);
@@ -405,10 +435,12 @@ public class ScreenMessageFeedView : MonoBehaviour
                 IncreaseHeightToFitText(message.subMessage.MessageTextFieldPro, subMessage.message, subMessageRect, message.subMessage.TextBackground, messageDisplay);
             }
 
-            SetWidthBasedOnText(message.subMessage.UsernameTextField, message.subMessage.from, message.subMessage.moveFromTime ? message.subMessage.TagAndTimeTextField : null);
+            SetWidthBasedOnUsername(message.subMessage, message.subMessage.from, message.subMessage.moveFromTime ? message.subMessage.TagAndTimeTextField : null);
 
             subMessageRect.gameObject.SetActive(true);
+            message.subMessage.SetImage();
         }
+        message.SetSize();
 
         messageDisplay.anchoredPosition = position;
 
@@ -488,22 +520,36 @@ public class ScreenMessageFeedView : MonoBehaviour
         return 0;
     }
 
-    private void SetWidthBasedOnText(Text textField, string newText, params RectTransform[] toTheRightOf)
+    private void SetWidthBasedOnUsername(ScreenMessage message, string newText, params RectTransform[] toTheRightOf)
     {
-        if (!textField)
+        if (!(message.UsernameTextField || message.UsernameTextFieldPro))
             return;
 
         // Based on being top, centre pivot
-        var perferredWidth = textField.cachedTextGeneratorForLayout.GetPreferredWidth(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
 
-        var difference = new Vector2(perferredWidth - textField.rectTransform.sizeDelta.x, 0);
+        RectTransform textField;
 
-        if (textField.rectTransform.anchorMin.x > 0)
+        float perferredWidth;
+
+        if (message.UsernameTextField)
         {
-            textField.rectTransform.sizeDelta += difference;
+            textField = message.UsernameTextField.rectTransform;
+            perferredWidth = message.UsernameTextField.cachedTextGeneratorForLayout.GetPreferredWidth(newText, message.UsernameTextField.GetGenerationSettings(textField.sizeDelta));
+        }
+        else
+        {
+            textField = message.UsernameTextFieldPro.rectTransform;
+            perferredWidth = message.UsernameTextFieldPro.GetPreferredValues(newText, textField.rect.width, 0).x;
         }
 
-        textField.rectTransform.anchoredPosition += difference / 2;
+        var difference = new Vector2(perferredWidth - textField.sizeDelta.x, 0);
+
+        if (textField.anchorMin.x > 0)
+        {
+            textField.sizeDelta += difference;
+        }
+
+        textField.anchoredPosition += difference / 2;
 
         foreach (var control in toTheRightOf)
         {
@@ -601,7 +647,7 @@ public class ScreenMessageFeedView : MonoBehaviour
         {
             message.from = theMessage.profile.username;
         }
-        SetWidthBasedOnText(message.UsernameTextField, message.from);
+        SetWidthBasedOnUsername(message, message.from);
 
         if (!string.IsNullOrEmpty(theMessage.profile?.tag))
         {
@@ -613,6 +659,8 @@ public class ScreenMessageFeedView : MonoBehaviour
         message.enabled = true;
 
         messagePrefab.anchoredPosition -= new Vector2(0, height);
+
+        message.SetImage();
 
         if (showAll)
         {
@@ -740,6 +788,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         if (screenMessage)
         {
+            // TODO: This doesn't position to the top correctly, so headerHeight is used at the moment to manually place
             Canvas.ForceUpdateCanvases();
             Vector2 viewportLocalPosition = scrollRect.viewport.localPosition;
             Vector2 childLocalPosition = child.localPosition;

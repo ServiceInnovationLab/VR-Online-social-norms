@@ -24,6 +24,8 @@ public class ScreenMessage : MonoBehaviour
     public AnimatedImage animatedImage;
     public ScreenMessage subMessage;
 
+    [SerializeField] float bottomPadding = 0;
+
     [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
     [SerializeField] protected bool showFromTag = true;
     [SerializeField] protected OnlineProfile profile;
@@ -46,6 +48,7 @@ public class ScreenMessage : MonoBehaviour
 
     [SerializeField] protected TextMeshProUGUI messageTextPro;
     [SerializeField] protected TextMeshProUGUI fromTimePro;
+    [SerializeField] protected TextMeshProUGUI fromPersonTextPro;
 
     [SerializeField] protected bool resizeBasedOnImage;
     [SerializeField] protected bool resizeBasedOnAnimatedImage;
@@ -68,6 +71,11 @@ public class ScreenMessage : MonoBehaviour
     public Text UsernameTextField
     {
         get { return fromPersonText; }
+    }
+
+    public TextMeshProUGUI UsernameTextFieldPro
+    {
+        get { return fromPersonTextPro; }
     }
 
     public RectTransform TagAndTimeTextField
@@ -109,6 +117,11 @@ public class ScreenMessage : MonoBehaviour
         if (fromPersonText)
         {
             fromPersonText.text = from;
+        }
+
+        if (fromPersonTextPro)
+        {
+            fromPersonTextPro.text = from;
         }
 
         if (messageText)
@@ -163,7 +176,20 @@ public class ScreenMessage : MonoBehaviour
             enabled = false;
         }
 
-        SetImage();
+        //SetImage();
+        if (!image && !animatedImage)
+        {
+            if (!Mathf.Approximately(moveLeftIfNoImage, 0) && !subMessage)
+            {
+                rectTransform.SetLeft(moveLeftIfNoImage);
+            }
+
+            if (!Mathf.Approximately(increaseWidthIfNoImage, 0) && !subMessage)
+            {
+                rectTransform.sizeDelta += new Vector2(increaseWidthIfNoImage, 0);
+                textBackground.sizeDelta += new Vector2(increaseWidthIfNoImage, 0);
+            }
+        }
 
         if (highlight)
         {
@@ -195,7 +221,7 @@ public class ScreenMessage : MonoBehaviour
         Awake();
     }
 
-    protected void SetImage()
+    public void SetImage()
     {
         if (imageDisplay)
         {
@@ -235,17 +261,6 @@ public class ScreenMessage : MonoBehaviour
                 heightAdjustment = imageDisplay.rectTransform.rect.height;
 
                 imageDisplay.gameObject.SetActive(false);
-
-                if (!Mathf.Approximately(moveLeftIfNoImage, 0))
-                {
-                    rectTransform.SetLeft(moveLeftIfNoImage);
-                }
-
-                if (!Mathf.Approximately(increaseWidthIfNoImage, 0))
-                {
-                    rectTransform.sizeDelta += new Vector2(increaseWidthIfNoImage, 0);
-                    textBackground.sizeDelta += new Vector2(increaseWidthIfNoImage, 0);
-                }
             }
 
             if (imageAffectsHeight && !Mathf.Approximately(heightAdjustment, 0))
@@ -254,9 +269,9 @@ public class ScreenMessage : MonoBehaviour
                 {
                     float textHeight = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
 
-                    if (rectTransform.rect.height - heightAdjustment < textHeight + 50)
+                    if (rectTransform.rect.height - heightAdjustment < textHeight + bottomPadding)
                     {
-                        heightAdjustment = rectTransform.rect.height - textHeight - 80;
+                        heightAdjustment = rectTransform.rect.height - textHeight - bottomPadding;
 
                         if (heightAdjustment < 0)
                         {
@@ -272,6 +287,26 @@ public class ScreenMessage : MonoBehaviour
                     messageText.rectTransform.anchoredPosition -= new Vector2(0, heightAdjustment);
                 }
             }
+        }
+    }
+
+    public void SetSize()
+    {
+        if (limitImageAdjustment && textBackground)
+        {
+            float bottom = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
+
+            if (subMessage)
+            {
+                bottom = Mathf.Max(bottom, Mathf.Abs(subMessage.rectTransform.rect.yMin), Mathf.Abs(subMessage.rectTransform.rect.yMax));
+            }
+
+            if (imageDisplay && imageDisplay.gameObject.activeInHierarchy)
+            {
+                bottom = Mathf.Max(bottom, Mathf.Abs(imageDisplay.rectTransform.rect.yMin) + bottomPadding, Mathf.Abs(imageDisplay.rectTransform.rect.yMax) + bottomPadding);
+            }
+
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, bottom + bottomPadding);
         }
     }
 
