@@ -3977,7 +3977,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -12439,10 +12439,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
+  afterPauseDelay: 2
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
+  headerHeight: 0
+  LinkedViewForSubMessages: {fileID: 0}
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -15722,12 +15725,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00204
+      value: 217.00002
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00204
+      value: 217.00002
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -16023,7 +16026,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 643144127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -16034,22 +16037,101 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: d4cef4e47135ae643aacc2f85568efa0, type: 3}
-    m_FontSize: 50
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 50
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'From
+  m_text: 'From
 
 '
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
+  m_sharedMaterial: {fileID: -1934613487021127844, guid: 92ea8d09f02e66c4a9d077fe76410913,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_textAlignment: 257
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 1
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 3
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 643144129}
+    characterCount: 5
+    spriteCount: 0
+    spaceCount: 1
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &643144130
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18639,6 +18721,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -18658,6 +18741,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 1763115711}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -26395,31 +26479,110 @@ MonoBehaviour:
   m_GameObject: {fileID: 1064718768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6392157, g: 0.6392157, b: 0.6392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 787d49df0add0ca4a99e08094c36ce55, type: 3}
-    m_FontSize: 50
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 50
-    m_Alignment: 3
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Messages
+  m_text: Messages
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
+  m_sharedMaterial: {fileID: -1934613487021127844, guid: 92ea8d09f02e66c4a9d077fe76410913,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4288914339
+  m_fontColor: {r: 0.6392157, g: 0.6392157, b: 0.6392157, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_textAlignment: 257
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 1
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 3
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1064718770}
+    characterCount: 8
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1064718771
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26517,6 +26680,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 2
   showFromTag: 1
   profile: {fileID: 0}
@@ -26536,6 +26700,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 278101181}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 1
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -32512,6 +32677,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -32531,6 +32697,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 1446413968}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -33566,6 +33733,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 1
   showFromTag: 0
   profile: {fileID: 0}
@@ -33585,6 +33753,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 954516803}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -34223,7 +34392,6 @@ GameObject:
   - component: {fileID: 1398045932}
   - component: {fileID: 1398045934}
   - component: {fileID: 1398045933}
-  - component: {fileID: 1398045935}
   m_Layer: 5
   m_Name: NotificationMessageText
   m_TagString: Untagged
@@ -34259,7 +34427,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1398045931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -34270,20 +34438,99 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: d4cef4e47135ae643aacc2f85568efa0, type: 3}
-    m_FontSize: 60
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 60
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1.1
-  m_Text: Notification message!
+  m_text: Notification message!
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
+  m_sharedMaterial: {fileID: -1934613487021127844, guid: 92ea8d09f02e66c4a9d077fe76410913,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 60
+  m_fontSizeBase: 60
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 257
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 1.1
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 3
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1398045933}
+    characterCount: 21
+    spriteCount: 0
+    spaceCount: 1
+    wordCount: 2
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1398045934
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34292,20 +34539,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398045931}
   m_CullTransparentMesh: 0
---- !u!114 &1398045935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398045931}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909bc3706898e1c4fb25ec90bfc00551, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashColour: {r: 0.13448332, g: 0.735849, b: 0, a: 1}
-  flashTime: 1
 --- !u!1 &1403463080
 GameObject:
   m_ObjectHideFlags: 0
@@ -35505,9 +35738,9 @@ MonoBehaviour:
   animationTime: 0.5
   animationDirection: {x: 0, y: -1}
   background: {fileID: 514993548}
-  fromText: {fileID: 855816350}
-  messageText: {fileID: 1405989368}
-  applicationNameText: {fileID: 1621321254}
+  fromText: {fileID: 0}
+  messageText: {fileID: 0}
+  applicationNameText: {fileID: 0}
   applicationIcon: {fileID: 1010827348}
   padding: {x: 10, y: 0}
   sentTime: {fileID: 1658196018}
@@ -37454,10 +37687,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
+  afterPauseDelay: 2
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 0
   stopScrollingAfterHighlighed: 0
+  headerHeight: 0
+  LinkedViewForSubMessages: {fileID: 0}
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -38164,6 +38400,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 0}
@@ -38183,6 +38420,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 1518165774}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -39933,31 +40171,110 @@ MonoBehaviour:
   m_GameObject: {fileID: 1619329504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6392157, g: 0.6392157, b: 0.6392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 32e54187c0f9c3a4daf04713587d1efa, type: 3}
-    m_FontSize: 50
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 50
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: now
+  m_text: now
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9a5761d8f71c6264483c4229bef64d40, type: 2}
+  m_sharedMaterial: {fileID: -5654501653959949654, guid: 9a5761d8f71c6264483c4229bef64d40,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4288914339
+  m_fontColor: {r: 0.6392157, g: 0.6392157, b: 0.6392157, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_textAlignment: 257
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 1
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 3
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1619329506}
+    characterCount: 3
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1619329507
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -43396,10 +43713,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
+  afterPauseDelay: 2
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
+  headerHeight: 0
+  LinkedViewForSubMessages: {fileID: 0}
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -48842,6 +49162,7 @@ MonoBehaviour:
   retweetedBy: 
   animatedImage: {fileID: 0}
   subMessage: {fileID: 0}
+  bottomPadding: 0
   timeFormat: 0
   showFromTag: 1
   profile: {fileID: 11400000, guid: 1b0dc18ff2eccc24eb592b721bcd5a6e, type: 2}
@@ -48861,6 +49182,7 @@ MonoBehaviour:
   fromPersonText: {fileID: 210776316}
   messageTextPro: {fileID: 0}
   fromTimePro: {fileID: 0}
+  fromPersonTextPro: {fileID: 0}
   resizeBasedOnImage: 0
   resizeBasedOnAnimatedImage: 0
   retweeted: {fileID: 0}
@@ -49847,10 +50169,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
+  afterPauseDelay: 2
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 1
   stopScrollingAfterHighlighed: 0
+  headerHeight: 0
+  LinkedViewForSubMessages: {fileID: 0}
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []

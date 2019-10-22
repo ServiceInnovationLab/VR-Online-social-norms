@@ -781,7 +781,7 @@ namespace VRTK
         /// <param name="searchAllScenes">If true, will search all loaded scenes, otherwise just the active scene.</param>
         /// <param name="stopOnMatch">If true, will stop searching objects as soon as a match is found.</param>
         /// <returns></returns>
-        private static IEnumerable<T> FindEvenInactiveComponentsInValidScenes<T>(bool searchAllScenes, bool stopOnMatch = false) where T : Component
+        public static IEnumerable<T> FindEvenInactiveComponentsInValidScenes<T>(bool searchAllScenes, bool stopOnMatch = false) where T : Component
         {
             IEnumerable<T> results;
             if (searchAllScenes)

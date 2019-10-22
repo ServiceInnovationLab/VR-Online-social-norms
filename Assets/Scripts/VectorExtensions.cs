@@ -38,6 +38,14 @@ public static class VectorExtensions
     }
 
     /// <summary>
+    /// Returns the vector with just the Y component set
+    /// </summary>
+    public static Vector2 X(this Vector2 vector)
+    {
+        return new Vector2(vector.x, 0);
+    }
+
+    /// <summary>
     /// Returns the vector with just the Y component set with an offset
     /// </summary>
     public static Vector2 Y(this Vector2 vector, float offset)

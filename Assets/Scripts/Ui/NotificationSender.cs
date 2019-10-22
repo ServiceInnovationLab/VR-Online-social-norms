@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class NotificationSender : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class NotificationSender : MonoBehaviour
     [SerializeField] float animationTime = 1.0f;
     [SerializeField] Vector2 animationDirection = new Vector2(-1, 0);
     [SerializeField] RectTransform background;
-    [SerializeField] Text fromText;
-    [SerializeField] Text messageText;
-    [SerializeField] Text applicationNameText;
+    [SerializeField] TextMeshProUGUI fromText;
+    [SerializeField] TextMeshProUGUI messageText;
+    [SerializeField] TextMeshProUGUI applicationNameText;
     [SerializeField] Image applicationIcon;
     [SerializeField] Vector2 padding;
     [SerializeField] RectTransform sentTime;
@@ -144,19 +145,19 @@ public class NotificationSender : MonoBehaviour
         }
     }
 
-    private void SetPositionBasedOnText(Text textField, string newText, params RectTransform[] toTheRightOf)
+    private void SetPositionBasedOnText(TextMeshProUGUI textField, string newText, params RectTransform[] toTheRightOf)
     {
-        var position = new Vector2(textField.cachedTextGeneratorForLayout.GetPreferredWidth(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta)), 0);
+        var position = textField.GetPreferredValues(newText, textField.rectTransform.sizeDelta.x, textField.rectTransform.sizeDelta.y);
 
         foreach (var control in toTheRightOf)
         {
-            control.anchoredPosition = textField.rectTransform.anchoredPosition + position + padding;
+            control.anchoredPosition = textField.rectTransform.anchoredPosition + position.X() + padding;
         }
     }
 
-    private void FitMessage(Text textField, string newText, params RectTransform[] alsoIncrease)
+    private void FitMessage(TextMeshProUGUI textField, string newText, params RectTransform[] alsoIncrease)
     {
-        var newHeight = textField.cachedTextGeneratorForLayout.GetPreferredHeight(newText, textField.GetGenerationSettings(textField.rectTransform.sizeDelta));
+        var newHeight = textField.GetPreferredValues(newText, textField.rectTransform.sizeDelta.x, 0).y;
 
         if (newHeight > textField.rectTransform.sizeDelta.y)
         {
