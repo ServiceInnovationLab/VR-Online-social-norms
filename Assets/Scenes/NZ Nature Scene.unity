@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4612742}
   - component: {fileID: 4612741}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CancelButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7730,7 +7730,7 @@ GameObject:
   - component: {fileID: 355991296}
   - component: {fileID: 355991295}
   m_Layer: 5
-  m_Name: Description
+  m_Name: SDKDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17062,7 +17062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0015091728}
+  m_AnchoredPosition: {x: 0, y: 0.0064786905}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &826437743
@@ -17077,6 +17077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd0da99637654a4cb3b6ccc6af8dd75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollToBottom: 1
 --- !u!4 &828704001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 507d3cb163eaaa94aa73c65552085840,
@@ -19751,8 +19752,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961890224}
-  m_LocalRotation: {x: -0.008088855, y: -0.97735405, z: -0.20538051, w: 0.05032445}
-  m_LocalPosition: {x: 469.65576, y: -4.7585526, z: 519.3434}
+  m_LocalRotation: {x: -0.27199754, y: -0.5733728, z: -0.21033928, w: 0.74365205}
+  m_LocalPosition: {x: 454.52127, y: 5.201, z: 496.70892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20074,12 +20075,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.01155
+      value: 216.99998
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.01155
+      value: 216.99998
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -21627,7 +21628,7 @@ GameObject:
   - component: {fileID: 1046758197}
   - component: {fileID: 1046758196}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: TutorialSignLeftText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27356,7 +27357,7 @@ GameObject:
   - component: {fileID: 1305144665}
   - component: {fileID: 1305144664}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SwitchVRText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31962,7 +31963,7 @@ GameObject:
   - component: {fileID: 1573903575}
   - component: {fileID: 1573903574}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text.
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32802,7 +32803,7 @@ GameObject:
   - component: {fileID: 1627486959}
   - component: {fileID: 1627486958}
   m_Layer: 5
-  m_Name: Text
+  m_Name: NextSceneButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33820,7 +33821,7 @@ GameObject:
   - component: {fileID: 1687510976}
   - component: {fileID: 1687510975}
   m_Layer: 0
-  m_Name: Text
+  m_Name: TutorialSignRightText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42331,7 +42332,7 @@ GameObject:
   - component: {fileID: 2134590436}
   - component: {fileID: 2134590435}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TutotialPhoneHeading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42480,7 +42481,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1750191143}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99998367
+  m_Size: 0.9999871
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -43065,6 +43066,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[VRTK_Controller_Scripts]'
       objectReference: {fileID: 0}
+    - target: {fileID: 9218986917985187341, guid: 8a3d621b0213b65499436695fbeeb742,
+        type: 3}
+      propertyPath: enableTeleport
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9218986917395939792, guid: 8a3d621b0213b65499436695fbeeb742,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -43169,11 +43175,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218986917985187341, guid: 8a3d621b0213b65499436695fbeeb742,
-        type: 3}
-      propertyPath: enableTeleport
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9218986916685667658, guid: 8a3d621b0213b65499436695fbeeb742,
         type: 3}

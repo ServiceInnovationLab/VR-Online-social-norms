@@ -12,6 +12,7 @@ public class TextEnterer : MonoBehaviour
     [SerializeField] UnityEvent typingCompleted;
     [SerializeField] UnityEvent onSend;
     [SerializeField] ScreenMessageFeedView feedView;
+    [SerializeField] Text replyingToText;
 
     protected bool started;
     protected string textToEnter;
@@ -54,6 +55,9 @@ public class TextEnterer : MonoBehaviour
         {
             feedView = GetComponent<ScreenMessageFeedView>();
         }
+
+        // TODO: Not hardcode it
+        replyingToText.text = replyingToText.text + "<color=#4692da>@jikoh22</color>";
     }
 
     protected virtual void Start()
