@@ -5212,7 +5212,7 @@ Transform:
   - {fileID: 4184875485555602}
   - {fileID: 390670180479237984}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &165633977
 MonoBehaviour:
@@ -7547,6 +7547,7 @@ GameObject:
   - component: {fileID: 247330880}
   - component: {fileID: 247330882}
   - component: {fileID: 247330881}
+  - component: {fileID: 247330883}
   m_Layer: 5
   m_Name: ViewButtonText
   m_TagString: Untagged
@@ -7615,6 +7616,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247330879}
   m_CullTransparentMesh: 0
+--- !u!114 &247330883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247330879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: ViewButtonText
+  FallbackText: View
 --- !u!1001 &252525400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9877,6 +9892,7 @@ GameObject:
   - component: {fileID: 360299861}
   - component: {fileID: 360299863}
   - component: {fileID: 360299862}
+  - component: {fileID: 360299864}
   m_Layer: 5
   m_Name: SDKDescription
   m_TagString: Untagged
@@ -9945,6 +9961,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360299860}
   m_CullTransparentMesh: 0
+--- !u!114 &360299864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360299860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: SDKDescription
+  FallbackText: Select an SDK Setup
 --- !u!1 &362089083
 GameObject:
   m_ObjectHideFlags: 0
@@ -10485,7 +10515,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &390388697
 PrefabInstance:
@@ -15814,12 +15844,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00056
+      value: 217.86317
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00056
+      value: 217.86317
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -15934,7 +15964,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: aec3e795b8743844f8bc0ec17f81311e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: aec3e795b8743844f8bc0ec17f81311e,
         type: 3}
@@ -17161,6 +17191,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1388756989}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &680456379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 680456381}
+  - component: {fileID: 680456380}
+  m_Layer: 0
+  m_Name: LocalisationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &680456380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680456379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7b28c12fe34d24980fd6cab0357708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultLanguage: 
+  DetectLanguage: 1
+  SaveLanguage: 1
+  languages: []
+  prefabs: []
+--- !u!4 &680456381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680456379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 948.4025, y: 604.8309, z: -341.13092}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &680722127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18918,7 +18996,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &766137537
 PrefabInstance:
@@ -19190,6 +19268,7 @@ GameObject:
   - component: {fileID: 784430724}
   - component: {fileID: 784430726}
   - component: {fileID: 784430725}
+  - component: {fileID: 784430727}
   m_Layer: 5
   m_Name: SentTime
   m_TagString: Untagged
@@ -19258,6 +19337,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784430723}
   m_CullTransparentMesh: 0
+--- !u!114 &784430727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784430723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: SentTime
+  FallbackText: 2:30PM - 4/08/19 <color=#4692da>Twitter for iPhone</color>
 --- !u!1 &787627368
 GameObject:
   m_ObjectHideFlags: 0
@@ -26279,7 +26372,7 @@ PrefabInstance:
     - target: {fileID: 3556810075140728271, guid: 5985e9d80f36c144c8fd485f73af9d48,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3556810075140728271, guid: 5985e9d80f36c144c8fd485f73af9d48,
         type: 3}
@@ -26866,6 +26959,7 @@ GameObject:
   - component: {fileID: 1104000874}
   - component: {fileID: 1104000876}
   - component: {fileID: 1104000875}
+  - component: {fileID: 1104000877}
   m_Layer: 5
   m_Name: TwitterPhoneHeader
   m_TagString: Untagged
@@ -26947,7 +27041,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 1
@@ -27012,6 +27106,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104000873}
   m_CullTransparentMesh: 0
+--- !u!114 &1104000877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104000873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: TwitterPhoneHeader
+  FallbackText: Tweet
 --- !u!1 &1108827185
 GameObject:
   m_ObjectHideFlags: 0
@@ -27355,7 +27463,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   feedView: {fileID: 0}
-  replyingToText: {fileID: 1847446828}
 --- !u!1 &1126071998 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1142869793867862, guid: bf30eb16cc26b774e8aed73fb6c17a1f,
@@ -28982,7 +29089,7 @@ Transform:
   m_Children:
   - {fileID: 1509687618}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1179596717
 MonoBehaviour:
@@ -29175,7 +29282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1182617979 stripped
 GameObject:
@@ -30916,7 +31023,7 @@ Transform:
   m_LocalScale: {x: 8, y: 12, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1251189147
 PrefabInstance:
@@ -31784,6 +31891,7 @@ GameObject:
   - component: {fileID: 1301718943}
   - component: {fileID: 1301718945}
   - component: {fileID: 1301718944}
+  - component: {fileID: 1301718946}
   m_Layer: 5
   m_Name: ReplyButtonText
   m_TagString: Untagged
@@ -31852,6 +31960,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301718942}
   m_CullTransparentMesh: 0
+--- !u!114 &1301718946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301718942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: ReplyButtonText
+  FallbackText: Reply
 --- !u!4 &1304291230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4820239689956586, guid: 76657ee725480b74dbefed1f4a6d2a62,
@@ -33697,7 +33819,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   feedView: {fileID: 0}
-  replyingToText: {fileID: 0}
 --- !u!114 &1417522914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34682,6 +34803,7 @@ GameObject:
   - component: {fileID: 1476210404}
   - component: {fileID: 1476210406}
   - component: {fileID: 1476210405}
+  - component: {fileID: 1476210407}
   m_Layer: 5
   m_Name: SendButtonText
   m_TagString: Untagged
@@ -34752,6 +34874,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476210403}
   m_CullTransparentMesh: 0
+--- !u!114 &1476210407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476210403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: SendButtonText
+  FallbackText: 'Send
+
+'
 --- !u!1001 &1476739566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39853,6 +39991,7 @@ GameObject:
   - component: {fileID: 1664661881}
   - component: {fileID: 1664661883}
   - component: {fileID: 1664661882}
+  - component: {fileID: 1664661884}
   m_Layer: 5
   m_Name: SwitchVRText
   m_TagString: Untagged
@@ -39921,6 +40060,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664661880}
   m_CullTransparentMesh: 0
+--- !u!114 &1664661884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664661880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: SwitchVRText
+  FallbackText: Switch SDK Setup
 --- !u!1001 &1664769909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40191,7 +40344,7 @@ Transform:
   - {fileID: 1532800993}
   - {fileID: 215506532}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1668516752
 GameObject:
@@ -41320,7 +41473,7 @@ Transform:
   - {fileID: 205263616}
   - {fileID: 256830856}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1713961745
 MonoBehaviour:
@@ -42019,7 +42172,7 @@ PrefabInstance:
     - target: {fileID: 9218986917395939792, guid: 8a3d621b0213b65499436695fbeeb742,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9218986917395939792, guid: 8a3d621b0213b65499436695fbeeb742,
         type: 3}
@@ -45204,6 +45357,7 @@ GameObject:
   - component: {fileID: 1847446827}
   - component: {fileID: 1847446829}
   - component: {fileID: 1847446828}
+  - component: {fileID: 1847446830}
   m_Layer: 5
   m_Name: ReplyingToText
   m_TagString: Untagged
@@ -45272,6 +45426,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847446826}
   m_CullTransparentMesh: 0
+--- !u!114 &1847446830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847446826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2195680ff99114682814469b85d766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: ReplyingToText
+  Extra: ' <color=#4692da>@jikoh22</color>'
+  FallbackText: 'You are replying to '
 --- !u!1001 &1851397135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46542,6 +46711,7 @@ GameObject:
   - component: {fileID: 1884032929}
   - component: {fileID: 1884032931}
   - component: {fileID: 1884032930}
+  - component: {fileID: 1884032932}
   m_Layer: 5
   m_Name: CancelButtonText
   m_TagString: Untagged
@@ -46610,6 +46780,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884032928}
   m_CullTransparentMesh: 0
+--- !u!114 &1884032932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884032928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee4021ce59f313499a5cab041f02aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: CancelButtonText
+  FallbackText: Cancel
 --- !u!1001 &1884726747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46974,7 +47158,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   feedView: {fileID: 0}
-  replyingToText: {fileID: 0}
 --- !u!114 &1892036098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48098,6 +48281,7 @@ GameObject:
   - component: {fileID: 1933231817}
   - component: {fileID: 1933231819}
   - component: {fileID: 1933231818}
+  - component: {fileID: 1933231820}
   m_Layer: 5
   m_Name: FriendTweetsAndLikes
   m_TagString: Untagged
@@ -48245,6 +48429,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1933231816}
   m_CullTransparentMesh: 0
+--- !u!114 &1933231820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933231816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: FriendTweetsAndLikes
+  FallbackText: <b>8</b> <color=#666>Retweets</color>  <b>26</b> <color=#666>Likes</color>
 --- !u!1 &1936166406
 GameObject:
   m_ObjectHideFlags: 0
@@ -48256,6 +48454,7 @@ GameObject:
   - component: {fileID: 1936166407}
   - component: {fileID: 1936166409}
   - component: {fileID: 1936166408}
+  - component: {fileID: 1936166410}
   m_Layer: 5
   m_Name: SentTime
   m_TagString: Untagged
@@ -48402,6 +48601,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936166406}
   m_CullTransparentMesh: 0
+--- !u!114 &1936166410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936166406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: SentTime
+  FallbackText: 2:30PM - 4/08/19 <color=#4692da>Twitter for iPhone</color>
 --- !u!4 &1936453084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 66cfe382bd2863f4ab72a7c012c322c9,
