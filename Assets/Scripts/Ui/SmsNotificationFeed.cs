@@ -11,7 +11,7 @@ public class SmsNotificationFeed : MonoBehaviour
     [SerializeField] FloatRange timeBetweenMessages;
     [SerializeField] Sprite[] appIcons;
     [SerializeField] float initialDelay;
-    [SerializeField] string[] appNames = new string[] { "Messages", "Messenger" };
+    [SerializeField] LocalisedText[] appNames ;
 
     NotificationSender notificationSender;
     bool started = false;
@@ -57,7 +57,7 @@ public class SmsNotificationFeed : MonoBehaviour
 
             iconIndex = Mathf.Clamp(iconIndex, 0, appIcons.Length);
 
-            notificationSender.ShowNotification(appNames[iconIndex], message.profile.username, messageText, timeOnScreen, appIcons[iconIndex]);
+            notificationSender.ShowNotification(appNames[iconIndex].CurrentValue, message.profile.username, messageText, timeOnScreen, appIcons[iconIndex]);
 
             yield return new WaitWhile(() => notificationSender.IsNotificationShowing);
         }
