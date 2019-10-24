@@ -92,7 +92,7 @@ public class SenderRoomInteraction : MonoBehaviour
             activate = true;
         }
 
-        yield return new WaitUntil(() => scrollChecker.view1.IsDone && (scrollChecker.view2.IsDone || scrollChecker.view3.IsDone));
+        yield return new WaitUntil(() => scrollChecker.view1.IsDone && scrollChecker.view3.IsDone);
 
         yield return new WaitUntil(() => requiredScrolls[1].lastItemClick.IsLastItemShowing());
 
