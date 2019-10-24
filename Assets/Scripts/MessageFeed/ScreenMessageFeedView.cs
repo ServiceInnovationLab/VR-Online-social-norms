@@ -774,7 +774,10 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         if (screenMessage)
         {
-            StartCoroutine(SmoothScroll(new Vector2(scrollRect.content.anchoredPosition.x, Mathf.Abs(rectChild.anchoredPosition.y) - headerHeight)));
+            var maxScroll = scrollRect.content.rect.height - scrollRect.viewport.rect.height;
+            var desiredScroll = Mathf.Abs(rectChild.anchoredPosition.y) - headerHeight;
+
+            StartCoroutine(SmoothScroll(new Vector2(scrollRect.content.anchoredPosition.x, Mathf.Min(maxScroll, desiredScroll))));
 
             if (detector)
             {
