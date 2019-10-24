@@ -25,8 +25,8 @@ public static class ScenarioSpreadsheetLoader
         result.pileOnMessageFeed = new MessageFeed();
         result.pileOnMessageFeed.messages = new List<Message>();
 
-        result.senderMessageFeed = new MessageFeed();
-        result.senderMessageFeed.messages = new List<Message>();
+        result.senderTwitterFeed = new MessageFeed();
+        result.senderTwitterFeed.messages = new List<Message>();
 
         result.thirdSceneSMSFeed = new MessageFeed();
         result.firstSceneSMSFeed = new MessageFeed();
@@ -44,9 +44,9 @@ public static class ScenarioSpreadsheetLoader
             LoadSenderTwitter(p.Workbook.Worksheets["SenderTwitter"], result);
             Load4Chan(p.Workbook.Worksheets["Sender4Chan"], result);
 
-            if (result.senderMessageFeed.messages.Count > 0)
+            if (result.senderTwitterFeed.messages.Count > 0)
             {
-                result.senderMessageFeed.messages[result.senderMessageFeed.messages.Count - 1].pauseHere = true;
+                result.senderTwitterFeed.messages[result.senderTwitterFeed.messages.Count - 1].pauseHere = true;
             }
 
             if (result.fourChan.messages.Count > 0)
@@ -74,7 +74,7 @@ public static class ScenarioSpreadsheetLoader
 
     private static void LoadSenderTwitter(ExcelWorksheet sheet, SocialMediaScenario scenario)
     {
-        scenario.senderMessageFeed.messages.AddRange(LoadNormalTwitterFeed(sheet));
+        scenario.senderTwitterFeed.messages.AddRange(LoadNormalTwitterFeed(sheet));
     }
 
     private static void LoadPileOnTwitter(ExcelWorksheet sheet, SocialMediaScenario scenario)
@@ -124,7 +124,7 @@ public static class ScenarioSpreadsheetLoader
             {
                 messageObject.message = ProcessString(messageObject.message);
                 messageObject.senderSubMessage = true;
-                scenario.senderMessageFeed.messages.Add(messageObject);
+                scenario.senderTwitterFeed.messages.Add(messageObject);
             }
             else if (i == 1)
             {

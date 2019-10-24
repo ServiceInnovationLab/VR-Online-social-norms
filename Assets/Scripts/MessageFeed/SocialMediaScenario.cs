@@ -12,17 +12,17 @@ public enum SocialMediaScenatioMessageFeedType
 {
     None,
     Default,
-    Sender,
-    Receiver,
-    PileOn,
+    SenderTwitterFeed,
+    ReceiverHatespeech,
+    ReceiverPileOn,
     TwitterWithFriends,
-    FourChan
+    SenderFourChan
 }
 
 public enum SocialMediaScenarioSMStype
 {
-    Initial,
-    Support
+    First,
+    Second
 }
 
 [CreateAssetMenu(menuName = "SocialMediaScenario")]
@@ -31,7 +31,8 @@ public class SocialMediaScenario : ScriptableObject
     [FormerlySerializedAs("receiverMessageFeed")]
     public MessageFeed hatespeechMessageFeed;
 
-    public MessageFeed senderMessageFeed;
+    [FormerlySerializedAs("senderMessageFeed")]
+    public MessageFeed senderTwitterFeed;
 
     public MessageFeed pileOnMessageFeed;
 
@@ -72,19 +73,19 @@ public class SocialMediaScenario : ScriptableObject
     {
         switch (type)
         {
-            case SocialMediaScenatioMessageFeedType.Sender:
-                return senderMessageFeed;
+            case SocialMediaScenatioMessageFeedType.SenderTwitterFeed:
+                return senderTwitterFeed;
 
-            case SocialMediaScenatioMessageFeedType.Receiver:
+            case SocialMediaScenatioMessageFeedType.ReceiverHatespeech:
                 return hatespeechMessageFeed;
 
-            case SocialMediaScenatioMessageFeedType.PileOn:
+            case SocialMediaScenatioMessageFeedType.ReceiverPileOn:
                 return pileOnMessageFeed;
 
             case SocialMediaScenatioMessageFeedType.TwitterWithFriends:
                 return twitterWithFriends;
 
-            case SocialMediaScenatioMessageFeedType.FourChan:
+            case SocialMediaScenatioMessageFeedType.SenderFourChan:
                 return fourChan;
         }
 
@@ -110,10 +111,10 @@ public class SocialMediaScenario : ScriptableObject
     {
         switch (type)
         {
-            case SocialMediaScenarioSMStype.Initial:
+            case SocialMediaScenarioSMStype.First:
                 return firstSceneSMSFeed;
 
-            case SocialMediaScenarioSMStype.Support:
+            case SocialMediaScenarioSMStype.Second:
                 return thirdSceneSMSFeed;
         }
 

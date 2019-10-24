@@ -5,7 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(NotificationSender))]
 public class SmsNotificationFeed : MonoBehaviour
 {
-    [SerializeField] SocialMediaScenarioSMStype smsFeed = SocialMediaScenarioSMStype.Initial;
+    [SerializeField] SocialMediaScenarioSMStype smsFeed = SocialMediaScenarioSMStype.First;
     [SerializeField] UnityEvent onComplete;    
     [SerializeField] float timeOnScreen;
     [SerializeField] FloatRange timeBetweenMessages;
