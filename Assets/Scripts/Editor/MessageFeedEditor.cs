@@ -185,6 +185,11 @@ public class MessageFeedEditor : Editor
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Flash: ");
+        message.flash = EditorGUILayout.Toggle(message.flash);
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Pause here: ");
         message.pauseHere = EditorGUILayout.Toggle(message.pauseHere);
         GUILayout.EndHorizontal();
@@ -192,6 +197,11 @@ public class MessageFeedEditor : Editor
         GUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Sender submessage: ");
         message.senderSubMessage = EditorGUILayout.Toggle(message.senderSubMessage);
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Hate speech submessage: ");
+        message.hateSpeechSubMessage = EditorGUILayout.Toggle(message.hateSpeechSubMessage);
         GUILayout.EndHorizontal();
     }
 

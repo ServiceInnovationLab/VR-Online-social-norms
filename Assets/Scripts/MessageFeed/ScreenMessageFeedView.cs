@@ -137,32 +137,6 @@ public class ScreenMessageFeedView : MonoBehaviour
         ScrollToBottom();
     }
 
-    public void SendFriendMessageToFeed()
-    {
-        StartCoroutine(
-            DisplayMessage(new Message()
-            {
-                message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Friend),
-                profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Friend),
-                flash = true
-            },
-            true,
-            SocialMediaScenarioPicker.Instance.CurrentScenario.receiverMessageFeed.messages[0]
-            )
-        );
-    }
-
-    public void SendFriendAndReplyMessage()
-    {
-        SendFriendMessageToFeed();
-
-        DisplayMessage(new Message()
-        {
-            message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Receiver),
-            profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Receiver)
-        });
-    }
-
     public void CompleteFeed()
     {
         forceComplete = true;
@@ -372,6 +346,10 @@ public class ScreenMessageFeedView : MonoBehaviour
                 message = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(SocialMediaScenarioTextType.Receiver),
                 profile = SocialMediaScenarioPicker.Instance.CurrentScenario.GetProfile(SocialMediaScenarioTextType.Receiver),
             };
+        }
+        else if (theMessage.hateSpeechSubMessage)
+        {
+            subMessage = SocialMediaScenarioPicker.Instance.CurrentScenario.GetHatespeechMessage();
         }
 
         if (!string.IsNullOrEmpty(theMessage.profile?.tag))
@@ -628,6 +606,9 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         message.enabled = false;
 
+        if (MessageFeed.messages.Count == 0)
+            return;
+
         var theMessage = MessageFeed.messages[0];
 
         message.message = theMessage.message;
@@ -793,17 +774,7 @@ public class ScreenMessageFeedView : MonoBehaviour
 
         if (screenMessage)
         {
-            // TODO: This doesn't position to the top correctly, so headerHeight is used at the moment to manually place
-            Canvas.ForceUpdateCanvases();
-            Vector2 viewportLocalPosition = scrollRect.viewport.localPosition;
-            Vector2 childLocalPosition = child.localPosition;
-            Vector2 result = new Vector2(
-                0 - (viewportLocalPosition.x + childLocalPosition.x),
-                0 - (viewportLocalPosition.y + childLocalPosition.y) + (((RectTransform)scrollRect.transform).rect.height - rectChild.rect.height) - headerHeight
-            );
-
-            //scrollRect.content.localPosition = result;
-            StartCoroutine(SmoothScroll(result));
+            StartCoroutine(SmoothScroll(new Vector2(scrollRect.content.anchoredPosition.x, Mathf.Abs(rectChild.anchoredPosition.y) - headerHeight)));
 
             if (detector)
             {
@@ -826,13 +797,15 @@ public class ScreenMessageFeedView : MonoBehaviour
 
             float diff = (Time.time - time) / 1;
 
+            Canvas.ForceUpdateCanvases();
+
             if (diff > 1)
             {
-                scrollRect.content.localPosition = toPos;
+                scrollRect.content.anchoredPosition = toPos;
                 break;
             }
 
-            scrollRect.content.localPosition = Vector2.Lerp(fromPos, toPos, diff);
+            scrollRect.content.anchoredPosition = Vector2.Lerp(fromPos, toPos, diff);
         }
     }
 

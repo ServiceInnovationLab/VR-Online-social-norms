@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum SocialMediaScenarioTextType
 {
     Sender,
     Receiver,
-    Friend
+    Hatespeech
 }
 
 public enum SocialMediaScenatioMessageFeedType
@@ -14,7 +15,7 @@ public enum SocialMediaScenatioMessageFeedType
     Sender,
     Receiver,
     PileOn,
-    Messenger,
+    TwitterWithFriends,
     FourChan
 }
 
@@ -27,20 +28,21 @@ public enum SocialMediaScenarioSMStype
 [CreateAssetMenu(menuName = "SocialMediaScenario")]
 public class SocialMediaScenario : ScriptableObject
 {
-    public MessageFeed messageFeed;
-
-
-    public MessageFeed receiverMessageFeed;
+    [FormerlySerializedAs("receiverMessageFeed")]
+    public MessageFeed hatespeechMessageFeed;
 
     public MessageFeed senderMessageFeed;
 
     public MessageFeed pileOnMessageFeed;
 
-    public MessageFeed messengerFeed;
+    [FormerlySerializedAs("messengerFeed")]
+    public MessageFeed twitterWithFriends;
 
-    public MessageFeed smsMessageFeed;
+    [FormerlySerializedAs("smsMessageFeed")]
+    public MessageFeed firstSceneSMSFeed;
 
-    public MessageFeed supportSmsMessageFeed;
+    [FormerlySerializedAs("supportSmsMessageFeed")]
+    public MessageFeed thirdSceneSMSFeed;
 
     public MessageFeed fourChan;
 
@@ -48,15 +50,9 @@ public class SocialMediaScenario : ScriptableObject
 
     public OnlineProfile senderProfile;
 
-    public OnlineProfile friendProfile;
-
     public string senderMessage;
 
     public string receiverMessage;
-
-    public string friendMessage;
-
-    public Sprite friendMessageSprite;
 
     public string GetText(SocialMediaScenarioTextType type)
     {
@@ -67,9 +63,6 @@ public class SocialMediaScenario : ScriptableObject
 
             case SocialMediaScenarioTextType.Sender:
                 return senderMessage;
-
-            case SocialMediaScenarioTextType.Friend:
-                return friendMessage;
         }
 
         return "Unknown type";
@@ -83,13 +76,13 @@ public class SocialMediaScenario : ScriptableObject
                 return senderMessageFeed;
 
             case SocialMediaScenatioMessageFeedType.Receiver:
-                return receiverMessageFeed;
+                return hatespeechMessageFeed;
 
             case SocialMediaScenatioMessageFeedType.PileOn:
                 return pileOnMessageFeed;
 
-            case SocialMediaScenatioMessageFeedType.Messenger:
-                return messengerFeed;
+            case SocialMediaScenatioMessageFeedType.TwitterWithFriends:
+                return twitterWithFriends;
 
             case SocialMediaScenatioMessageFeedType.FourChan:
                 return fourChan;
@@ -108,8 +101,6 @@ public class SocialMediaScenario : ScriptableObject
             case SocialMediaScenarioTextType.Receiver:
                 return receiverProfile;
 
-            case SocialMediaScenarioTextType.Friend:
-                return friendProfile;
             default:
                 return null;
         }
@@ -120,12 +111,17 @@ public class SocialMediaScenario : ScriptableObject
         switch (type)
         {
             case SocialMediaScenarioSMStype.Initial:
-                return smsMessageFeed;
+                return firstSceneSMSFeed;
 
             case SocialMediaScenarioSMStype.Support:
-                return supportSmsMessageFeed;
+                return thirdSceneSMSFeed;
         }
 
         return null;
+    }
+
+    public Message GetHatespeechMessage()
+    {
+        return hatespeechMessageFeed.messages[0];
     }
 }

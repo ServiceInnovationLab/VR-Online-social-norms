@@ -10,43 +10,6 @@ using System.IO;
 [CustomEditor(typeof(AnimatedImage))]
 public class AnimatedImageEditor : Editor
 {
-
-    class AnimatedGif
-    {
-        private List<AnimatedGifFrame> mImages = new List<AnimatedGifFrame>();
-        PropertyItem mTimes;
-        public AnimatedGif(string path)
-        {
-            Image img = Image.FromFile(path);
-            int frames = img.GetFrameCount(FrameDimension.Time);
-
-            if (frames <= 1) return;
-
-            byte[] times = img.GetPropertyItem(0x5100).Value;
-            int frame = 0;
-            for (; ; )
-            {
-                int dur = BitConverter.ToInt32(times, 4 * frame);
-                mImages.Add(new AnimatedGifFrame(new Bitmap(img), dur));
-                if (++frame >= frames) break;
-                img.SelectActiveFrame(FrameDimension.Time, frame);
-            }
-            img.Dispose();
-        }
-        public List<AnimatedGifFrame> Images { get { return mImages; } }
-    }
-
-    class AnimatedGifFrame
-    {
-        internal AnimatedGifFrame(Image img, int duration)
-        {
-            Image = img; Duration = duration;
-        }
-        public Image Image { get; }
-        public int Duration { get; }
-    }
-
-
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();

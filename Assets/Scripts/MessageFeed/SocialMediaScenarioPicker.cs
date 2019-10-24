@@ -21,12 +21,7 @@ public class SocialMediaScenarioPicker : Singleton<SocialMediaScenarioPicker>
 
     public static string CustomScenarioPath
     {
-        get { return Path.Combine(Application.streamingAssetsPath, "SocialMedia"); }
-    }
-
-    public static string CustomScenarioProfilePicturePath
-    {
-        get { return Path.Combine(CustomScenarioPath, "Profiles"); }
+        get { return Path.Combine(Application.streamingAssetsPath, "Scenarios"); }
     }
 
     public bool CanChange
@@ -54,7 +49,7 @@ public class SocialMediaScenarioPicker : Singleton<SocialMediaScenarioPicker>
 
         DontDestroyOnLoad(gameObject);
 
-        foreach (var file in Directory.EnumerateFiles(CustomScenarioPath, "*.json", SearchOption.TopDirectoryOnly))
+        foreach (var file in Directory.EnumerateFiles(CustomScenarioPath, "*.xlsx", SearchOption.TopDirectoryOnly))
         {
             CustomScenarios.Add(file);
         }
@@ -64,7 +59,6 @@ public class SocialMediaScenarioPicker : Singleton<SocialMediaScenarioPicker>
 
     public void LoadScenario(string path)
     {
-        var data = JsonUtility.FromJson<OnlineScenarioData>(File.ReadAllText(path));
-        CurrentScenario = data.ToSocialMediaScenario();
+        CurrentScenario = ScenarioSpreadsheetLoader.LoadSocialMediaScenario(path);
     }
 }
