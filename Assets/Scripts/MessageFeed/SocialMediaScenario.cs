@@ -102,6 +102,9 @@ public class SocialMediaScenario : ScriptableObject
             case SocialMediaScenarioTextType.Receiver:
                 return receiverProfile;
 
+            case SocialMediaScenarioTextType.Hatespeech:
+                return hatespeechMessageFeed.messages[0].profile;
+
             default:
                 return null;
         }
