@@ -241,7 +241,10 @@ public class ScreenMessageFeedView : MonoBehaviour
                 }
             }
 
-            yield return DisplayMessage(messageFeed.messages[index], true, subMessage);
+            if (!messageFeed.messages[index].skip)
+            {
+                yield return DisplayMessage(messageFeed.messages[index], true, subMessage);
+            }
             lastMessageShown++;
 
             if (stopScrolling)
@@ -269,7 +272,7 @@ public class ScreenMessageFeedView : MonoBehaviour
                     foreach (var message in LinkedViewForSubMessages.messageFeed.messages)
                     {
                         subMessageStart++;
-                        if (message.pauseHere)
+                        if (message.pauseHere || message.startOfSubMessages)
                             break;
                     }
                 }
@@ -788,6 +791,14 @@ public class ScreenMessageFeedView : MonoBehaviour
         }
     }
 
+    public void ScrollToBottomSmooth()
+    {
+        if (scrollRect)
+        {
+            StartCoroutine(SmoothScroll(0.0f));
+        }
+    }
+
     IEnumerator SmoothScroll(Vector2 toPos)
     {
         Vector2 fromPos = scrollRect.content.localPosition;
@@ -809,6 +820,30 @@ public class ScreenMessageFeedView : MonoBehaviour
             }
 
             scrollRect.content.anchoredPosition = Vector2.Lerp(fromPos, toPos, diff);
+        }
+    }
+
+    IEnumerator SmoothScroll(float toPos)
+    {
+        float fromPos = scrollRect.verticalNormalizedPosition;
+
+        float time = Time.time;
+
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+
+            float diff = (Time.time - time) / 1;
+
+            Canvas.ForceUpdateCanvases();
+
+            if (diff > 1)
+            {
+                scrollRect.verticalNormalizedPosition = toPos; ;
+                break;
+            }
+
+            scrollRect.verticalNormalizedPosition = Mathf.Lerp(fromPos, toPos, diff);
         }
     }
 

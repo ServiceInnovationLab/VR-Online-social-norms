@@ -10,6 +10,8 @@ public class StartAfterScrolled : MonoBehaviour
 
     bool first = false;
 
+    public float delayTime = 3.0f;
+
     public void SecondGo()
     {
         checkers[0].enabled = true;
@@ -31,20 +33,17 @@ public class StartAfterScrolled : MonoBehaviour
 
                     if (count >= checkers.Length)
                     {
-                        if (!first)
-                        {
-
-                            view1.Continue();
-                        }
-                        else
-                        {
-                            view3.CompleteFeed();
-                            view3.Continue();
-                        }
+                        Invoke(nameof(Complete3), delayTime);
                     }
                 }
             });
         }
+    }
+
+    private void Complete3()
+    {
+        view3.CompleteFeed();
+        view3.Continue();
     }
 
     private void FixedUpdate()

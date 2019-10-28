@@ -9179,7 +9179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScaleAfterPause: 1
-  afterPauseDelay: 2
+  afterPauseDelay: 0
   lastItemHighlight: {r: 1, g: 0.7529412, b: 0.07058824, a: 0.5019608}
   highlightLastItem: 1
   scrollToBottom: 0
@@ -9205,19 +9205,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 918645180}
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 560404428}
-        m_MethodName: ScrollToFirstUnpausedMessage
+        m_MethodName: ScrollToBottomSmooth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25234,8 +25223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c3b71b1e26b5d4c8f1b228a4a569e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScaleAfterPause: 0.5
-  afterPauseDelay: 2
+  timeScaleAfterPause: 1
+  afterPauseDelay: 0
   lastItemHighlight: {r: 0, g: 0, b: 0, a: 0}
   highlightLastItem: 0
   scrollToBottom: 1
@@ -25250,16 +25239,27 @@ MonoBehaviour:
   OnComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1165902275}
-        m_MethodName: ScrollToFirstUnpausedMessage
-        m_Mode: 1
+      - m_Target: {fileID: 693394258}
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 122375860}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -25286,27 +25286,16 @@ MonoBehaviour:
   onPaused:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 122375860}
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 1165902275}
+        m_MethodName: Continue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1360196602}
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -32324,7 +32313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dfcd4c67111e0459830019c52a470b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colour: {r: 0.047169857, g: 0.8018868, b: 0, a: 0}
+  colour: {r: 1, g: 1, b: 1, a: 0}
   fadeoutTime: 2
   initalDelay: 1
 --- !u!114 &1685334143
@@ -39246,6 +39235,7 @@ MonoBehaviour:
   checkers:
   - {fileID: 122375860}
   - {fileID: 2055488457}
+  delayTime: 5
 --- !u!1 &1963487335
 GameObject:
   m_ObjectHideFlags: 0
@@ -44325,12 +44315,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.0005
+      value: 217.00261
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.0005
+      value: 217.00261
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}

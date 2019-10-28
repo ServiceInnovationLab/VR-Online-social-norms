@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class FlashingImage : MonoBehaviour
 {
-    [SerializeField] Color flashColour;
+    public Color flashColour;
     [SerializeField] float flashTime = 2.0f;
 
     Color originalColour;
@@ -19,6 +19,12 @@ public class FlashingImage : MonoBehaviour
         image = GetComponent<Image>();
         originalColour = image.color;
 
+        toColor = flashColour;
+        fromColor = originalColour;
+    }
+
+    public void ColourChanged()
+    {
         toColor = flashColour;
         fromColor = originalColour;
     }

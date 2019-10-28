@@ -13,4 +13,6 @@ public class Message
     public string retweetedBy;
     public bool senderSubMessage;
     public bool hateSpeechSubMessage;
+    public bool skip;
+    public bool startOfSubMessages;
 }

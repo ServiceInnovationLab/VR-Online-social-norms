@@ -203,6 +203,16 @@ public class MessageFeedEditor : Editor
         EditorGUILayout.LabelField("Hate speech submessage: ");
         message.hateSpeechSubMessage = EditorGUILayout.Toggle(message.hateSpeechSubMessage);
         GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Skip: ");
+        message.skip = EditorGUILayout.Toggle(message.skip);
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Start of submessages: ");
+        message.startOfSubMessages = EditorGUILayout.Toggle(message.startOfSubMessages);
+        GUILayout.EndHorizontal();
     }
 
     private void InsertMessage(List<Message> messages, int index)

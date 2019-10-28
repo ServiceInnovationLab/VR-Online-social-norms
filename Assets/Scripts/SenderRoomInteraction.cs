@@ -94,7 +94,13 @@ public class SenderRoomInteraction : MonoBehaviour
 
         yield return new WaitUntil(() => scrollChecker.view1.IsDone && scrollChecker.view3.IsDone);
 
-        yield return new WaitUntil(() => requiredScrolls[1].lastItemClick.IsLastItemShowing());
+        //yield return new WaitUntil(() => requiredScrolls[0].lastItemClick.IsLastItemShowing());
+
+        //images[1].flashColour.a *= 0.25f;
+        //images[1].ColourChanged();
+        //images[1].gameObject.SetActive(true);
+        //yield return new WaitUntil(() => requiredScrolls[1].lastItemClick.IsLastItemShowing());
+        //images[1].gameObject.SetActive(false);
 
         yield return new WaitForSeconds(activateDelay);
 
