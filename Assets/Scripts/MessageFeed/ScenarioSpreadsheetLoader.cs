@@ -46,7 +46,7 @@ public static class ScenarioSpreadsheetLoader
 
             if (result.senderTwitterFeed.messages.Count > 0)
             {
-                result.senderTwitterFeed.messages[result.senderTwitterFeed.messages.Count - 1].pauseHere = true;
+                result.senderTwitterFeed.messages[result.senderTwitterFeed.messages.Count - 1].startOfSubMessages = true;
             }
 
             if (result.fourChan.messages.Count > 0)
@@ -54,7 +54,23 @@ public static class ScenarioSpreadsheetLoader
                 result.fourChan.messages[result.fourChan.messages.Count - 1].pauseHere = true;
             }
 
+            int startOfEnticement = result.senderTwitterFeed.messages.Count;
+
             LoadSenderTwitter(p.Workbook.Worksheets["SenderEnticement"], result);
+
+            for (int i = startOfEnticement; i < result.senderTwitterFeed.messages.Count; i++)
+            {
+                if (!string.IsNullOrWhiteSpace(result.senderTwitterFeed.messages[i].retweetedBy))
+                    continue;
+
+                result.senderTwitterFeed.messages[i].skip = true;
+            }
+
+            if (result.senderTwitterFeed.messages.Count > 0)
+            {
+                result.senderTwitterFeed.messages[result.senderTwitterFeed.messages.Count - 1].pauseHere = true;
+            }
+
             Load4Chan(p.Workbook.Worksheets["SenderEnticement"], result, 6); // Sender Enticement is Twitter with 4Chan to the side
             LoadSenderFlow(p.Workbook.Worksheets["SenderFlow"], result);
 
@@ -341,7 +357,7 @@ public static class ScenarioSpreadsheetLoader
                             var buffer = new byte[stream.Length];
                             stream.Read(buffer, 0, buffer.Length);
 
-                            var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false, true);
+                            var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
                             texture.LoadImage(buffer);
 
                             var rect = new Rect(0, 0, texture.width, texture.height);
