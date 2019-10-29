@@ -402,7 +402,7 @@ public static class ScenarioSpreadsheetLoader
                     var buffer = new byte[stream.Length];
                     stream.Read(buffer, 0, buffer.Length);
 
-                    var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false, true);
+                    var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
                     texture.LoadImage(buffer);
 
                     var rect = new Rect(0, 0, texture.width, texture.height);
