@@ -18,10 +18,11 @@ public class PerspectiveChangeTrackingAdjust : MonoBehaviour
 
         pov.doTeleport = true;
         pov.doRotate = true;
+        pov.scaleCamera = true;
 
         var newScale = pov.transform.localScale;
         newScale.x = scaleIfNoChairTracking;
-        newScale.y = scaleIfNoChairTracking;
+        newScale.z = scaleIfNoChairTracking;
 
         pov.transform.localScale = newScale;
 

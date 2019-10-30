@@ -41,7 +41,7 @@ public class PerspectiveChanger : MonoBehaviour
 
     [SerializeField] bool scalePosition;
 
-    [SerializeField] bool scaleCamera;
+    public bool scaleCamera;
 
     [SerializeField] VRTK_BasicTeleport teleporter;
 
@@ -169,12 +169,4 @@ public class PerspectiveChanger : MonoBehaviour
             playAreaTeleport.checkForCollisions = originalCheckForCollisiosn;
         }
     }
-
-    public void DisableTeleport()
-    {
-        doTeleport = false;
-        scaleCamera = false;
-        transform.localScale = new Vector3(2, 2, 2);
-    }
-
 }
