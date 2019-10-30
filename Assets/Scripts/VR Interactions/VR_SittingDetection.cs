@@ -110,7 +110,7 @@ public class VR_SittingDetection : MonoBehaviour
         detectSitting = true;
         settledSeconds = 0;
 
-        if (objectNeededForSitting && !objectNeededForSitting.IsTracked)
+        if (!TrackedChairOption.GetValue() || (objectNeededForSitting && !objectNeededForSitting.IsTracked))
         {
             OnSittingDetected();
             return;
