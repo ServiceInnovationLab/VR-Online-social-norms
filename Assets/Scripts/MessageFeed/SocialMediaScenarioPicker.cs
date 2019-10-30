@@ -34,7 +34,26 @@ public class SocialMediaScenarioPicker : Singleton<SocialMediaScenarioPicker>
 #if UNITY_EDITOR
         if (!Application.isPlaying)
         {
-            scenariosInProject = EditorHelper.GetAllInstances<SocialMediaScenario>();
+          /*  var serializedObject = new UnityEditor.SerializedObject(this);
+
+            var instances = EditorHelper.GetAllInstances<SocialMediaScenario>();
+            var property = serializedObject.FindProperty(nameof(scenariosInProject));
+
+            // Initial only update if needed. TODO: Need check contents too
+         //   if (instances.Length == scenariosInProject.Length)
+          //      return;
+
+            serializedObject.Update();
+
+            property.ClearArray();
+            for (int i = 0; i < instances.Length; i++)
+            {
+                property.InsertArrayElementAtIndex(i);
+                property.GetArrayElementAtIndex(i).objectReferenceValue = instances[i];
+            }
+
+            serializedObject.ApplyModifiedProperties();*/
+
             return;
         }
 #endif
