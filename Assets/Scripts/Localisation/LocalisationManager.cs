@@ -40,18 +40,22 @@ public class LocalisationManager : LeanLocalization
         var normalFont = new GameObject("NormalFont");
         normalFont.transform.SetParent(transform);
         var normalPhrase = normalFont.AddComponent<LeanPhrase>();
+        normalPhrase.Data = LeanPhrase.DataType.Object;
 
         var mediumSdfFont = new GameObject("MediumSdfFont");
         mediumSdfFont.transform.SetParent(transform);
         var mediumSdfPhrase = mediumSdfFont.AddComponent<LeanPhrase>();
+        mediumSdfPhrase.Data = LeanPhrase.DataType.Object;
 
         var lightSdfFont = new GameObject("LightSdfFont");
         lightSdfFont.transform.SetParent(transform);
         var lightSdfPhrase = lightSdfFont.AddComponent<LeanPhrase>();
+        lightSdfPhrase.Data = LeanPhrase.DataType.Object;
 
         var normalSdfFont = new GameObject("NormalSdfFont");
         normalSdfFont.transform.SetParent(transform);
         var normalSdPhrase = normalSdfFont.AddComponent<LeanPhrase>();
+        normalSdPhrase.Data = LeanPhrase.DataType.Object;
 
         foreach (var font in languageFonts.Fonts)
         {
