@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class LocalisationManager : LeanLocalization
 {
 
+    [SerializeField] LanguageFonts languageFonts;
+
     public static string LanguagesPath
     {
         get { return Path.Combine(Application.streamingAssetsPath, "Languages"); }
@@ -25,9 +27,38 @@ public class LocalisationManager : LeanLocalization
 
         LoadLanguages();
 
+        SetupFonts();
+
         foreach (var language in languages)
         {
             Languages.Add(new LeanLanguage() { Name = language });
+        }
+    }
+
+    private void SetupFonts()
+    {
+        var normalFont = new GameObject("NormalFont");
+        normalFont.transform.SetParent(transform);
+        var normalPhrase = normalFont.AddComponent<LeanPhrase>();
+
+        var mediumSdfFont = new GameObject("MediumSdfFont");
+        mediumSdfFont.transform.SetParent(transform);
+        var mediumSdfPhrase = mediumSdfFont.AddComponent<LeanPhrase>();
+
+        var lightSdfFont = new GameObject("LightSdfFont");
+        lightSdfFont.transform.SetParent(transform);
+        var lightSdfPhrase = lightSdfFont.AddComponent<LeanPhrase>();
+
+        var normalSdfFont = new GameObject("NormalSdfFont");
+        normalSdfFont.transform.SetParent(transform);
+        var normalSdPhrase = normalSdfFont.AddComponent<LeanPhrase>();
+
+        foreach (var font in languageFonts.Fonts)
+        {
+            normalPhrase.AddEntry(font.language, null, font.normalFont);
+            mediumSdfPhrase.AddEntry(font.language, null, font.mediumSdfFont);
+            lightSdfPhrase.AddEntry(font.language, null, font.lightSdfFont);
+            normalSdPhrase.AddEntry(font.language, null, font.normalSdfFont);
         }
     }
 

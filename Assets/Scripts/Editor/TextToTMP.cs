@@ -4,6 +4,7 @@ using UnityEditor;
 using System.Linq;
 using TMPro;
 using System.Collections.Generic;
+using Lean.Localization;
 
 public class TextToTMP : ScriptableObject
 {
@@ -34,7 +35,7 @@ public class TextToTMP : ScriptableObject
                 textPro.text = textString;
                 textPro.fontSize = fontSize;
                 textPro.lineSpacing = lineSpacing;
-                textPro.fontStyle = (FontStyles)fontStyle;
+                textPro.fontStyle = fontStyle;
                 textPro.overflowMode = TextOverflowModes.Truncate;
                 ((RectTransform)obj).sizeDelta = size;
             }
@@ -70,6 +71,50 @@ public class TextToTMP : ScriptableObject
         foreach (var font in set2)
         {
             Debug.Log(font.name, font);
+        }
+    }
+
+    [MenuItem("Tools/LocaliseFonts")]
+    static void SetUpLocalisedFonts()
+    {
+        foreach (var item in FindObjectsOfType<Text>())
+        {
+            if (item.GetComponent<LeanLocalizedTextFont>())
+                continue;
+
+            Undo.RecordObject(item.gameObject, "Add LeanLocalizedTextFont");
+
+            var localizedTextFont = item.gameObject.AddComponent<LeanLocalizedTextFont>();
+
+            localizedTextFont.FallbackFont = item.font;
+            localizedTextFont.TranslationName = "NormalFont";
+        }
+
+        foreach (var item in FindObjectsOfType<TextMeshProUGUI>())
+        {
+            if (item.GetComponent<LeanLocalizedTextMeshProUGUIFont>())
+                continue;
+
+            Undo.RecordObject(item.gameObject, "Add LeanLocalizedTextMeshProUGUIFont");
+
+            var localizedTextFont = item.gameObject.AddComponent<LeanLocalizedTextMeshProUGUIFont>();
+
+            localizedTextFont.FallbackFont = item.font;
+
+            var fontName = item.font.name.ToLower();
+
+            if (fontName.Contains("light"))
+            {
+                localizedTextFont.TranslationName = "LightSdfFont";
+            }
+            else if (fontName.Contains("medium"))
+            {
+                localizedTextFont.TranslationName = "MediumSdfFont";
+            }
+            else
+            {
+                localizedTextFont.TranslationName = "NormalSdfFont";
+            }
         }
     }
 
