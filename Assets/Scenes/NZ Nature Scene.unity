@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 4612742}
   - component: {fileID: 4612741}
   - component: {fileID: 4612743}
+  - component: {fileID: 4612744}
   m_Layer: 5
   m_Name: CancelButtonText
   m_TagString: Untagged
@@ -305,6 +306,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: CancelButtonText
   FallbackText: Cancel
+--- !u!114 &4612744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &12379845
 GameObject:
   m_ObjectHideFlags: 0
@@ -3867,6 +3882,7 @@ GameObject:
   - component: {fileID: 180806866}
   - component: {fileID: 180806868}
   - component: {fileID: 180806867}
+  - component: {fileID: 180806869}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -3935,6 +3951,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180806865}
   m_CullTransparentMesh: 0
+--- !u!114 &180806869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180806865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &183349777
 GameObject:
   m_ObjectHideFlags: 0
@@ -7987,6 +8017,7 @@ GameObject:
   - component: {fileID: 355991296}
   - component: {fileID: 355991295}
   - component: {fileID: 355991297}
+  - component: {fileID: 355991298}
   m_Layer: 5
   m_Name: SDKDescription
   m_TagString: Untagged
@@ -8069,6 +8100,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: SDKDescription
   FallbackText: Select an SDK Setup
+--- !u!114 &355991298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355991293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &361607887
 GameObject:
   m_ObjectHideFlags: 0
@@ -14452,6 +14497,46 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 678132548}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &678132550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8477925954629676009, guid: 212053667a3972743a922f316ee2a16d,
+    type: 3}
+  m_PrefabInstance: {fileID: 678132548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &678132551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8477925954629699161, guid: 212053667a3972743a922f316ee2a16d,
+    type: 3}
+  m_PrefabInstance: {fileID: 678132548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &678132552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678132550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &678132553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678132551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &678465738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17334,7 +17419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.006479235}
+  m_AnchoredPosition: {x: 0, y: 0.010057104}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &826437743
@@ -17855,6 +17940,7 @@ GameObject:
   - component: {fileID: 880859774}
   - component: {fileID: 880859776}
   - component: {fileID: 880859775}
+  - component: {fileID: 880859777}
   m_Layer: 5
   m_Name: CurrentText
   m_TagString: Untagged
@@ -17923,6 +18009,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880859773}
   m_CullTransparentMesh: 0
+--- !u!114 &880859777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880859773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &882469200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19548,6 +19648,7 @@ GameObject:
   - component: {fileID: 930945703}
   - component: {fileID: 930945705}
   - component: {fileID: 930945704}
+  - component: {fileID: 930945706}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -19616,6 +19717,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930945702}
   m_CullTransparentMesh: 0
+--- !u!114 &930945706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930945702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &938130272
 GameObject:
   m_ObjectHideFlags: 0
@@ -20024,8 +20139,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961890224}
-  m_LocalRotation: {x: 0.028458167, y: 0.059467714, z: 0.0015187768, w: -0.99782336}
-  m_LocalPosition: {x: 1219.159, y: -501.89526, z: -424.923}
+  m_LocalRotation: {x: -0.67162335, y: 0.010964795, z: 0.0102102375, w: 0.7407413}
+  m_LocalPosition: {x: 376.0686, y: 4.0364113, z: 425.14667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20347,12 +20462,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 117.55688
+      value: 117.000435
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 117.55688
+      value: 117.000435
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -21900,6 +22015,7 @@ GameObject:
   - component: {fileID: 1046758197}
   - component: {fileID: 1046758196}
   - component: {fileID: 1046758198}
+  - component: {fileID: 1046758199}
   m_Layer: 0
   m_Name: TutorialSignLeftText
   m_TagString: Untagged
@@ -21984,6 +22100,20 @@ MonoBehaviour:
   translationName: TutorialSignLeftText
   FallbackText: "Kauri forests are among the most ancient in the world. \n\nThe ancestors
     of the kauri appeared during the Jurassic period!"
+--- !u!114 &1046758199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046758194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1056378771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27662,6 +27792,7 @@ GameObject:
   - component: {fileID: 1305144665}
   - component: {fileID: 1305144664}
   - component: {fileID: 1305144666}
+  - component: {fileID: 1305144667}
   m_Layer: 5
   m_Name: SwitchVRText
   m_TagString: Untagged
@@ -27744,6 +27875,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: SwitchVRText
   FallbackText: Switch SDK Setup
+--- !u!114 &1305144667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305144662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1307947367
 GameObject:
   m_ObjectHideFlags: 0
@@ -31168,6 +31313,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: PickUpPrompt
   FallbackText: 
+--- !u!1 &1457988303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8477925954629676009, guid: 212053667a3972743a922f316ee2a16d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1457988300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1457988304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8477925954629699161, guid: 212053667a3972743a922f316ee2a16d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1457988300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1457988305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457988303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1457988306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457988304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1470167669
 GameObject:
   m_ObjectHideFlags: 0
@@ -32520,6 +32705,7 @@ GameObject:
   - component: {fileID: 1573903573}
   - component: {fileID: 1573903575}
   - component: {fileID: 1573903574}
+  - component: {fileID: 1573903576}
   m_Layer: 5
   m_Name: Text.
   m_TagString: Untagged
@@ -32588,6 +32774,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573903572}
   m_CullTransparentMesh: 0
+--- !u!114 &1573903576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573903572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1575946429
 GameObject:
   m_ObjectHideFlags: 0
@@ -33381,6 +33581,7 @@ GameObject:
   - component: {fileID: 1627486959}
   - component: {fileID: 1627486958}
   - component: {fileID: 1627486960}
+  - component: {fileID: 1627486961}
   m_Layer: 5
   m_Name: NextSceneButton
   m_TagString: Untagged
@@ -33467,6 +33668,20 @@ MonoBehaviour:
   FallbackText: 'Next Scene
 
 '
+--- !u!114 &1627486961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627486956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1630543837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34416,6 +34631,7 @@ GameObject:
   - component: {fileID: 1687510976}
   - component: {fileID: 1687510975}
   - component: {fileID: 1687510977}
+  - component: {fileID: 1687510978}
   m_Layer: 0
   m_Name: TutorialSignRightText
   m_TagString: Untagged
@@ -34498,6 +34714,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: TutorialSignRightText
   FallbackText: Don't forget to take a photo!
+--- !u!114 &1687510978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687510973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1690805532
 GameObject:
   m_ObjectHideFlags: 0
@@ -42942,6 +43172,7 @@ GameObject:
   - component: {fileID: 2134590436}
   - component: {fileID: 2134590435}
   - component: {fileID: 2134590437}
+  - component: {fileID: 2134590438}
   m_Layer: 5
   m_Name: TutotialPhoneHeading
   m_TagString: Untagged
@@ -43024,6 +43255,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: TutotialPhoneHeading
   FallbackText: Photos
+--- !u!114 &2134590438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134590433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2134790738
 GameObject:
   m_ObjectHideFlags: 0
@@ -44349,7 +44594,7 @@ PrefabInstance:
     - target: {fileID: 6994733577894100385, guid: f5ab4ce2fb6ba7e4789cc9b33a3a68f4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.43352
+      value: 217.00034
       objectReference: {fileID: 0}
     - target: {fileID: 6994733579128439708, guid: f5ab4ce2fb6ba7e4789cc9b33a3a68f4,
         type: 3}

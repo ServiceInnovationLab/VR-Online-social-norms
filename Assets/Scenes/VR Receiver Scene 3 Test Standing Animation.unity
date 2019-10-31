@@ -4987,6 +4987,7 @@ GameObject:
   - component: {fileID: 197329196}
   - component: {fileID: 197329198}
   - component: {fileID: 197329197}
+  - component: {fileID: 197329199}
   m_Layer: 5
   m_Name: CurrentText.
   m_TagString: Untagged
@@ -5055,6 +5056,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197329195}
   m_CullTransparentMesh: 0
+--- !u!114 &197329199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197329195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &198109556
 GameObject:
   m_ObjectHideFlags: 0
@@ -8449,6 +8464,7 @@ GameObject:
   - component: {fileID: 360299863}
   - component: {fileID: 360299862}
   - component: {fileID: 360299864}
+  - component: {fileID: 360299865}
   m_Layer: 5
   m_Name: SDKDescription
   m_TagString: Untagged
@@ -8531,6 +8547,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: SDKDescription
   FallbackText: Select an SDK Setup
+--- !u!114 &360299865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360299860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &364990135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8632144097551115124, guid: e5a51f115f8a51647a8c64fbdfbbf429,
@@ -13427,12 +13457,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217
+      value: 217.00005
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217
+      value: 217.00005
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -13693,6 +13723,7 @@ GameObject:
   - component: {fileID: 643144128}
   - component: {fileID: 643144130}
   - component: {fileID: 643144129}
+  - component: {fileID: 643144131}
   m_Layer: 5
   m_Name: NotificationFromText
   m_TagString: Untagged
@@ -13842,6 +13873,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643144127}
   m_CullTransparentMesh: 0
+--- !u!114 &643144131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643144127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: MediumSdfFont
+  FallbackFont: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
 --- !u!1001 &644246983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22704,6 +22749,7 @@ GameObject:
   - component: {fileID: 1064718769}
   - component: {fileID: 1064718771}
   - component: {fileID: 1064718770}
+  - component: {fileID: 1064718772}
   m_Layer: 5
   m_Name: NotificationAppText
   m_TagString: Untagged
@@ -22851,6 +22897,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064718768}
   m_CullTransparentMesh: 0
+--- !u!114 &1064718772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064718768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: MediumSdfFont
+  FallbackFont: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
 --- !u!1 &1068862402
 GameObject:
   m_ObjectHideFlags: 0
@@ -29392,6 +29452,7 @@ GameObject:
   - component: {fileID: 1398045932}
   - component: {fileID: 1398045934}
   - component: {fileID: 1398045933}
+  - component: {fileID: 1398045935}
   m_Layer: 5
   m_Name: NotificationMessageText
   m_TagString: Untagged
@@ -29539,6 +29600,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398045931}
   m_CullTransparentMesh: 0
+--- !u!114 &1398045935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398045931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: MediumSdfFont
+  FallbackFont: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
 --- !u!1001 &1405996280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34096,6 +34171,7 @@ GameObject:
   - component: {fileID: 1619329505}
   - component: {fileID: 1619329507}
   - component: {fileID: 1619329506}
+  - component: {fileID: 1619329508}
   m_Layer: 5
   m_Name: NotificationTimeText
   m_TagString: Untagged
@@ -34243,6 +34319,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619329504}
   m_CullTransparentMesh: 0
+--- !u!114 &1619329508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619329504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: LightSdfFont
+  FallbackFont: {fileID: 11400000, guid: 9a5761d8f71c6264483c4229bef64d40, type: 2}
 --- !u!1001 &1621355627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34675,6 +34765,7 @@ GameObject:
   - component: {fileID: 1664661883}
   - component: {fileID: 1664661882}
   - component: {fileID: 1664661884}
+  - component: {fileID: 1664661885}
   m_Layer: 5
   m_Name: SwitchVRText
   m_TagString: Untagged
@@ -34757,6 +34848,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: SwitchVRText
   FallbackText: Switch SDK Setup
+--- !u!114 &1664661885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664661880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1664769909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36063,6 +36168,7 @@ GameObject:
   - component: {fileID: 1732713013}
   - component: {fileID: 1732713015}
   - component: {fileID: 1732713014}
+  - component: {fileID: 1732713016}
   m_Layer: 5
   m_Name: Text.
   m_TagString: Untagged
@@ -36131,6 +36237,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732713012}
   m_CullTransparentMesh: 0
+--- !u!114 &1732713016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732713012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1740256363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39930,6 +40050,7 @@ GameObject:
   - component: {fileID: 1884032931}
   - component: {fileID: 1884032930}
   - component: {fileID: 1884032932}
+  - component: {fileID: 1884032933}
   m_Layer: 5
   m_Name: CancelButtonText
   m_TagString: Untagged
@@ -40012,6 +40133,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: CancelButtonText
   FallbackText: Cancel
+--- !u!114 &1884032933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884032928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1884726747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41133,6 +41268,7 @@ GameObject:
   - component: {fileID: 1935089193}
   - component: {fileID: 1935089194}
   - component: {fileID: 1935089192}
+  - component: {fileID: 1935089195}
   m_Layer: 5
   m_Name: TwitterPhoneHeader
   m_TagString: Untagged
@@ -41295,6 +41431,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1935089195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935089190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: MediumSdfFont
+  FallbackFont: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
 --- !u!4 &1936453084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 66cfe382bd2863f4ab72a7c012c322c9,

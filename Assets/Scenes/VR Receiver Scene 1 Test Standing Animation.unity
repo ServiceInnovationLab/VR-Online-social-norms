@@ -3469,6 +3469,7 @@ GameObject:
   - component: {fileID: 100226506}
   - component: {fileID: 100226508}
   - component: {fileID: 100226507}
+  - component: {fileID: 100226509}
   m_Layer: 5
   m_Name: NotificationFromText
   m_TagString: Untagged
@@ -3618,6 +3619,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100226505}
   m_CullTransparentMesh: 0
+--- !u!114 &100226509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100226505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: MediumSdfFont
+  FallbackFont: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
 --- !u!1001 &100282338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5932,6 +5947,7 @@ GameObject:
   - component: {fileID: 197329196}
   - component: {fileID: 197329198}
   - component: {fileID: 197329197}
+  - component: {fileID: 197329199}
   m_Layer: 5
   m_Name: CurrentVRSDK.
   m_TagString: Untagged
@@ -6000,6 +6016,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197329195}
   m_CullTransparentMesh: 0
+--- !u!114 &197329199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197329195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &197898245
 GameObject:
   m_ObjectHideFlags: 0
@@ -9894,6 +9924,7 @@ GameObject:
   - component: {fileID: 360299863}
   - component: {fileID: 360299862}
   - component: {fileID: 360299864}
+  - component: {fileID: 360299865}
   m_Layer: 5
   m_Name: SDKDescription
   m_TagString: Untagged
@@ -9976,6 +10007,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: SDKDescription
   FallbackText: Select an SDK Setup
+--- !u!114 &360299865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360299860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &362089083
 GameObject:
   m_ObjectHideFlags: 0
@@ -11013,6 +11058,7 @@ GameObject:
   - component: {fileID: 432475196}
   - component: {fileID: 432475198}
   - component: {fileID: 432475197}
+  - component: {fileID: 432475199}
   m_Layer: 5
   m_Name: Username
   m_TagString: Untagged
@@ -11160,6 +11206,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432475195}
   m_CullTransparentMesh: 0
+--- !u!114 &432475199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432475195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: MediumSdfFont
+  FallbackFont: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
 --- !u!1 &435861360
 GameObject:
   m_ObjectHideFlags: 0
@@ -15934,12 +15994,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00014
+      value: 217.00002
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00014
+      value: 217.00002
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -16650,6 +16710,7 @@ GameObject:
   - component: {fileID: 653812507}
   - component: {fileID: 653812509}
   - component: {fileID: 653812508}
+  - component: {fileID: 653812510}
   m_Layer: 5
   m_Name: NotificationTimeText
   m_TagString: Untagged
@@ -16797,6 +16858,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653812506}
   m_CullTransparentMesh: 0
+--- !u!114 &653812510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653812506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: LightSdfFont
+  FallbackFont: {fileID: 11400000, guid: 9a5761d8f71c6264483c4229bef64d40, type: 2}
 --- !u!1 &655461052
 GameObject:
   m_ObjectHideFlags: 0
@@ -27051,6 +27126,7 @@ GameObject:
   - component: {fileID: 1104000876}
   - component: {fileID: 1104000875}
   - component: {fileID: 1104000877}
+  - component: {fileID: 1104000878}
   m_Layer: 5
   m_Name: TwitterPhoneHeader
   m_TagString: Untagged
@@ -27212,6 +27288,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: TwitterPhoneHeader
   FallbackText: Tweet
+--- !u!114 &1104000878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104000873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: MediumSdfFont
+  FallbackFont: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
 --- !u!1 &1108827185
 GameObject:
   m_ObjectHideFlags: 0
@@ -35723,6 +35813,7 @@ GameObject:
   - component: {fileID: 1504718942}
   - component: {fileID: 1504718944}
   - component: {fileID: 1504718943}
+  - component: {fileID: 1504718945}
   m_Layer: 5
   m_Name: Tag
   m_TagString: Untagged
@@ -35870,6 +35961,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504718941}
   m_CullTransparentMesh: 0
+--- !u!114 &1504718945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504718941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalSdfFont
+  FallbackFont: {fileID: 11400000, guid: 47ae1a0314558314bad3a451e25829a3, type: 2}
 --- !u!1001 &1506816839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39107,6 +39212,7 @@ GameObject:
   - component: {fileID: 1599057117}
   - component: {fileID: 1599057119}
   - component: {fileID: 1599057118}
+  - component: {fileID: 1599057120}
   m_Layer: 5
   m_Name: NotificationMessageText
   m_TagString: Untagged
@@ -39254,6 +39360,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599057116}
   m_CullTransparentMesh: 0
+--- !u!114 &1599057120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599057116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: MediumSdfFont
+  FallbackFont: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
 --- !u!1 &1601108238
 GameObject:
   m_ObjectHideFlags: 0
@@ -40123,6 +40243,7 @@ GameObject:
   - component: {fileID: 1657372319}
   - component: {fileID: 1657372321}
   - component: {fileID: 1657372320}
+  - component: {fileID: 1657372322}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -40270,6 +40391,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657372318}
   m_CullTransparentMesh: 0
+--- !u!114 &1657372322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657372318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalSdfFont
+  FallbackFont: {fileID: 11400000, guid: 47ae1a0314558314bad3a451e25829a3, type: 2}
 --- !u!1001 &1663336499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40351,6 +40486,7 @@ GameObject:
   - component: {fileID: 1664661883}
   - component: {fileID: 1664661882}
   - component: {fileID: 1664661884}
+  - component: {fileID: 1664661885}
   m_Layer: 5
   m_Name: SwitchVRText
   m_TagString: Untagged
@@ -40433,6 +40569,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: SwitchVRText
   FallbackText: Switch SDK Setup
+--- !u!114 &1664661885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664661880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1664769909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42320,6 +42470,7 @@ GameObject:
   - component: {fileID: 1732713013}
   - component: {fileID: 1732713015}
   - component: {fileID: 1732713014}
+  - component: {fileID: 1732713016}
   m_Layer: 5
   m_Name: Text.
   m_TagString: Untagged
@@ -42388,6 +42539,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732713012}
   m_CullTransparentMesh: 0
+--- !u!114 &1732713016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732713012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1740256363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46540,6 +46705,7 @@ GameObject:
   - component: {fileID: 1875407507}
   - component: {fileID: 1875407509}
   - component: {fileID: 1875407508}
+  - component: {fileID: 1875407510}
   m_Layer: 5
   m_Name: NotificationAppText
   m_TagString: Untagged
@@ -46687,6 +46853,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875407506}
   m_CullTransparentMesh: 0
+--- !u!114 &1875407510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875407506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: MediumSdfFont
+  FallbackFont: {fileID: 11400000, guid: 92ea8d09f02e66c4a9d077fe76410913, type: 2}
 --- !u!1001 &1877091539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47075,6 +47255,7 @@ GameObject:
   - component: {fileID: 1884032931}
   - component: {fileID: 1884032930}
   - component: {fileID: 1884032932}
+  - component: {fileID: 1884032933}
   m_Layer: 5
   m_Name: CancelButtonText
   m_TagString: Untagged
@@ -47157,6 +47338,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: CancelButtonText
   FallbackText: Cancel
+--- !u!114 &1884032933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884032928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce53ba05f9c84246b062afd12f4619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalFont
+  FallbackFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1884726747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48645,6 +48840,7 @@ GameObject:
   - component: {fileID: 1933231819}
   - component: {fileID: 1933231818}
   - component: {fileID: 1933231820}
+  - component: {fileID: 1933231821}
   m_Layer: 5
   m_Name: FriendTweetsAndLikes
   m_TagString: Untagged
@@ -48806,6 +49002,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: FriendTweetsAndLikes
   FallbackText: <b>8</b> <color=#666>Retweets</color>  <b>26</b> <color=#666>Likes</color>
+--- !u!114 &1933231821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933231816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalSdfFont
+  FallbackFont: {fileID: 11400000, guid: 47ae1a0314558314bad3a451e25829a3, type: 2}
 --- !u!1 &1936166406
 GameObject:
   m_ObjectHideFlags: 0
@@ -48818,6 +49028,7 @@ GameObject:
   - component: {fileID: 1936166409}
   - component: {fileID: 1936166408}
   - component: {fileID: 1936166410}
+  - component: {fileID: 1936166411}
   m_Layer: 5
   m_Name: SentTime
   m_TagString: Untagged
@@ -48979,6 +49190,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: SentTime
   FallbackText: 2:30PM - 4/08/19 <color=#4692da>Twitter for iPhone</color>
+--- !u!114 &1936166411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936166406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d52b33a5902e643bced0385fa6840b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NormalSdfFont
+  FallbackFont: {fileID: 11400000, guid: 47ae1a0314558314bad3a451e25829a3, type: 2}
 --- !u!4 &1936453084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 66cfe382bd2863f4ab72a7c012c322c9,
