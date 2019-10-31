@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.Linq;
 using TMPro;
+using System.Collections.Generic;
 
 public class TextToTMP : ScriptableObject
 {
@@ -37,6 +38,38 @@ public class TextToTMP : ScriptableObject
                 textPro.overflowMode = TextOverflowModes.Truncate;
                 ((RectTransform)obj).sizeDelta = size;
             }
+        }
+    }
+
+    [MenuItem("Tools/FontFind")]
+    static void LocateFonts()
+    {
+        var set = new HashSet<Font>();
+
+        foreach (var item in FindObjectsOfType<Text>())
+        {
+            if (item.font.name.Contains("Bold"))
+            {
+                Debug.Log(item.gameObject.name, item.gameObject);
+            }
+            set.Add(item.font);
+        }
+
+        foreach (var font in set)
+        {
+            Debug.Log(font.name, font);
+        }
+
+        var set2 = new HashSet<TMP_FontAsset>();
+
+        foreach (var item in FindObjectsOfType<TextMeshProUGUI>())
+        {
+            set2.Add(item.font);
+        }
+
+        foreach (var font in set2)
+        {
+            Debug.Log(font.name, font);
         }
     }
 
