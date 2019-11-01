@@ -2,13 +2,12 @@
 using UnityEngine.Video;
 using VideoLibrary;
 using System.Linq;
-using System.Threading.Tasks;
 
 [RequireComponent(typeof(VideoPlayer))]
 public class YoutubeVideoPlayer : MonoBehaviour
 {
+    [SerializeField] bool playOnAwake;
     [SerializeField] string url;
-
     [SerializeField] float skipAmount = 0;
 
     VideoPlayer videoPlayer;
@@ -17,10 +16,23 @@ public class YoutubeVideoPlayer : MonoBehaviour
     {
         videoPlayer = GetComponent<VideoPlayer>();
 
+        if (playOnAwake)
+        {
+            Play();
+        }
+    }
+
+    public void Play()
+    {
+        PlayVideo(url, skipAmount);
+    }
+
+    public void PlayVideo(string url, float skipAmount = 0)
+    {
         LoadVideo(videoPlayer, url, skipAmount);
     }
 
-    public static async Task LoadVideo(VideoPlayer videoPlayer, string url, float skipAmount = 0)
+    public static async void LoadVideo(VideoPlayer videoPlayer, string url, float skipAmount = 0)
     {
         var youTube = YouTube.Default;
         var videos = await youTube.GetAllVideosAsync(url);

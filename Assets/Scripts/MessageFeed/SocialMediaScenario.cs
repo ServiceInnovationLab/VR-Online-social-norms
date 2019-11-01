@@ -55,6 +55,13 @@ public class SocialMediaScenario : ScriptableObject
 
     public string receiverMessage;
 
+    public RecommendedVideo[] recommendedVideos;
+
+    public string senderStreamingURL;
+    public int senderStreamingSkipTime;
+    public string senderYoutubeURL;
+    public string senderYoutubeVideoTitle;
+
     public string GetText(SocialMediaScenarioTextType type)
     {
         switch (type)
