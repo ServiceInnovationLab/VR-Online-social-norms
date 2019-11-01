@@ -74,6 +74,8 @@ public static class ScenarioSpreadsheetLoader
             Load4Chan(p.Workbook.Worksheets["SenderEnticement"], result, 6); // Sender Enticement is Twitter with 4Chan to the side
             LoadSenderFlow(p.Workbook.Worksheets["SenderFlow"], result);
 
+            result.recommendedVideos = LoadRecommendedVideos(p.Workbook.Worksheets["Sender Videos"]).ToArray();
+            LoadSenderURLS(p.Workbook.Worksheets["Sender Videos"], result);
 
             // Receiver, scene 3
             result.thirdSceneSMSFeed.messages = LoadSMSFeed(p.Workbook.Worksheets["Second Notification Feed"]);
@@ -195,6 +197,104 @@ public static class ScenarioSpreadsheetLoader
                 });
             }
         }
+    }
+
+    private static void LoadSenderURLS(ExcelWorksheet sheet, SocialMediaScenario scenario)
+    {
+        if (sheet == null)
+            return;
+
+        int rows = sheet.Dimension.Rows;
+
+        const int nameColumn = 1;
+        const int urlColumn = 2;
+        const int startColumn = 3;
+        const int titleColumn = 4;
+
+        for (int rowIndex = 1; rowIndex <= rows; rowIndex++)
+        {
+            var row = sheet.Row(rowIndex);
+
+            // Skip instructions which are coloured
+            var colour = row.Style.Fill.BackgroundColor;
+            if (colour.Rgb != null)
+                continue;
+
+
+            var name = sheet.GetValue<string>(rowIndex, nameColumn);
+
+            if (name == null)
+                continue;
+
+            var url = sheet.GetValue<string>(rowIndex, urlColumn);
+            int startTime = 0;
+
+            try
+            {
+                startTime = sheet.GetValue<int>(rowIndex, startColumn);
+            }
+            catch 
+            {
+
+            }
+
+            switch (name.ToLower())
+            {
+                case "streamed video":
+
+                    scenario.senderStreamingSkipTime = startTime;
+                    scenario.senderStreamingURL = url;
+
+                    break;
+
+                case "youtube video":
+
+                    scenario.senderYoutubeURL = url;
+                    scenario.senderYoutubeVideoTitle = sheet.GetValue<string>(rowIndex, titleColumn);
+
+                    break;
+            }
+        }
+    }
+
+    private static List<RecommendedVideo> LoadRecommendedVideos(ExcelWorksheet sheet)
+    {
+        List<RecommendedVideo> result = new List<RecommendedVideo>();
+
+        if (sheet == null)
+            return result;
+
+        int rows = sheet.Dimension.Rows;
+
+        const int titleColumn = 1;
+        const int fromColumn = 2;
+        const int viewsColumn = 3;
+        const int imageColumn = 4;
+
+        for (int rowIndex = 1; rowIndex <= rows; rowIndex++)
+        {
+            var row = sheet.Row(rowIndex);
+
+            // Skip instructions which are coloured
+            var colour = row.Style.Fill.BackgroundColor;
+            if (colour.Rgb != null)
+                continue;
+
+            var image = GetImage(sheet, rowIndex, imageColumn);
+
+            if (image == null)
+                continue;
+
+            result.Add(new RecommendedVideo()
+            {
+                from = sheet.GetValue<string>(rowIndex, fromColumn),
+                title = sheet.GetValue<string>(rowIndex, titleColumn),
+                picture = image,
+                views = sheet.GetValue<string>(rowIndex, viewsColumn),
+            });
+        }
+
+        return result;
     }
 
     private static List<Message> LoadNormalTwitterFeed(ExcelWorksheet sheet, bool processMessage = true)
