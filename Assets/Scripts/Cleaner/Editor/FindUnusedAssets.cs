@@ -78,7 +78,15 @@ namespace AssetClean
 
             if (newData)
             {
-                var skipFolders = new string[] { "Assets/Data", "Assets/Plugins", "Assets/Scenes", "Assets/SteamVR",
+                var skipFolders = new string[] { "Assets/csc.rsp",
+                    "Assets/Imported Assets/Female Duck",
+                    "Assets/Imported Assets/Male Duck",
+                    "Assets/Lean",
+                    "Assets/PhysSound",
+                    "Assets/ThirdParty",
+                    "Assets/TextMesh Pro",
+                    "Assets/Imported Assets/Pet Clutter",
+                    "Assets/Data", "Assets/Plugins", "Assets/Scenes", "Assets/SteamVR",
                     "Assets/VRTK", "Assets/Imported Assets/Screen", "Assets/Character Animations",
                     "Assets/Imported Assets/DesktopComputerSet", "Assets/Imported Assets/Office Stuff",
                     "Assets/Imported Assets/Standard Assets", "Assets/Prefabs/computer.fbx", "Assets/StreamingAssets"};
