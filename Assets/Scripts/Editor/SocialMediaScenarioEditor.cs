@@ -63,6 +63,22 @@ public class SocialMediaScenarioEditor : Editor
             SaveOnlineProfile(newData.senderProfile, newFolder);
             SaveOnlineProfile(newData.receiverProfile, newFolder);
 
+            if (newData.recommendedVideos.Any())
+            {
+                var recommenedVideosFolder = Path.Combine(newFolder, "RecommendedVideos");
+
+                if (!AssetDatabase.IsValidFolder(recommenedVideosFolder))
+                {
+                    AssetDatabase.CreateFolder(newFolder, "RecommendedVideos");
+                }
+
+                int index = 1;
+                foreach (var video in newData.recommendedVideos)
+                {
+                    SaveRecommendedVideo(video, recommenedVideosFolder, index++);
+                }
+            }
+
             foreach (var messageFeedType in (SocialMediaScenatioMessageFeedType[])Enum.GetValues(typeof(SocialMediaScenatioMessageFeedType)))
             {
                 var messageFeed = newData.GetMessageFeed(messageFeedType);
@@ -136,6 +152,27 @@ public class SocialMediaScenarioEditor : Editor
         }
 
         AssetDatabase.CreateAsset(feed, Path.Combine(path, name + ".asset"));
+    }
+
+    private static void SaveRecommendedVideo(RecommendedVideo recommendedVideo, string path, int index)
+    {
+        recommendedVideo.name = recommendedVideo.title;
+
+        var assetPath = Path.Combine(path, index + ".asset");
+
+        if (recommendedVideo.picture)
+        {
+            var texturePath = Path.Combine(path, "Textures");
+
+            if (!AssetDatabase.IsValidFolder(texturePath))
+            {
+                AssetDatabase.CreateFolder(path, "Textures");
+            }
+
+            recommendedVideo.picture = SaveImage(recommendedVideo.picture.texture, Path.Combine(texturePath, index + ".png"));
+        }
+
+        AssetDatabase.CreateAsset(recommendedVideo, assetPath);
     }
 
     private static void SaveOnlineProfile(OnlineProfile profile, string path)
