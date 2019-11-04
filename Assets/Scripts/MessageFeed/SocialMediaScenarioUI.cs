@@ -23,7 +23,7 @@ public class SocialMediaScenarioUI : MonoBehaviour
             var display = Instantiate(prefab, container.transform);
 
             display.gameObject.SetActive(true);
-            display.GetComponentInChildren<Text>().text = option.name + "(Project)";
+            display.GetComponentInChildren<Text>().text = option.name;
 
             display.onClick.AddListener(() =>
             {
@@ -42,7 +42,7 @@ public class SocialMediaScenarioUI : MonoBehaviour
             var display = Instantiate(prefab, container.transform);
 
             display.gameObject.SetActive(true);
-            display.GetComponentInChildren<Text>().text = Path.GetFileNameWithoutExtension(option) + "(Filesystem)";
+            display.GetComponentInChildren<Text>().text = Path.GetFileNameWithoutExtension(option) + " (Excel)";
 
             display.onClick.AddListener(() =>
             {
