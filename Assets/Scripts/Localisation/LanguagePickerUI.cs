@@ -8,6 +8,8 @@ public class LanguagePickerUI : MonoBehaviour
     [SerializeField] StackChildren container;
     [SerializeField] Button prefab;
 
+    Button selected;
+
     void Start()
     {
         // Current language takes some time to be set
@@ -25,13 +27,20 @@ public class LanguagePickerUI : MonoBehaviour
 
             display.onClick.AddListener(() =>
             {
-                display.Select();
+                if (selected)
+                {
+                    selected.interactable = true;
+                }
+
+                display.interactable = false;
+                selected = display;
                 localization.SetCurrentLanguage(option.Name);
             });
 
             if (LeanLocalization.CurrentLanguage == option.Name)
             {
-                display.Select();
+                display.interactable = false;
+                selected = display;
             }
         }
 

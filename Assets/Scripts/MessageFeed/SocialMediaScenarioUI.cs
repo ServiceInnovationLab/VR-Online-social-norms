@@ -7,6 +7,8 @@ public class SocialMediaScenarioUI : MonoBehaviour
     [SerializeField] StackChildren container;
     [SerializeField] Button prefab;
 
+    Button selected;
+
     // Use this for initialization
     void Start()
     {
@@ -27,13 +29,20 @@ public class SocialMediaScenarioUI : MonoBehaviour
 
             display.onClick.AddListener(() =>
             {
-               display.Select();
-               picker.CurrentScenario = option;
+                if (selected)
+                {
+                    selected.interactable = true;
+                }
+
+                display.interactable = false;
+                selected = display;
+                picker.CurrentScenario = option;
             });
 
             if (picker.CurrentScenario == option)
             {
-                display.Select();
+                selected = display;
+                display.interactable = false;
             }
         }
 
@@ -46,7 +55,13 @@ public class SocialMediaScenarioUI : MonoBehaviour
 
             display.onClick.AddListener(() =>
             {
-                display.Select();
+                if (selected)
+                {
+                    selected.interactable = true;
+                }
+
+                display.interactable = false;
+                selected = display;
                 picker.LoadScenario(option);
             });
         }
