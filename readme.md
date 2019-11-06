@@ -10,9 +10,17 @@ Other VR headsets may work but have not been tested.
 
 It has only been tested on Windows.
 
-### Prebuilt releases
+The PC minimum specifications that have been tested are:
+
+- Windows 10 Home
+- **Graphics Card**: nVidia GeForce GTX 1060
+- **CPU**: Intel i7-7700HQ
+- **RAM**: 16 GB
+
+### Prebuilt standalone releases
 
 See the [Releases](https://github.com/ServiceInnovationLab/VR-Empathy/releases) page to find pre-built binaries if you are looking to just run the prototype.
+This does not need the Unity Editor to be installed.
 
 ### Unity Project
 
