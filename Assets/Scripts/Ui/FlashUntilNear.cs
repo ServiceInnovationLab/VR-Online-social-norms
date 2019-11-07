@@ -3,16 +3,10 @@ using UnityEngine;
 using VRTK;
 using VRTK.Highlighters;
 
-public enum Closeness
-{
-    NearTouch,
-    Touched
-}
-
 [RequireComponent(typeof(VRTK_InteractableObject))]
 public class FlashUntilNear : MonoBehaviour
 {
-    VRTK_InteractableObject interactableObject;
+    protected VRTK_InteractableObject interactableObject;
 
     [SerializeField] Closeness closeness = Closeness.NearTouch;
     [SerializeField] protected Color highlightColour = Color.clear;
@@ -21,6 +15,7 @@ public class FlashUntilNear : MonoBehaviour
 
     VRTK_MaterialColorSwapHighlighter highlighter;
     VRTK_InteractObjectHighlighter highlighterObject;
+    bool disableHighlight;
 
     void OnEnable()
     {
@@ -48,24 +43,43 @@ public class FlashUntilNear : MonoBehaviour
         {
             Debug.LogError("Unknown closeness value");
         }
+
+        disableHighlight = true;
     }
 
     private void InteractObjectHighlighterHighlighted(object sender, InteractObjectHighlighterEventArgs e)
     {
+        if (e.interactionType == VRTK_InteractableObject.InteractionType.NearTouch && closeness == Closeness.Touched)
+            return;
+
         StopAllCoroutines();
         enabled = false;
+        disableHighlight = !(interactableObject.isUsable || interactableObject.isGrabbable);
     }
 
     private void OnDisable()
     {
         StopAllCoroutines();
 
-        if (highlighterObject)
+
+        if (closeness == Closeness.NearTouch)
+        {
+            interactableObject.InteractableObjectNearTouched -= InteractableObjectNearTouched;
+        }
+        else if (closeness == Closeness.Touched)
+        {
+            interactableObject.InteractableObjectTouched -= InteractableObjectNearTouched;
+        }
+
+        if (interactableObject.IsTouched() && (interactableObject.isUsable || interactableObject.isGrabbable))
+            return;
+
+        if (highlighterObject && disableHighlight)
         {
             highlighterObject.Unhighlight();
         }
 
-        if (highlighter)
+        if (highlighter && disableHighlight)
         {
             highlighter.Unhighlight();
         }
@@ -79,6 +93,12 @@ public class FlashUntilNear : MonoBehaviour
         {
             yield return new WaitForSeconds(time);
 
+            if (interactableObject.IsTouched())
+            {
+                disableHighlight = false;
+                break;
+            }
+
             if (highlighterObject)
             {
                 highlighterObject.Highlight(highlightColour);
@@ -89,6 +109,12 @@ public class FlashUntilNear : MonoBehaviour
             }
 
             yield return new WaitForSeconds(time);
+
+            if (interactableObject.IsTouched())
+            {
+                disableHighlight = false;
+                break;
+            }
 
             if (highlighterObject)
             {

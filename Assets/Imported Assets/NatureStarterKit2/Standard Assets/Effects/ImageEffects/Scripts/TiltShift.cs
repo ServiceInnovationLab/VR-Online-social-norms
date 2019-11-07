@@ -1,75 +1,72 @@
-using System;
 using UnityEngine;
+using System.Collections;
 
-namespace UnityStandardAssets.ImageEffects
-{
-    [RequireComponent (typeof(Camera))]
-    [AddComponentMenu ("Image Effects/Camera/Tilt Shift (Lens Blur)")]
-    class TiltShift : PostEffectsBase {
-        public enum TiltShiftMode
-        {
-            TiltShiftMode,
-            IrisMode,
-        }
-        public enum TiltShiftQuality
-        {
-            Preview,
-            Normal,
-            High,
-        }
+[RequireComponent (typeof(Camera))]
+[AddComponentMenu ("Image Effects/Camera/Tilt Shift (Lens Blur)")]
+class TiltShift : PostEffectsBase {
+	public enum TiltShiftMode 
+	{
+		TiltShiftMode,
+		IrisMode,
+	}
+	public enum TiltShiftQuality
+	{
+		Preview,
+		Normal,
+		High,
+	}	
 
-        public TiltShiftMode mode = TiltShiftMode.TiltShiftMode;
-        public TiltShiftQuality quality = TiltShiftQuality.Normal;
+	public TiltShiftMode mode = TiltShiftMode.TiltShiftMode;
+	public TiltShiftQuality quality = TiltShiftQuality.Normal;
 
-        [Range(0.0f, 15.0f)]
-        public float blurArea = 1.0f;
+	[Range(0.0f, 15.0f)]
+	public float blurArea = 1.0f;
 
-        [Range(0.0f, 25.0f)]
-        public float maxBlurSize = 5.0f;
+	[Range(0.0f, 25.0f)]
+	public float maxBlurSize = 5.0f;
+	
+	[Range(0, 1)]
+	public int downsample = 0;
 
-        [Range(0, 1)]
-        public int downsample = 0;
-
-        public Shader tiltShiftShader = null;
-        private Material tiltShiftMaterial = null;
+	public Shader tiltShiftShader = null;
+	private Material tiltShiftMaterial = null;
 
 
-        public override bool CheckResources () {
-            CheckSupport (true);
+    public override bool CheckResources (){	
+		 CheckSupport (true);	
+	
+		tiltShiftMaterial = CheckShaderAndCreateMaterial (tiltShiftShader, tiltShiftMaterial);
+		
+		if(!isSupported)
+			ReportAutoDisable ();
+		return isSupported;				
+	}
+	
+	void OnRenderImage ( RenderTexture source ,   RenderTexture destination  ){	
+		if(CheckResources() == false) {
+			Graphics.Blit (source, destination);
+			return;
+		}
 
-            tiltShiftMaterial = CheckShaderAndCreateMaterial (tiltShiftShader, tiltShiftMaterial);
+		tiltShiftMaterial.SetFloat("_BlurSize", maxBlurSize < 0.0f ? 0.0f : maxBlurSize);
+		tiltShiftMaterial.SetFloat("_BlurArea", blurArea);
+		source.filterMode = FilterMode.Bilinear;
+		
+		RenderTexture rt = destination;
+		if (downsample > 0f) {
+			rt = RenderTexture.GetTemporary (source.width>>downsample, source.height>>downsample, 0, source.format);
+			rt.filterMode = FilterMode.Bilinear;		
+		}		
 
-            if (!isSupported)
-                ReportAutoDisable ();
-            return isSupported;
-        }
+		int basePassNr = (int) quality; basePassNr *= 2;
+		Graphics.Blit (source, rt, tiltShiftMaterial, mode == TiltShiftMode.TiltShiftMode ? basePassNr : basePassNr + 1);
 
-        void OnRenderImage (RenderTexture source, RenderTexture destination) {
-            if (CheckResources() == false) {
-                Graphics.Blit (source, destination);
-                return;
-            }
+		if (downsample > 0f) {
+			tiltShiftMaterial.SetTexture ("_Blurred", rt);
+			Graphics.Blit (source, destination, tiltShiftMaterial, 6);
+		}
 
-            tiltShiftMaterial.SetFloat("_BlurSize", maxBlurSize < 0.0f ? 0.0f : maxBlurSize);
-            tiltShiftMaterial.SetFloat("_BlurArea", blurArea);
-            source.filterMode = FilterMode.Bilinear;
-
-            RenderTexture rt = destination;
-            if (downsample > 0f) {
-                rt = RenderTexture.GetTemporary (source.width>>downsample, source.height>>downsample, 0, source.format);
-                rt.filterMode = FilterMode.Bilinear;
-            }
-
-            int basePassNr = (int) quality; basePassNr *= 2;
-            Graphics.Blit (source, rt, tiltShiftMaterial, mode == TiltShiftMode.TiltShiftMode ? basePassNr : basePassNr + 1);
-
-            if (downsample > 0) {
-                tiltShiftMaterial.SetTexture ("_Blurred", rt);
-                Graphics.Blit (source, destination, tiltShiftMaterial, 6);
-            }
-
-            if (rt != destination)
-                RenderTexture.ReleaseTemporary (rt);
-        }
-    }
+		if (rt != destination)
+			RenderTexture.ReleaseTemporary (rt);
+	}	
 }

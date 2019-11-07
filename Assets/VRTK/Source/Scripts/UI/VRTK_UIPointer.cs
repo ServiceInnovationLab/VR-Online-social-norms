@@ -95,6 +95,7 @@ namespace VRTK
 
         [Tooltip("The button used to execute the select action at the pointer's target position.")]
         public VRTK_ControllerEvents.ButtonAlias selectionButton = VRTK_ControllerEvents.ButtonAlias.TriggerPress;
+        public VRTK_ControllerEvents.ButtonAlias secondarySelectionButton = VRTK_ControllerEvents.ButtonAlias.Undefined;
         [Tooltip("Determines when the UI Click event action should happen.")]
         public ClickMethods clickMethod = ClickMethods.ClickOnButtonUp;
         [Tooltip("Determines whether the UI click action should be triggered when the pointer is deactivated. If the pointer is hovering over a clickable element then it will invoke the click action on that element. Note: Only works with `Click Method =  Click_On_Button_Up`")]
@@ -397,7 +398,7 @@ namespace VRTK
         /// <returns>Returns `true` if the selection button is active.</returns>
         public virtual bool IsSelectionButtonPressed()
         {
-            return (controllerEvents != null ? controllerEvents.IsButtonPressed(selectionButton) : false);
+            return (controllerEvents != null ? controllerEvents.IsButtonPressed(selectionButton) || controllerEvents.IsButtonPressed(secondarySelectionButton) : false);
         }
 
         /// <summary>

@@ -15,7 +15,10 @@ public class BasicFunctions : ScriptableObject
     /// <param name="gameObject">The <see cref="GameObject"/> to change</param>
     public void ToggleObject(GameObject gameObject)
     {
-        gameObject.SetActive(!gameObject.activeInHierarchy);
+        if (gameObject)
+        {
+            gameObject.SetActive(!gameObject.activeInHierarchy);
+        }
     }
 
     /// <summary>
@@ -25,6 +28,18 @@ public class BasicFunctions : ScriptableObject
     public void DestroyObject(GameObject gameObject)
     {
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Destroys the given game object, if it is active
+    /// </summary>
+    /// <param name="gameObject">The <see cref="GameObject"/> to destroy</param>
+    public void DestroyObjectIfActive(GameObject gameObject)
+    {
+        if (gameObject && gameObject.activeInHierarchy)
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>
@@ -52,9 +67,22 @@ public class BasicFunctions : ScriptableObject
     /// </summary>
     public void DisableTeleporting()
     {
-        foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
+        var leftHand = VRTK_DeviceFinder.GetControllerLeftHand();
+
+        if (leftHand)
         {
-            teleporter.enableTeleport = false;
+            leftHand.GetComponent<VRTK_Pointer>().enableTeleport = false;
+            leftHand.GetComponent<VRTK_Pointer>().enabled = false;
+            leftHand.GetComponent<VRTK_BasePointerRenderer>().enabled = false;
+        }
+
+        leftHand = VRTK_DeviceFinder.GetControllerRightHand();
+
+        if (leftHand)
+        {
+            leftHand.GetComponent<VRTK_Pointer>().enableTeleport = false;
+            leftHand.GetComponent<VRTK_Pointer>().enabled = false;
+            leftHand.GetComponent<VRTK_BasePointerRenderer>().enabled = false;
         }
     }
 
@@ -63,9 +91,22 @@ public class BasicFunctions : ScriptableObject
     /// </summary>
     public void EnableTeleporting()
     {
-        foreach (var teleporter in FindObjectsOfType<VRTK_Pointer>())
+        var leftHand = VRTK_DeviceFinder.GetControllerLeftHand();
+
+        if (leftHand)
         {
-            teleporter.enableTeleport = true;
+            leftHand.GetComponent<VRTK_Pointer>().enableTeleport = true;
+            leftHand.GetComponent<VRTK_Pointer>().enabled = true;
+            leftHand.GetComponent<VRTK_BasePointerRenderer>().enabled = true;
+        }
+
+        leftHand = VRTK_DeviceFinder.GetControllerRightHand();
+
+        if (leftHand)
+        {
+            leftHand.GetComponent<VRTK_Pointer>().enableTeleport = true;
+            leftHand.GetComponent<VRTK_Pointer>().enabled = true;
+            leftHand.GetComponent<VRTK_BasePointerRenderer>().enabled = true;
         }
     }
 
@@ -145,6 +186,12 @@ public class BasicFunctions : ScriptableObject
         }
     }
 
+    public void AllowUse(VRTK_InteractableObject interactableObject)
+    {
+        interactableObject.isUsable = true;
+    }
+
+
     public void AllowDropping(VRTK_InteractableObject interactableObject)
     {
         interactableObject.validDrop = VRTK_InteractableObject.ValidDropTypes.DropAnywhere;
@@ -153,5 +200,30 @@ public class BasicFunctions : ScriptableObject
         //{
         //    interactableObject.gameObject.AddComponent<Rigidbody>();
         //}
+    }
+
+    public void Log(string text)
+    {
+        Debug.Log(text);
+    }
+
+    public void GrowObject(GameObject gameObject)
+    {
+        gameObject.transform.localScale *= 1.1f;
+    }
+
+    public void AlignPlayAreaToObject(Transform transform)
+    {
+        var playarea = VRTK_DeviceFinder.PlayAreaTransform();
+
+        playarea.rotation = transform.rotation;
+        playarea.position = transform.position;
+    }
+
+    public void FlipPlayArea()
+    {
+        var playarea = VRTK_DeviceFinder.PlayAreaTransform();
+
+        playarea.rotation = Quaternion.Euler(playarea.rotation.eulerAngles + new Vector3(0, 180, 0));
     }
 }

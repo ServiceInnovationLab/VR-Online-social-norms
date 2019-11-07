@@ -8,4 +8,6 @@ public static class Events
     public static string SceneSwitched = nameof(SceneSwitched);
 
     public static string KeyboardTextTyped = nameof(KeyboardTextTyped);
+
+    public static string PhotoTaken = nameof(PhotoTaken);
 }

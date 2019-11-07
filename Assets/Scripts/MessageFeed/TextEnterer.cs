@@ -5,27 +5,33 @@ using UnityEngine.UI;
 
 public class TextEnterer : MonoBehaviour
 {
-    [SerializeField] TextObject textToEnter;
-    [SerializeField] FloatRange timeBetweenCharacters = new FloatRange() { min = 0.2f, max = 0.25f };
+    [SerializeField] SocialMediaScenarioTextType textToEnterType;
+    [SerializeField] protected FloatRange timeBetweenCharacters = new FloatRange() { min = 0.2f, max = 0.25f };
     [SerializeField] InputField input;
     [SerializeField] Button sendButton;
     [SerializeField] UnityEvent typingCompleted;
-    [SerializeField] UnityEvent onSend;    
+    [SerializeField] UnityEvent onSend;
     [SerializeField] ScreenMessageFeedView feedView;
 
-    bool started;
+    protected bool started;
+    protected string textToEnter;
+    protected bool isTypingCompleted { get; private set; }
 
     public void SendText()
     {
-        feedView.StopFeed();
-        feedView.SendMessageToFeed(input);
+        if (feedView)
+        {
+            feedView.StopFeed();
+            feedView.SendMessageToFeed(input);
+        }
+
         onSend?.Invoke();
     }
 
     public void Complete()
     {
         StopAllCoroutines();
-        input.text = textToEnter.text;
+        input.text = textToEnter;
     }
 
     public void StartTypeText()
@@ -37,9 +43,12 @@ public class TextEnterer : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        sendButton.interactable = false;
+        if (sendButton)
+        {
+            sendButton.interactable = false;
+        }
 
         if (!feedView)
         {
@@ -47,17 +56,31 @@ public class TextEnterer : MonoBehaviour
         }
     }
 
-    IEnumerator TypeText()
+    protected virtual void Start()
     {
-        for (int i = 0; i < textToEnter.text.Length; i++)
+        textToEnter = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(textToEnterType);
+    }
+
+    protected virtual IEnumerator TypeText()
+    {
+        if (textToEnter == null)
         {
-            input.text = textToEnter.text.Substring(0, i + 1);
-            EventManager.TriggerEvent(Events.KeyboardTextTyped);
-            EventManager.TriggerEvent(Events.KeyboardTextTyped, new TextTypedEventArgs(input.text[input.text.Length - 1].ToString()));
+            textToEnter = SocialMediaScenarioPicker.Instance.CurrentScenario.GetText(textToEnterType);
+        }
+
+        for (int i = 0; i < textToEnter.Length; i++)
+        {
+            TypeCharacter(i + 1);
 
             yield return new WaitForSeconds(timeBetweenCharacters.GetValue());
         }
 
+        OnTypingFinished();
+    }
+
+    protected virtual void OnTypingFinished()
+    {
+        isTypingCompleted = true;
         typingCompleted?.Invoke();
 
         if (sendButton)
@@ -69,5 +92,18 @@ public class TextEnterer : MonoBehaviour
         {
             feedView.StopFeed();
         }
+    }
+
+    /// <summary>
+    /// Types the text to be entered up to the length specified.
+    /// </summary>
+    /// <param name="length"></param>
+    protected void TypeCharacter(int length)
+    {
+        length = Mathf.Min(length, textToEnter.Length);
+
+        input.text = textToEnter.Substring(0, length);
+        EventManager.TriggerEvent(Events.KeyboardTextTyped);
+        EventManager.TriggerEvent(Events.KeyboardTextTyped, new TextTypedEventArgs(input.text[input.text.Length - 1].ToString()));
     }
 }

@@ -389,6 +389,21 @@ namespace VRTK
             }
         }
 
+        public override bool HapticPulse(VRTK_ControllerReference controllerReference, float strength = 0.5F, float duration = 1, float frequency = 150)
+        {
+            uint index = VRTK_ControllerReference.GetRealIndex(controllerReference);
+            if (index < OpenVR.k_unTrackedDeviceIndexInvalid)
+            {
+                var controllerInputSource = controllerReference.actual.GetComponent<SDK_SteamVRInputSource>();
+                if (controllerInputSource != null)
+                {
+                    controllerInputSource.TriggerHapticPulse(strength, duration, frequency);
+                }
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// The HapticPulse/2 method is used to initiate a haptic pulse based on an audio clip on the tracked object of the given controller reference.
         /// </summary>

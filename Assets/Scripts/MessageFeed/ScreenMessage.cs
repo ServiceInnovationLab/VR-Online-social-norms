@@ -1,5 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
+public enum MessageTimeFormat
+{
+    TimeSinceSend,
+    TimeSent,
+    None
+}
 
 public class ScreenMessage : MonoBehaviour
 {
@@ -7,29 +15,302 @@ public class ScreenMessage : MonoBehaviour
     public string fromTag;
     public string message;
     public Sprite profilePicture;
+    public Sprite image;
     public bool sent = true;
+    public bool moveFromTime = true;
+    public bool highlight;
+    public bool flash;
+    public string retweetedBy;
+    public AnimatedImage animatedImage;
+    public ScreenMessage subMessage;
 
-    [SerializeField] Text messageText;
-    [SerializeField] Image profilePictureImage;
-    [SerializeField] Text fromTime;
-    [SerializeField] Text fromPersonText;
+    [SerializeField] float bottomPadding = 0;
+
+    [SerializeField] protected MessageTimeFormat timeFormat = MessageTimeFormat.TimeSinceSend;
+    [SerializeField] protected bool showFromTag = true;
+    [SerializeField] protected OnlineProfile profile;
+    
+    [SerializeField] protected Image profilePictureImage;
+    [SerializeField] protected Image imageDisplay;
+    [SerializeField] protected float moveLeftIfNoImage = 0;
+    [SerializeField] protected float increaseWidthIfNoImage;
+    [SerializeField] protected bool imageAffectsHeight = true;
+    [SerializeField] protected bool limitImageAdjustment = false;
+    [SerializeField] protected float highlightAlpha = 0.2f;
+    [SerializeField] protected Image highlightImage;
+    [SerializeField] bool textCentered = false;
+    [SerializeField] protected RectTransform textBackground;
+    [SerializeField] protected AnimatedImageDisplay animatedImageDisplay;
+
+    [SerializeField] protected Text messageText;
+    [SerializeField] protected Text fromTime;
+    [SerializeField] protected Text fromPersonText;
+
+    [SerializeField] protected TextMeshProUGUI messageTextPro;
+    [SerializeField] protected TextMeshProUGUI fromTimePro;
+    [SerializeField] protected TextMeshProUGUI fromPersonTextPro;
+
+    [SerializeField] protected bool resizeBasedOnImage;
+    [SerializeField] protected bool resizeBasedOnAnimatedImage;
+
+    [SerializeField] RectTransform retweeted;
 
     float time = 0;
+    protected RectTransform rectTransform;
 
-    public Text GetMessageTextField()
+    public Text MessageTextField
     {
-        return messageText;
+        get { return messageText; }
     }
 
-    private void Awake()
+    public TextMeshProUGUI MessageTextFieldPro
     {
-        fromPersonText.text = from;
-        messageText.text = message;
-        profilePictureImage.sprite = profilePicture;
-        fromTime.text = fromTag;
+        get { return messageTextPro; }
     }
 
-    private void FixedUpdate()
+    public Text UsernameTextField
+    {
+        get { return fromPersonText; }
+    }
+
+    public TextMeshProUGUI UsernameTextFieldPro
+    {
+        get { return fromPersonTextPro; }
+    }
+
+    public RectTransform TagAndTimeTextField
+    {
+        get
+        {
+            if (fromTime)
+            {
+                return fromTime.rectTransform;
+            }
+
+            if (fromTimePro)
+            {
+                return fromTimePro.rectTransform;
+            }
+
+            return null;
+        }
+    }
+
+    public RectTransform TextBackground
+    {
+        get { return textBackground; }
+    }
+
+    public bool NeedsAFrame { get { return !Mathf.Approximately(increaseWidthIfNoImage, 0); } }
+
+    protected virtual void Awake()
+    {
+        rectTransform = (RectTransform)transform;
+
+        if (profile)
+        {
+            from = profile.username;
+            profilePicture = profile.picture;
+            fromTag = profile.tag;
+        }
+
+        if (fromPersonText)
+        {
+            fromPersonText.text = from;
+        }
+
+        if (fromPersonTextPro)
+        {
+            fromPersonTextPro.text = from;
+        }
+
+        if (messageText)
+        {
+            messageText.text = message;
+        }
+
+        if (messageTextPro)
+        {
+            messageTextPro.text = message;
+        }
+
+        if (retweeted)
+        {
+            if (string.IsNullOrWhiteSpace(retweetedBy))
+            {
+                retweeted.gameObject.SetActive(false);
+            }
+            else
+            {
+                retweeted.GetComponentInChildren<Text>().text = retweetedBy;
+            }
+        }
+
+        if (profilePictureImage)
+        {
+            profilePictureImage.sprite = profilePicture;
+        }
+
+        if (fromTime && showFromTag)
+        {
+            fromTime.text = fromTag;
+        }
+        else if (fromTimePro && showFromTag)
+        {
+            fromTimePro.text = fromTag;
+        }
+
+        if (fromTime && sent && timeFormat == MessageTimeFormat.TimeSent)
+        {
+            fromTime.text = "4 Aug, 2:38 PM";
+        }
+
+        if ( (timeFormat == MessageTimeFormat.None || timeFormat == MessageTimeFormat.TimeSent) && sent)
+        {
+            enabled = false;
+        }
+
+
+        if (!fromTime)
+        {
+            enabled = false;
+        }
+
+        //SetImage();
+        if (!image && !animatedImage)
+        {
+            if (!Mathf.Approximately(moveLeftIfNoImage, 0) && !subMessage)
+            {
+                rectTransform.SetLeft(moveLeftIfNoImage);
+            }
+
+            if (!Mathf.Approximately(increaseWidthIfNoImage, 0) && !subMessage)
+            {
+                rectTransform.sizeDelta += new Vector2(increaseWidthIfNoImage, 0);
+                textBackground.sizeDelta += new Vector2(increaseWidthIfNoImage, 0);
+            }
+        }
+
+        if (highlight)
+        {
+            if (!highlightImage)
+            {
+                highlightImage = GetComponent<Image>();
+            }
+
+            if (highlightImage)
+            {
+                var newColour = highlightImage.color;
+                newColour.a = highlightAlpha;
+                highlightImage.color = newColour;
+            }
+        }
+
+        if (flash)
+        {
+            var script = GetComponent<FlashingImage>();
+            if (script)
+            {
+                script.enabled = true;
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        Awake();
+    }
+
+    public void SetImage()
+    {
+        if (imageDisplay)
+        {
+            var heightAdjustment = 0f;
+
+            if (image)
+            {
+                imageDisplay.sprite = image;
+
+                if (resizeBasedOnImage)
+                {
+                    heightAdjustment = imageDisplay.rectTransform.rect.height - image.rect.height;
+
+                    if (heightAdjustment > 0)
+                    {
+                        imageDisplay.rectTransform.sizeDelta = new Vector2(imageDisplay.rectTransform.sizeDelta.x, image.rect.height);
+                    }
+                    else
+                    {
+                        heightAdjustment = 0;
+                    }
+                }
+            }
+            else if (animatedImageDisplay && animatedImage)
+            {
+                animatedImageDisplay.animatedImage = animatedImage;
+                animatedImageDisplay.enabled = true;
+
+                if (resizeBasedOnAnimatedImage)
+                {
+                    imageDisplay.rectTransform.sizeDelta = new Vector2(imageDisplay.rectTransform.sizeDelta.x, animatedImage.images[0].rect.height);
+                    heightAdjustment = imageDisplay.rectTransform.rect.height - animatedImage.images[0].rect.height;
+                }
+            }
+            else
+            {
+                heightAdjustment = imageDisplay.rectTransform.rect.height;
+
+                imageDisplay.gameObject.SetActive(false);
+            }
+
+            if (imageAffectsHeight && !Mathf.Approximately(heightAdjustment, 0))
+            {
+                if (limitImageAdjustment && textBackground)
+                {
+                    float textHeight = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
+
+                    if (rectTransform.rect.height - heightAdjustment < textHeight + bottomPadding)
+                    {
+                        heightAdjustment = rectTransform.rect.height - textHeight - bottomPadding;
+
+                        if (heightAdjustment < 0)
+                        {
+                            heightAdjustment = 0;
+                        }
+                    }
+                }
+
+                rectTransform.sizeDelta -= new Vector2(0, heightAdjustment);
+
+                if (textCentered)
+                {
+                    messageText.rectTransform.anchoredPosition -= new Vector2(0, heightAdjustment);
+                }
+            }
+        }
+    }
+
+    public void SetSize()
+    {
+        if (limitImageAdjustment && textBackground)
+        {
+            float bottom = Mathf.Max(Mathf.Abs(textBackground.rect.yMin), Mathf.Abs(textBackground.rect.yMax));
+
+            if (subMessage)
+            {
+                bottom = Mathf.Max(bottom, Mathf.Abs(subMessage.rectTransform.rect.yMin), Mathf.Abs(subMessage.rectTransform.rect.yMax));
+            }
+
+            if (imageDisplay && imageDisplay.gameObject.activeInHierarchy)
+            {
+                bottom = Mathf.Max(bottom, Mathf.Abs(imageDisplay.rectTransform.rect.yMin) + bottomPadding, Mathf.Abs(imageDisplay.rectTransform.rect.yMax) + bottomPadding);
+            }
+
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, bottom + bottomPadding);
+        }
+    }
+
+    protected virtual void FixedUpdate()
     {
         if (!sent)
             return;

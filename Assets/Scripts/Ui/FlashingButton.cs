@@ -26,7 +26,6 @@ public class FlashingButton : MonoBehaviour
         fromColor = originalColour;
     }
 
-    // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;

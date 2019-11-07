@@ -18,6 +18,10 @@ public class VR_StartingPoint : MonoBehaviour
 {
     [SerializeField] VRTK_SDKManager manager;
     [SerializeField] VRTK_BasicTeleport teleport;
+    [SerializeField] bool rotate;
+    [SerializeField] bool rotationAbsolute;
+    [SerializeField] bool autoTrigger = true;
+    
 
     [SerializeField, EnumFlag] DesiredPoint orientation = DesiredPoint.Back | DesiredPoint.Right;
 
@@ -26,7 +30,10 @@ public class VR_StartingPoint : MonoBehaviour
 
     private void Awake()
     {
-        manager.LoadedSetupChanged += LoadedSetupChanged;
+        if (autoTrigger)
+        {
+            manager.LoadedSetupChanged += LoadedSetupChanged;
+        }
 
         if (!headsetEat)
         {
@@ -39,16 +46,38 @@ public class VR_StartingPoint : MonoBehaviour
         }
     }
 
-    private void DoTeleport()
+    public void DoTeleport()
     {
+        Quaternion? rotation = null;
+
+        if (rotate)
+        {
+            var rotationY = rotationAbsolute ? transform.rotation.eulerAngles.y : VectorUtils.AngleOffAroundAxis(transform.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
+            rotationY += VRTK_SDKManager.instance.transform.rotation.eulerAngles.y;
+            rotation = Quaternion.Euler(0, rotationY, 0);
+        }
+
+        var playAreaTeleport = teleport as PlayAreaLimitedTeleport;
+        bool originalCheckForCollisions = false;
+
+        if (playAreaTeleport)
+        {
+            originalCheckForCollisions = playAreaTeleport.checkForCollisions;
+            playAreaTeleport.checkForCollisions = false;
+        }
 
         teleport.skipBlink = true;
-        teleport.Teleport(transform, transform.position);
+        teleport.Teleport(transform, transform.position, rotation);
         teleport.skipBlink = false;
 
         headsetEat.enabled = true;
 
         Destroy(gameObject);
+
+        if (playAreaTeleport)
+        {
+            playAreaTeleport.checkForCollisions = originalCheckForCollisions;
+        }
     }
 
     private void SteamTransformUpdate(SteamVR_Behaviour_Pose fromAction, SteamVR_Input_Sources fromSource)
@@ -123,6 +152,8 @@ public class VR_StartingPoint : MonoBehaviour
     {
         if (e.currentSetup == null)
             return;
+
+        manager.LoadedSetupChanged -= LoadedSetupChanged;
 
         var headsetPose = e.currentSetup.actualHeadset.GetComponent<SteamVR_Behaviour_Pose>();
 

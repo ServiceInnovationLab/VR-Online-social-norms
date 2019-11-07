@@ -5,7 +5,7 @@ public class SleepAllRigidBodies : MonoBehaviour
 {
     [SerializeField] Rigidbody[] excludes;
 
-    private void Awake()
+    private void Start()
     {
         var excludesSet = new HashSet<Rigidbody>(excludes);
 

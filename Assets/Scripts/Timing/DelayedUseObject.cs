@@ -11,6 +11,7 @@ public class DelayedUseObject : MonoBehaviour
 
     VRTK_InteractableObject interactableObject;
     VRTK_InteractObjectHighlighter highlighter;
+    FlashUntilNear flashUntilNear;
 
     public void AllowUse()
     {
@@ -18,6 +19,12 @@ public class DelayedUseObject : MonoBehaviour
         {
             highlighter.enabled = true;
         }
+
+        if (flashUntilNear)
+        {
+            flashUntilNear.enabled = true;
+        }
+
         interactableObject.isUsable = true;
         canUse = true;
     }
@@ -29,6 +36,10 @@ public class DelayedUseObject : MonoBehaviour
             highlighter.Unhighlight();
             highlighter.enabled = false;
         }
+        if (flashUntilNear)
+        {
+            flashUntilNear.enabled = false;
+        }
         canUse = false;
         interactableObject.isUsable = false;
     }
@@ -37,6 +48,7 @@ public class DelayedUseObject : MonoBehaviour
     {
         interactableObject = GetComponent<VRTK_InteractableObject>();
         highlighter = GetComponent<VRTK_InteractObjectHighlighter>();
+        flashUntilNear = GetComponent<FlashUntilNear>();
 
         if (!canUse)
         {

@@ -1,13 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using VRTK;
+using System.Linq;
 
 /// <summary>
 /// This component allows teleporting to a target game object and have the player replace them,
 /// with custom blink transition times to improve the feel of the POV change.
 /// </summary>
+[ExecuteInEditMode]
 public class PerspectiveChanger : MonoBehaviour
 {
+    public bool resizeFirst;
+    public bool doRotate = true;
+    public bool deleteTarget = true;
+    public bool doTeleport = true;
+
     [Tooltip("The target location the player will be teleported to on entering the sphere")]
     [SerializeField] Transform target;
 
@@ -30,14 +37,48 @@ public class PerspectiveChanger : MonoBehaviour
 
     [SerializeField] UnityEvent afterTeleport;
 
+    [SerializeField] UnityEvent beforeTeleport;
+
     [SerializeField] bool scalePosition;
 
-    [SerializeField] bool scaleCamera;
+    public bool scaleCamera;
 
     [SerializeField] VRTK_BasicTeleport teleporter;
 
+    [SerializeField, HideInInspector] Collider[] excludeColliders;
+
+    bool teleported;
+
+
+    private void Awake()
+    {
+        // When the persepctive changer gets deleted, it can make physics objects go crazy. So load up all items touching it and ignore collisions
+        // Seems to be easier for now, swapping to layers may be better or it being a trigger collider (but need to stop teleporting into it)
+
+        var collider = GetComponent<Collider>();
+
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+        {            
+            excludeColliders = FindObjectsOfType<Collider>().Where(x => x.bounds.Intersects(collider.bounds)).OrderBy(x => x.gameObject.name).ToArray();
+
+            return;
+        }
+#endif
+
+        foreach (var exclude in excludeColliders)
+        {
+            Physics.IgnoreCollision(exclude, collider);
+        }
+    }
+
     public void DoTeleport()
     {
+        if (teleported)
+            return;
+
+        teleported = true;
+
         if (!targetRotation)
         {
             targetRotation = target;
@@ -51,41 +92,81 @@ public class PerspectiveChanger : MonoBehaviour
         var teleportPosition = (target.position * (scaleRoom && scalePosition ? newSceneScale : 1)) + offset;
 
         var teleporter = this.teleporter ?? FindObjectOfType<VRTK_BasicTeleport>();
+
+        var playAreaTeleport = teleporter as PlayAreaLimitedTeleport;
+        bool originalCheckForCollisiosn = false;
+
+        if (playAreaTeleport)
+        {
+            originalCheckForCollisiosn = playAreaTeleport.checkForCollisions;
+            playAreaTeleport.checkForCollisions = false;
+        }
+
         var originalBlinkDelay = teleporter.distanceBlinkDelay;
         var originalBlinkTransition = teleporter.blinkTransitionSpeed;
 
         teleporter.distanceBlinkDelay = blinkDistance;
-        teleporter.blinkTransitionSpeed = blinkTransition;        
+        teleporter.blinkTransitionSpeed = blinkTransition;
 
         if (scaleRoom)
         {
             sceneObjects.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
-        float rotationY;
+        Quaternion? rotation = null;
 
-        if (VRTK_DeviceFinder.GetHeadsetTypeAsString() == "simulator")
+        if (doRotate)
         {
-            // The simulator Y rotation is done by the play area and not the headset transform...
-            rotationY = Vector3.SignedAngle(Vector3.forward, targetRotation.forward, Vector3.up);
+            float rotationY;
+
+            if (VRTK_DeviceFinder.GetHeadsetTypeAsString() == "simulator")
+            {
+                // The simulator Y rotation is done by the play area and not the headset transform...
+                rotationY = Vector3.SignedAngle(Vector3.forward, targetRotation.forward, Vector3.up);
+            }
+            else
+            {
+                rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up) + VRTK_SDKManager.instance.transform.rotation.eulerAngles.y;
+            }
+
+            rotation = Quaternion.Euler(0, rotationY, 0);
+        }
+
+        beforeTeleport?.Invoke();
+
+        if (scaleCamera && resizeFirst)
+        {
+            VRTK_SDKManager.instance.transform.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
+        }
+
+        if (doTeleport)
+        {
+            teleporter.Teleport(target, teleportPosition, rotation);
         }
         else
         {
-            rotationY = VectorUtils.AngleOffAroundAxis(targetRotation.forward, VRTK_DeviceFinder.HeadsetTransform().forward, Vector3.up);
+            VRTK_SDK_Bridge.HeadsetFade(Color.black, 0);
+            teleporter.Invoke("ReleaseBlink", 1.0f);
         }
 
-        teleporter.Teleport(target, teleportPosition, Quaternion.Euler(0, rotationY, 0));
-
-        if (scaleCamera)
+        if (scaleCamera && !resizeFirst)
         {
             VRTK_SDKManager.instance.transform.localScale = new Vector3(newSceneScale, newSceneScale, newSceneScale);
         }
 
         afterTeleport?.Invoke();
 
-        Destroy(target.gameObject);
+        if (deleteTarget)
+        {
+            Destroy(target.gameObject);
+        }
 
         teleporter.distanceBlinkDelay = originalBlinkDelay;
         teleporter.blinkTransitionSpeed = originalBlinkTransition;
+
+        if (playAreaTeleport)
+        {
+            playAreaTeleport.checkForCollisions = originalCheckForCollisiosn;
+        }
     }
 }

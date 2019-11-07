@@ -137,7 +137,7 @@
                     }
 
                     GameObject target = ExecuteEvents.ExecuteHierarchy(result.gameObject, pointer.pointerEventData, ExecuteEvents.pointerEnterHandler);
-                    target = (target == null ? result.gameObject : target);
+                    //target = (target == null ? result.gameObject : target);
 
                     if (target != null)
                     {

@@ -90,6 +90,26 @@ public class PeriodicHapticFeedback : MonoBehaviour
         }
     }
 
+    public void TriggerPulse()
+    {
+        if (controller.HasFlag(VR_Controller.Grabbed) && VRTK_ControllerReference.IsValid(grabbedController))
+        {
+            VRTK_ControllerHaptics.TriggerHapticPulse(grabbedController, stength, duration, pulseInterval);
+        }
+        else
+        {
+            if (controller.HasFlag(VR_Controller.Left) && VRTK_ControllerReference.IsValid(leftController))
+            {
+                VRTK_ControllerHaptics.TriggerHapticPulse(leftController, stength, duration, pulseInterval);
+            }
+
+            if (controller.HasFlag(VR_Controller.Right) && VRTK_ControllerReference.IsValid(rightController))
+            {
+                VRTK_ControllerHaptics.TriggerHapticPulse(rightController, stength, duration, pulseInterval);
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         FindControllers();
@@ -106,22 +126,7 @@ public class PeriodicHapticFeedback : MonoBehaviour
         {
             time = -duration;
 
-            if (controller.HasFlag(VR_Controller.Grabbed) && VRTK_ControllerReference.IsValid(grabbedController))
-            {
-                VRTK_ControllerHaptics.TriggerHapticPulse(grabbedController, stength, duration, pulseInterval);
-            }
-            else
-            {
-                if (controller.HasFlag(VR_Controller.Left))
-                {
-                    VRTK_ControllerHaptics.TriggerHapticPulse(leftController, stength, duration, pulseInterval);
-                }
-
-                if (controller.HasFlag(VR_Controller.Right))
-                {
-                    VRTK_ControllerHaptics.TriggerHapticPulse(rightController, stength, duration, pulseInterval);
-                }
-            }
+            TriggerPulse();
         }
     }
 }

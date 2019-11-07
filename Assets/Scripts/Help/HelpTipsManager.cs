@@ -49,6 +49,9 @@ public class HelpTipsManager : MonoBehaviour
 
     private void ShowHelp(HelpTips tips, bool swapLeftAndRight = false)
     {
+        if (!enabled)
+            return;
+
         var leftController = swapLeftAndRight ? tips.rightController : tips.leftController;
         var rightController = swapLeftAndRight ? tips.leftController : tips.rightController;
 
@@ -76,6 +79,9 @@ public class HelpTipsManager : MonoBehaviour
 
     public void ShowHelp(bool show)
     {
+        if (!enabled && show)
+            return;
+
         isVisible = show;
 
         tooltipsLeft.gameObject.SetActive(isVisible);
@@ -84,6 +90,9 @@ public class HelpTipsManager : MonoBehaviour
 
     public void ShowHelp(string name, bool swapLeftAndRight = false)
     {
+        if (!enabled)
+            return;
+
         HelpTips toShow = null;
         foreach (var tip in tips)
         {
