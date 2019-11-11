@@ -12,6 +12,7 @@ public static class ScenarioSpreadsheetLoader
     public static SocialMediaScenario LoadSocialMediaScenario(string file)
     {
         var result = new SocialMediaScenario();
+        result.name = file;
 
         result.twitterWithFriends = new MessageFeed();
         result.twitterWithFriends.messages = new List<Message>();
