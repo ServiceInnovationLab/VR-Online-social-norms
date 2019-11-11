@@ -4,6 +4,7 @@ using VRTK;
 public class PlayAreaLimitedTeleport : VRTK_HeightAdjustTeleport
 {
     [SerializeField] bool onlyTeleportToPointers;
+    [SerializeField] bool limitToPlayAreas = true;
     public bool checkForCollisions = true;
     [SerializeField] LayerMask collisionIgnoreLayers = Physics.IgnoreRaycastLayer;
     VrPlayArea[] playAreas;
@@ -60,13 +61,20 @@ public class PlayAreaLimitedTeleport : VRTK_HeightAdjustTeleport
 
         bool inPlayArea = false;
 
-        foreach (var area in playAreas)
+        if (limitToPlayAreas)
         {
-            if (area.IsDestinationPointValid(destinationPosition))
+            foreach (var area in playAreas)
             {
-                inPlayArea = true;
-                break;
+                if (area.IsDestinationPointValid(destinationPosition))
+                {
+                    inPlayArea = true;
+                    break;
+                }
             }
+        }
+        else
+        {
+            inPlayArea = true;
         }
 
         if (inPlayArea && checkForCollisions)
