@@ -29,6 +29,7 @@ public class VrPlayer : NetworkBehaviour
     [Command]
     public void CmdPickUp(NetworkIdentity toPickUp, NetworkIdentity player)
     {
+        toPickUp.RemoveClientAuthority();
         toPickUp.AssignClientAuthority(player.connectionToClient);
         RpcDisablePhysics(toPickUp);
     }
