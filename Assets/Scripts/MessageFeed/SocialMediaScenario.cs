@@ -61,6 +61,7 @@ public class SocialMediaScenario : ScriptableObject
     public int senderStreamingSkipTime;
     public string senderYoutubeURL;
     public string senderYoutubeVideoTitle;
+    public bool senderYoutubeLoop;
 
     public string GetText(SocialMediaScenarioTextType type)
     {

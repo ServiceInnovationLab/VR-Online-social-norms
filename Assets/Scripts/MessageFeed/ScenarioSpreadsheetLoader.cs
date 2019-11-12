@@ -211,6 +211,7 @@ public static class ScenarioSpreadsheetLoader
         const int urlColumn = 2;
         const int startColumn = 3;
         const int titleColumn = 4;
+        const int loopColumn = 5;
 
         for (int rowIndex = 1; rowIndex <= rows; rowIndex++)
         {
@@ -252,6 +253,9 @@ public static class ScenarioSpreadsheetLoader
 
                     scenario.senderYoutubeURL = url;
                     scenario.senderYoutubeVideoTitle = sheet.GetValue<string>(rowIndex, titleColumn);
+
+                    var loopText = sheet.GetValue<string>(rowIndex, loopColumn);
+                    scenario.senderYoutubeLoop = !string.IsNullOrWhiteSpace(loopText);
 
                     break;
             }
