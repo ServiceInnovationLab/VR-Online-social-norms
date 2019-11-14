@@ -4,7 +4,7 @@ using Mirror;
 public class MicrophoneTransfer : NetworkBehaviour
 {
     public const int Frequency = 44100;
-    public const int MaxAudioClipSamples = 100 * Frequency;
+    public const int MaxAudioClipSamples = 30 * Frequency;
     public const int SecondsToRecord = 10;
     public const int AudioTransmissionChannels = 1;
 

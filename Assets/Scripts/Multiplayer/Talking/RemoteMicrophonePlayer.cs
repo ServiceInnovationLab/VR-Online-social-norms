@@ -24,7 +24,8 @@ public class RemoteMicrophonePlayer : MonoBehaviour
 
         if (!audioSource.isPlaying)
         {
-            audioSource.Play();
+            // Play delayed to wait for more to buffer
+            audioSource.PlayDelayed(0.2f);
         }
 
         lastSamplePlayed = (lastSamplePlayed + data.Samples.Length) % MicrophoneTransfer.MaxAudioClipSamples;

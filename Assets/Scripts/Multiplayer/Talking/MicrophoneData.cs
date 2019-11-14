@@ -5,7 +5,8 @@ public class MicrophoneData : IEquatable<MicrophoneData>
 {
     const int ScaleFactor = 4;
 
-    public ushort[] Samples;
+    //public ushort[] Samples;
+    public float[] Samples;
 
     public MicrophoneData()
     {
@@ -14,31 +15,33 @@ public class MicrophoneData : IEquatable<MicrophoneData>
 
     public MicrophoneData(float[] rawSamples, int channelCount)
     {
-        Samples = new ushort[rawSamples.Length / channelCount / ScaleFactor];
+        Samples = rawSamples;
+        /*Samples = new float[rawSamples.Length / channelCount / ScaleFactor];
 
         int index = 0;
 
         for (int i = 0; i < rawSamples.Length && index < Samples.Length; i += channelCount * ScaleFactor)
         {
-            int sum = 0;
+            float sum = 0;
             for (int j = 0; j < ScaleFactor; j++)
             {
-                sum += ScaleFloatToShort(rawSamples[i + j * channelCount], -1, 1, ushort.MinValue, ushort.MaxValue);
+                //sum += ScaleFloatToShort(rawSamples[i + j * channelCount], -1, 1, ushort.MinValue, ushort.MaxValue);
+                sum += rawSamples[i + j * channelCount];
             }
-            Samples[index++] = (ushort)(sum / ScaleFactor);
-        }
+            Samples[index++] = sum / ScaleFactor;
+        }*/
     }
 
     public float[] GetFloats()
     {
-        var result = new float[Samples.Length];
+      /*  var result = new float[Samples.Length];
 
         for (int i = 0; i < Samples.Length; i++)
         {
             result[i] = ScaleShortToFloat(Samples[i], ushort.MinValue, ushort.MaxValue, -1, 1);
-        }
+        }*/
 
-        return result;
+        return Samples;
     }
 
     public bool Equals(MicrophoneData other)
