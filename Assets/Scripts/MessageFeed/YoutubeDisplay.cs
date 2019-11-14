@@ -25,6 +25,8 @@ public class YoutubeDisplay : MonoBehaviour
         {
             streamingVideo.PlayVideo(scenario.senderStreamingURL, scenario.senderStreamingSkipTime);
             talkingVideo.PlayVideo(scenario.senderYoutubeURL);
+
+            talkingVideo.VideoPlayer.isLooping = scenario.senderYoutubeLoop;
         }
 
         talkingVideoTitle.text = scenario.senderYoutubeVideoTitle;

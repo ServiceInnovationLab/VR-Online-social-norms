@@ -64,6 +64,12 @@ public class SocialMediaScenarioUI : MonoBehaviour
                 selected = display;
                 picker.LoadScenario(option);
             });
+
+            if (picker.CurrentScenario.name == option)
+            {
+                selected = display;
+                display.interactable = false;
+            }
         }
 
         container.Resize();

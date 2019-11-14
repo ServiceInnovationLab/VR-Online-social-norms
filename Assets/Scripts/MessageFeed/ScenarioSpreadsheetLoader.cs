@@ -12,6 +12,7 @@ public static class ScenarioSpreadsheetLoader
     public static SocialMediaScenario LoadSocialMediaScenario(string file)
     {
         var result = new SocialMediaScenario();
+        result.name = file;
 
         result.twitterWithFriends = new MessageFeed();
         result.twitterWithFriends.messages = new List<Message>();
@@ -39,6 +40,14 @@ public static class ScenarioSpreadsheetLoader
             LoadReceiverFlow(p.Workbook.Worksheets["ReceiverFlow"], result);
             result.firstSceneSMSFeed.messages = LoadSMSFeed(p.Workbook.Worksheets["First Notification Feed"]);
 
+            try
+            {
+                LoadReceiverURLS(p.Workbook.Worksheets["ReceiverVideo"], result);
+            }
+            catch
+            {
+
+            }
 
             // Sender, scene 2
             LoadSenderTwitter(p.Workbook.Worksheets["SenderTwitter"], result);
@@ -210,6 +219,7 @@ public static class ScenarioSpreadsheetLoader
         const int urlColumn = 2;
         const int startColumn = 3;
         const int titleColumn = 4;
+        const int loopColumn = 5;
 
         for (int rowIndex = 1; rowIndex <= rows; rowIndex++)
         {
@@ -252,8 +262,51 @@ public static class ScenarioSpreadsheetLoader
                     scenario.senderYoutubeURL = url;
                     scenario.senderYoutubeVideoTitle = sheet.GetValue<string>(rowIndex, titleColumn);
 
+                    var loopText = sheet.GetValue<string>(rowIndex, loopColumn);
+                    scenario.senderYoutubeLoop = !string.IsNullOrWhiteSpace(loopText);
+
                     break;
             }
+        }
+    }
+
+    private static void LoadReceiverURLS(ExcelWorksheet sheet, SocialMediaScenario scenario)
+    {
+        if (sheet == null)
+            return;
+
+        int rows = sheet.Dimension.Rows;
+
+        const int urlColumn = 1;
+        const int startColumn = 2;
+
+        for (int rowIndex = 1; rowIndex <= rows; rowIndex++)
+        {
+            var row = sheet.Row(rowIndex);
+
+            // Skip instructions which are coloured
+            var colour = row.Style.Fill.BackgroundColor;
+            if (colour.Rgb != null)
+                continue;
+
+            var url = sheet.GetValue<string>(rowIndex, urlColumn);
+
+            if (url == null)
+                continue;
+
+            int startTime = 0;
+
+            try
+            {
+                startTime = sheet.GetValue<int>(rowIndex, startColumn);
+            }
+            catch
+            {
+
+            }
+
+            scenario.receiverVideo = url;
+            scenario.receiverVideoSkipTime = startTime;
         }
     }
 

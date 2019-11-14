@@ -13457,12 +13457,12 @@ PrefabInstance:
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00081
+      value: 217
       objectReference: {fileID: 0}
     - target: {fileID: 8991210548869417667, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00081
+      value: 217
       objectReference: {fileID: 0}
     - target: {fileID: 8991210547906491646, guid: a2919f28a57c2ef4caed4947f83df9e3,
         type: 3}
@@ -25133,6 +25133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1161138649}
   - component: {fileID: 1161138651}
+  - component: {fileID: 1161138652}
+  - component: {fileID: 1161138650}
   m_Layer: 0
   m_Name: SoccerPlayback
   m_TagString: Untagged
@@ -25154,6 +25156,23 @@ Transform:
   m_Father: {fileID: 1717092007}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1161138650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161138648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2ec598eebd5774399c218bb920de12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 0
+  url: 
+  skipAmount: 0
+  projectVideoClips:
+  - {fileID: 32900000, guid: f3240fd9c59917b4489f98a7c7e8ca7e, type: 3}
 --- !u!328 &1161138651
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -25188,6 +25207,19 @@ VideoPlayer:
   m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
+--- !u!114 &1161138652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161138648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2fa80fe5ac38874f8643643178641db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 1161138650}
 --- !u!1001 &1162632968
 PrefabInstance:
   m_ObjectHideFlags: 0
