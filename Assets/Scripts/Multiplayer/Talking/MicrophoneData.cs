@@ -18,7 +18,7 @@ public class MicrophoneData : IEquatable<MicrophoneData>
 
         int index = 0;
 
-        for (int i = 0; i < rawSamples.Length; i += channelCount * ScaleFactor)
+        for (int i = 0; i < rawSamples.Length && index < Samples.Length; i += channelCount * ScaleFactor)
         {
             int sum = 0;
             for (int j = 0; j < ScaleFactor; j++)

@@ -78,7 +78,6 @@ public class MicrophoneTransfer : NetworkBehaviour
     [Command]
     void CmdSendAudio(MicrophoneData data)
     {
-        Debug.Log(data.Samples.Length);
         foreach (var connection in NetworkServer.connections)
         {
            // if (connection.Value != connectionToClient)
