@@ -6,6 +6,9 @@ public class VrPlayer : NetworkBehaviour
 {
     public static VrPlayer MyPlayer;
 
+    [SerializeField] Transform rightHand;
+    [SerializeField] Transform leftHand;
+
     public override void OnStartLocalPlayer()    
     {
         MyPlayer = this;
@@ -13,6 +16,11 @@ public class VrPlayer : NetworkBehaviour
         {
             renderer.enabled = false;
         }
+
+        /*if (!Valve.VR.SteamVR.active)
+        {
+            QualitySettings.vSyncCount = 1;
+        }*/
     }
 
     void Update()
@@ -21,9 +29,14 @@ public class VrPlayer : NetworkBehaviour
             return;
 
         var headset = VRTK_DeviceFinder.HeadsetTransform();
+        var rightController = VRTK_DeviceFinder.GetControllerRightHand(true);
+        var leftController = VRTK_DeviceFinder.GetControllerLeftHand(true);
 
         transform.position = headset.position;
         transform.rotation = headset.rotation;
+
+        rightHand.position = rightController.transform.position;
+        leftHand.position = leftController.transform.position;
     }
 
     [Command]
@@ -37,8 +50,11 @@ public class VrPlayer : NetworkBehaviour
     [Command]
     public void CmdDrop(NetworkIdentity toPickUp)
     {
-       // toPickUp.RemoveClientAuthority();
-      //  RpcEnablePhysics(toPickUp);
+        // Don't do this, otherwise the server doesn't have the physics of the throw
+
+
+        // toPickUp.RemoveClientAuthority();
+        //  RpcEnablePhysics(toPickUp);
     }
 
     [ClientRpc]
