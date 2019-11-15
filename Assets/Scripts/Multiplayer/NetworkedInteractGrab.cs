@@ -1,8 +1,10 @@
 ﻿using VRTK;
 using Mirror;
+using UnityEngine;
 
 public class NetworkedInteractGrab : NetworkBehaviour
 {
+
     private void Awake()
     {
         GetComponent<NetworkTransform>().enabled = false;
