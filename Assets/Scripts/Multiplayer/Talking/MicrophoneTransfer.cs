@@ -80,7 +80,7 @@ public class MicrophoneTransfer : NetworkBehaviour
     {
         foreach (var connection in NetworkServer.connections)
         {
-           // if (connection.Value != connectionToClient)
+            if (connection.Value != connectionToClient)
             {
                 TargetPlayAudio(connection.Value, data);
             }
